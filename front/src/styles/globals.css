@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+header{
+    @apply flex p-10 text-center;
+}
+
+footer{
+    @apply text-2xl;
+}
+
+.head_item{
+    @apply block p-2 text-4xl m-auto;
+}
