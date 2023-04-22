@@ -1,11 +1,15 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 
-	_ "github.com/lib/pq"
+	"github.com/thirofoo/portfolio/Controller"
 	"github.com/thirofoo/portfolio/Database"
+	"github.com/thirofoo/portfolio/Models"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+
+	"github.com/gin-gonic/gin"
 )
 
 func checkError(err error) {
@@ -15,21 +19,23 @@ func checkError(err error) {
 }
 
 func main() {
-	// Initialize connection string.
-	var connectionString string = Database.DbUrl()
-	fmt.Println(connectionString)
 
-	// Initialize connection object.
-	db, err := sql.Open("postgres", connectionString)
+	dsn := Database.DbUrl()
+	fmt.Println(dsn)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	checkError(err)
 
-	err = db.Ping()
-	checkError(err)
+	db.AutoMigrate(&Models.Article{})
+	fmt.Println("migrated!")
 
-	fmt.Println("Successfully created connection to database")
+	router := gin.Default()
 
-	// Drop previous table of same name if one exists.
-	_, err = db.Exec("DROP TABLE IF EXISTS inventory;")
-	checkError(err)
-	fmt.Println("Finished dropping table (if existed)")
+	r := router.Group("/article")
+	r.GET("/get", Controller.ShowAllBlog)
+	r.GET("/get/:id", Controller.ShowOneBlog)
+	r.POST("/create", Controller.CreateBlog)
+	r.PUT("/update/:id", Controller.EditBlog)
+	r.DELETE("/delete/:id", Controller.DeleteBlog)
+
+	router.Run(":8080")
 }
