@@ -26,19 +26,23 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <h1 className={
-        'text-center text-4xl'
-      }>This is My Blog !</h1>
-			<div>
-      	<ul>
-      	  {articles.map( (article) => (
-						<div key={article.ID}>
-							<h2>{article.title}</h2>
-							<div>{article.body}</div>
-						</div>
-      	  ))}
-      	</ul>
+			<div className={
+        'text-center text-4xl p-10'
+      }>
+      	{articles.map( (article) => (
+					<div key={article.ID}>
+						<h2>{article.title}</h2>
+						<div>{article.body}</div>
+					</div>
+      	))}
+
+        <button className={
+          'm-20 p-20 bg-bg-primary shadow-lg hover:bg-bg-secondary hover:shadow-none'
+        }>
+          More
+        </button>
     	</div>
+
     </>
   );
 };

@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const Header = () => {
+const Button = () => {
   return(
     <header>
         <Link href='/' legacyBehavior>
@@ -19,4 +19,4 @@ const Header = () => {
     </header>
   )
 }
-export default Header
+export default Button
