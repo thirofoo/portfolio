@@ -1,22 +1,16 @@
-import Link from "next/link"
+type Props = {
+  content : string;
+};
 
-const Button = () => {
+const Button = ({content}: Props) => {
   return(
-    <header>
-        <Link href='/' legacyBehavior>
-            <a className={
-                'text-9xl m-auto'
-            }>Portfolio</a>
-        </Link>
-        <div>
-            <Link href='/works' legacyBehavior>
-                <a className='head_item'>Works</a>
-            </Link>
-            <Link href='/blog' legacyBehavior>
-                <a className='head_item'>Blog</a>
-            </Link>
-        </div>
-    </header>
+    <>
+      <button className={
+        'm-20 p-20 bg-bg-primary shadow-lg hover:bg-bg-secondary hover:shadow-none'
+      }>
+        {content}
+      </button>
+    </>
   )
 }
 export default Button
