@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import Button from '../components/atoms/Button'
+import Blog from '@/components/molecules/Blog'
 
 type Article = {
   ID: string
@@ -10,6 +9,18 @@ type Article = {
   UpdatedAt: string
   DeletedAt: string
   title: string
+  slug: string
+  description: string
+  author: string
+  thumbnail: string
+  Tags: {
+    ID: string
+    CreatedAt: string
+    UpdatedAt: string
+    DeletedAt: string
+    name: string
+  }[]
+  type: string
   body: string
 }
 
@@ -28,12 +39,8 @@ const Home: NextPage = () => {
     <>
       <div className={'text-center text-4xl p-10'}>
         {articles.map((article) => (
-          <div key={article.ID} className={'inline'}>
-            <h2>{article.title}</h2>
-            <div>{article.body}</div>
-          </div>
+          <Blog blog={article} />
         ))}
-
         <div className={'m-20 flex justify-center'}>
           <Button content='More'></Button>
         </div>

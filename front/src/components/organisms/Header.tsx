@@ -36,19 +36,19 @@ const Header = () => {
       <header className={headerClass}>
         <div className={'flex'}>
           <Link href='/' legacyBehavior>
-            <div className='p-5'>
+            <div className='m-5 rounded-full'>
               <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
             </div>
           </Link>
 
           <Link href='/works' legacyBehavior>
-            <div className='p-5'>
+            <div className='m-5 rounded-full'>
               <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
             </div>
           </Link>
 
           <Link href='/blog' legacyBehavior>
-            <div className='p-5'>
+            <div className='m-5 rounded-full'>
               <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
             </div>
           </Link>
