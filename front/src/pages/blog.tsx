@@ -28,13 +28,15 @@ const Home: NextPage = () => {
     <>
       <div className={'text-center text-4xl p-10'}>
         {articles.map((article) => (
-          <div key={article.ID}>
+          <div key={article.ID} className={'inline'}>
             <h2>{article.title}</h2>
             <div>{article.body}</div>
           </div>
         ))}
 
-        <Button content='More'></Button>
+        <div className={'m-20 flex justify-center'}>
+          <Button content='More'></Button>
+        </div>
       </div>
     </>
   )

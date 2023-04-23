@@ -9,7 +9,6 @@ const MyDocument = () => {
             <Head>
                 <meta name='application-name' content='MyTemplate' />
                 <meta name='description' content='' />
-                <title>thirofoo portfolio</title>
             </Head>
             <Html lang='ja-JP'>
                 <body>

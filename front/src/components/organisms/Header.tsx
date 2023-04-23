@@ -1,23 +1,56 @@
-import Link from "next/link"
+import Link from 'next/link'
+import { useState } from 'react'
+import Button from '@/components/atoms/Button'
+
+const headerClass: string = 'flex fixed mb-5 p-5 text-4xl shadow-lg shadow-white w-full z-10'
+const headItemClass: string = 'flex p-5 text-center'
 
 const Header = () => {
-  return(
+  const [worksOn, setWorksOn] = useState<boolean>(false)
+  const [blogOn, setBlogOn] = useState<boolean>(false)
+
+  const worksClick = () => {
+    if (!worksOn) {
+      setWorksOn(!worksOn)
+      setBlogOn(false)
+    }
+  }
+  const blogClick = () => {
+    if (!blogOn) {
+      setBlogOn(!blogOn)
+      setWorksOn(false)
+    }
+  }
+
+  return (
     <>
-        <header>
-            <Link href='/' legacyBehavior>
-                <a className={
-                    'text-9xl m-auto'
-                }>Portfolio</a>
-            </Link>
-            <div>
-                <Link href='/works' legacyBehavior>
-                    <a className='head_item'>Works</a>
-                </Link>
-                <Link href='/blog' legacyBehavior>
-                    <a className='head_item'>Blog</a>
-                </Link>
+      <header className={headerClass}>
+        <Link href='/' legacyBehavior>
+          <a
+            className={'text-7xl m-auto'}
+            onClick={() => {
+              setWorksOn(false)
+              setBlogOn(false)
+            }}
+          >
+            Portfolio
+          </a>
+        </Link>
+
+        <div className={'flex'}>
+          <Link href='/works' legacyBehavior>
+            <div className={headItemClass}>
+              <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
             </div>
-        </header>
+          </Link>
+
+          <Link href='/blog' legacyBehavior>
+            <div className={headItemClass}>
+              <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
+            </div>
+          </Link>
+        </div>
+      </header>
     </>
   )
 }

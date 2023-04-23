@@ -6,14 +6,7 @@ body {
   @apply bg-bg-primary text-text-primary;
 }
 
-header{
-    @apply flex p-10 text-center;
+footer {
+  @apply text-2xl;
 }
 
-footer{
-    @apply text-2xl;
-}
-
-.head_item{
-    @apply block p-2 text-4xl m-auto;
-}

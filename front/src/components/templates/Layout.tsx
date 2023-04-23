@@ -11,7 +11,7 @@ const Layout = ({ children }: Props) => {
     <>
       <Header></Header>
 
-      <div className={'h-screen'}>{children}</div>
+      <div className={'h-screen pt-[200px]'}>{children}</div>
 
       <footer>
         <p>2023/4 through</p>
