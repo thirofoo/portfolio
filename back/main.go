@@ -29,8 +29,8 @@ func main() {
 	fmt.Println("migrated!")
 
 	router := gin.Default()
-
 	r := router.Group("/article")
+
 	r.GET("/get", Controller.ShowAllBlog)
 	r.GET("/get/:id", Controller.ShowOneBlog)
 	r.POST("/create", Controller.CreateBlog)

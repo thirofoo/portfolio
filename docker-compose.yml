@@ -22,6 +22,8 @@ services:
       - 3000:3000
     volumes:
       - ./front:/front
+    environment:
+      - API_URL=${API_URL}
     working_dir: /front
     stdin_open: true
     tty: true

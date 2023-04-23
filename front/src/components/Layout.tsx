@@ -7,14 +7,9 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => {
+    // body要素の全体的な構造の定義
     return (
-        <div className={
-            'text-slate-400 bg-slate-200'
-        }>
-            <Head>
-                <title>MyTemplate</title>
-            </Head>
-
+        <>
             <Header></Header>
 
             <div className={
@@ -24,7 +19,7 @@ const Layout = ({ children }: Props) => {
             <footer>
                 <p>2023/4 through</p>
             </footer>
-        </div>
+        </>
     );
 };
 export default Layout;

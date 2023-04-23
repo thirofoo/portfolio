@@ -9,10 +9,10 @@ const Header = () => {
             }>Portfolio</a>
         </Link>
         <div>
-            <Link href='/Works' legacyBehavior>
+            <Link href='/works' legacyBehavior>
                 <a className='head_item'>Works</a>
             </Link>
-            <Link href='/Blog' legacyBehavior>
+            <Link href='/blog' legacyBehavior>
                 <a className='head_item'>Blog</a>
             </Link>
         </div>
