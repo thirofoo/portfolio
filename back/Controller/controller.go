@@ -1,7 +1,6 @@
 package Controller
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -11,10 +10,12 @@ import (
 	"github.com/gin-gonic/gin/binding"
 )
 
+
 func ShowAllBlog(c *gin.Context) {
 	datas := Models.GetAll()
 	c.JSON(http.StatusOK, datas)
 }
+
 
 func ShowOneBlog(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -22,21 +23,50 @@ func ShowOneBlog(c *gin.Context) {
 	c.JSON(http.StatusOK, data)
 }
 
-func CreateBlog(c *gin.Context) {
-	input := Models.Article{}
 
-	// ヘッダーのJSONをinputにバインド
+func CreateBlog(c *gin.Context) {
+	// ArticleWithTag の形で入力受付
+	input := Models.ArticleWithTag{}
+
+	// bind
 	err := c.ShouldBindWith(&input, binding.JSON)
 	if err != nil {
-		c.String(http.StatusBadRequest, "Bad request")
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	fmt.Println(input)
+	// Articleをデータベースに挿入
+	article := Models.Article{
+		Title:       input.Title,
+		Slug:        input.Slug,
+		Description: input.Description,
+		Author:      input.Author,
+		Thumbnail:   input.Thumbnail,
+		Type:        input.Type,
+		Body:        input.Body,
+	}
+	article.Create()
 
-	input.Create()
+	for _, tagName := range input.TagNames {
+		tag := Models.Tag{Name: tagName}
+
+		// タグが存在しなければ作成
+		err = Models.Db.Where(Models.Tag{Name: tagName}).FirstOrCreate(&tag).Error
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		// 中間テーブルにデータを挿入
+		// ※ 該当のarticleに対して、tagを追加 ( 中間テーブルに関係性を追加 ) している
+		err = Models.Db.Model(&article).Association("Tags").Append(&tag)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+	}
 	c.JSON(http.StatusOK, gin.H{"message": "created successfully"})
 }
+
 
 func EditBlog(c *gin.Context) {
 	// query parameterからidを取得 ( 危険なので後で修正 )func UpdateArticle(c *gin.Context) {
@@ -62,6 +92,7 @@ func EditBlog(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "updated successfully"})
 }
+
 
 func DeleteBlog(c *gin.Context) {
 	// query parameterからidを取得 ( 危険なので後で修正 )

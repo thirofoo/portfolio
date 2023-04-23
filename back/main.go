@@ -19,13 +19,13 @@ func checkError(err error) {
 }
 
 func main() {
-
 	dsn := Database.DbUrl()
 	fmt.Println(dsn)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	checkError(err)
 
-	db.AutoMigrate(&Models.Article{})
+	err = db.AutoMigrate(&Models.Article{})
+	checkError(err)
 	fmt.Println("migrated!")
 
 	router := gin.Default()

@@ -2,22 +2,31 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Button from '@/components/atoms/Button'
 
-const headerClass: string = 'flex fixed mb-5 p-5 text-4xl shadow-lg shadow-white w-full z-10'
-const headItemClass: string = 'flex p-5 text-center'
+const headerClass: string = 'flex fixed text-3xl shadow-lg shadow-white w-full z-10 justify-center'
 
 const Header = () => {
+  const [homeOn, setHomeOn] = useState<boolean>(true)
   const [worksOn, setWorksOn] = useState<boolean>(false)
   const [blogOn, setBlogOn] = useState<boolean>(false)
 
   const worksClick = () => {
     if (!worksOn) {
-      setWorksOn(!worksOn)
+      setHomeOn(false)
+      setWorksOn(true)
       setBlogOn(false)
     }
   }
   const blogClick = () => {
     if (!blogOn) {
-      setBlogOn(!blogOn)
+      setHomeOn(false)
+      setWorksOn(false)
+      setBlogOn(true)
+    }
+  }
+  const homeClick = () => {
+    if (!homeOn) {
+      setHomeOn(true)
+      setBlogOn(false)
       setWorksOn(false)
     }
   }
@@ -25,27 +34,21 @@ const Header = () => {
   return (
     <>
       <header className={headerClass}>
-        <Link href='/' legacyBehavior>
-          <a
-            className={'text-7xl m-auto'}
-            onClick={() => {
-              setWorksOn(false)
-              setBlogOn(false)
-            }}
-          >
-            Portfolio
-          </a>
-        </Link>
-
         <div className={'flex'}>
+          <Link href='/' legacyBehavior>
+            <div className='p-5'>
+              <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
+            </div>
+          </Link>
+
           <Link href='/works' legacyBehavior>
-            <div className={headItemClass}>
+            <div className='p-5'>
               <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
             </div>
           </Link>
 
           <Link href='/blog' legacyBehavior>
-            <div className={headItemClass}>
+            <div className='p-5'>
               <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
             </div>
           </Link>
