@@ -1,52 +1,36 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Button from '../components/atoms/Button'
-import Blog from '@/components/molecules/Blog'
+import BlogList from '@/components/molecules/BlogList'
+import Article from '@/Interfaces/Article'
+import { getAllArticles } from '@/lib/api'
 
-type Article = {
-  ID: string
-  CreatedAt: string
-  UpdatedAt: string
-  DeletedAt: string
-  title: string
-  slug: string
-  description: string
-  author: string
-  thumbnail: string
-  Tags: {
-    ID: string
-    CreatedAt: string
-    UpdatedAt: string
-    DeletedAt: string
-    name: string
-  }[]
-  type: string
-  body: string
+type BlogProps = {
+  articles: Article[]
 }
 
-const Home: NextPage = () => {
-  const [articles, setArticle] = useState<Article[]>([])
-  useEffect(() => {
-    const fetcharticle = async () => {
-      const response = await fetch('http://localhost:3000/api/article')
-      const data = await response.json()
-      setArticle(data)
-    }
-    fetcharticle()
-  }, [])
-
+const Blog: NextPage<BlogProps> = ({ articles }) => {
   return (
     <>
       <div className={'text-center text-4xl p-10'}>
-        {articles.map((article) => (
-          <Blog blog={article} />
-        ))}
-        <div className={'m-20 flex justify-center'}>
-          <Button content='More'></Button>
-        </div>
+        <BlogList articles={articles} />
+      </div>
+      <div className={'m-20 flex justify-center'}>
+        <Button content='More'></Button>
       </div>
     </>
   )
 }
 
-export default Home
+export async function getStaticProps() {
+  const articles = await getAllArticles()
+  return {
+    // propsのarticleプロパティにデータを補充してる感じ。
+    // buildしたらSSGされる。
+    props: {
+      articles,
+    },
+  }
+}
+
+export default Blog
