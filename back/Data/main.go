@@ -1,4 +1,4 @@
-package insert
+package main
 
 import (
 	"fmt"
@@ -7,20 +7,8 @@ import (
 
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday/v2"
-	"gorm.io/gorm"
+	"github.com/thirofoo/portfolio/Models"
 )
-
-type Article struct {
-	gorm.Model
-	Title       string
-	Slug        string
-	Description string
-	Author      string
-	Thumbnail   string
-	Tags        []string
-	Type        string
-	Body        string
-}
 
 func main() {
 	// メタデータと本文を取得するmdファイルのパス
@@ -44,7 +32,8 @@ func main() {
 	bodyStr := splitMd[2]
 
 	// メタデータをパースしてArticleにセット
-	article := Article{}
+	article := Models.Article{}
+	tags := []string{}
 	metaDataArr := strings.Split(metaDataStr, "\n")
 	for _, data := range metaDataArr {
 		if data == "" {
@@ -68,7 +57,7 @@ func main() {
 		case "thumbnail":
 			article.Thumbnail = value
 		case "tags":
-			article.Tags = strings.Split(value, ",")
+			tags = strings.Split(value, ",")
 		case "type":
 			article.Type = value
 		}
@@ -79,7 +68,22 @@ func main() {
 	sanitizedHTML := bluemonday.UGCPolicy().SanitizeBytes(htmlBytes)
 	article.Body = string(sanitizedHTML)
 
-	// TODO: DBに挿入する処理
+	// DBに記事を挿入
+	article.Create()
 
-	fmt.Println(article)
+	// 記事に紐付くタグを挿入
+	for _, tagName := range tags {
+		tag := Models.Tag{Name: tagName}
+
+		// タグが存在しなければ作成
+		err = Models.Db.Where(Models.Tag{Name: tagName}).FirstOrCreate(&tag).Error
+		if err != nil {
+			panic(err)
+		}
+		// 中間テーブルにデータを挿入
+		err = Models.Db.Model(&article).Association("Tags").Append(&tag)
+		if err != nil {
+			panic(err)
+		}
+	}
 }
