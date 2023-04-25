@@ -1,16 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
-import Article from '@/Interfaces/Article'
+import { Article } from '@/Interfaces/Article'
 
 type BlogProps = {
   article: Article
 }
 
-function BlogHead({ article }: BlogProps) {
+export const BlogHead = ({ article }: BlogProps) => {
   return (
     <>
       <div>
-        <Link href={`/blogs/${article.slug}`} legacyBehavior>
+        <Link href={`/blog/${article.slug}`} legacyBehavior>
           <a>
             <h2>{article.title}</h2>
           </a>
@@ -23,5 +23,3 @@ function BlogHead({ article }: BlogProps) {
     </>
   )
 }
-
-export default BlogHead

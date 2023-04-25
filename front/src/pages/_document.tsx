@@ -19,5 +19,4 @@ const MyDocument = () => {
     </>
   )
 }
-
 export default MyDocument

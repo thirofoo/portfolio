@@ -101,5 +101,14 @@ func DeleteBlog(c *gin.Context) {
 	data := Models.GetOne(id)
 	data.Delete()
 
+	// 中間テーブルのデータを取得 (tag_id が 中間テーブルにしかない為分かる)
+	var Tags []Models.Tag
+	Models.Db.Where("blog_id = ?", id).Find(&Tags)
+	
+	// 取得した中間テーブルのデータを削除
+	for _, Tag := range Tags {
+	    Models.Db.Delete(&Tag)
+	}
+
 	c.JSON(http.StatusOK, gin.H{"message": "deleted successfully"})
 }

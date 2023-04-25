@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import Button from '@/components/atoms/Button'
+import { Button } from '@/components/atoms/Button'
 
-const headerClass: string = 'flex fixed text-3xl shadow-lg shadow-white w-full z-10 justify-center'
+const headerClass: string =
+  'flex fixed text-3xl shadow-lg w-full justify-center z-20 bg-bg-primary bg-opacity-90'
 
-const Header = () => {
+export const Header = () => {
   const [homeOn, setHomeOn] = useState<boolean>(true)
   const [worksOn, setWorksOn] = useState<boolean>(false)
   const [blogOn, setBlogOn] = useState<boolean>(false)
@@ -57,4 +58,3 @@ const Header = () => {
     </>
   )
 }
-export default Header

@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
+	"html"
 	"io/ioutil"
+	"regexp"
 	"strings"
 
-	"github.com/microcosm-cc/bluemonday"
-	"github.com/russross/blackfriday/v2"
 	"github.com/thirofoo/portfolio/Models"
 )
 
@@ -63,10 +63,18 @@ func main() {
 		}
 	}
 
-	// 本文をHTMLに変換してサニタイズ
-	htmlBytes := blackfriday.Run([]byte(bodyStr))
-	sanitizedHTML := bluemonday.UGCPolicy().SanitizeBytes(htmlBytes)
-	article.Body = string(sanitizedHTML)
+	// コードブロックのパターンを正規表現で定義
+	codeBlockPattern := regexp.MustCompile("(?s)```.*?```")
+
+	// コードブロックを取得
+	codeBlocks := codeBlockPattern.FindAllString(bodyStr, -1)
+
+	// コードブロック内のHTMLタグをエスケープ
+	for _, block := range codeBlocks {
+		bodyStr = strings.ReplaceAll(bodyStr, block, html.EscapeString(block))
+	}
+
+	article.Body = html.EscapeString(bodyStr)
 
 	// DBに記事を挿入
 	article.Create()

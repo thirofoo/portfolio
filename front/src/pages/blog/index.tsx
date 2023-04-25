@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
-import { useState, useEffect } from 'react'
-import Button from '../components/atoms/Button'
-import BlogList from '@/components/molecules/BlogList'
-import Article from '@/Interfaces/Article'
+import { Button } from '../../components/atoms/Button'
+import { BlogList } from '@/components/molecules/BlogList'
+import { Article } from '@/Interfaces/Article'
 import { getAllArticles } from '@/lib/api'
 
 type BlogProps = {

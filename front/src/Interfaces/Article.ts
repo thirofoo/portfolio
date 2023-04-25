@@ -1,4 +1,4 @@
-interface Article {
+export interface Article {
   ID: string
   CreatedAt: string
   UpdatedAt: string
@@ -18,4 +18,3 @@ interface Article {
   type: string
   body: string
 }
-export default Article
