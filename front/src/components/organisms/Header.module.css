@@ -1,0 +1,7 @@
+.header {
+  @apply flex fixed text-3xl shadow-lg w-full justify-center z-20 bg-bg-primary bg-opacity-90;
+}
+
+.header-container {
+  @apply flex;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BlogHead } from './BlogHead'
+import { BlogCard } from './BlogCard'
 import { Article } from '@/Interfaces/Article'
 
 type BlogListProps = {
@@ -9,8 +9,15 @@ type BlogListProps = {
 export const BlogList = ({ articles }: BlogListProps) => {
   return (
     <>
-      {/* articlesがnullの時の処理も含める */}
-      {articles && articles.map((article) => <BlogHead key={article.ID} article={article} />)}
+      <div className={'flex flex-col'}>
+        {/* articlesがnullの時の処理も含める */}
+        {articles &&
+          articles.map((article) => (
+            <div key={article.ID} className={'flex m-5 justify-center'}>
+              <BlogCard article={article} />
+            </div>
+          ))}
+      </div>
     </>
   )
 }

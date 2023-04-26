@@ -1,8 +1,8 @@
 ---
-title: フィボナッチ数列について
-slug: about-fibonacci-sequence
-description: フィボナッチ数列とは何か、その特徴や応用について解説します。
-author: John Smith
+title: AHC019参加記
+slug: ahc019-participation-record
+description: AHC019に参加した際の記録です。
+author: through
 thumbnail:
 tags: CompetitiveProgramming,数学,数列
 type: blog

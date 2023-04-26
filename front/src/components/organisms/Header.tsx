@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/atoms/Button'
-
-const headerClass =
-  'flex fixed text-3xl shadow-lg w-full justify-center z-20 bg-bg-primary bg-opacity-90'
+import styles from '@/components/organisms/Header.module.css'
 
 export const Header = () => {
   const [homeOn, setHomeOn] = useState<boolean>(true)
@@ -34,25 +32,25 @@ export const Header = () => {
 
   return (
     <>
-      <header className={headerClass}>
-        <div className={'flex'}>
-          <Link href='/'>
-            <div className='m-5 rounded-full'>
+      <header className={styles.header}>
+        <div className={styles['header-container']}>
+          <div className='m-5 rounded-full'>
+            <Link href='/'>
               <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
-          <Link href='/works'>
-            <div className='m-5 rounded-full'>
+          <div className='m-5 rounded-full'>
+            <Link href='/works'>
               <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
-          <Link href='/blog'>
-            <div className='m-5 rounded-full'>
+          <div className='m-5 rounded-full'>
+            <Link href='/blog'>
               <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </div>
       </header>
     </>
