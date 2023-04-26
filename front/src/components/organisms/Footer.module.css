@@ -1,0 +1,7 @@
+.text {
+  @apply text-center text-base;
+}
+
+.footer {
+  @apply absolute bottom-0 bg-bg-primary text-text-primary w-full py-5;
+}

@@ -7,5 +7,5 @@
 }
 
 .span {
-  @apply top-0 left-0 rounded-full opacity-50 shadow-lg shadow-shadow w-full h-full duration-200 active:shadow-inner bg-bg-primary;
+  @apply top-0 left-0 rounded-full opacity-50 shadow-lg w-full h-full duration-200 active:shadow-inner bg-bg-primary;
 }

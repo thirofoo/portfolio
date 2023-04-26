@@ -11,7 +11,7 @@
 }
 
 .card-content {
-  @apply relative bottom-0 px-6 pb-6 w-full bg-bg-primary bg-opacity-95;
+  @apply relative bottom-0 px-6 pb-6 w-full bg-bg-primary;
 }
 
 .card-title {

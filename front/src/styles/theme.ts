@@ -1,6 +1,6 @@
 module.exports = {
   bg: {
-    primary: '#EEEEEE',
+    primary: 'white',
     secondary: '#2F3A99',
     tertiary: '#3F5267',
   },
