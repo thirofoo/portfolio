@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/atoms/Button'
 
-const headerClass: string =
+const headerClass =
   'flex fixed text-3xl shadow-lg w-full justify-center z-20 bg-bg-primary bg-opacity-90'
 
 export const Header = () => {
@@ -36,19 +36,19 @@ export const Header = () => {
     <>
       <header className={headerClass}>
         <div className={'flex'}>
-          <Link href='/' legacyBehavior>
+          <Link href='/'>
             <div className='m-5 rounded-full'>
               <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
             </div>
           </Link>
 
-          <Link href='/works' legacyBehavior>
+          <Link href='/works'>
             <div className='m-5 rounded-full'>
               <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
             </div>
           </Link>
 
-          <Link href='/blog' legacyBehavior>
+          <Link href='/blog'>
             <div className='m-5 rounded-full'>
               <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
             </div>

@@ -1,10 +1,29 @@
 export const getAllArticles = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/article')
-    const data = await res.json()
+    const response = await fetch(process.env.API_URL + `/article/get`)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const data = await response.json()
+    // console.log(data)
     return data
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}
+
+export const getOneArticle = async (slug: string) => {
+  try {
+    const response = await fetch(process.env.API_URL + `/article/get/${slug}`)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const data = await response.json()
+    console.log(data)
+    return data
+  } catch (error) {
+    console.log(error)
     return null
   }
 }

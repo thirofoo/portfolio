@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import { Article } from '@/Interfaces/Article'
 
@@ -10,10 +9,8 @@ export const BlogHead = ({ article }: BlogProps) => {
   return (
     <>
       <div>
-        <Link href={`/blog/${article.slug}`} legacyBehavior>
-          <a>
-            <h2>{article.title}</h2>
-          </a>
+        <Link href={`/blog/${article.slug}`}>
+          <h2>{article.title}</h2>
         </Link>
         <p>{article.description}</p>
         <p>{article.author}</p>

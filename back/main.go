@@ -32,7 +32,7 @@ func main() {
 	r := router.Group("/article")
 
 	r.GET("/get", Controller.ShowAllBlog)
-	r.GET("/get/:id", Controller.ShowOneBlog)
+	r.GET("/get/:slug", Controller.ShowOneBlogBySlug)
 	r.POST("/create", Controller.CreateBlog)
 	r.PUT("/update/:id", Controller.EditBlog)
 	r.DELETE("/delete/:id", Controller.DeleteBlog)

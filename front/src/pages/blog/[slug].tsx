@@ -1,22 +1,48 @@
-import type { NextPage } from 'next'
-import { Button } from '../../components/atoms/Button'
-import { BlogList } from '@/components/molecules/BlogList'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { Article } from '@/Interfaces/Article'
-import { getAllArticles } from '@/lib/api'
+import { getAllArticles, getOneArticle } from '@/lib/api'
 
 type BlogProps = {
-  articles: Article[]
+  article: Article
 }
 
-const Blog: NextPage<BlogProps> = ({ articles }) => {
+const BlogDetail: NextPage<BlogProps> = ({ article }) => {
+  const router = useRouter()
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
-      <div className={'text-center text-4xl p-10'}>
-        <BlogList articles={articles} />
-      </div>
-      <div className={'m-20 flex justify-center'}>
-        <Button content='More'></Button>
-      </div>
+      <h1>{article.title}</h1>
+      <p>{article.body}</p>
     </>
   )
+}
+
+export default BlogDetail
+
+// build時に静的に生成するパスを指定する
+// 返り値でnext側に SSGする時のpathを教えてい
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getAllArticles()
+  if (!articles) {
+    return {
+      paths: [],
+      fallback: true,
+    }
+  }
+  const paths = articles.map((article: Article) => ({
+    params: { slug: article.slug },
+  }))
+  return { paths, fallback: true }
+}
+
+// propsの型定義の為にGetStaticProps<>を利用している
+// GetStatic~でSSG化される
+export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
+  const { slug } = params as { slug: string }
+  const article = await getOneArticle(slug)
+  return { props: { article } }
 }

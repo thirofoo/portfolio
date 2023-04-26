@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { Button } from '../../components/atoms/Button'
-import { BlogList } from '@/components/molecules/BlogList'
 import { Article } from '@/Interfaces/Article'
+import { BlogList } from '@/components/molecules/BlogList'
 import { getAllArticles } from '@/lib/api'
 
 type BlogProps = {

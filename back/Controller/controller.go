@@ -1,6 +1,7 @@
 package Controller
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -20,9 +21,17 @@ func ShowAllBlog(c *gin.Context) {
 func ShowOneBlog(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data := Models.GetOne(id)
+	fmt.Println(data)
 	c.JSON(http.StatusOK, data)
 }
 
+
+func ShowOneBlogBySlug(c *gin.Context) {
+	slug := c.Param("slug")
+	data := Models.GetOneBySlug(slug)
+	fmt.Println(data)
+	c.JSON(http.StatusOK, data)
+}
 
 func CreateBlog(c *gin.Context) {
 	// ArticleWithTag の形で入力受付

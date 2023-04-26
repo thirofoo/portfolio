@@ -1,8 +1,6 @@
 package Models
 
 import (
-	"fmt"
-
 	"gorm.io/gorm"
 )
 
@@ -48,7 +46,6 @@ type ArticleWithTag struct {
 func GetAll() (datas []Article) {
 	// Article型のデータ全取得 ( JOIN句でTagsも引っ張っている感じ )
 	result := Db.Preload("Tags").Find(&datas)
-	fmt.Println(result)
 	if result.Error != nil {
 		panic(result.Error)
 	}
@@ -56,7 +53,15 @@ func GetAll() (datas []Article) {
 }
 
 func GetOne(id int) (data Article) {
-	result := Db.First(&data, id)
+	result := Db.Preload("Tags").First(&data, id)
+	if result.Error != nil {
+		panic(result.Error)
+	}
+	return
+}
+
+func GetOneBySlug(slug string) (data Article) {
+	result := Db.Preload("Tags").Where("slug = ?", slug).First(&data)
 	if result.Error != nil {
 		panic(result.Error)
 	}

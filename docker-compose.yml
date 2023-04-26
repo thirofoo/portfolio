@@ -27,7 +27,10 @@ services:
     working_dir: /front
     stdin_open: true
     tty: true
-    command: npm run dev
+    depends_on:
+      - go
+    # command: npm run dev
+    command: sh -c 'npm run build && npm run start'
 
   go:
     container_name: go-back

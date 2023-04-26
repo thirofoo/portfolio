@@ -1,11 +1,11 @@
 ---
-title: "フィボナッチ数列について"
-slug: "about-fibonacci-sequence"
-description: "フィボナッチ数列とは何か、その特徴や応用について解説します。"
-author: "John Smith"
-thumbnail: ""
-tags: ["CompetitiveProgramming", "数学", "数列"]
-type: "blog"
+title: フィボナッチ数列について
+slug: about-fibonacci-sequence
+description: フィボナッチ数列とは何か、その特徴や応用について解説します。
+author: John Smith
+thumbnail:
+tags: CompetitiveProgramming,数学,数列
+type: blog
 ---
 
 ## はじめに
