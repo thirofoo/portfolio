@@ -20,7 +20,7 @@ export const getOneArticle = async (slug: string) => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     return data
   } catch (error) {
     console.log(error)

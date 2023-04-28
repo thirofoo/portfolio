@@ -1,6 +1,6 @@
 import React from 'react'
-import { BlogCard } from './BlogCard'
 import { Article } from '@/Interfaces/Article'
+import { BlogCard } from '@/components/molecules/BlogCard'
 
 type BlogListProps = {
   articles: Article[]

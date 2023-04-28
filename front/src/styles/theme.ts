@@ -20,5 +20,5 @@ module.exports = {
   },
   error: '#e27878',
   success: '#8bae79',
-  shadow: '#aaaaaa',
+  shadow: '#b2b9c6',
 }

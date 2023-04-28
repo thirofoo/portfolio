@@ -1,11 +1,7 @@
 .button {
-  @apply font-bold rounded-full py-4 px-16 shadow-lg shadow-shadow transition duration-200 ease-in-out hover:shadow-lg flex items-center justify-center relative transform active:scale-95 active:shadow-inner border-t-[0.2px] border-shadow bg-bg-primary;
+  @apply rounded-lg py-5 px-16 m-5 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-opacity-40 border-t border-x shadow-md active:shadow-inner active:scale-95;
 }
 
 .activeButton {
-  @apply font-bold rounded-full py-4 px-16 transition duration-200 ease-in-out flex items-center justify-center relative transform scale-95 shadow-inner shadow-shadow bg-bg-primary;
-}
-
-.span {
-  @apply top-0 left-0 rounded-full opacity-50 shadow-lg w-full h-full duration-200 active:shadow-inner bg-bg-primary;
+  @apply rounded-lg py-5 px-16 m-5 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-opacity-40 border-t border-x shadow-inner scale-95;
 }

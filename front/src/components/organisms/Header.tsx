@@ -34,23 +34,17 @@ export const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles['header-container']}>
-          <div className='m-5 rounded-full'>
-            <Link href='/'>
-              <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
-            </Link>
-          </div>
+          <Link href='/'>
+            <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
+          </Link>
 
-          <div className='m-5 rounded-full'>
-            <Link href='/works'>
-              <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
-            </Link>
-          </div>
+          <Link href='/works'>
+            <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
+          </Link>
 
-          <div className='m-5 rounded-full'>
-            <Link href='/blog'>
-              <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
-            </Link>
-          </div>
+          <Link href='/blog'>
+            <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
+          </Link>
         </div>
       </header>
     </>

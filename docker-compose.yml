@@ -29,8 +29,8 @@ services:
     tty: true
     depends_on:
       - go
-    # command: npm run dev
-    command: sh -c 'npm run build && npm run start'
+    command: npm run dev
+    # command: sh -c 'npm run build && npm run start'
 
   go:
     container_name: go-back
