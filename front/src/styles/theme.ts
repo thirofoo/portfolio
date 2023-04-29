@@ -1,7 +1,7 @@
 module.exports = {
   bg: {
     primary: 'white',
-    secondary: '#2F3A99',
+    secondary: '#f0f0f0',
     tertiary: '#3F5267',
   },
   text: {

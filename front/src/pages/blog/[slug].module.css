@@ -1,0 +1,88 @@
+.container {
+  @apply mx-auto max-w-3xl px-4;
+}
+
+.article {
+  @apply mt-4 py-4 px-6 shadow-lg;
+}
+
+.title {
+  @apply text-4xl font-bold mb-2;
+}
+
+.date {
+  @apply text-text-primary text-sm mb-4;
+}
+
+.content {
+  @apply leading-7 m-auto;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  @apply font-bold mb-2;
+}
+
+.content h1 {
+  @apply text-3xl border-l-2 px-6 m-2 mt-12 bg-bg-secondary;
+}
+
+.content h2 {
+  @apply text-2xl border-l-2 px-6 py-3 m-2 mt-12 bg-bg-secondary;
+}
+
+.content h3 {
+  @apply text-xl mt-12 border-b pb-2;
+}
+
+.content h4 {
+  @apply text-lg;
+}
+
+.content h5 {
+  @apply text-base;
+}
+
+.content h6 {
+  @apply text-sm;
+}
+
+.content p {
+  @apply my-4;
+}
+
+.content a {
+  @apply text-text-secondary underline;
+}
+
+.content code {
+  @apply px-1 rounded;
+}
+
+.content pre {
+  @apply my-4 overflow-x-auto;
+}
+
+.content pre code {
+  @apply block p-4 bg-bg-secondary rounded;
+}
+
+.content ul {
+  @apply list-disc ml-8;
+}
+
+.content ol {
+  @apply list-decimal ml-8;
+}
+
+.content li {
+  @apply my-2;
+}
+
+.content blockquote {
+  @apply border-l-4 border-shadow pl-4 italic my-4;
+}

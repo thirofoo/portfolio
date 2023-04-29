@@ -16,7 +16,6 @@ export const Button = ({
   return (
     <>
       <button className={state ? styles.activeButton : styles.button} onClick={handleClick}>
-        {state ? null : <div className={styles.span}></div>}
         {content}
       </button>
     </>

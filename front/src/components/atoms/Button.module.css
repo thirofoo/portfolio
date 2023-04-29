@@ -1,7 +1,7 @@
 .button {
-  @apply rounded-lg py-5 px-16 m-5 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-opacity-40 border-t border-x shadow-md active:shadow-inner active:scale-95;
+  @apply rounded-lg py-3 px-12 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-t border-x border-opacity-40 shadow-md active:shadow-inner active:scale-95;
 }
 
 .activeButton {
-  @apply rounded-lg py-5 px-16 m-5 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-opacity-40 border-t border-x shadow-inner scale-95;
+  @apply rounded-lg py-3 px-12 duration-200 relative bg-bg-primary shadow-shadow border-shadow border-t border-x shadow-inner scale-95;
 }

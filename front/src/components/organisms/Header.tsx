@@ -34,17 +34,21 @@ export const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles['header-container']}>
-          <Link href='/'>
-            <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
-          </Link>
-
-          <Link href='/works'>
-            <Button content='Works' state={worksOn} handleClick={worksClick}></Button>
-          </Link>
-
-          <Link href='/blog'>
-            <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
-          </Link>
+          <div className='m-4'>
+            <Link href='/'>
+              <Button content='About' state={homeOn} handleClick={homeClick}></Button>
+            </Link>
+          </div>
+          <div className='m-4'>
+            <Link href='/work'>
+              <Button content='Work' state={worksOn} handleClick={worksClick}></Button>
+            </Link>
+          </div>
+          <div className='m-4'>
+            <Link href='/blog'>
+              <Button content='Blog' state={blogOn} handleClick={blogClick}></Button>
+            </Link>
+          </div>
         </div>
       </header>
     </>

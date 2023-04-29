@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Article } from '@/Interfaces/Article'
 import { getAllArticles, getOneArticle } from '@/lib/api'
 import { markdownToHtml } from '@/lib/markdown'
+import styles from '@/pages/blog/[slug].module.css'
 
 type BlogProps = {
   article: Article
@@ -17,8 +18,8 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
   return (
     <>
-      <h1>{article.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: article.body }}></div>
+      <h1 className={styles.title}>{article.title}</h1>
+      <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </>
   )
 }
@@ -53,22 +54,12 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
   }
 
   const body = await markdownToHtml(article.body)
+  article.body = body
+
   return {
     props: {
-      article: {
-        ID: article.ID,
-        CreatedAt: article.CreatedAt,
-        UpdatedAt: article.UpdatedAt,
-        DeletedAt: article.DeletedAt,
-        title: article.title,
-        slug: article.slug,
-        description: article.description,
-        author: article.author,
-        thumbnail: article.thumbnail,
-        Tags: article.Tags,
-        type: article.type,
-        body: body,
-      },
+      article,
     },
+    revalidate: 1,
   }
 }
