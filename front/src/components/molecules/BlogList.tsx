@@ -9,11 +9,11 @@ type BlogListProps = {
 export const BlogList = ({ articles }: BlogListProps) => {
   return (
     <>
-      <div className={'flex flex-col'}>
+      <div className={'m-auto'}>
         {/* articlesがnullの時の処理も含める */}
         {articles &&
           articles.map((article) => (
-            <div key={article.ID} className={'flex m-5 justify-center'}>
+            <div key={article.ID} className={'inline-flex px-[2vw] mx-[4vw] my-[2rem]'}>
               <BlogCard article={article} />
             </div>
           ))}

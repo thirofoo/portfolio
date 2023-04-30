@@ -1,7 +1,15 @@
 .header {
-  @apply flex fixed text-2xl shadow-shadow shadow-sm w-full justify-center z-20 bg-bg-primary bg-opacity-90;
+  @apply fixed text-xl shadow-sh1 shadow-sm px-4 w-full z-20 bg-bg1 bg-opacity-0 backdrop-blur-sm;
 }
 
-.header-container {
-  @apply flex;
+.wrapper {
+  @apply flex max-w-[1024px] m-auto justify-between mt-[30px];
+}
+
+.head_name {
+  @apply text-2xl font-bold;
+}
+
+.header_content {
+  @apply flex justify-center mt-[-60px];
 }

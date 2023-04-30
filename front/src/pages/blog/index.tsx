@@ -11,7 +11,7 @@ type BlogProps = {
 const Blog: NextPage<BlogProps> = ({ articles }) => {
   return (
     <>
-      <div className={'text-center text-4xl p-10'}>
+      <div className={'text-center'}>
         <BlogList articles={articles} />
       </div>
       <div className={'m-20 flex justify-center'}>

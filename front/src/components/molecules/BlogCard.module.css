@@ -1,27 +1,33 @@
 .card {
-  @apply relative overflow-hidden bg-bg-primary rounded-lg w-full max-w-xl shadow-md transition-shadow duration-200 ease-in-out;
+  @apply shadow-sh1 max-h-[300px] max-w-[300px] w-[80vw] h-[80vw] shadow-sm bg-bg1 duration-200 rounded-xl;
+  box-shadow: 0px 0px 10px 0.01px theme(colors.sh1);
 }
 
 .card:hover {
-  @apply shadow-lg transform scale-105 transition-all duration-200 ease-in-out;
+  @apply m-0 p-0;
+  box-shadow: 0px 0px 10px 2px theme(colors.sh1);
 }
 
 .card-image {
-  @apply w-full object-cover;
+  @apply absolute object-cover rounded-xl;
 }
 
 .card-content {
-  @apply relative bottom-0 px-6 pb-6 w-full bg-bg-primary;
+  @apply relative bottom-0  p-6 bg-bg1 rounded-xl;
 }
 
 .card-title {
-  @apply text-text-primary font-bold text-lg mb-2;
+  @apply text-txt1 font-bold text-2xl mb-2;
 }
 
 .card-description {
-  @apply text-text-primary text-base leading-6 mb-4;
+  @apply text-txt1 text-base mb-4;
+}
+
+.card-type {
+  @apply text-txt1 text-base mb-4;
 }
 
 .card-readmore {
-  @apply text-text-primary font-semibold text-base transition-colors duration-200 pt-4;
+  @apply text-txt1 font-semibold text-base;
 }

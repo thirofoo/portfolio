@@ -33,10 +33,17 @@ export const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles['header-container']}>
+        <div className={styles.wrapper}>
+          <Link href='/' className={styles.head_name} onClick={homeClick}>
+            thirofoo
+          </Link>
+          <div>light toggle</div>
+        </div>
+
+        <div className={styles.header_content}>
           <div className='m-4'>
             <Link href='/'>
-              <Button content='About' state={homeOn} handleClick={homeClick}></Button>
+              <Button content='Home' state={homeOn} handleClick={homeClick}></Button>
             </Link>
           </div>
           <div className='m-4'>
