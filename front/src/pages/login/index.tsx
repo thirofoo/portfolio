@@ -1,45 +1,40 @@
+import { useState } from 'react'
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import styles from '@/pages/about.module.css'
+import styles from '@/pages/login/login.module.css'
+import { handleSubmit } from '@/lib/auth'
 
-const Home: NextPage = () => {
+const Login: NextPage = () => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    await handleSubmit(username, password)
+  }
+
   return (
-    <>
-      <div className={styles.wrapper}>
-        <div className={styles.top_wrapper}>
-          <Image
-            src='/images/top.jpg'
-            alt='through / thirofoo'
-            width={160}
-            height={160}
-            className={styles.icon}
-            loading='eager'
-          />
-          <div className={styles.top_profile}>
-            <h2>thirofoo / through</h2>
-            <p>Saitama University ICS B3</p>
-            <p>from Tochigi</p>
-          </div>
-        </div>
-      </div>
-
-      <div className={'block'}>
-        <div className={styles.sub_wrapper}>
-          <div className={styles.profile}>
-            <h3>趣味</h3>
-            <p>競技プログラミング</p>
-          </div>
-        </div>
-
-        <div className={styles.sub_wrapper}>
-          <div className={styles.profile}>
-            <h3>Skill</h3>
-            <p>東京都</p>
-          </div>
-        </div>
-      </div>
-    </>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <label className={styles.label}>
+        UserName:
+        <input
+          className={styles.input}
+          type='text'
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </label>
+      <label className={styles.label}>
+        Password :
+        <input
+          className={styles.input}
+          type='password'
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </label>
+      <button type='submit'>ログイン</button>
+    </form>
   )
 }
 
-export default Home
+export default Login

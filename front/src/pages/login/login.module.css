@@ -1,0 +1,11 @@
+.form {
+  @apply flex flex-col justify-center items-center;
+}
+
+.input {
+  @apply m-5 p-5 rounded shadow-sh1 shadow-sm border;
+}
+
+.label {
+  @apply m-5 font-bold;
+}

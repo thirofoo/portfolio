@@ -1,9 +1,9 @@
+import rehypeMathJaxSvg from 'rehype-mathjax'
 import rehypeStringify from 'rehype-stringify'
-import { unified } from 'unified'
+import remarkMath from 'remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import remarkMath from 'remark-math'
-import rehypeMathJaxSvg from 'rehype-mathjax'
+import { unified } from 'unified'
 
 // Markdown 形式の文字列を受け取って、HTML 形式の文字列を返す
 export async function markdownToHtml(markdown: string) {
