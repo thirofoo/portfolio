@@ -31,6 +31,12 @@ func main() {
 	router := gin.Default()
 	r := router.Group("/article")
 
+	// CORS
+	r.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Next()
+	})
+
 	r.GET("/get", Controller.ShowAllBlog)
 	r.GET("/get/:slug", Controller.ShowOneBlogBySlug)
 	r.POST("/create", Controller.CreateBlog)
