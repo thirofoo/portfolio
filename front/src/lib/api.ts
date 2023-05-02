@@ -27,3 +27,26 @@ export const getOneArticle = async (slug: string) => {
     return null
   }
 }
+
+export const handleSubmit = async (username: string, password: string) => {
+  try {
+    const response = await fetch(process.env.API_URL + `/admin/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // httpsで暗号化されてるから hash化する必要は無し
+      body: JSON.stringify({ username, password }),
+    })
+
+    if (response.ok) {
+      // ログインに成功した場合の処理
+      console.log('success!!')
+    } else {
+      // ログインに失敗した場合の処理
+      console.log('failed!!')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}

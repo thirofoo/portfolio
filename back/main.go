@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/thirofoo/portfolio/Controller"
 	"github.com/thirofoo/portfolio/Database"
@@ -9,39 +10,48 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 
 func main() {
-	dsn := Database.DbUrl()
-	fmt.Println(dsn)
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	checkError(err)
+    dsn := Database.DbUrl()
+    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+    checkError(err)
 
-	err = db.AutoMigrate(&Models.Article{})
-	checkError(err)
-	fmt.Println("migrated!")
+    err = db.AutoMigrate(&Models.Article{})
+    checkError(err)
+    err = db.AutoMigrate(&Models.User{})
+    checkError(err)
+    fmt.Println("migrated!")
 
-	router := gin.Default()
-	r := router.Group("/article")
+    router := gin.Default()
+    
+    // CORS middleware 設定
+    config := cors.DefaultConfig()
+    config.AllowOrigins = []string{os.Getenv("FRONT_URL")}
+    config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+    router.Use(cors.New(config))
 
-	// CORS
-	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		c.Next()
-	})
+    r_blog := router.Group("/article")
+    r_admin := router.Group("/admin")
 
-	r.GET("/get", Controller.ShowAllBlog)
-	r.GET("/get/:slug", Controller.ShowOneBlogBySlug)
-	r.POST("/create", Controller.CreateBlog)
-	r.PUT("/update/:id", Controller.EditBlog)
-	r.DELETE("/delete/:id", Controller.DeleteBlog)
+    // article系のAPI
+    r_blog.GET("/get", Controller.ShowAllBlog)
+    r_blog.GET("/get/:slug", Controller.ShowOneBlogBySlug)
+    r_blog.POST("/create", Controller.CreateBlog)
+    r_blog.PUT("/update/:id", Controller.EditBlog)
+    r_blog.DELETE("/delete/:id", Controller.DeleteBlog)
 
-	router.Run(":8080")
+    // admin系のAPI
+    r_admin.POST("/login", Controller.Login)
+    r_admin.POST("/create", Controller.CreateAdmin)
+
+    router.Run(":8080")
 }

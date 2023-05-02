@@ -37,8 +37,14 @@ func setSigningKey() error {
 }
 
 func Login(c *gin.Context) {
-    username := c.PostForm("username")
-    password := c.PostForm("password")
+    var loginForm Models.UpdateUserInput
+    if err := c.BindJSON(&loginForm); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+        return
+    }
+
+    username := loginForm.Username
+    password := loginForm.Password
 
     // DBからユーザーを取得
     user := Models.User{}
@@ -152,4 +158,27 @@ func validateToken(tokenString string) (jwt.MapClaims, error) {
     }
 
     return claims, nil
+}
+
+func CreateAdmin(c *gin.Context) {
+    var user Models.User
+    c.BindJSON(&user)
+
+    fmt.Println(user)
+
+    // password hash化
+    hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "パスワードハッシュ化に失敗しました"})
+        return
+    }
+
+    user.Password = string(hashedPassword)
+
+    if err := Models.Db.Create(&user).Error; err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "ユーザー作成に失敗しました"})
+        return
+    }
+
+    c.JSON(http.StatusOK, gin.H{"message": "ユーザーを作成しました"})
 }

@@ -24,6 +24,7 @@ services:
       - ./front:/front
     environment:
       - API_URL=${API_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
     working_dir: /front
     stdin_open: true
     tty: true

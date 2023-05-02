@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { NextPage } from 'next'
 import styles from '@/pages/login/login.module.css'
-import { handleSubmit } from '@/lib/auth'
+import { handleSubmit } from '@/lib/api'
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState('')
