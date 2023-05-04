@@ -10,7 +10,6 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 
 	// password hash algorithm
 	"golang.org/x/crypto/bcrypt"
@@ -28,9 +27,8 @@ type jwtCustomClaims struct {
 var signingKey []byte
 
 func setSigningKey() error {
-    err := godotenv.Load()
-    if err != nil {
-        return fmt.Errorf("Error loading .env file: %v", err)
+    if len(signingKey) > 0 {
+        return nil
     }
     signingKey = []byte(os.Getenv("SIGNING_KEY"))
     return nil
@@ -54,8 +52,8 @@ func Login(c *gin.Context) {
         return
     }
 
-    // パスワード検証 ( dbに入っているhashとpasswordのhashを比較 )
-	// ※ dbにはpasswordのhashが入ってる
+    // password検証 ( DBに入っているhashとpasswordのhashを比較 )
+	// ※ DBにはpasswordのhashが入ってる
     err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
     if err != nil {
         c.JSON(http.StatusUnauthorized, gin.H{"error": "パスワードが正しくありません"})
@@ -63,14 +61,23 @@ func Login(c *gin.Context) {
     }
 
     // JWTを作成
+    setSigningKey()
     token, err := createToken(user.ID, user.Username)
     if err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{"error": "JWTtokenの生成に失敗しました"})
         return
     }
 
-    // tokenをレスポンスに設定
-    c.JSON(http.StatusOK, gin.H{"token": token})
+    // JWTをCookieに設定
+    exp := time.Now().Add(time.Hour * 24) // 1日後の時間を取得
+    expUnix := exp.Unix()                 // Unix時間（秒）に変換
+    c.SetCookie("token", token, int(expUnix), "/", "", true, os.Getenv("NODE_ENV") == "production")
+
+    // response
+    c.JSON(http.StatusOK, gin.H{
+        "message": "ログインに成功しました",
+        "token":   token,
+    })
 }
 
 func createToken(uid uint, username string) (string, error) {
@@ -98,7 +105,7 @@ func createToken(uid uint, username string) (string, error) {
     return tokenString, nil
 }
 
-func authMiddleware() gin.HandlerFunc {
+func AuthMiddleware() gin.HandlerFunc {
     return func(c *gin.Context) {
         // Authorizationヘッダーからtokenを取得
         authHeader := c.GetHeader("Authorization")
@@ -181,4 +188,8 @@ func CreateAdmin(c *gin.Context) {
     }
 
     c.JSON(http.StatusOK, gin.H{"message": "ユーザーを作成しました"})
+}
+
+func AuthCheckHandler(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{"message": "ログインしています"})
 }

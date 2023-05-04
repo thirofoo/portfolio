@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { Button } from '../../components/atoms/Button'
 import { Article } from '@/Interfaces/Article'
 import { BlogList } from '@/components/molecules/BlogList'
-import { getAllArticles } from '@/lib/api'
+import { getAllArticles } from '@/lib/api/article'
 
 type BlogProps = {
   articles: Article[]

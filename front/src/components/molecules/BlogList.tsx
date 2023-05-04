@@ -13,7 +13,7 @@ export const BlogList = ({ articles }: BlogListProps) => {
         {/* articlesがnullの時の処理も含める */}
         {articles &&
           articles.map((article) => (
-            <div key={article.ID} className={'inline-flex px-[2vw] mx-[4vw] my-[2rem]'}>
+            <div key={article.ID} className={'inline-flex px-[2vw] mx-[2rem] my-[2rem]'}>
               <BlogCard article={article} />
             </div>
           ))}

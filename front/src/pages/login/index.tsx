@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import styles from '@/pages/login/login.module.css'
-import { handleSubmit } from '@/lib/api'
+import { loginUser } from '@/lib/api/user'
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState('')
@@ -9,7 +9,7 @@ const Login: NextPage = () => {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    await handleSubmit(username, password)
+    await loginUser(username, password)
   }
 
   return (
