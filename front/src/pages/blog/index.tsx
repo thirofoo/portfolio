@@ -12,7 +12,7 @@ const Blog: NextPage<BlogProps> = ({ articles }) => {
   return (
     <>
       <div className={'text-center'}>
-        <BlogList articles={articles} />
+        <BlogList articles={articles} from={'/blog'} />
       </div>
       <div className={'m-20 flex justify-center'}>
         <Button content='More'></Button>

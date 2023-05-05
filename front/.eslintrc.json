@@ -4,18 +4,9 @@
     "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/warnings",
-    "prettier"
+    "prettier",
+    "prettier/@typescript-eslint"
   ],
-  "rules": {
-    "import/order": [
-      "error",
-      {
-        "alphabetize": {
-          "order": "asc"
-        }
-      }
-    ]
-  },
   "settings": {
     "import/resolver": {
       "node": {
@@ -26,5 +17,6 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  }
+  },
+  "rules": {}
 }

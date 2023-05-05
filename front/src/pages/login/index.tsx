@@ -1,7 +1,7 @@
+import type { NextPage } from 'next'
 import { useState } from 'react'
-import type { GetServerSideProps, NextPage } from 'next'
-import styles from '@/pages/login/login.module.css'
 import { loginUser } from '@/lib/api/user'
+import styles from '@/pages/login/login.module.css'
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState('')
