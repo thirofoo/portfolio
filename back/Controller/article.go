@@ -82,11 +82,12 @@ func EditBlog(c *gin.Context) {
 	id := c.Param("id")
 
 	var article Models.Article
-	if err := Models.Db.Where("id = ?", id).First(&article).Error; err != nil {
+	// tagも読み込んだ状態で初期化
+	if err := Models.Db.Preload("Tags").Where("id = ?", id).First(&article).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Article not found"})
 		return
 	}
-
+	
 	// 入力バリデーションに必要項目だけを指定する為の構造体
 	var input Models.UpdateArticleInput
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -94,14 +95,65 @@ func EditBlog(c *gin.Context) {
 		return
 	}
 
+	if len(input.Tags) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Tags cannot be empty"})
+		return
+	}
+	
 	article.Title = input.Title
 	article.Body = input.Body
-
+	article.Description = input.Description
+	article.Author = input.Author
+	article.Thumbnail = input.Thumbnail
+	article.Type = input.Type
+	article.Slug = input.Slug
+	
 	Models.Db.Save(&article)
+	
+	// Update tags
+	var tagNames []string
+	for _, tag := range article.Tags {
+		tagNames = append(tagNames, tag.Name)
+	}
+
+	// 新しく追加されたtagの操作 ( dbにあるならtag_idを追加、ないなら作成してtag_idを追加 )
+	for _, tagName := range input.Tags {
+		if !contains(tagNames, tagName) {
+			tag := Models.Tag{Name: tagName}
+			// ないなら作成、あるなら検索
+			if err := Models.Db.Where(&tag).FirstOrCreate(&tag).Error; err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+			
+			Models.Db.Model(&article).Association("Tags").Append(&tag)
+		}
+	}
+	
+	// 消えたtagの操作 ( dbになくなったらtagごと消す )
+	for _, tagName := range tagNames {
+		if !contains(input.Tags, tagName) {
+			var tag Models.Tag
+			if err := Models.Db.Where("name = ?", tagName).First(&tag).Error; err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+
+			Models.Db.Model(&article).Association("Tags").Delete(&tag)
+		}
+	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "updated successfully"})
 }
 
+func contains(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
+}
 
 func DeleteBlog(c *gin.Context) {
 	// query parameterからidを取得 ( 危険なので後で修正 )

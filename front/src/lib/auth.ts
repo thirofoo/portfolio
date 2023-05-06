@@ -1,12 +1,5 @@
 import { IncomingMessage } from 'http'
-import cookie from 'cookie'
 import { parseCookies } from 'nookies'
-
-export const getToken = (ctx: { req?: IncomingMessage }) => {
-  const cookies = cookie.parse(ctx.req?.headers.cookie || '')
-  console.log(cookies)
-  return cookies.token || null
-}
 
 type AuthCheckResponse = {
   ok: boolean

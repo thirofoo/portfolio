@@ -21,7 +21,7 @@ func buildDBConfig() *DbConfig {
 		Pass: os.Getenv("POSTGRES_PASSWORD"),
 		Host: os.Getenv("HOST"),
 		Port: "5432",
-		TZ:   os.Getenv("TZ"),
+		TZ:   os.Getenv("TIMEZONE"),
 	}
 	return &dbConfig
 }

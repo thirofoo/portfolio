@@ -4,8 +4,7 @@
     "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/warnings",
-    "prettier",
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "settings": {
     "import/resolver": {

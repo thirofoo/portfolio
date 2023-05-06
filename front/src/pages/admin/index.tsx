@@ -28,7 +28,7 @@ const AdminPage: NextPage = () => {
   return (
     <>
       <div>
-        <Link href='/admin/articles'>
+        <Link href='admin/articles'>
           <Button content='View Articles'></Button>
         </Link>
       </div>

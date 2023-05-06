@@ -24,7 +24,7 @@ const AdminArticlesPage: NextPage<Props> = ({ articles }: Props) => {
   return (
     <>
       <div className={'text-center'}>
-        <BlogList articles={articles} from={'/admin/articles'} />
+        <BlogList articles={articles} from={'admin/articles'} />
       </div>
       <div className={'m-20 flex justify-center'}>
         <Button content='More'></Button>

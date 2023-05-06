@@ -27,9 +27,10 @@ type UpdateArticleInput struct {
 	Slug        string `json:"slug" binding:"required" gorm:"column:slug"`
 	Description string `json:"description" binding:"required" gorm:"column:description"`
 	Author      string `json:"author" binding:"required" gorm:"column:author"`
-	Thumbnail   string `json:"thumbnail" binding:"required" gorm:"column:thumbnail"`
+	Thumbnail   string `json:"thumbnail" gorm:"column:thumbnail"`
 	Type        string `json:"type" binding:"required" gorm:"column:type"`
 	Body        string `json:"body" binding:"required" gorm:"column:body"`
+	Tags        []string `json:"tags" gorm:"column:tags"`
 }
 
 type ArticleWithTag struct {

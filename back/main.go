@@ -43,17 +43,18 @@ func main() {
 
     r_blog := router.Group("/article")
     r_admin := router.Group("/admin")
-    r_admin.Use(Controller.AuthMiddleware())
     
-    // article系のAPI
+    // public系API
+    router.POST("/login", Controller.Login)
     r_blog.GET("/get", Controller.ShowAllBlog)
     r_blog.GET("/get/:slug", Controller.ShowOneBlogBySlug)
-    r_blog.POST("/create", Controller.CreateBlog)
-    r_blog.PUT("/update/:id", Controller.EditBlog)
-    r_blog.DELETE("/delete/:id", Controller.DeleteBlog)
     
-    // admin系のAPI
-    router.POST("/login", Controller.Login)
+    // secret系API
+    r_blog.POST("/create", Controller.AuthMiddleware(), Controller.CreateBlog)
+    r_blog.PUT("/update/:id", Controller.AuthMiddleware(), Controller.EditBlog)
+    r_blog.DELETE("/delete/:id", Controller.AuthMiddleware(), Controller.DeleteBlog)
+    
+    r_admin.Use(Controller.AuthMiddleware())
     r_admin.POST("/create", Controller.CreateAdmin)
     r_admin.POST("/check-auth", Controller.AuthCheckHandler)
 

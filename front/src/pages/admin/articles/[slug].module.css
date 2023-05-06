@@ -7,9 +7,9 @@
 }
 
 .title {
+  padding-right: 4rem;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 2rem;
 }
 
 .form {

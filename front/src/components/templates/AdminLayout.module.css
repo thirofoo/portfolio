@@ -1,5 +1,5 @@
 .admin-header {
-  @apply py-4 bg-bg3;
+  @apply py-4 bg-bg3 flex justify-center;
 }
 
 .admin-header__title {
