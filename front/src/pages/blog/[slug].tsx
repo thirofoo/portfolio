@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Article } from '@/Interfaces/Article'
-import { getAllArticles, getOneArticle } from '@/lib/api'
+import { getAllArticles, getOneArticle } from '@/lib/api/article'
 import { markdownToHtml } from '@/lib/markdown'
 import styles from '@/pages/blog/[slug].module.css'
 

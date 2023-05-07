@@ -1,0 +1,7 @@
+.admin-header {
+  @apply py-4 bg-bg3 flex justify-center;
+}
+
+.admin-header__title {
+  @apply text-2xl font-bold text-txt1;
+}

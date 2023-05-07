@@ -24,13 +24,13 @@ services:
       - ./front:/front
     environment:
       - API_URL=${API_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
     working_dir: /front
     stdin_open: true
     tty: true
     depends_on:
       - go
     command: npm run dev
-    # command: sh -c 'npm run build && npm run start'
 
   go:
     container_name: go-back

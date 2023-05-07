@@ -4,12 +4,13 @@ import styles from '@/components/molecules/BlogCard.module.css'
 
 type BlogProps = {
   article: Article
+  from: string
 }
 
-export const BlogCard = ({ article }: BlogProps) => {
+export const BlogCard = ({ article, from }: BlogProps) => {
   return (
     <div className={styles.card}>
-      <Link href={`/blog/${article.slug}`}>
+      <Link href={`/${from}/${article.slug}`}>
         <img className={styles['card-image']} src={article.thumbnail} />
         <div className={styles['card-content']}>
           <h2 className={styles['card-title']}>{article.title}</h2>

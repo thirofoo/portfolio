@@ -6,16 +6,6 @@
     "plugin:import/warnings",
     "prettier"
   ],
-  "rules": {
-    "import/order": [
-      "error",
-      {
-        "alphabetize": {
-          "order": "asc"
-        }
-      }
-    ]
-  },
   "settings": {
     "import/resolver": {
       "node": {
@@ -26,5 +16,6 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
-  }
+  },
+  "rules": {}
 }
