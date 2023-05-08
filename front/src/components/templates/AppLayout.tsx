@@ -13,7 +13,7 @@ export const AppLayout = ({ children }: Props) => {
     <>
       <Header />
       <div className={styles.wrapper}>
-        <div className={'pt-[120px]'}>{children}</div>
+        <div className={styles.child}>{children}</div>
         <Footer />
       </div>
     </>

@@ -23,18 +23,27 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className={'block'}>
-        <div className={styles.sub_wrapper}>
+      <div className={styles.sub_wrapper}>
+        <div className={styles.detail}>
           <div className={styles.profile}>
-            <h3>趣味</h3>
-            <p>競技プログラミング</p>
+            <h3>Competitive Programming</h3>
+            <div>2021年12月~競技プログラミングをしています。</div>
+            <div>
+              AtCoder: <a href='https://atcoder.jp/users/through'>through</a>
+            </div>
+            <div>
+              Codeforces: <a href='https://codeforces.com/profile/through'>through</a>
+            </div>
           </div>
         </div>
 
-        <div className={styles.sub_wrapper}>
+        <div className={styles.add_margin}></div>
+
+        <div className={styles.detail + ' bg-gradient-to-l from-bg2 to-bg1'}>
           <div className={styles.profile}>
             <h3>Skill</h3>
-            <p>東京都</p>
+            <div>used language：C, C++, TypeScript, Golang</div>
+            <div>qualification：応用情報技術者</div>
           </div>
         </div>
       </div>

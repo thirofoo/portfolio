@@ -1,3 +1,13 @@
 .wrapper {
-  @apply relative min-h-screen pb-40 box-border max-w-[1024px] mx-auto px-4;
+  @apply relative min-h-[100vh] box-border max-w-[1024px] mx-auto;
+}
+
+.child {
+  @apply pt-[120px] pb-[64px] px-4;
+}
+
+@media (max-width: 768px) {
+  .child {
+    @apply w-full h-full pt-[72px];
+  }
 }

@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scrollbarを非表示 */
+html::-webkit-scrollbar {
+  display: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
 html,
 body {
-  @apply min-h-screen m-0 p-0 text-txt1 backdrop-filter bg-bg3;
+  @apply m-0 p-0 min-h-[100vh] text-txt1 backdrop-filter bg-bg3;
 }

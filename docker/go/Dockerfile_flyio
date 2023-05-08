@@ -1,0 +1,37 @@
+FROM golang:1.19.1-alpine
+
+# 引数として渡された環境変数を変数にセットする
+ARG POSTGRES_USER
+ARG POSTGRES_PASSWORD
+ARG POSTGRES_HOST_AUTH_METHOD
+ARG POSTGRES_DB
+ARG TIMEZONE
+ARG HOST
+ARG FRONT_URL
+ARG SIGNING_KEY
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+# module の download をキャッシュ可能にするため、COPYを分ける
+RUN go mod download
+
+COPY . .
+
+# 引数から渡された環境変数をENVにセットする
+ENV POSTGRES_USER=$POSTGRES_USER \
+    POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+    POSTGRES_HOST_AUTH_METHOD=$POSTGRES_HOST_AUTH_METHOD \
+    POSTGRES_DB=$POSTGRES_DB \
+    TIMEZONE=$TIMEZONE \
+    HOST=$HOST \
+    FRONT_URL=$FRONT_URL \
+    SIGNING_KEY=$SIGNING_KEY
+
+RUN go build -o main .
+
+# 明示的にメタデータを付与
+EXPOSE 8080
+
+CMD ["./main"]

@@ -3,6 +3,7 @@ module.exports = {
   bg1: 'white',
   bg2: '#f0f0f0',
   bg3: '#fafafa',
+  bg4: '#222222',
 
   // text-color
   txt1: 'black',

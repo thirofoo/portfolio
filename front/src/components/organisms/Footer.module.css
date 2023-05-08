@@ -3,5 +3,5 @@
 }
 
 .footer {
-  @apply absolute bottom-0 w-full text-txt1 py-5 bg-bg3;
+  @apply absolute bottom-0 w-full text-txt1 p-4 bg-bg3;
 }
