@@ -14,79 +14,88 @@
   @apply flex justify-center mt-[-60px];
 }
 
-/* Hamburger Menu */
-.ham_menu {
-  display: flex;
-  width: 25px;
-  height: 20px;
-  position: relative;
-  cursor: pointer;
-  z-index: 1;
-  display: none;
+.button_wrapper {
+  @apply m-4;
 }
 
+.toggle_button {
+  @apply block w-[40px] h-[20px] rounded-2xl relative transition-all duration-200 ease-in-out shadow-inner shadow-sh1 cursor-pointer;
+}
+
+.toggle_on .toggle_button::before {
+  left: calc(100% - 16px);
+}
+
+.toggle_off .toggle_button::before {
+  left: 4px;
+}
+
+.toggle_button::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #666;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hamburger Menu */
 @media (max-width: 768px) {
+  .head_name {
+    @apply text-xl font-bold;
+  }
+
   .wrapper {
-    margin: 0;
-    padding: 12px;
+    @apply m-0 p-3;
   }
 
   .header_content {
-    display: none;
+    @apply hidden;
   }
 
   .ham_menu {
-    margin: 5px;
-    display: block;
+    @apply flex relative w-[25px] top-[-35px] justify-center cursor-pointer z-10 m-auto;
   }
 
   .ham_menu span {
-    display: block;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background: #000;
-    border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: 0.25s ease-in-out;
+    @apply block absolute h-[3px] w-full bg-bg4 rounded-full opacity-100 left-0 rotate-0 transition duration-300 ease-in-out;
   }
 
   .ham_menu span:nth-child(1) {
-    top: 0;
+    @apply top-0;
   }
 
   .ham_menu span:nth-child(2) {
-    top: 8px;
+    @apply top-[8px];
   }
 
   .ham_menu span:nth-child(3) {
-    top: 16px;
+    @apply top-[16px];
   }
 
   .ham_menu span.open:nth-child(1) {
-    top: 8px;
+    @apply top-[8px];
     transform: rotate(45deg);
   }
 
   .ham_menu span.open:nth-child(2) {
-    opacity: 0;
+    @apply opacity-0;
   }
 
   .ham_menu span.open:nth-child(3) {
-    top: 8px;
+    @apply top-[8px];
     transform: rotate(-45deg);
   }
 
   .head_open {
-    display: flex;
-    margin-top: 10px;
-    flex-direction: column;
+    @apply inline mt-[10px];
   }
 
   .head_open div {
-    display: flex;
-    justify-content: center;
+    @apply flex justify-center;
   }
 }

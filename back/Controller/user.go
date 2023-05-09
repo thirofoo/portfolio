@@ -71,7 +71,7 @@ func Login(c *gin.Context) {
     // JWTをCookieに設定
     exp := time.Now().Add(time.Hour * 24) // 1日後の時間を取得
     expUnix := exp.Unix()                 // Unix時間（秒）に変換
-    c.SetCookie("token", token, int(expUnix), "/", "", true, true)
+    c.SetCookie("token", token, int(expUnix), "/", "", false, false)
 
     // response
     c.JSON(http.StatusOK, gin.H{

@@ -20,22 +20,6 @@ export const loginUser = async (username: string, password: string) => {
       // login失敗時
       console.log('failed!!')
     }
-
-    // Set-Cookie レスポンスヘッダーに SameSite=None; Secure を設定する
-    const headers = response.headers
-    const cookies = headers.get('Set-Cookie')
-    if (cookies) {
-      const updatedCookies = cookies
-        .split('; ')
-        .map((cookie) => {
-          if (cookie.startsWith('SameSite=')) {
-            return 'SameSite=None; Secure'
-          }
-          return cookie
-        })
-        .join('; ')
-      headers.set('Set-Cookie', updatedCookies)
-    }
   } catch (error) {
     console.error(error)
   }

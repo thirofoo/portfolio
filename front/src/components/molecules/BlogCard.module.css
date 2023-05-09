@@ -1,11 +1,21 @@
 .card {
-  @apply shadow-sh1 max-h-[300px] max-w-[300px] w-[80vw] h-[80vw] shadow-sm bg-bg1 duration-200 rounded-xl;
-  box-shadow: 0px 0px 10px 0.01px theme(colors.sh1);
+  @apply shadow-sh1 w-[calc(min(300px,80vw))] min-h-[calc(min(300px,80vw))] shadow-sm bg-bg1 duration-200 rounded-xl;
+  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  animation: shadow-animation 5s infinite alternate ease-in-out;
+}
+
+@keyframes shadow-animation {
+  10% {
+    box-shadow: 0px 0px 12px 1px theme(colors.sh1);
+  }
+  20% {
+    box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  }
 }
 
 .card:hover {
   @apply m-0 p-0;
-  box-shadow: 0px 0px 10px 2px theme(colors.sh1);
+  box-shadow: 0px 0px 12px 1px theme(colors.sh1);
 }
 
 .card-image {
@@ -24,10 +34,20 @@
   @apply text-txt1 text-base mb-4;
 }
 
-.card-type {
-  @apply text-txt1 text-base mb-4;
+.card-tags {
+  @apply flex flex-wrap text-txt1 text-sm mb-4;
+}
+
+.card-tag {
+  @apply mr-2 shadow-sm shadow-sh1 p-2 rounded-full;
 }
 
 .card-readmore {
   @apply text-txt1 font-semibold text-base;
+}
+
+@media (max-width: 768px) {
+  .card {
+    @apply w-[calc(min(300px,80vw))] h-auto;
+  }
 }

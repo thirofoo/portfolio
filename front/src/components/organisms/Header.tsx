@@ -8,6 +8,11 @@ export const Header = () => {
   const [worksOn, setWorksOn] = useState<boolean>(false)
   const [blogOn, setBlogOn] = useState<boolean>(false)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [isActive, setActive] = useState(false)
+
+  const handleToggle = () => {
+    setActive(!isActive)
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -51,26 +56,32 @@ export const Header = () => {
           <Link href='/' className={styles.head_name} onClick={homeClick}>
             thirofoo
           </Link>
-          <div className={`${styles.ham_menu}`} onClick={toggleMenu}>
-            <span className={isMenuOpen ? styles.open : ''}></span>
-            <span className={isMenuOpen ? styles.open : ''}></span>
-            <span className={isMenuOpen ? styles.open : ''}></span>
-          </div>
-          <div>light toggle</div>
+          <button
+            className={isActive ? styles.toggle_on : styles.toggle_off}
+            onClick={handleToggle}
+          >
+            <span className={styles.toggle_button}></span>
+          </button>
+        </div>
+
+        <div className={`${styles.ham_menu}`} onClick={toggleMenu}>
+          <span className={isMenuOpen ? styles.open : ''}></span>
+          <span className={isMenuOpen ? styles.open : ''}></span>
+          <span className={isMenuOpen ? styles.open : ''}></span>
         </div>
 
         <div className={`${styles.header_content} ${isMenuOpen ? styles.head_open : ''}`}>
-          <div className='m-4'>
+          <div className={styles.button_wrapper}>
             <Link href='/'>
               <Button content='Home' state={homeOn} handleClick={homeClick} />
             </Link>
           </div>
-          <div className='m-4'>
+          <div className={styles.button_wrapper}>
             <Link href='/work'>
               <Button content='Work' state={worksOn} handleClick={worksClick} />
             </Link>
           </div>
-          <div className='m-4'>
+          <div className={styles.button_wrapper}>
             <Link href='/blog'>
               <Button content='Blog' state={blogOn} handleClick={blogClick} />
             </Link>

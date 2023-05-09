@@ -1,0 +1,20 @@
+.breadcrumbs {
+  @apply text-xl leading-6 font-medium;
+}
+
+.breadcrumbs li {
+  @apply inline-flex items-center;
+}
+
+.breadcrumbs a {
+  @apply text-txt1 no-underline;
+}
+
+.breadcrumbs a.active {
+  @apply font-bold;
+}
+
+.breadcrumbs span {
+  @apply mx-2;
+  color: #4b5563;
+}

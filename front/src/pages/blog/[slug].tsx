@@ -4,12 +4,18 @@ import { Article } from '@/Interfaces/Article'
 import { getAllArticles, getOneArticle } from '@/lib/api/article'
 import { markdownToHtml } from '@/lib/markdown'
 import styles from '@/pages/blog/[slug].module.css'
+import { Breadcrumbs } from '@/components/molecules/Breadcrumbs'
 
 type BlogProps = {
   article: Article
 }
 
 const BlogDetail: NextPage<BlogProps> = ({ article }) => {
+  const crumbs = [
+    { name: 'Home', href: '/' },
+    { name: 'Articls', href: '/blog' },
+    { name: article.slug, href: `/blog/${article.slug}` },
+  ]
   const router = useRouter()
 
   if (router.isFallback) {
@@ -18,6 +24,9 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
   return (
     <>
+      <div className={'py-8'}>
+        <Breadcrumbs crumbs={crumbs} />
+      </div>
       <h1 className={styles.title}>{article.title}</h1>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </>

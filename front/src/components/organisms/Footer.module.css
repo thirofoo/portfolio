@@ -1,7 +1,7 @@
-.text {
-  @apply text-center text-base;
+.footer {
+  @apply absolute bottom-0 w-full text-txt1 p-4 bg-bg3 bg-opacity-0 backdrop-blur-sm;
 }
 
-.footer {
-  @apply absolute bottom-0 w-full text-txt1 p-4 bg-bg3;
+.text {
+  @apply text-center text-base;
 }

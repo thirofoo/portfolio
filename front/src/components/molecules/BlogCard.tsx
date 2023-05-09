@@ -15,7 +15,16 @@ export const BlogCard = ({ article, from }: BlogProps) => {
         <div className={styles['card-content']}>
           <h2 className={styles['card-title']}>{article.title}</h2>
           <p className={styles['card-description']}>{article.description}</p>
-          <p className={styles['card-type']}>{article.type}</p>
+
+          {/* tagを個々に追加 */}
+          <div className={styles['card-tags']}>
+            {article.Tags.map((tag) => (
+              <span key={tag.ID} className={styles['card-tag']}>
+                {tag.name}
+              </span>
+            ))}
+          </div>
+
           <p className={styles['card-readmore']}>Read more &rarr;</p>
         </div>
       </Link>

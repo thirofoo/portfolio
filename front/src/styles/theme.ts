@@ -3,7 +3,7 @@ module.exports = {
   bg1: 'white',
   bg2: '#f0f0f0',
   bg3: '#fafafa',
-  bg4: '#222222',
+  bg4: 'black',
 
   // text-color
   txt1: 'black',
@@ -13,11 +13,10 @@ module.exports = {
   // shadow-color
   sh1: '#9da5b2', // 薄
   sh2: 'black', // 濃
+  sh3: '#859fa2', // 青目
 
-  accent: {
-    primary: '#859fc2',
-    secondary: '#627fa8',
-  },
+  accent: '#627fa8',
+
   social: {
     twitter: '#1da1f2',
     github: '#ffffff',

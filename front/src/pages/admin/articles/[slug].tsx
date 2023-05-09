@@ -8,7 +8,6 @@ import { NextPage } from 'next'
 import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
-import Link from 'next/link'
 
 type Props = {
   article: Article
@@ -56,13 +55,13 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
     setLoading(true)
 
     try {
-      const articleId = article.ID
       const cookies = parseCookies()
       const token = cookies.token
+      console.log(token)
       console.log('Yeah')
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${articleId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${article.ID}`,
         {
           method: 'PUT', // 更新の場合はPUTメソッドを使用する
           headers: {
@@ -92,8 +91,8 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
       console.error(error)
       // エラー処理を書く
     }
-
     setLoading(false)
+    router.push('/admin/articles')
   }
 
   useEffect(() => {

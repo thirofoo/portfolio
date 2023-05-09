@@ -12,5 +12,6 @@ body::-webkit-scrollbar {
 
 html,
 body {
-  @apply m-0 p-0 min-h-[100vh] text-txt1 backdrop-filter bg-bg3;
+  @apply m-0 p-0 min-h-[100vh] text-txt1 backdrop-filter;
+  /* background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); */
 }

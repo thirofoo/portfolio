@@ -1,6 +1,7 @@
 import React from 'react'
 import { Article } from '@/Interfaces/Article'
 import { BlogCard } from '@/components/molecules/BlogCard'
+import styles from '@/components/molecules/BlogList.module.css'
 
 type BlogListProps = {
   articles: Article[]
@@ -14,7 +15,7 @@ export const BlogList = ({ articles, from }: BlogListProps) => {
         {/* articlesがnullの時の処理も含める */}
         {articles &&
           articles.map((article) => (
-            <div key={article.ID} className={'inline-flex px-[2vw] mx-[2rem] my-[2rem]'}>
+            <div key={article.ID} className={styles.card}>
               <BlogCard article={article} from={from} />
             </div>
           ))}

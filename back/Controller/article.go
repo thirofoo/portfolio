@@ -94,7 +94,7 @@ func EditBlog(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
+	
 	if len(input.Tags) == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Tags cannot be empty"})
 		return
