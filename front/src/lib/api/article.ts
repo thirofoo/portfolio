@@ -1,6 +1,6 @@
-export const getAllArticles = async () => {
+export const getAllArticles = async (url: string) => {
   try {
-    const response = await fetch(process.env.API_URL + `/article/get`)
+    const response = await fetch(url + `/article/get`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -12,9 +12,9 @@ export const getAllArticles = async () => {
   }
 }
 
-export const getOneArticle = async (slug: string) => {
+export const getOneArticle = async (slug: string, url: string) => {
   try {
-    const response = await fetch(process.env.API_URL + `/article/get/${slug}`)
+    const response = await fetch(url + `/article/get/${slug}`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }

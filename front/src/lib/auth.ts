@@ -1,23 +1,14 @@
-import { IncomingMessage } from 'http'
-import { parseCookies } from 'nookies'
+type AuthCheckResponse = { ok: boolean }
 
-type AuthCheckResponse = {
-  ok: boolean
-}
-
-export const checkAuth = async (req?: IncomingMessage): Promise<AuthCheckResponse> => {
-  const cookies = parseCookies({ req })
-  const token = cookies.token
-
-  if (!token) {
-    return { ok: false }
-  }
-
+export const checkAuth = async (): Promise<AuthCheckResponse> => {
+  // token=~ の ~部分を取り出す正規表現
+  const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1')
   const headers = {
+    'Content-Type': 'application/json',
     Authorization: `Bearer ${token}`,
   }
 
-  const response = await fetch(process.env.API_URL + '/admin/check-auth', {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/admin/check-auth', {
     method: 'POST',
     headers: headers,
   })

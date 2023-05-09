@@ -11,11 +11,11 @@ type BlogProps = {
 }
 
 const BlogDetail: NextPage<BlogProps> = ({ article }) => {
-  const crumbs = [
-    { name: 'Home', href: '/' },
-    { name: 'Articls', href: '/blog' },
-    { name: article.slug, href: `/blog/${article.slug}` },
-  ]
+  // const crumbs = [
+  //   { name: 'Home', href: '/' },
+  //   { name: 'Articls', href: '/blog' },
+  //   { name: article.slug, href: `/blog/${article.slug}` },
+  // ]
   const router = useRouter()
 
   if (router.isFallback) {
@@ -24,9 +24,9 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
   return (
     <>
-      <div className={'py-8'}>
+      {/* <div className={'py-8'}>
         <Breadcrumbs crumbs={crumbs} />
-      </div>
+      </div> */}
       <h1 className={styles.title}>{article.title}</h1>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </>
@@ -38,7 +38,7 @@ export default BlogDetail
 // build時に静的に生成するパスを指定する
 // 返り値でnext側に SSGする時のpathを教えてい
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await getAllArticles()
+  const articles = await getAllArticles(process.env.API_URL as string)
   if (!articles) {
     return {
       paths: [],
@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // GetStatic~でSSG化される (getStaticPropsは予約語)
 export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
   const { slug } = params as { slug: string }
-  const article = await getOneArticle(slug)
+  const article = await getOneArticle(slug, process.env.API_URL as string)
   if (!article) {
     return {
       notFound: true,

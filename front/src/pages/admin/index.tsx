@@ -1,30 +1,24 @@
-// pages/admin/index.tsx
-import { GetServerSideProps } from 'next'
-import { checkAuth } from '@/lib/auth'
-import type { GetServerSidePropsContext, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/atoms/Button'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { checkAuth } from '@/lib/auth'
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
-  const auth = await checkAuth(context.req)
+const AdminPage: NextPage = () => {
+  const router = useRouter()
 
-  if (!auth.ok) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
+  const checkAuthentication = async () => {
+    const res = await checkAuth()
+    if (!res.ok) {
+      router.push('/login')
     }
   }
 
-  return {
-    props: {},
-  }
-}
+  useEffect(() => {
+    checkAuthentication()
+  }, [])
 
-const AdminPage: NextPage = () => {
   return (
     <>
       <div>

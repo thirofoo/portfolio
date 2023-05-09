@@ -1,19 +1,30 @@
-import { GetServerSideProps } from 'next'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { checkAuth } from '@/lib/auth'
 import { Article } from '@/Interfaces/Article'
 import { getAllArticles } from '@/lib/api/article'
-import type { GetServerSidePropsContext } from 'next'
-import type { NextPage } from 'next'
 import { BlogList } from '@/components/molecules/BlogList'
 import { Button } from '@/components/atoms/Button'
+import { useRouter } from 'next/router'
 
-type Props = {
-  articles: Article[]
-}
-
-const AdminArticlesPage: NextPage<Props> = ({ articles }: Props) => {
+const AdminArticlesPage = () => {
+  const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(false)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await checkAuth()
+      if (!res.ok) {
+        router.push('/login')
+      } else {
+        const fetchedArticles = await getAllArticles(process.env.NEXT_PUBLIC_API_URL || '')
+        setArticles(fetchedArticles)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const handleDelete = async (id: string) => {
     setLoading(true)
@@ -31,26 +42,6 @@ const AdminArticlesPage: NextPage<Props> = ({ articles }: Props) => {
       </div>
     </>
   )
-}
-
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context: GetServerSidePropsContext,
-) => {
-  const auth = await checkAuth(context.req)
-  if (!auth.ok) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    }
-  }
-  const articles = await getAllArticles()
-  return {
-    props: {
-      articles,
-    },
-  }
 }
 
 export default AdminArticlesPage

@@ -1,13 +1,13 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { checkAuth } from '@/lib/auth'
 import { Article } from '@/Interfaces/Article'
-import { GetServerSidePropsContext } from 'next'
+import { Tag } from '@/Interfaces/Tag'
 import { NextPage } from 'next'
 import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
+import { getOneArticle } from '@/lib/api/article'
 
 type Props = {
   article: Article
@@ -16,19 +16,41 @@ type Props = {
 const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
-  const [title, setTitle] = useState<string>(article.title)
+  const [title, setTitle] = useState<string>('')
   const [tags, setTags] = useState<string[]>([])
-  const [content, setContent] = useState<string>(article.body)
-  const [slug, setSlug] = useState<string>(article.slug)
-  const [description, setDescription] = useState<string>(article.description)
-  const [author, setAuthor] = useState<string>(article.author)
-  const [type, setType] = useState<string>(article.type)
-  const [thumbnail, setThumbnail] = useState<string>(article.thumbnail)
+  const [content, setContent] = useState<string>('')
+  const [slug, setSlug] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [author, setAuthor] = useState<string>('')
+  const [type, setType] = useState<string>('')
+  const [thumbnail, setThumbnail] = useState<string>('')
 
-  // articleにあるタグ追加
+  const fetchData = async () => {
+    const res = await checkAuth()
+    if (!res.ok) {
+      router.push('/login')
+    } else {
+      const pathname = window.location.pathname
+      const slug = pathname.split('/').pop()
+      console.log(slug)
+      const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
+      if (!article) {
+        router.push('/admin/articles')
+      }
+      setTitle(article.title)
+      setSlug(article.slug)
+      setDescription(article.description)
+      setContent(article.body)
+      setAuthor(article.author)
+      setType(article.type)
+      setThumbnail(article.thumbnail)
+      const newTags = article.Tags.map((tag: Tag) => tag.name)
+      setTags(newTags)
+    }
+  }
+
   useEffect(() => {
-    const newTags = article.Tags.map((tag) => tag.name)
-    setTags(newTags)
+    fetchData()
   }, [])
 
   const handleAddTag = () => {
@@ -93,16 +115,6 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
     }
     setLoading(false)
     router.push('/admin/articles')
-  }
-
-  useEffect(() => {
-    if (!article.ID) {
-      router.push('/admin/articles')
-    }
-  }, [article.ID, router])
-
-  if (!article.ID) {
-    return <div>Loading...</div>
   }
 
   return (
@@ -224,29 +236,3 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
 }
 
 export default EditArticlePage
-
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context: GetServerSidePropsContext,
-) => {
-  const auth = await checkAuth(context.req)
-  if (!auth.ok) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    }
-  }
-
-  const slug = context.params?.slug
-  console.log(`${process.env.API_URL}/article/get/${slug}`)
-  const article = await fetch(`${process.env.API_URL}/article/get/${slug}`).then((res) =>
-    res.json(),
-  )
-
-  return {
-    props: {
-      article,
-    },
-  }
-}

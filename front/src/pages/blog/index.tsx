@@ -22,7 +22,8 @@ const Blog: NextPage<BlogProps> = ({ articles }) => {
 }
 
 export async function getStaticProps() {
-  const articles = await getAllArticles()
+  console.log(process.env.API_URL)
+  const articles = await getAllArticles(process.env.API_URL as string)
   return {
     // propsのarticleプロパティにデータを補充してる感じ。
     // buildしたらSSGされる。

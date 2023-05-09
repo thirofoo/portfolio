@@ -69,9 +69,24 @@ func Login(c *gin.Context) {
     }
 
     // JWTをCookieに設定
-    exp := time.Now().Add(time.Hour * 24) // 1日後の時間を取得
-    expUnix := exp.Unix()                 // Unix時間（秒）に変換
-    c.SetCookie("token", token, int(expUnix), "/", "", false, false)
+    
+    // gin では設定出来ない属性がある。(SameSite属性等)
+    // → http.Cookieを使う。
+    // c.SetCookie("token", token, int(expUnix), "/", "", os.Getenv("LOCAL") != "true", os.Getenv("LOCAL") != "true")
+    
+    // 通常 Secure = true なら https通信 出ないと×
+    // ただlocalhostの様なループバックアドレスならhttpsでなくても保存されたりする。
+    exp := time.Now().Add(time.Hour) // 1日後の時間を取得
+    cookie := http.Cookie{
+        Name:     "token",
+        Value:    token,
+        Expires:  exp,
+        Path:     "/",
+        HttpOnly: false,
+        Secure:   true,
+        SameSite: http.SameSiteNoneMode,
+    }    
+    http.SetCookie(c.Writer, &cookie)
 
     // response
     c.JSON(http.StatusOK, gin.H{
