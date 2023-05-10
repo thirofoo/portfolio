@@ -53,7 +53,7 @@ func Login(c *gin.Context) {
     }
 
     // password検証 ( DBに入っているhashとpasswordのhashを比較 )
-	// ※ DBにはpasswordのhashが入ってる
+    // ※ DBにはpasswordのhashが入ってる
     err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
     if err != nil {
         c.JSON(http.StatusUnauthorized, gin.H{"error": "パスワードが正しくありません"})
@@ -67,26 +67,6 @@ func Login(c *gin.Context) {
         c.JSON(http.StatusInternalServerError, gin.H{"error": "JWTtokenの生成に失敗しました"})
         return
     }
-
-    // JWTをCookieに設定
-    
-    // gin では設定出来ない属性がある。(SameSite属性等)
-    // → http.Cookieを使う。
-    // c.SetCookie("token", token, int(expUnix), "/", "", os.Getenv("LOCAL") != "true", os.Getenv("LOCAL") != "true")
-    
-    // 通常 Secure = true なら https通信 出ないと×
-    // ただlocalhostの様なループバックアドレスならhttpsでなくても保存されたりする。
-    exp := time.Now().Add(time.Hour) // 1日後の時間を取得
-    cookie := http.Cookie{
-        Name:     "token",
-        Value:    token,
-        Expires:  exp,
-        Path:     "/",
-        HttpOnly: false,
-        Secure:   true,
-        SameSite: http.SameSiteNoneMode,
-    }    
-    http.SetCookie(c.Writer, &cookie)
 
     // response
     c.JSON(http.StatusOK, gin.H{

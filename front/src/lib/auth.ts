@@ -11,6 +11,7 @@ export const checkAuth = async (): Promise<AuthCheckResponse> => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/admin/check-auth', {
     method: 'POST',
     headers: headers,
+    credentials: 'include',
   })
 
   if (!response.ok) {

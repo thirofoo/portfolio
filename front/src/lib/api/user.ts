@@ -7,13 +7,27 @@ export const loginUser = async (username: string, password: string) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include', // Cookieを自動的に送信する設定
       body: JSON.stringify({ username, password }),
     })
 
     if (response.ok) {
       // login成功時
-      console.log('success!!')
+      const data = await response.json()
+      const { token } = data
+      console.log('success!!', token)
+
+      // tokenをCookieに保存する (vercel側からを送る場合の属性指定)
+      const expire = new Date(Date.now() + 60 * 60 * 1000) // 1 hour expiration
+      const cookieOptions = {
+        path: '/',
+        expires: expire,
+        sameSite: 'none',
+        secure: true,
+      }
+      document.cookie = `token=${token};${Object.entries(cookieOptions)
+        .map(([key, value]) => `${key}=${value}`)
+        .join(';')}`
+
       // adminサイトにリダイレクト
       Router.push('/admin')
     } else {
