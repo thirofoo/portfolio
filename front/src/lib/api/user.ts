@@ -14,7 +14,6 @@ export const loginUser = async (username: string, password: string) => {
       // login成功時
       const data = await response.json()
       const { token } = data
-      console.log('success!!', token)
 
       // tokenをCookieに保存する (vercel側からを送る場合の属性指定)
       const expire = new Date(Date.now() + 60 * 60 * 1000) // 1 hour expiration

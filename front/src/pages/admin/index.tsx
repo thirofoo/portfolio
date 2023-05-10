@@ -4,6 +4,7 @@ import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { checkAuth } from '@/lib/auth'
+import styles from '@/pages/admin/admin.module.css'
 
 const AdminPage: NextPage = () => {
   const router = useRouter()
@@ -21,11 +22,16 @@ const AdminPage: NextPage = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.wrapper}>
         <Link href='admin/articles'>
           <Button content='View Articles'></Button>
         </Link>
       </div>
+      {/* <div className={styles.wrapper}>
+        <Link href='admin/users'>
+          <Button content='View Users'></Button>
+        </Link>
+      </div> */}
     </>
   )
 }

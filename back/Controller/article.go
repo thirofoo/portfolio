@@ -8,7 +8,6 @@ import (
 	"github.com/thirofoo/portfolio/Models"
 
 	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 )
 
 
@@ -34,17 +33,18 @@ func ShowOneBlogBySlug(c *gin.Context) {
 }
 
 func CreateBlog(c *gin.Context) {
-	// ArticleWithTag の形で入力受付
-	input := Models.ArticleWithTag{}
-
-	// bind
-	err := c.ShouldBindWith(&input, binding.JSON)
-	if err != nil {
+	// 入力バリデーションに必要項目だけを指定する為の構造体
+	var input Models.UpdateArticleInput
+	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	
+	if len(input.Tags) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Tags cannot be empty"})
+		return
+	}
 
-	// Articleをデータベースに挿入
 	article := Models.Article{
 		Title:       input.Title,
 		Slug:        input.Slug,
@@ -54,25 +54,20 @@ func CreateBlog(c *gin.Context) {
 		Type:        input.Type,
 		Body:        input.Body,
 	}
-	article.Create()
+	Models.Db.Create(&article)
 
-	for _, tagName := range input.TagNames {
+	// タグの操作 ( dbにあるならtag_idを追加、ないなら作成してtag_idを追加 )
+	for _, tagName := range input.Tags {
 		tag := Models.Tag{Name: tagName}
-
-		// タグが存在しなければ作成
-		err = Models.Db.Where(Models.Tag{Name: tagName}).FirstOrCreate(&tag).Error
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		// ないなら作成、あるなら検索
+		if err := Models.Db.Where(&tag).FirstOrCreate(&tag).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
-		// 中間テーブルにデータを挿入
-		// ※ 該当のarticleに対して、tagを追加 ( 中間テーブルに関係性を追加 ) している
-		err = Models.Db.Model(&article).Association("Tags").Append(&tag)
-		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+		
+		Models.Db.Model(&article).Association("Tags").Append(&tag)
 	}
+
 	c.JSON(http.StatusOK, gin.H{"message": "created successfully"})
 }
 

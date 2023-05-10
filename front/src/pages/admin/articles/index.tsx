@@ -5,6 +5,7 @@ import { getAllArticles } from '@/lib/api/article'
 import { BlogList } from '@/components/molecules/BlogList'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 const AdminArticlesPage = () => {
   const [articles, setArticles] = useState<Article[]>([])
@@ -34,11 +35,18 @@ const AdminArticlesPage = () => {
 
   return (
     <>
+      <div className={'flex text-2xl justify-center'}>
+        <div className={'p-4'}>
+          <Link href={'/admin/articles/create'}>
+            <Button content='Create an article'></Button>
+          </Link>
+        </div>
+        <div className={'p-4'}>
+          <Button content='Go back' handleClick={() => router.back()}></Button>
+        </div>
+      </div>
       <div className={'text-center'}>
         <BlogList articles={articles} from={'admin/articles'} />
-      </div>
-      <div className={'m-20 flex justify-center'}>
-        <Button content='More'></Button>
       </div>
     </>
   )

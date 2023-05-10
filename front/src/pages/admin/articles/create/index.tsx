@@ -1,13 +1,11 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { checkAuth } from '@/lib/auth'
+import { useState } from 'react'
 import { Article } from '@/Interfaces/Article'
 import { Tag } from '@/Interfaces/Tag'
 import { NextPage } from 'next'
 import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
-import { getOneArticle } from '@/lib/api/article'
 
 type Props = {
   article: Article
@@ -24,33 +22,6 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
   const [author, setAuthor] = useState<string>('')
   const [type, setType] = useState<string>('')
   const [thumbnail, setThumbnail] = useState<string>('')
-
-  const fetchData = async () => {
-    const res = await checkAuth()
-    if (!res.ok) {
-      router.push('/login')
-    } else {
-      const pathname = window.location.pathname
-      const slug = pathname.split('/').pop()
-      const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
-      if (!article) {
-        router.push('/admin/articles')
-      }
-      setTitle(article.title)
-      setSlug(article.slug)
-      setDescription(article.description)
-      setContent(article.body)
-      setAuthor(article.author)
-      setType(article.type)
-      setThumbnail(article.thumbnail)
-      const newTags = article.Tags.map((tag: Tag) => tag.name)
-      setTags(newTags)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   const handleAddTag = () => {
     setTags([...tags, ''])
@@ -70,7 +41,7 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
     setTags(newTags)
   }
 
-  // 記事の更新処理
+  // 記事の作成処理
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
@@ -79,34 +50,31 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
       const cookies = parseCookies()
       const token = cookies.token
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${article.ID}`,
-        {
-          method: 'PUT', // 更新の場合はPUTメソッド
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // headerにtokenをset
-          },
-          body: JSON.stringify({
-            title: title,
-            slug: slug,
-            description: description,
-            body: content,
-            author: author,
-            thumbnail: thumbnail,
-            type: type,
-            tags: tags,
-          }),
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/article/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // headerにtokenをset
         },
-      )
+        body: JSON.stringify({
+          title: title,
+          slug: slug,
+          description: description,
+          body: content,
+          author: author,
+          thumbnail: thumbnail,
+          type: type,
+          tags: tags,
+        }),
+      })
 
       if (response.ok) {
-        // 編集成功時
-        console.log('記事の編集に成功しました')
+        // 作成成功時
+        console.log('記事の作成に成功しました')
         router.push('/admin/articles')
       } else {
-        // 編集失敗時
-        throw new Error('記事の編集に失敗しました')
+        // 作成失敗時
+        throw new Error('記事の作成に失敗しました')
       }
     } catch (error) {
       // error処理
@@ -196,6 +164,19 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
               id='type'
               value={type}
               onChange={(e) => setType(e.target.value)}
+              className={styles.input}
+              required
+            />
+          </div>
+          <div className={styles['form-group']}>
+            <label htmlFor='type' className={styles.label}>
+              Slug:
+            </label>
+            <input
+              type='text'
+              id='slug'
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
               className={styles.input}
               required
             />
