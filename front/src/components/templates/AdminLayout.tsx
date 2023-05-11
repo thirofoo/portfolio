@@ -1,7 +1,5 @@
-// components/layouts/AdminLayout.tsx
 import { ReactNode } from 'react'
 import styles from '@/components/templates/AdminLayout.module.css'
-
 type Props = {
   children: ReactNode
 }

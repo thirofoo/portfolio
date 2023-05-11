@@ -1,0 +1,7 @@
+.list_wrapper {
+  @apply text-center;
+}
+
+.button_wrapper {
+  @apply m-20 flex justify-center;
+}

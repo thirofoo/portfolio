@@ -1,31 +1,21 @@
-import { useState, useEffect } from 'react'
-import { checkAuth } from '@/lib/auth'
+import { useState } from 'react'
 import { Article } from '@/Interfaces/Article'
 import { getAllArticles } from '@/lib/api/article'
 import { BlogList } from '@/components/molecules/BlogList'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
 
 const AdminArticlesPage = () => {
+  const router = useRouter()
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(false)
 
-  const router = useRouter()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await checkAuth()
-      if (!res.ok) {
-        router.push('/login')
-      } else {
-        const fetchedArticles = await getAllArticles(process.env.NEXT_PUBLIC_API_URL || '')
-        setArticles(fetchedArticles)
-      }
-    }
-
-    fetchData()
-  }, [])
+  useCheckAuth(async () => {
+    const fetchedArticles = await getAllArticles(process.env.NEXT_PUBLIC_API_URL || '')
+    setArticles(fetchedArticles)
+  })
 
   const handleDelete = async (id: string) => {
     setLoading(true)

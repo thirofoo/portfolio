@@ -140,7 +140,7 @@ func validateToken(tokenString string) (jwt.MapClaims, error) {
     token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
         // 署名に使った鍵と同じ鍵を返す
         if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-            return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+            return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
         }
         return signingKey, nil
     })

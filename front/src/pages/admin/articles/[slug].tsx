@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { checkAuth } from '@/lib/auth'
 import { Article } from '@/Interfaces/Article'
 import { Tag } from '@/Interfaces/Tag'
 import { NextPage } from 'next'
@@ -8,14 +7,12 @@ import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
 import { getOneArticle } from '@/lib/api/article'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
 
-type Props = {
-  article: Article
-}
-
-const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
+const EditArticlePage: NextPage = () => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
+  const [id, setId] = useState<string>('')
   const [title, setTitle] = useState<string>('')
   const [tags, setTags] = useState<string[]>([])
   const [content, setContent] = useState<string>('')
@@ -25,32 +22,24 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
   const [type, setType] = useState<string>('')
   const [thumbnail, setThumbnail] = useState<string>('')
 
-  const fetchData = async () => {
-    const res = await checkAuth()
-    if (!res.ok) {
-      router.push('/login')
-    } else {
-      const pathname = window.location.pathname
-      const slug = pathname.split('/').pop()
-      const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
-      if (!article) {
-        router.push('/admin/articles')
-      }
-      setTitle(article.title)
-      setSlug(article.slug)
-      setDescription(article.description)
-      setContent(article.body)
-      setAuthor(article.author)
-      setType(article.type)
-      setThumbnail(article.thumbnail)
-      const newTags = article.Tags.map((tag: Tag) => tag.name)
-      setTags(newTags)
+  useCheckAuth(async () => {
+    const pathname = window.location.pathname
+    const slug = pathname.split('/').pop()
+    const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
+    if (!article) {
+      router.push('/admin/articles')
     }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
+    setId(article.ID)
+    setTitle(article.title)
+    setSlug(article.slug)
+    setDescription(article.description)
+    setContent(article.body)
+    setAuthor(article.author)
+    setType(article.type)
+    setThumbnail(article.thumbnail)
+    const newTags = article.Tags.map((tag: Tag) => tag.name)
+    setTags(newTags)
+  })
 
   const handleAddTag = () => {
     setTags([...tags, ''])
@@ -79,26 +68,23 @@ const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
       const cookies = parseCookies()
       const token = cookies.token
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${article.ID}`,
-        {
-          method: 'PUT', // 更新の場合はPUTメソッド
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // headerにtokenをset
-          },
-          body: JSON.stringify({
-            title: title,
-            slug: slug,
-            description: description,
-            body: content,
-            author: author,
-            thumbnail: thumbnail,
-            type: type,
-            tags: tags,
-          }),
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/article/update/${id}`, {
+        method: 'PUT', // 更新の場合はPUTメソッド
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`, // headerにtokenをset
         },
-      )
+        body: JSON.stringify({
+          title: title,
+          slug: slug,
+          description: description,
+          body: content,
+          author: author,
+          thumbnail: thumbnail,
+          type: type,
+          tags: tags,
+        }),
+      })
 
       if (response.ok) {
         // 編集成功時

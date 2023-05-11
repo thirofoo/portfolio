@@ -1,17 +1,11 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Article } from '@/Interfaces/Article'
-import { Tag } from '@/Interfaces/Tag'
 import { NextPage } from 'next'
 import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
 
-type Props = {
-  article: Article
-}
-
-const EditArticlePage: NextPage<Props> = ({ article }: Props) => {
+const EditArticlePage: NextPage<> = () => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [title, setTitle] = useState<string>('')
