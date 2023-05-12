@@ -1,5 +1,5 @@
 .card {
-  @apply shadow-sh1 w-[calc(min(300px,80vw))] min-h-[calc(min(300px,80vw))] shadow-sm bg-bg1 duration-200 rounded-xl;
+  @apply shadow-sh1 w-[calc(min(450px,40vw))] min-h-[calc(min(300px,80vw))] shadow-sm duration-200 rounded-xl dark:bg-dbg3;
   box-shadow: 0px 0px 4px 1px theme(colors.sh1);
   animation: shadow-animation 5s infinite alternate ease-in-out;
 }
@@ -23,19 +23,19 @@
 }
 
 .card-content {
-  @apply relative bottom-0  p-6 bg-bg1 rounded-xl;
+  @apply relative bottom-0  p-6 rounded-xl;
 }
 
 .card-title {
-  @apply text-txt1 font-bold text-2xl mb-2;
+  @apply font-bold text-2xl mb-2;
 }
 
 .card-description {
-  @apply text-txt1 text-base mb-4;
+  @apply text-base mb-4;
 }
 
 .card-tags {
-  @apply flex flex-wrap text-txt1 text-sm mb-4;
+  @apply flex flex-wrap text-sm mb-4;
 }
 
 .card-tag {
@@ -43,7 +43,7 @@
 }
 
 .card-readmore {
-  @apply text-txt1 font-semibold text-base;
+  @apply font-semibold text-base;
 }
 
 @media (max-width: 768px) {

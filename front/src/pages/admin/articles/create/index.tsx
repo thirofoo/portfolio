@@ -5,7 +5,7 @@ import styles from '@/pages/admin/articles/[slug].module.css'
 import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
 
-const EditArticlePage: NextPage<> = () => {
+const EditArticlePage: NextPage<void> = () => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [title, setTitle] = useState<string>('')

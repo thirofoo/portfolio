@@ -5,6 +5,12 @@ module.exports = {
   bg3: '#fafafa',
   bg4: 'black',
 
+  // bg-color (dark)
+  dbg1: '#434242',
+  dbg2: '#F3EFE0',
+  dbg3: '#222222',
+  dbg4: '#22A39F',
+
   // text-color
   txt1: 'black',
   txt2: '#cad1df',

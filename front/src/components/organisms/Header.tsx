@@ -2,17 +2,13 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/atoms/Button'
 import styles from '@/components/organisms/Header.module.css'
+import { ChangeThemeToggle } from '@/components/atoms/ChangeThemeToggle'
 
 export const Header = () => {
   const [homeOn, setHomeOn] = useState<boolean>(true)
   const [worksOn, setWorksOn] = useState<boolean>(false)
   const [blogOn, setBlogOn] = useState<boolean>(false)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-  const [isActive, setActive] = useState(false)
-
-  const handleToggle = () => {
-    setActive(!isActive)
-  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -56,12 +52,7 @@ export const Header = () => {
           <Link href='/' className={styles.head_name} onClick={homeClick}>
             thirofoo
           </Link>
-          <button
-            className={isActive ? styles.toggle_on : styles.toggle_off}
-            onClick={handleToggle}
-          >
-            <span className={styles.toggle_button}></span>
-          </button>
+          <ChangeThemeToggle></ChangeThemeToggle>
         </div>
 
         <div className={`${styles.ham_menu}`} onClick={toggleMenu}>

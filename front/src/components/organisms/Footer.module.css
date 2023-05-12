@@ -1,5 +1,5 @@
 .footer {
-  @apply absolute bottom-0 w-full text-txt1 p-4 bg-bg3 bg-opacity-0 backdrop-blur-sm;
+  @apply absolute bottom-0 w-full p-4 bg-bg3 bg-opacity-0 backdrop-blur-sm;
 }
 
 .text {

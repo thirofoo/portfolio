@@ -39,7 +39,7 @@ const Home: NextPage = () => {
 
         <div className={styles.add_margin}></div>
 
-        <div className={styles.detail + ' bg-gradient-to-l from-bg2 to-bg1'}>
+        <div className={styles.detail}>
           <div className={styles.profile}>
             <h3>Skill</h3>
             <div>used language：C, C++, TypeScript, Golang</div>

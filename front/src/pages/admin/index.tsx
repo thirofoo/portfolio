@@ -5,7 +5,9 @@ import styles from '@/pages/admin/admin.module.css'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
 
 const AdminPage: NextPage = () => {
-  useCheckAuth(() => {})
+  useCheckAuth(() => {
+    return
+  })
   return (
     <>
       <div className={styles.wrapper}>

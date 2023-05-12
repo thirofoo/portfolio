@@ -1,16 +1,19 @@
 .button {
-  @apply rounded-lg py-3 px-12 duration-200 relative bg-bg1 bg-opacity-90 active:scale-95 backdrop-blur-sm;
-
+  @apply rounded-lg py-3 px-12 duration-200 relative;
   /* box-shadow の構成 : [x-offset y-offset blur-radius spread-radius color?] */
   box-shadow: 0px 0px 3px 1px theme(colors.sh1);
 }
 
 .activeButton {
-  @apply rounded-lg py-3 px-12 duration-100 relative bg-bg1 bg-opacity-90 scale-95 shadow-sh3 shadow-inner;
+  @apply rounded-lg py-3 px-12 duration-200 relative;
+  box-shadow: inset 0px 0px 6px 0.5px theme(colors.sh1);
 }
 
 @media (max-width: 768px) {
   .button {
+    @apply w-[150px];
+  }
+  .activeButton {
     @apply w-[150px];
   }
 }

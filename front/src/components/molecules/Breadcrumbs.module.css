@@ -7,7 +7,7 @@
 }
 
 .breadcrumbs a {
-  @apply text-txt1 no-underline;
+  @apply no-underline;
 }
 
 .breadcrumbs a.active {
