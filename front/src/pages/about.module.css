@@ -3,6 +3,10 @@
   animation: ping 4s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+.title {
+  @apply text-4xl font-bold m-4 mt-8;
+}
+
 @keyframes ping {
   0% {
     box-shadow: 0 0 5px 5px theme(colors.sh1);
@@ -26,7 +30,7 @@
 }
 
 .detail {
-  @apply w-full mt-4 dark:bg-dbg1 duration-200 rounded-xl justify-center py-10;
+  @apply w-full mt-4 dark:bg-dbg1 duration-200 rounded-xl justify-center p-8;
   box-shadow: 0px 0px 9px theme(colors.sh1);
 }
 

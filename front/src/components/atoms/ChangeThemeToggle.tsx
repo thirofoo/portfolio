@@ -1,24 +1,22 @@
-import styles from '@/components/atoms/ChangeThemeToggle.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+import { SunLight, HalfMoon } from 'iconoir-react'
+import styles from '@/components/atoms/ChangeThemeToggle.module.css'
 
 export const ChangeThemeToggle = () => {
   const { theme, setTheme } = useTheme()
-  const [isActive, setActive] = useState(false)
 
-  const handleToggle = () => {
-    setActive(!isActive)
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
   return (
     <>
       <button
         aria-label='DarkModeToggle'
         type='button'
-        className={isActive ? styles.toggle_on : styles.toggle_off}
-        onClick={handleToggle}
+        onClick={() => {
+          setTheme(theme === 'dark' ? 'light' : 'dark')
+        }}
+        className={styles.toggle}
       >
-        <span className={styles.toggle_button}></span>
+        {theme === 'dark' ? <HalfMoon /> : <SunLight />}
       </button>
     </>
   )

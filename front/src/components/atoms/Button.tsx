@@ -21,8 +21,8 @@ export const Button = ({
         className={
           theme === 'dark'
             ? state
-              ? styles.button + ' scale-95'
-              : styles.activeButton + ' active:scale-95'
+              ? styles.button + ' scale-90'
+              : styles.activeButton + ' active:scale-90'
             : state
             ? styles.activeButton + ' scale-95'
             : styles.button + ' active:scale-95'
