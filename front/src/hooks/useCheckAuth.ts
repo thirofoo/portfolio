@@ -10,7 +10,7 @@ export const useCheckAuth = (onSuccess: () => void) => {
   const handleSuccess = useCallback(onSuccess, [])
   useEffect(() => {
     const fetchData = async () => {
-      const res = await checkAuth()
+      const res = await checkAuth(router)
       if (res.ok) {
         handleSuccess()
       } else {

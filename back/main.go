@@ -36,7 +36,7 @@ func main() {
     // CORS middleware 設定
     config := cors.DefaultConfig()
     config.AllowOrigins = []string{os.Getenv("FRONT_URL")}
-    config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+    config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
     config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
     config.AllowCredentials = true
     router.Use(cors.New(config))
