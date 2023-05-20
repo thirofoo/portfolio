@@ -7,8 +7,9 @@ const MyDocument = () => {
   return (
     <>
       <Head>
-        <meta name='application-name' content='MyTemplate' />
-        <meta name='description' content='' />
+        <meta name='application-name' content='thirofoo home' />
+        <meta name='description' content='This is thirofoo website.' />
+        <link rel='icon' href='/icon.png' />
       </Head>
       <Html lang='ja-JP'>
         <body>

@@ -20,7 +20,9 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "iconoir-react": "^6.8.0",
+    "image-size": "^1.0.2",
     "next": "13.3.0",
+    "next-cloudinary": "^4.10.1",
     "next-themes": "^0.2.1",
     "nookies": "^2.5.2",
     "postcss": "8.4.21",
@@ -38,7 +40,8 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "typescript": "5.0.4",
-    "unified": "^10.1.2"
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

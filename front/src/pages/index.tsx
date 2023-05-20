@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import styles from '@/pages/about.module.css'
 import { Twitter, GitHub } from 'iconoir-react'
+import { CldImage } from 'next-cloudinary'
 
 const Home: NextPage = () => {
   return (
