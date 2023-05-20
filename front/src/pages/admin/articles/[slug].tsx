@@ -1,26 +1,36 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { Article } from '@/Interfaces/Article'
+import { useState } from 'react'
 import { Tag } from '@/Interfaces/Tag'
 import { NextPage } from 'next'
 import styles from '@/pages/admin/articles/[slug].module.css'
-import { parseCookies } from 'nookies'
 import { Button } from '@/components/atoms/Button'
 import { getOneArticle } from '@/lib/api/article'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
+import { fetchWithToken } from '@/lib/api/request'
+import { FormField } from '@/components/molecules/FormField'
+import { FieldInfo } from '@/Interfaces/FieldInfo'
 
 const EditArticlePage: NextPage = () => {
   const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
   const [id, setId] = useState<string>('')
-  const [title, setTitle] = useState<string>('')
-  const [tags, setTags] = useState<string[]>([])
-  const [content, setContent] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
-  const [author, setAuthor] = useState<string>('')
   const [type, setType] = useState<string>('')
+  const [tags, setTags] = useState<string[]>([])
+  const [title, setTitle] = useState<string>('')
+  const [author, setAuthor] = useState<string>('')
+  const [content, setContent] = useState<string>('')
   const [thumbnail, setThumbnail] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+
+  // formのField情報
+  const formFields: FieldInfo[] = [
+    { id: 'title', label: 'Title', value: title, onChange: setTitle },
+    { id: 'description', label: 'Description', value: description, onChange: setDescription },
+    { id: 'content', label: 'Content', value: content, onChange: setContent, textarea: true },
+    { id: 'author', label: 'Author', value: author, onChange: setAuthor },
+    { id: 'type', label: 'Type', value: type, onChange: setType },
+    { id: 'thumbnail', label: 'Thumbnail', value: thumbnail, onChange: setThumbnail },
+  ]
 
   useCheckAuth(async () => {
     const pathname = window.location.pathname
@@ -30,13 +40,13 @@ const EditArticlePage: NextPage = () => {
       router.push('/admin/articles')
     }
     setId(article.ID)
-    setTitle(article.title)
     setSlug(article.slug)
-    setDescription(article.description)
+    setType(article.type)
+    setTitle(article.title)
     setContent(article.body)
     setAuthor(article.author)
-    setType(article.type)
     setThumbnail(article.thumbnail)
+    setDescription(article.description)
     const newTags = article.Tags.map((tag: Tag) => tag.name)
     setTags(newTags)
   })
@@ -45,36 +55,23 @@ const EditArticlePage: NextPage = () => {
     setTags([...tags, ''])
   }
 
-  // タグを削除
   const handleRemoveTag = (index: number) => {
-    const newTags = [...tags]
-    newTags.splice(index, 1)
-    setTags(newTags)
+    // フィルタ関数を指定して、indexを除いたタグの配列を作成
+    setTags(tags.filter((_, i) => i !== index))
   }
 
-  // タグの入力値を更新
   const handleTagChange = (index: number, value: string) => {
-    const newTags = [...tags]
-    newTags[index] = value
-    setTags(newTags)
+    setTags(tags.map((tag, i) => (i === index ? value : tag)))
   }
 
   // 記事の更新処理
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-
     try {
-      const cookies = parseCookies()
-      const token = cookies.token
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/article/update/${id}`, {
-        method: 'PUT', // 更新の場合はPUTメソッド
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // headerにtokenをset
-        },
-        body: JSON.stringify({
+      const response = await fetchWithToken(
+        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${id}`,
+        'PUT',
+        {
           title: title,
           slug: slug,
           description: description,
@@ -83,22 +80,42 @@ const EditArticlePage: NextPage = () => {
           thumbnail: thumbnail,
           type: type,
           tags: tags,
-        }),
-      })
+        },
+      )
 
       if (response.ok) {
-        // 編集成功時
         console.log('記事の編集に成功しました')
         router.push('/admin/articles')
       } else {
-        // 編集失敗時
         throw new Error('記事の編集に失敗しました')
       }
     } catch (error) {
-      // error処理
       console.error(error)
     }
-    setLoading(false)
+  }
+
+  // 記事の削除処理
+  const handleDelete = async () => {
+    // 削除確認
+    const confirmDelete = window.confirm('記事を削除してもよろしいですか？')
+    if (!confirmDelete) return
+
+    try {
+      const response = await fetchWithToken(
+        `${process.env.NEXT_PUBLIC_API_URL}/article/delete/${id}`,
+        'DELETE',
+        {},
+      )
+
+      if (response.ok) {
+        console.log('記事の削除に成功しました')
+        router.push('/admin/articles')
+      } else {
+        throw new Error('記事の削除に失敗しました')
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -106,113 +123,39 @@ const EditArticlePage: NextPage = () => {
       <div className={styles['form-container']}>
         <div className='flex m-4'>
           <h1 className={styles.title}>Edit Article</h1>
-          <Button content='Go back' handleClick={() => router.back()}></Button>
+          <div className='px-4'>
+            <Button content='Go back' handleClick={() => router.back()}></Button>
+          </div>
+          <div className='px-4'>
+            <Button content='Delete' handleClick={() => handleDelete()}></Button>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles['form-group']}>
             <label htmlFor='title' className={styles.label}>
-              Title:
-            </label>
-            <input
-              type='text'
-              id='title'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className={styles.input}
-              required
-            />
-          </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='title' className={styles.label}>
               Tags:
             </label>
             {tags.map((tag, index) => (
-              <div key={index} className={'inline-block px-4'}>
+              <div key={index} className={'inline-block pr-8 pb-4'}>
                 <input
                   type='text'
                   value={tag}
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={'mr-4 rounded-xl shadow-sh1 shadow'}
                 />
-                {/* 新しい関数オブジェクト生成時はアロー関数 */}
-                <button onClick={() => handleRemoveTag(index)} className={styles.button}>
-                  remove
-                </button>
+                <Button content='-' handleClick={() => handleRemoveTag(index)} />
               </div>
             ))}
-            {/* ただし、↓をアロー関数にすると、それを属性に持つ要素が全部レンダリングされて performance↓ */}
-            {/* ちなみに handleAddTag はあくまでも関数objectの為、() => handleAddTag とすると発火されず何も起きない。 */}
-            {/* 発火したい場合は、() => ~() or onClickに関数objectを入れる */}
-            <button onClick={handleAddTag} className={styles.button}>
-              +
-            </button>
+            <Button content='+' handleClick={() => handleAddTag()} />
           </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='description' className={styles.label}>
-              Description:
-            </label>
-            <textarea
-              id='description'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className={styles.textarea}
-              required
-            />
-          </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='author' className={styles.label}>
-              Author:
-            </label>
-            <input
-              type='text'
-              id='author'
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className={styles.input}
-              required
-            />
-          </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='type' className={styles.label}>
-              Type:
-            </label>
-            <input
-              type='text'
-              id='type'
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className={styles.input}
-              required
-            />
-          </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='thumbnail' className={styles.label}>
-              Thumbnail:
-            </label>
-            <input
-              type='text'
-              id='thumbnail'
-              value={thumbnail}
-              onChange={(e) => setThumbnail(e.target.value)}
-              className={styles.input}
-            />
-          </div>
-          <div className={styles['form-group']}>
-            <label htmlFor='content' className={styles.label}>
-              Content:
-            </label>
-            <textarea
-              id='content'
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className={styles.textarea}
-              required
-            />
-          </div>
-          <button type='submit' className={styles.button}>
-            Submit
-          </button>
+
+          {/* fieldのproperty名とFormFieldのprops名が完全に一致してる */}
+          {/* → スプレッド演算子 ( {...field}ってやつ ) で展開可能 */}
+          {formFields.map((field) => (
+            <FormField key={field.id} {...field} />
+          ))}
+          <Button content='Submit' type='submit' />
         </form>
       </div>
     </>

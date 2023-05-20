@@ -5,6 +5,7 @@ type Props = {
   content: string
   state?: boolean
   handleClick?: () => void
+  type?: 'button' | 'submit' | 'reset' // 新たに追加
 }
 
 export const Button = ({
@@ -13,11 +14,13 @@ export const Button = ({
   handleClick = () => {
     return
   },
+  type = 'button', // デフォルトのtypeを指定
 }: Props) => {
   const { theme } = useTheme()
   return (
     <>
       <button
+        type={type} // type属性をpropsで受け取った値に設定
         className={
           theme === 'dark'
             ? state
