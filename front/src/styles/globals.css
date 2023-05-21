@@ -18,3 +18,8 @@ body {
 button {
   @apply bg-bg1 dark:bg-dbg1 bg-opacity-70 dark:bg-opacity-70;
 }
+
+textarea,
+input {
+  @apply bg-bg1 dark:bg-dbg1 bg-opacity-70 dark:bg-opacity-70;
+}

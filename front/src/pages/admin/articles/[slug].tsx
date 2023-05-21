@@ -142,7 +142,7 @@ const EditArticlePage: NextPage = () => {
                   type='text'
                   value={tag}
                   onChange={(e) => handleTagChange(index, e.target.value)}
-                  className={'mr-4 rounded-xl shadow-sh1 shadow'}
+                  className={styles.tags}
                 />
                 <Button content='-' handleClick={() => handleRemoveTag(index)} />
               </div>

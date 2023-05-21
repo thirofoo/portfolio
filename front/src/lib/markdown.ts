@@ -31,7 +31,7 @@ function rehypeImageSize() {
         node.properties = {
           src: getUrl(srcString),
           alt: alt,
-          style: 'display: block; margin: 0 auto; max-width: 1024px;',
+          style: 'display: block; margin: 0 auto;',
         }
       }
     })

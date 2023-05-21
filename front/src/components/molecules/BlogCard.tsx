@@ -9,8 +9,8 @@ type BlogProps = {
 
 export const BlogCard = ({ article, from }: BlogProps) => {
   return (
-    <div className={styles.card}>
-      <Link href={`/${from}/${article.slug}`}>
+    <Link href={`/${from}/${article.slug}`}>
+      <div className={styles.card}>
         <img className={styles['card-image']} src={article.thumbnail} />
         <div className={styles['card-content']}>
           <h2 className={styles['card-title']}>{article.title}</h2>
@@ -27,7 +27,7 @@ export const BlogCard = ({ article, from }: BlogProps) => {
 
           <p className={styles['card-readmore']}>Read more &rarr;</p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   )
 }
