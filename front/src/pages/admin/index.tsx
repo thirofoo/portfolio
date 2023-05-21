@@ -12,7 +12,7 @@ const AdminPage: NextPage = () => {
     <>
       <div className={styles.wrapper}>
         <Link href='admin/articles'>
-          <Button content='View Articles'></Button>
+          <Button content='View Articles' type='button'></Button>
         </Link>
       </div>
     </>

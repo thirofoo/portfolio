@@ -7,17 +7,9 @@ import { unified } from 'unified'
 import { Node } from 'unist'
 import { visit } from 'unist-util-visit'
 import { Element } from 'hast'
+import { getUrl } from '@/lib/url'
 
-const getUrl = (public_id: string): string => {
-  return (
-    'https://res.cloudinary.com/' +
-    process.env.CLOUDINARY_CLOUD_NAME +
-    '/image/upload/v1684482420/portfolio/' +
-    public_id
-  )
-}
-
-function rehypeImageSize() {
+function rehypeTransformImageUrls(slug: string) {
   return async (tree: Node, _file: unknown) => {
     visit(tree, 'element', (node: Node & Element) => {
       const { tagName, properties } = node
@@ -29,7 +21,7 @@ function rehypeImageSize() {
         const srcString = src as string
 
         node.properties = {
-          src: getUrl(srcString),
+          src: getUrl(slug + '/' + srcString),
           alt: alt,
           style: 'display: block; margin: 0 auto;',
         }
@@ -38,14 +30,13 @@ function rehypeImageSize() {
   }
 }
 
-// Markdown 形式の文字列を受け取って、HTML 形式の文字列を返す
-export async function markdownToHtml(markdown: string) {
+export async function markdownToHtml(markdown: string, slug: string) {
   const processor = unified()
     .use(remarkParse) // markdown -> mdast の変換
     .use(remarkRehype) // mdast -> hast の変換
     .use(remarkMath)
     .use(rehypeMathJaxSvg)
-    .use(rehypeImageSize) // 画像のサイズ情報を追加
+    .use(() => rehypeTransformImageUrls(slug))
     .use(rehypeStringify) // hast -> html の変換
 
   const result = await processor.process(markdown) // 実行

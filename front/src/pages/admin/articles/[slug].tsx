@@ -29,6 +29,7 @@ const EditArticlePage: NextPage = () => {
     { id: 'content', label: 'Content', value: content, onChange: setContent, textarea: true },
     { id: 'author', label: 'Author', value: author, onChange: setAuthor },
     { id: 'type', label: 'Type', value: type, onChange: setType },
+    { id: 'slug', label: 'Slug', value: slug, onChange: setSlug },
     { id: 'thumbnail', label: 'Thumbnail', value: thumbnail, onChange: setThumbnail },
   ]
 
@@ -124,10 +125,10 @@ const EditArticlePage: NextPage = () => {
         <div className='flex m-4'>
           <h1 className={styles.title}>Edit Article</h1>
           <div className='px-4'>
-            <Button content='Go back' handleClick={() => router.back()}></Button>
+            <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
           </div>
           <div className='px-4'>
-            <Button content='Delete' handleClick={() => handleDelete()}></Button>
+            <Button content='Delete' handleClick={() => handleDelete()} type='button'></Button>
           </div>
         </div>
 
@@ -144,10 +145,10 @@ const EditArticlePage: NextPage = () => {
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={styles.tags}
                 />
-                <Button content='-' handleClick={() => handleRemoveTag(index)} />
+                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button' />
               </div>
             ))}
-            <Button content='+' handleClick={() => handleAddTag()} />
+            <Button content='+' handleClick={() => handleAddTag()} type='button' />
           </div>
 
           {/* fieldのproperty名とFormFieldのprops名が完全に一致してる */}

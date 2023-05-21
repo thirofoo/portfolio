@@ -14,13 +14,13 @@ export const Button = ({
   handleClick = () => {
     return
   },
-  type = 'button', // デフォルトのtypeを指定
+  type = undefined,
 }: Props) => {
   const { theme } = useTheme()
   return (
     <>
       <button
-        type={type} // type属性をpropsで受け取った値に設定
+        type={type}
         className={
           theme === 'dark'
             ? state

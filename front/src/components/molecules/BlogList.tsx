@@ -11,15 +11,12 @@ type BlogListProps = {
 export const BlogList = ({ articles, from }: BlogListProps) => {
   return (
     <>
-      <div className={'m-auto'}>
-        {/* articlesがnullの時の処理も含める */}
-        {articles &&
-          articles.map((article) => (
-            <div key={article.ID} className={styles.card}>
-              <BlogCard article={article} from={from} />
-            </div>
-          ))}
-      </div>
+      {articles &&
+        articles.map((article) => (
+          <div key={article.ID} className={styles.card}>
+            <BlogCard article={article} from={from} />
+          </div>
+        ))}
     </>
   )
 }

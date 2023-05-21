@@ -78,7 +78,7 @@ const EditArticlePage: NextPage<void> = () => {
         <div className='flex m-4'>
           <h1 className={styles.title}>Edit Article</h1>
           <div className='px-4'>
-            <Button content='Go back' handleClick={() => router.back()}></Button>
+            <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
           </div>
         </div>
 
@@ -95,10 +95,10 @@ const EditArticlePage: NextPage<void> = () => {
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={'mr-4 rounded-xl shadow-sh1 shadow'}
                 />
-                <Button content='-' handleClick={() => handleRemoveTag(index)} />
+                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button'/>
               </div>
             ))}
-            <Button content='+' handleClick={() => handleAddTag()} />
+            <Button content='+' handleClick={() => handleAddTag()} type='button'/>
           </div>
 
           {formFields.map((field) => (

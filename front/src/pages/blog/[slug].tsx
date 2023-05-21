@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
     }
   }
 
-  const body = await markdownToHtml(article.body)
+  const body = await markdownToHtml(article.body, article.slug)
   article.body = body
 
   return {
