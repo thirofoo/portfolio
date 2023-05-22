@@ -1,38 +1,59 @@
 package Controller
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
-	"github.com/thirofoo/portfolio/Models"
-
 	"github.com/gin-gonic/gin"
+	"github.com/thirofoo/portfolio/Models"
 )
 
 
-func ShowAllBlog(c *gin.Context) {
-	datas := Models.GetAll()
+func ShowAllArticles(c *gin.Context) {
+	datas := Models.GetAllArticles()
 	c.JSON(http.StatusOK, datas)
 }
 
 
-func ShowOneBlog(c *gin.Context) {
+func ShowOneArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	data := Models.GetOne(id)
-	fmt.Println(data)
+	data := Models.GetOneArticle(id)
 	c.JSON(http.StatusOK, data)
 }
 
 
-func ShowOneBlogBySlug(c *gin.Context) {
+func ShowOneArticleBySlug(c *gin.Context) {
 	slug := c.Param("slug")
-	data := Models.GetOneBySlug(slug)
-	fmt.Println(data)
+	data := Models.GetOneArticleBySlug(slug)
 	c.JSON(http.StatusOK, data)
 }
 
-func CreateBlog(c *gin.Context) {
+func ShowArticlesByTags(c *gin.Context) {
+	tagIDs := c.QueryArray("tagID")
+
+	// タグIDが指定されていない場合はエラーを返す
+	if len(tagIDs) == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "No tagID provided"})
+		return
+	}
+
+	// タグIDに対応するタグを取得
+	tags := Models.GetTagsByID(tagIDs)
+	
+	// タグが見つからない場合はエラーを返す
+	if len(tags) != len(tagIDs) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Tag(s) not found"})
+		return
+	}
+
+	// タグに関連する記事を取得
+	articles := Models.GetArticlesByTags(tags)
+
+	c.JSON(http.StatusOK, articles)
+}
+
+
+func CreateArticle(c *gin.Context) {
 	// 入力バリデーションに必要項目だけを指定する為の構造体
 	var input Models.UpdateArticleInput
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -72,7 +93,7 @@ func CreateBlog(c *gin.Context) {
 }
 
 
-func EditBlog(c *gin.Context) {
+func EditArticle(c *gin.Context) {
 	// query parameterからidを取得 ( 危険なので後で修正 )func UpdateArticle(c *gin.Context) {
 	id := c.Param("id")
 
@@ -150,16 +171,16 @@ func contains(arr []string, str string) bool {
 	return false
 }
 
-func DeleteBlog(c *gin.Context) {
+func DeleteArticle(c *gin.Context) {
 	// query parameterからidを取得 ( 危険なので後で修正 )
 	id, _ := strconv.Atoi(c.Param("id"))
 
-	data := Models.GetOne(id)
-	data.Delete()
+	data := Models.GetOneArticle(id)
+	data.DeleteArticle()
 
 	// 中間テーブルのデータを取得 (tag_id が 中間テーブルにしかない為分かる)
 	var Tags []Models.Tag
-	Models.Db.Where("blog_id = ?", id).Find(&Tags)
+	Models.Db.Where("Article_id = ?", id).Find(&Tags)
 	
 	// 取得した中間テーブルのデータを削除
 	for _, Tag := range Tags {

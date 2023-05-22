@@ -77,7 +77,7 @@ func main() {
 	article.Body = html.EscapeString(bodyStr)
 
 	// DBに記事を挿入
-	article.Create()
+	article.CreateArticle()
 
 	// 記事に紐付くタグを挿入
 	for _, tagName := range tags {

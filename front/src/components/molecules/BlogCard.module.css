@@ -1,5 +1,5 @@
 .card {
-  @apply shadow-sh1 w-[calc(min(450px,40vw))] min-h-[calc(min(200px,80vw))] shadow-sm duration-200 rounded-xl dark:bg-dbg3 text-left;
+  @apply shadow-sh1 w-[calc(min(450px,42vw))] min-h-[calc(min(200px,80vw))] shadow-sm duration-200 rounded-xl dark:bg-dbg3 text-left;
   box-shadow: 0px 0px 4px 1px theme(colors.sh1);
   animation: shadow-animation 1s 1;
 }
@@ -27,7 +27,7 @@
   @apply font-bold text-2xl mb-2;
 }
 
-.card-create {
+.card-at {
   @apply mb-2;
 }
 

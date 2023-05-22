@@ -41,18 +41,19 @@ func main() {
     config.AllowCredentials = true
     router.Use(cors.New(config))
 
-    r_blog := router.Group("/article")
+    r_article := router.Group("/article")
     r_admin := router.Group("/admin")
     
     // public系API
     router.POST("/login", Controller.Login)
-    r_blog.GET("/get", Controller.ShowAllBlog)
-    r_blog.GET("/get/:slug", Controller.ShowOneBlogBySlug)
+    r_article.GET("/get", Controller.ShowAllArticles)
+    r_article.GET("/get/:slug", Controller.ShowOneArticleBySlug)
+    r_article.GET("/get-by-tags", Controller.ShowArticlesByTags)
     
     // secret系API
-    r_blog.POST("/create", Controller.AuthMiddleware(), Controller.CreateBlog)
-    r_blog.PUT("/update/:id", Controller.AuthMiddleware(), Controller.EditBlog)
-    r_blog.DELETE("/delete/:id", Controller.AuthMiddleware(), Controller.DeleteBlog)
+    r_article.POST("/create", Controller.AuthMiddleware(), Controller.CreateArticle)
+    r_article.PUT("/update/:id", Controller.AuthMiddleware(), Controller.EditArticle)
+    r_article.DELETE("/delete/:id", Controller.AuthMiddleware(), Controller.DeleteArticle)
     
     r_admin.Use(Controller.AuthMiddleware())
     r_admin.POST("/create", Controller.CreateAdmin)

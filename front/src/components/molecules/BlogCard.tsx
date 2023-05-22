@@ -28,8 +28,9 @@ export const BlogCard = ({ article, from }: BlogProps) => {
 
             <div className={'flex justify-between'}>
               <p className={styles['card-readmore']}>Read more &rarr;</p>
-              <div className={styles['card-create']}>
-                Created : {article.CreatedAt.substring(0, 10)}
+              <div className={styles['card-at']}>
+                Created : {article.CreatedAt.substring(0, 10)} <br />
+                Updated : {article.UpdatedAt.substring(0, 10)}
               </div>
             </div>
           </div>

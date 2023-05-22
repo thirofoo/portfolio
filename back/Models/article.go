@@ -33,18 +33,7 @@ type UpdateArticleInput struct {
 	Tags        []string `json:"tags" gorm:"column:tags"`
 }
 
-type ArticleWithTag struct {
-    Title       string `json:"title" binding:"required"`
-    Slug        string `json:"slug" binding:"required"`
-    Description string `json:"description" binding:"required"`
-    Author      string `json:"author" binding:"required"`
-    Thumbnail   string `json:"thumbnail" binding:"required"`
-    Type        string `json:"type" binding:"required"`
-    Body        string `json:"body" binding:"required"`
-    TagNames    []string `json:"tag_names"`
-}
-
-func GetAll() (datas []Article) {
+func GetAllArticles() (datas []Article) {
 	// Article型のデータ全取得 ( JOIN句でTagsも引っ張っている感じ )
 	result := Db.Preload("Tags").Find(&datas)
 	if result.Error != nil {
@@ -53,7 +42,7 @@ func GetAll() (datas []Article) {
 	return
 }
 
-func GetOne(id int) (data Article) {
+func GetOneArticle(id int) (data Article) {
 	result := Db.Preload("Tags").First(&data, id)
 	if result.Error != nil {
 		panic(result.Error)
@@ -61,7 +50,7 @@ func GetOne(id int) (data Article) {
 	return
 }
 
-func GetOneBySlug(slug string) (data Article) {
+func GetOneArticleBySlug(slug string) (data Article) {
 	result := Db.Preload("Tags").Where("slug = ?", slug).First(&data)
 	if result.Error != nil {
 		panic(result.Error)
@@ -69,23 +58,54 @@ func GetOneBySlug(slug string) (data Article) {
 	return
 }
 
-func (b *Article) Create() {
+func (b *Article) CreateArticle() {
 	result := Db.Create(b)
 	if result.Error != nil {
 		panic(result.Error)
 	}
 }
 
-func (b *Article) Update() {
+func (b *Article) UpdateArticle() {
 	result := Db.Save(b)
 	if result.Error != nil {
 		panic(result.Error)
 	}
 }
 
-func (b *Article) Delete() {
+func (b *Article) DeleteArticle() {
 	result := Db.Delete(b)
 	if result.Error != nil {
 		panic(result.Error)
 	}
+}
+
+// タグIDからタグを取得する関数
+func GetTagsByID(tagIDs []string) []*Tag {
+	var tags []*Tag
+	// タグIDが一致するタグをデータベースから取得
+	Db.Find(&tags, "id IN ?", tagIDs)
+	return tags
+}
+
+// タグに関連する記事を取得する関数
+func GetArticlesByTags(tags []*Tag) []*Article {
+	var articles []*Article
+
+	// 中間テーブルのエイリアスを作成
+	articleTag := Db.Table("article_tags")
+
+	// タグに関連する記事をデータベースから取得 ( 複雑の為後々調べる )
+	Db.Preload("Tags").Joins("JOIN (?) AS article_tags ON article_tags.article_id = articles.id", articleTag.Select("article_tags.article_id").Where("article_tags.tag_id IN ?", GetTagIDs(tags))).Find(&articles)
+
+	return articles
+}
+
+
+// タグのIDを取得する関数
+func GetTagIDs(tags []*Tag) []uint {
+	var tagIDs []uint
+	for _, tag := range tags {
+		tagIDs = append(tagIDs, tag.ID)
+	}
+	return tagIDs
 }
