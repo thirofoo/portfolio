@@ -1,0 +1,7 @@
+.form {
+  @apply inline-flex flex-col m-2;
+}
+
+.input {
+  @apply rounded-md mt-1;
+}

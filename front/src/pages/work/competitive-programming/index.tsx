@@ -29,16 +29,14 @@ const Blog = ({ articles }: BlogProps) => {
   return (
     <>
       <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
-      <div className={styles.list_wrapper}>
-        <BlogList articles={filteredArticles} from='blog' />
-      </div>
-      {filteredArticles.length === 0 ? (
+      <div className={styles.list_wrapper}>Comming Soon ...</div>
+      {/* {filteredArticles.length === 0 ? (
         <div className={styles.nothing}>No such blog exists.</div>
       ) : filteredArticles.length < 4 ? (
         <div className={styles.button_wrapper}>
           <Button content='More' type='button'></Button>
         </div>
-      ) : null}
+      ) : null} */}
     </>
   )
 }

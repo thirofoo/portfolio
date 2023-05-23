@@ -11,7 +11,7 @@ export const BlogCard = ({ article, from }: BlogProps) => {
   return (
     <>
       <div className={styles.card}>
-        <Link href={`/${from}/${article.slug}`}>
+        <Link href={`/${from}/${article.slug}`} className='rounded-xl'>
           <img className={styles['card-image']} src={article.thumbnail} />
           <div className={styles['card-content']}>
             <h2 className={styles['card-title']}>{article.title}</h2>

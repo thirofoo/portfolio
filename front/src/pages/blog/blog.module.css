@@ -3,5 +3,9 @@
 }
 
 .button_wrapper {
-  @apply flex justify-center;
+  @apply flex justify-center my-4;
+}
+
+.nothing {
+  @apply text-center text-2xl mt-4;
 }
