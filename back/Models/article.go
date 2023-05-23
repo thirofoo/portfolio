@@ -42,6 +42,16 @@ func GetAllArticles() (datas []Article) {
 	return
 }
 
+
+func GetArticlesByType(articleType string) (datas []Article) {
+	result := Db.Preload("Tags").Where("type = ?", articleType).Find(&datas)
+	if result.Error != nil {
+		panic(result.Error)
+	}
+	return
+}
+
+
 func GetOneArticle(id int) (data Article) {
 	result := Db.Preload("Tags").First(&data, id)
 	if result.Error != nil {

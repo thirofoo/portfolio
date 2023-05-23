@@ -45,6 +45,16 @@ const EditArticlePage: NextPage<void> = () => {
   // 記事の作成処理
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (type !== 'blog' && type !== 'library') {
+      alert('Typeはblogかlibraryを指定してください')
+      return
+    }
+    if (slug === 'blog' || slug === 'library') {
+      alert('Slugはblogとlibraryは指定できません')
+      return
+    }
+
     try {
       const response = await fetchWithToken(
         `${process.env.NEXT_PUBLIC_API_URL}/article/create`,
@@ -95,10 +105,10 @@ const EditArticlePage: NextPage<void> = () => {
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={'mr-4 rounded-xl shadow-sh1 shadow'}
                 />
-                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button'/>
+                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button' />
               </div>
             ))}
-            <Button content='+' handleClick={() => handleAddTag()} type='button'/>
+            <Button content='+' handleClick={() => handleAddTag()} type='button' />
           </div>
 
           {formFields.map((field) => (

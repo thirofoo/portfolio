@@ -2,7 +2,7 @@ import { getUrl } from '@/lib/url'
 
 export const getAllArticles = async (url: string) => {
   try {
-    const response = await fetch(url + `/article/get`)
+    const response = await fetch(url + `/article/get/blog`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }

@@ -46,7 +46,8 @@ func main() {
     
     // public系API
     router.POST("/login", Controller.Login)
-    r_article.GET("/get", Controller.ShowAllArticles)
+    r_article.GET("/get/blog", Controller.ShowAllArticles)
+    r_article.GET("/get/library", Controller.ShowAllLibraries)
     r_article.GET("/get/:slug", Controller.ShowOneArticleBySlug)
     r_article.GET("/get-by-tags", Controller.ShowArticlesByTags)
     

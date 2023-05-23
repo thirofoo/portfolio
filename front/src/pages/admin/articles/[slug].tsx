@@ -37,6 +37,7 @@ const EditArticlePage: NextPage = () => {
     const pathname = window.location.pathname
     const slug = pathname.split('/').pop()
     const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
+    console.log(article)
     if (!article) {
       router.push('/admin/articles')
     }

@@ -10,7 +10,12 @@ import (
 
 
 func ShowAllArticles(c *gin.Context) {
-	datas := Models.GetAllArticles()
+	datas := Models.GetArticlesByType("blog")
+	c.JSON(http.StatusOK, datas)
+}
+
+func ShowAllLibraries(c *gin.Context) {
+	datas := Models.GetArticlesByType("library")
 	c.JSON(http.StatusOK, datas)
 }
 

@@ -12,6 +12,7 @@ type BlogProps = {
 
 const Blog = ({ articles }: BlogProps) => {
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
+  const [displayNum, setDisplayNum] = useState<number>(1)
 
   const handleSearch = (title: string, tag: string) => {
     let fil: Article[] = articles
@@ -30,13 +31,22 @@ const Blog = ({ articles }: BlogProps) => {
     <>
       <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
       <div className={styles.list_wrapper}>
-        <BlogList articles={filteredArticles} from='blog' />
+        <BlogList
+          articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
+          from='blog'
+        />
       </div>
       {filteredArticles.length === 0 ? (
         <div className={styles.nothing}>No such blog exists.</div>
-      ) : filteredArticles.length < 4 ? (
+      ) : filteredArticles.length > 4 * displayNum ? (
         <div className={styles.button_wrapper}>
-          <Button content='More' type='button'></Button>
+          <Button
+            content='More'
+            type='button'
+            handleClick={() => {
+              setDisplayNum(displayNum + 1)
+            }}
+          ></Button>
         </div>
       ) : null}
     </>
@@ -45,6 +55,11 @@ const Blog = ({ articles }: BlogProps) => {
 
 export async function getStaticProps() {
   const articles = await getAllArticles(process.env.API_URL as string)
+  articles.sort((a: Article, b: Article) => {
+    if (a.CreatedAt > b.CreatedAt) return -1
+    if (a.CreatedAt < b.CreatedAt) return 1
+    return 0
+  })
   return {
     props: {
       articles,

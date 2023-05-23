@@ -15,6 +15,11 @@ const AdminPage: NextPage = () => {
           <Button content='View Articles' type='button'></Button>
         </Link>
       </div>
+      <div className={styles.wrapper}>
+        <Link href='admin/libraries'>
+          <Button content='View Libraries' type='button'></Button>
+        </Link>
+      </div>
     </>
   )
 }
