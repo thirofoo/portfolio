@@ -20,16 +20,15 @@ const AdminArticlesPage = () => {
     <>
       <div className={'flex text-2xl justify-center'}>
         <div className={'p-4'}>
-          <Link href={'/admin/articles/create'}>
-            <Button content='Create an library' type='button'></Button>
-          </Link>
-        </div>
-        <div className={'p-4'}>
-          <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
+          <Button
+            content='Go back'
+            handleClick={() => router.push('/admin')}
+            type='button'
+          ></Button>
         </div>
       </div>
       <div className={'text-center'}>
-        <LibraryList articles={articles} from={'admin/articles'} />
+        <LibraryList articles={articles} from={'admin/libraries'} />
       </div>
     </>
   )

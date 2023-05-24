@@ -1,14 +1,21 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { NextPage } from 'next'
-import styles from '@/pages/admin/articles/[slug].module.css'
+import { Tag } from '@/Interfaces/Tag'
+import styles from '@/components/organisms/AdminEdit.module.css'
 import { Button } from '@/components/atoms/Button'
+import { getOneArticle } from '@/lib/api/article'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
 import { fetchWithToken } from '@/lib/api/request'
 import { FormField } from '@/components/molecules/FormField'
 import { FieldInfo } from '@/Interfaces/FieldInfo'
 
-const EditArticlePage: NextPage<void> = () => {
+type Props = {
+  genre: string
+}
+
+export const AdminEdit = ({ genre }: Props) => {
   const router = useRouter()
+  const [id, setId] = useState<string>('')
   const [slug, setSlug] = useState<string>('')
   const [type, setType] = useState<string>('')
   const [tags, setTags] = useState<string[]>([])
@@ -29,6 +36,25 @@ const EditArticlePage: NextPage<void> = () => {
     { id: 'thumbnail', label: 'Thumbnail', value: thumbnail, onChange: setThumbnail },
   ]
 
+  useCheckAuth(async () => {
+    const pathname = window.location.pathname
+    const slug = pathname.split('/').pop()
+    const article = await getOneArticle(slug || '', process.env.NEXT_PUBLIC_API_URL || '')
+    if (!article) {
+      router.push(`/admin/${genre}`)
+    }
+    setId(article.ID)
+    setSlug(article.slug)
+    setType(article.type)
+    setTitle(article.title)
+    setContent(article.body)
+    setAuthor(article.author)
+    setThumbnail(article.thumbnail)
+    setDescription(article.description)
+    const newTags = article.Tags.map((tag: Tag) => tag.name)
+    setTags(newTags)
+  })
+
   const handleAddTag = () => {
     setTags([...tags, ''])
   }
@@ -42,23 +68,13 @@ const EditArticlePage: NextPage<void> = () => {
     setTags(tags.map((tag, i) => (i === index ? value : tag)))
   }
 
-  // 記事の作成処理
+  // 記事の更新処理
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    if (type !== 'blog' && type !== 'library') {
-      alert('Typeはblogかlibraryを指定してください')
-      return
-    }
-    if (slug === 'blog' || slug === 'library') {
-      alert('Slugはblogとlibraryは指定できません')
-      return
-    }
-
     try {
       const response = await fetchWithToken(
-        `${process.env.NEXT_PUBLIC_API_URL}/article/create`,
-        'POST',
+        `${process.env.NEXT_PUBLIC_API_URL}/article/update/${id}`,
+        'PUT',
         {
           title: title,
           slug: slug,
@@ -72,10 +88,34 @@ const EditArticlePage: NextPage<void> = () => {
       )
 
       if (response.ok) {
-        console.log('記事の作成に成功しました')
-        router.push('/admin/articles')
+        console.log('編集に成功しました')
+        router.push(`/admin/${genre}`)
       } else {
-        throw new Error('記事の作成に失敗しました')
+        throw new Error('編集に失敗しました')
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // 記事の削除処理
+  const handleDelete = async () => {
+    // 削除確認
+    const confirmDelete = window.confirm('削除してもよろしいですか？')
+    if (!confirmDelete) return
+
+    try {
+      const response = await fetchWithToken(
+        `${process.env.NEXT_PUBLIC_API_URL}/article/delete/${id}`,
+        'DELETE',
+        {},
+      )
+
+      if (response.ok) {
+        console.log('削除に成功しました')
+        router.push(`/admin/${genre}`)
+      } else {
+        throw new Error('削除に失敗しました')
       }
     } catch (error) {
       console.error(error)
@@ -86,9 +126,12 @@ const EditArticlePage: NextPage<void> = () => {
     <>
       <div className={styles['form-container']}>
         <div className='flex m-4'>
-          <h1 className={styles.title}>Edit Article</h1>
+          <h1 className={styles.title}>Edit {genre}</h1>
           <div className='px-4'>
             <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
+          </div>
+          <div className='px-4'>
+            <Button content='Delete' handleClick={() => handleDelete()} type='button'></Button>
           </div>
         </div>
 
@@ -98,12 +141,12 @@ const EditArticlePage: NextPage<void> = () => {
               Tags:
             </label>
             {tags.map((tag, index) => (
-              <div key={index} className={'inline-block px-4'}>
+              <div key={index} className={'inline-block pr-8 pb-4'}>
                 <input
                   type='text'
                   value={tag}
                   onChange={(e) => handleTagChange(index, e.target.value)}
-                  className={'mr-4 rounded-xl shadow-sh1 shadow'}
+                  className={styles.tags}
                 />
                 <Button content='-' handleClick={() => handleRemoveTag(index)} type='button' />
               </div>
@@ -111,6 +154,8 @@ const EditArticlePage: NextPage<void> = () => {
             <Button content='+' handleClick={() => handleAddTag()} type='button' />
           </div>
 
+          {/* fieldのproperty名とFormFieldのprops名が完全に一致してる */}
+          {/* → スプレッド演算子 ( {...field}ってやつ ) で展開可能 */}
           {formFields.map((field) => (
             <FormField key={field.id} {...field} />
           ))}
@@ -120,5 +165,3 @@ const EditArticlePage: NextPage<void> = () => {
     </>
   )
 }
-
-export default EditArticlePage

@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
 import { AdminEdit } from '@/components/organisms/AdminEdit'
 
-const EditArticlePage: NextPage = () => {
+const EditLibraryPage: NextPage = () => {
   return (
     <>
-      <AdminEdit genre='articles'></AdminEdit>
+      <AdminEdit genre='libraries'></AdminEdit>
     </>
   )
 }
 
-export default EditArticlePage
+export default EditLibraryPage
