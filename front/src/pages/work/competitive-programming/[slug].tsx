@@ -4,7 +4,7 @@ import { Article } from '@/Interfaces/Article'
 import { getOneArticle } from '@/lib/api/article'
 import { getAllLibraries } from '@/lib/api/library'
 import { markdownToHtml } from '@/lib/markdown'
-import styles from '@/pages/blog/[slug].module.css'
+import styles from '@/pages/work/competitive-programming/[slug].module.css'
 
 type BlogProps = {
   article: Article

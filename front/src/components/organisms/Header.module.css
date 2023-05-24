@@ -1,5 +1,5 @@
 .header {
-  @apply fixed text-xl shadow-sh1 shadow-sm w-full z-20 backdrop-blur-sm;
+  @apply fixed text-xl shadow-sh1 shadow-sm w-full z-20 backdrop-blur-[3px] bg-opacity-20;
 }
 
 .wrapper {
@@ -7,7 +7,7 @@
 }
 
 .head_name {
-  @apply text-2xl font-bold;
+  @apply text-2xl font-bold rounded-lg;
 }
 
 .header_content {

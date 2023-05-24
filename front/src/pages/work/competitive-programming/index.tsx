@@ -38,7 +38,7 @@ const Blog = ({ articles }: BlogProps) => {
       </div>
       {filteredArticles.length === 0 ? (
         <div className={styles.nothing}>No such blog exists.</div>
-      ) : filteredArticles.length > 4 ? (
+      ) : filteredArticles.length > 4 * displayNum ? (
         <div className={styles.button_wrapper}>
           <Button
             content='More'

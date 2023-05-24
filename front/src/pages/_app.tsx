@@ -7,6 +7,10 @@ import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
 import { useEffect } from 'react'
 
+// import 'highlight.js/styles/rainbow.css'
+// import 'highlight.js/styles/panda-syntax-light.css'
+import 'highlight.js/styles/xcode.css'
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {

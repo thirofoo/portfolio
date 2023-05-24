@@ -3,6 +3,7 @@ import rehypeStringify from 'rehype-stringify'
 import remarkMath from 'remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
+import rehypeHighlight from 'rehype-highlight'
 import { unified } from 'unified'
 import { Node } from 'unist'
 import { visit } from 'unist-util-visit'
@@ -23,7 +24,6 @@ function rehypeTransformImageUrls(slug: string) {
         node.properties = {
           src: getUrl(slug + '/' + srcString),
           alt: alt,
-          style: 'display: block; margin: 0 auto;',
         }
       }
     })
@@ -37,6 +37,7 @@ export async function markdownToHtml(markdown: string, slug: string) {
     .use(remarkMath)
     .use(rehypeMathJaxSvg)
     .use(() => rehypeTransformImageUrls(slug))
+    .use(rehypeHighlight) // syntax highlight 追加
     .use(rehypeStringify) // hast -> html の変換
 
   const result = await processor.process(markdown) // 実行

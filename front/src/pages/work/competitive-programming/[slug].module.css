@@ -7,11 +7,11 @@
 }
 
 .title {
-  @apply text-4xl font-bold mb-2;
+  @apply text-4xl font-bold mb-12;
 }
 
 .date {
-  @apply text-txt1 text-sm mb-4;
+  @apply text-sm mb-4;
 }
 
 .content {
@@ -28,7 +28,7 @@
 }
 
 .content h1 {
-  @apply text-3xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 m-2 mt-12 mb-6;
+  @apply text-3xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 m-2 mt-12 mb-12;
 }
 
 .content h2 {
@@ -56,19 +56,16 @@
 }
 
 .content a {
-  @apply text-txt2 underline;
-}
-
-.content code {
-  @apply px-1 rounded;
+  @apply underline;
 }
 
 .content pre {
-  @apply my-4 overflow-x-auto;
+  @apply m-4 rounded-xl;
+  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
-.content pre code {
-  @apply block p-4 bg-bg2 rounded;
+.content code {
+  @apply rounded-xl;
 }
 
 .content ul {
@@ -85,4 +82,12 @@
 
 .content blockquote {
   @apply border-l-4 border-sh1 pl-4 italic my-4;
+}
+
+.content img {
+  @apply rounded-xl m-auto my-4;
+}
+
+.content em {
+  @apply flex justify-center my-2;
 }

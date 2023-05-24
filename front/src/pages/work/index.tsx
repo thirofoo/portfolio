@@ -7,14 +7,14 @@ const Home: NextPage = () => {
     <>
       <Link href='/work/competitive-programming'>
         <div className={styles.wrapper}>
-          <div>
+          <div className='p-4'>
             <h2>My Competitive Programming Library</h2>
             <p>自分の競技プログラミングで使用するライブラリをまとめています。</p>
             <p className={styles.readmore}>Read more &rarr;</p>
           </div>
           <img
             className={styles.image}
-            src='https://res.cloudinary.com/dq8pi3jes/image/upload/v1684482420/portfolio/AtCoder_ll26rt'
+            src='https://res.cloudinary.com/dq8pi3jes/image/upload/v1684482420/portfolio/AtCoder_pyl1be'
           />
         </div>
       </Link>

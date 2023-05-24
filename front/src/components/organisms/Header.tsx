@@ -55,7 +55,7 @@ export const Header = () => {
           <ChangeThemeToggle></ChangeThemeToggle>
         </div>
 
-        <div className={`${styles.ham_menu}`} onClick={toggleMenu}>
+        <div className={styles.ham_menu} onClick={toggleMenu}>
           <span className={isMenuOpen ? styles.open : ''}></span>
           <span className={isMenuOpen ? styles.open : ''}></span>
           <span className={isMenuOpen ? styles.open : ''}></span>
