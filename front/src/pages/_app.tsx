@@ -9,7 +9,9 @@ import { useEffect } from 'react'
 
 // import 'highlight.js/styles/rainbow.css'
 // import 'highlight.js/styles/panda-syntax-light.css'
-import 'highlight.js/styles/xcode.css'
+import 'highlight.js/styles/base16/green-screen.css'
+import 'highlight.js/styles/base16/materia.css'
+// import 'highlight.js/styles/xcode.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

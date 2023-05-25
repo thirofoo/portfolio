@@ -18,7 +18,14 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
   return (
     <>
-      <h1 className={styles.title}>{article.title}</h1>
+      <div className='flex justify-between'>
+        <h1 className={styles.title}>{article.title}</h1>
+        <div>
+          Created At : {article.CreatedAt.substring(0, 10)} <br />
+          Updated At : {article.UpdatedAt.substring(0, 10)}
+        </div>
+      </div>
+
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
     </>
   )

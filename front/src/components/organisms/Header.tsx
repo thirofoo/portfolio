@@ -56,9 +56,9 @@ export const Header = () => {
         </div>
 
         <div className={styles.ham_menu} onClick={toggleMenu}>
-          <span className={isMenuOpen ? styles.open : ''}></span>
-          <span className={isMenuOpen ? styles.open : ''}></span>
-          <span className={isMenuOpen ? styles.open : ''}></span>
+          <i className={isMenuOpen ? styles.open : ''}></i>
+          <i className={isMenuOpen ? styles.open : ''}></i>
+          <i className={isMenuOpen ? styles.open : ''}></i>
         </div>
 
         <div className={`${styles.header_content} ${isMenuOpen ? styles.head_open : ''}`}>

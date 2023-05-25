@@ -24,10 +24,8 @@ export const LibraryCard = ({ article, from }: LibraryProps) => {
                 ))}
               </div>
             </div>
-            <p className={styles['card-description']}>{article.description}</p>
 
-            <div className={'flex justify-between'}>
-              <p className={styles['card-readmore']}>Read more &rarr;</p>
+            <div className={'flex justify-end'}>
               <div className={styles['card-at']}>
                 Created : {article.CreatedAt.substring(0, 10)} <br />
                 Updated : {article.UpdatedAt.substring(0, 10)}

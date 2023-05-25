@@ -3,7 +3,7 @@
 }
 
 .child {
-  @apply pt-[120px] pb-[64px] px-4;
+  @apply pt-[90px] pb-[64px] px-4;
 }
 
 @media (max-width: 768px) {

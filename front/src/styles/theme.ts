@@ -6,9 +6,9 @@ module.exports = {
   bg4: 'black',
 
   // bg-color (dark)
-  dbg1: '#434242',
-  dbg2: '#F3EFE0',
-  dbg3: '#222222',
+  dbg1: '#182436',
+  dbg2: '#283446',
+  dbg3: '#081426',
   dbg4: '#22A39F',
 
   // text-color
@@ -21,7 +21,8 @@ module.exports = {
   sh2: 'black', // 濃
   sh3: '#859fa2', // 青目
 
-  accent: '#627fa8',
+  sun: '#FFD700',
+  moon: '#696969',
 
   social: {
     twitter: '#1da1f2',

@@ -21,15 +21,7 @@ export const Button = ({
     <>
       <button
         type={type}
-        className={
-          theme === 'dark'
-            ? state
-              ? styles.button + ' scale-90'
-              : styles.activeButton + ' active:scale-90'
-            : state
-            ? styles.activeButton + ' scale-95'
-            : styles.button + ' active:scale-95'
-        }
+        className={state ? styles.activeButton : styles.button}
         onClick={handleClick}
       >
         {content}

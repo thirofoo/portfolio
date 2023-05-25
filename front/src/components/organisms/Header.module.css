@@ -3,7 +3,7 @@
 }
 
 .wrapper {
-  @apply px-4 flex max-w-[1024px] m-auto justify-between mt-[30px];
+  @apply px-4 flex max-w-[1024px] m-auto justify-between mt-[20px];
 }
 
 .head_name {
@@ -11,11 +11,11 @@
 }
 
 .header_content {
-  @apply flex justify-center mt-[-60px];
+  @apply flex justify-center mt-[-50px];
 }
 
 .button_wrapper {
-  @apply m-4;
+  @apply m-2;
 }
 
 /* Hamburger Menu */
@@ -36,32 +36,32 @@
     @apply flex relative w-[25px] top-[-35px] justify-center cursor-pointer z-10 m-auto;
   }
 
-  .ham_menu span {
-    @apply block absolute h-[3px] w-full bg-bg4 rounded-full opacity-100 left-0 rotate-0 transition duration-300 ease-in-out;
+  .ham_menu i {
+    @apply block absolute h-[3px] w-full rounded-full opacity-100 left-0 rotate-0 transition duration-300 ease-in-out;
   }
 
-  .ham_menu span:nth-child(1) {
+  .ham_menu i:nth-child(1) {
     @apply top-0;
   }
 
-  .ham_menu span:nth-child(2) {
+  .ham_menu i:nth-child(2) {
     @apply top-[8px];
   }
 
-  .ham_menu span:nth-child(3) {
+  .ham_menu i:nth-child(3) {
     @apply top-[16px];
   }
 
-  .ham_menu span.open:nth-child(1) {
+  .ham_menu i.open:nth-child(1) {
     @apply top-[8px];
     transform: rotate(45deg);
   }
 
-  .ham_menu span.open:nth-child(2) {
+  .ham_menu i.open:nth-child(2) {
     @apply opacity-0;
   }
 
-  .ham_menu span.open:nth-child(3) {
+  .ham_menu i.open:nth-child(3) {
     @apply top-[8px];
     transform: rotate(-45deg);
   }

@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import styles from '@/pages/about.module.css'
 import { Twitter, GitHub } from 'iconoir-react'
-import { CldImage } from 'next-cloudinary'
 
 const Home: NextPage = () => {
   return (
@@ -50,12 +49,11 @@ const Home: NextPage = () => {
             <div className={styles.profile}>
               <h3>About Me</h3>
               <div>
-                栃木出身・埼玉大学情報工学科3年。<br></br>
+                栃木出身 埼玉大学情報工学科3年<br></br>
+                大学入学後に tetris を作成したのがプログラミングの始まり
                 <br></br>
-                大学に入り初めてプログラミングを触り、Youtube の動画を参考にしながら tetris
-                を作成したのが始まり。<br></br>
                 <br></br>
-                thirofoo や through という名前で活動していて、今現在は競プロやweb等にハマり中。
+                thirofoo や through という名前で活動していて、現在は競プロやweb等にハマり中。
               </div>
             </div>
           </div>
@@ -66,10 +64,10 @@ const Home: NextPage = () => {
             <div className={styles.profile}>
               <h3>Competitive Programming</h3>
               <div>
-                2021年12月~競技プログラミングを始める。<br></br>
+                2021/12 ~ 競技プログラミング開始<br></br>
                 現在(2023/05/13) AtCoder では<br></br>
-                algorithm分野が水色(上位5.7%)、<br></br>
-                heuristic分野は青色(上位5.1%)。<br></br>
+                algorithm分野が水色(上位5.7%)<br></br>
+                heuristic分野は青色(上位5.1%)<br></br>
                 <br></br>
                 <a href='https://atcoder.jp/users/through'>AtCoder: through</a> <br></br>
                 <a href='https://codeforces.com/profile/through'>Codeforces: through</a> <br></br>
@@ -83,8 +81,8 @@ const Home: NextPage = () => {
             <div className={styles.profile}>
               <h3>Skill</h3>
               <div>
-                used language：<br></br>C, C++, TypeScript, Golang <br></br>
-                <br></br>qualification：<br></br>応用情報技術者, 数検準1級, 英検2級
+                programming language：<br></br>C, C++, TypeScript, Golang <br></br>
+                <br></br>qualification：<br></br>応用情報技術者 (2022年度秋季)
               </div>
             </div>
           </div>
