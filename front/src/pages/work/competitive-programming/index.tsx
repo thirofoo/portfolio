@@ -57,7 +57,7 @@ const Blog = ({ articles }: BlogProps) => {
         <div className={styles.list_wrapper}>
           <LibraryList
             articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
-            from='blog'
+            from='work/competitive-programming'
           />
         </div>
         {filteredArticles.length === 0 ? (

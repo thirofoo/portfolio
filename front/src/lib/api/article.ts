@@ -25,7 +25,11 @@ export const getOneArticle = async (slug: string, url: string) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
+
     const data = await response.json()
+    if (data.thumbnail == '') data.thumbnail = getUrl('white_nvvrt4')
+    else data.thumbnail = getUrl(data.slug + '/' + data.thumbnail)
+
     return data
   } catch (error) {
     console.log(error)
