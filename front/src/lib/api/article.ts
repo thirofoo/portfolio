@@ -1,4 +1,5 @@
 import { getUrl } from '@/lib/url'
+import { Article } from '@/Interfaces/Article'
 
 export const getAllArticles = async (url: string) => {
   try {
@@ -7,7 +8,7 @@ export const getAllArticles = async (url: string) => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const data = await response.json()
-    data.map((article: any) => {
+    data.map((article: Article) => {
       if (article.thumbnail == '') article.thumbnail = getUrl('default_vbbudj')
       else article.thumbnail = getUrl(article.slug + '/' + article.thumbnail)
     })

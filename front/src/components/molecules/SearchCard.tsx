@@ -12,27 +12,29 @@ export const SearchCard = ({ onSearch, items }: SearchCardProps) => {
 
   return (
     <>
-      {items.map((item, i) => (
-        <div className={styles.form} key={i}>
-          <label>{item}</label>
-          <input
-            type='text'
-            onChange={(e) => {
-              // state更新は非同期
-              // → stateをonSearchに返すと変更前に引数を渡してしまう
-              if (i === 0) {
-                setTitle(e.target.value)
-                onSearch(e.target.value, tag)
-              } else {
-                setTag(e.target.value)
-                onSearch(title, e.target.value)
-              }
-            }}
-            className={styles.input}
-            placeholder='Search...'
-          />
-        </div>
-      ))}
+      <div className={styles.wrapper}>
+        {items.map((item, i) => (
+          <div className={styles.form} key={i}>
+            <label>{item}</label>
+            <input
+              type='text'
+              onChange={(e) => {
+                // state更新は非同期
+                // → stateをonSearchに返すと変更前に引数を渡してしまう
+                if (i === 0) {
+                  setTitle(e.target.value)
+                  onSearch(e.target.value, tag)
+                } else {
+                  setTag(e.target.value)
+                  onSearch(title, e.target.value)
+                }
+              }}
+              className={styles.input}
+              placeholder='Search...'
+            />
+          </div>
+        ))}
+      </div>
     </>
   )
 }

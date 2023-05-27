@@ -5,3 +5,9 @@
 .input {
   @apply rounded-md mt-1;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    @apply flex flex-col;
+  }
+}

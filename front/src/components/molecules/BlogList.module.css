@@ -1,9 +1,9 @@
 .card {
-  @apply inline-flex mx-[1rem] mb-[1rem];
+  @apply inline-flex mx-[1rem] mb-[2rem];
 }
 
 @media (max-width: 768px) {
   .card {
-    @apply m-0 pb-4;
+    @apply m-0 pb-4 mb-2;
   }
 }

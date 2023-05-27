@@ -4,7 +4,6 @@ import { getAllLibraries } from '@/lib/api/library'
 import { LibraryList } from '@/components/molecules/LibraryList'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
 
 const AdminArticlesPage = () => {

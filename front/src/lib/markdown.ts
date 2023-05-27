@@ -11,7 +11,7 @@ import { Element } from 'hast'
 import { getUrl } from '@/lib/url'
 
 function rehypeTransformImageUrls(slug: string) {
-  return async (tree: Node, _file: unknown) => {
+  return async (tree: Node) => {
     visit(tree, 'element', (node: Node & Element) => {
       const { tagName, properties } = node
 

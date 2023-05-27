@@ -1,5 +1,4 @@
 import styles from '@/components/atoms/Button.module.css'
-import { useTheme } from 'next-themes'
 
 type Props = {
   content: string
@@ -16,7 +15,6 @@ export const Button = ({
   },
   type = undefined,
 }: Props) => {
-  const { theme } = useTheme()
   return (
     <>
       <button

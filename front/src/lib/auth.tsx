@@ -1,6 +1,7 @@
 type AuthCheckResponse = { ok: boolean }
+import { NextRouter } from 'next/router'
 
-export const checkAuth = async (router: any): Promise<AuthCheckResponse> => {
+export const checkAuth = async (router: NextRouter): Promise<AuthCheckResponse> => {
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, '$1')
   const headers = {
     'Content-Type': 'application/json',

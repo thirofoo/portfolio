@@ -4,7 +4,6 @@ import { getAllArticles } from '@/lib/api/article'
 import { BlogList } from '@/components/molecules/BlogList'
 import { Button } from '@/components/atoms/Button'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
 
 const AdminArticlesPage = () => {

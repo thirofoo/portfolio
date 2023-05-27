@@ -5,6 +5,7 @@ import { Article } from '@/Interfaces/Article'
 import { BlogList } from '@/components/molecules/BlogList'
 import { getAllArticles } from '@/lib/api/article'
 import styles from '@/pages/blog/blog.module.css'
+import { SearchCard } from '@/components/molecules/SearchCard'
 
 type BlogProps = {
   articles: Article[]
@@ -12,42 +13,67 @@ type BlogProps = {
 
 const Blog = ({ articles }: BlogProps) => {
   const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
+  const [isSearchCardExpanded, setSearchCardExpanded] = useState(false)
   const [displayNum, setDisplayNum] = useState<number>(1)
 
-  // ~~~ Search Card ~~~ //
-  // const handleSearch = (title: string, tag: string) => {
-  //   let fil: Article[] = articles
-  //   fil = fil.filter((article) => {
-  //     return article.title.toLowerCase().includes(title.toLowerCase())
-  //   })
-  //   fil = fil.filter((article) => {
-  //     return article.Tags.some((t) => t.name.includes(tag))
-  //   })
-  //   setFilteredArticles(fil)
-  // }
+  const handleSearch = (title: string, tag: string) => {
+    let fil: Article[] = articles
+
+    const tags = tag.split(',')
+
+    fil = fil.filter((article: Article) => {
+      return article.title.toLowerCase().includes(title.toLowerCase())
+    })
+    fil = fil.filter((article: Article) => {
+      // 複数tagがある場合はAND検索
+      return tags.every((t: string) => {
+        return article.Tags.some((tag) => tag.name.includes(t))
+      })
+    })
+    setFilteredArticles(fil)
+  }
 
   return (
     <>
-      {/* <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} /> */}
-      <div className={styles.list_wrapper}>
-        <BlogList
-          articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
-          from='blog'
-        />
-      </div>
-      {filteredArticles.length === 0 ? (
-        <div className={styles.nothing}>No such blog exists.</div>
-      ) : filteredArticles.length > 4 * displayNum ? (
-        <div className={styles.button_wrapper}>
-          <Button
-            content='More'
-            type='button'
-            handleClick={() => {
-              setDisplayNum(displayNum + 1)
+      <div className={isSearchCardExpanded ? styles.down : styles.up}>
+        <div className={styles.search_wrapper}>
+          <div className={`duration-500 ${isSearchCardExpanded ? 'opacity-100' : 'opacity-0'}`}>
+            <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
+          </div>
+          <button
+            className={`${styles.toggle_button}`}
+            onClick={() => {
+              if (isSearchCardExpanded) setFilteredArticles(articles)
+              setSearchCardExpanded(!isSearchCardExpanded)
             }}
-          ></Button>
+          >
+            Search
+            <span className={`${isSearchCardExpanded ? styles.arrow_down : styles.arrow_up}`}>
+              ↓
+            </span>
+          </button>
         </div>
-      ) : null}
+
+        <div className={styles.list_wrapper}>
+          <BlogList
+            articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
+            from='blog'
+          />
+        </div>
+        {filteredArticles.length === 0 ? (
+          <div className={styles.nothing}>No such blog exists.</div>
+        ) : filteredArticles.length > 4 * displayNum ? (
+          <div className={styles.button_wrapper}>
+            <Button
+              content='More'
+              type='button'
+              handleClick={() => {
+                setDisplayNum(displayNum + 1)
+              }}
+            ></Button>
+          </div>
+        ) : null}
+      </div>
     </>
   )
 }

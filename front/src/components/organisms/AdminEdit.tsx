@@ -108,7 +108,7 @@ export const AdminEdit = ({ genre }: Props) => {
       const response = await fetchWithToken(
         `${process.env.NEXT_PUBLIC_API_URL}/article/delete/${id}`,
         'DELETE',
-        {},
+        null,
       )
 
       if (response.ok) {

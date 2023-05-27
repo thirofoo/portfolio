@@ -1,6 +1,11 @@
 import { parseCookies } from 'nookies'
+import { ArticleInput } from '@/Interfaces/Article'
 
-export const fetchWithToken = async (url: string, method: string, body: any): Promise<Response> => {
+export const fetchWithToken = async (
+  url: string,
+  method: string,
+  body: ArticleInput | null,
+): Promise<Response> => {
   const cookies = parseCookies()
   const token = cookies.token
 

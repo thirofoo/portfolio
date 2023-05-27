@@ -18,3 +18,14 @@ export interface Article {
   type: string
   body: string
 }
+
+export interface ArticleInput {
+  title: string
+  slug: string
+  description: string
+  body: string
+  author: string
+  thumbnail: string
+  type: string
+  tags: string[]
+}
