@@ -11,7 +11,7 @@ export const LibraryCard = ({ article, from }: LibraryProps) => {
   return (
     <>
       <div className={styles.card}>
-        <Link href={`/${from}/${article.slug}`} className='rounded-xl'>
+        <Link href={`/${from}/${article.slug}`} className='rounded-xl block overflow-hidden'>
           <div className={styles['card-content']}>
             <div className='flex justify-between'>
               <h2 className={styles['card-title']}>{article.title}</h2>

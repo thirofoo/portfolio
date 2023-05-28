@@ -20,11 +20,11 @@
 }
 
 .content h1 {
-  @apply text-3xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 m-2 mt-12 mb-6;
+  @apply text-3xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 my-2 mt-12 mb-6;
 }
 
 .content h2 {
-  @apply text-2xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 m-2 mt-12 mb-6;
+  @apply text-2xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 my-2 mt-12 mb-6;
 }
 
 .content h3 {
@@ -109,16 +109,25 @@
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
-.headings {
-  @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[100vw] max-w-[200px] max-h-[60vh] overflow-y-auto rounded-xl;
-  box-shadow: inset 0px 0px 6px 1px theme(colors.sh1);
-}
-
 @media (max-width: 768px) {
   .content {
     @apply mt-[-20px];
   }
 
+  .detail {
+    @apply text-sm mt-4;
+  }
+}
+
+.headings {
+  @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[100vw] max-w-[200px] max-h-[60vh] overflow-y-auto underline border-sh1 border-t-[1px] border-b-[1px];
+}
+
+.link {
+  @apply my-4 text-[16px];
+}
+
+@media (max-width: 768px) {
   .headings {
     @apply hidden;
   }

@@ -34,20 +34,6 @@
   @apply m-2;
 }
 
-@media (max-width: 768px) {
-  .top_wrapper {
-    @apply flex flex-col justify-center;
-  }
-
-  .sub_wrapper {
-    @apply flex flex-col justify-center;
-  }
-
-  .add_margin {
-    @apply m-0;
-  }
-}
-
 .top_profile {
   @apply px-10;
 }
@@ -70,4 +56,18 @@
 
 .profile h3 {
   @apply text-xl pb-4;
+}
+
+@media (max-width: 768px) {
+  .top_wrapper {
+    @apply flex flex-col justify-center;
+  }
+
+  .sub_wrapper {
+    @apply flex flex-col justify-center;
+  }
+
+  .add_margin {
+    @apply m-0;
+  }
 }

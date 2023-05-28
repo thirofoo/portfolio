@@ -4,6 +4,8 @@ import { Article } from '@/Interfaces/Article'
 import { getOneArticle } from '@/lib/api/article'
 import { getAllLibraries } from '@/lib/api/library'
 import { markdownToHtml } from '@/lib/markdown'
+import { Headings } from '@/components/molecules/Headings'
+import { useEffect, useState } from 'react'
 import styles from '@/pages/work/competitive-programming/[slug].module.css'
 
 type BlogProps = {
@@ -12,21 +14,70 @@ type BlogProps = {
 
 const BlogDetail: NextPage<BlogProps> = ({ article }) => {
   const router = useRouter()
+  // h2 以上のタグ情報 (headings用)
+  const [headings, setHeadings] = useState<Element[]>([])
+
+  useEffect(() => {
+    const fetchHeadings = () => {
+      const headings = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'))
+      setHeadings(headings)
+    }
+    // SSR時にはwindowがないので、ブラウザでのみ実行する
+    if (typeof window !== 'undefined') {
+      fetchHeadings()
+    }
+  }, [])
+
+  const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, heading: string) => {
+    e.preventDefault()
+
+    if (typeof window !== 'undefined') {
+      const targetHeading = headings.find((h) => h.textContent === heading)
+
+      if (targetHeading) {
+        const rect = targetHeading.getBoundingClientRect()
+        const scrollTop = window.scrollY || document.documentElement.scrollTop
+        const offsetTop = rect.top + scrollTop - 100
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth',
+        })
+      }
+    }
+  }
+
   if (router.isFallback) {
     return <div>Loading...</div>
   }
 
   return (
     <>
-      <div className='flex justify-between'>
+      <div className={styles.head_info}>
         <h1 className={styles.title}>{article.title}</h1>
-        <div>
-          Created At : {article.CreatedAt.substring(0, 10)} <br />
-          Updated At : {article.UpdatedAt.substring(0, 10)}
+        <div className={styles.detail}>
+          Created: {article.CreatedAt.substring(0, 10)} <br />
+          Updated: {article.UpdatedAt.substring(0, 10)}
         </div>
       </div>
 
-      <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
+      <div className='flex'>
+        <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
+    
+        <div className={styles.headings}>
+          <ul>
+            {headings.map((heading, index) => (
+              <li key={index} className='my-4 text-md'>
+                <a
+                  href={`#${heading.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
+                  onClick={(e) => handleHeadingClick(e, heading.textContent as string)}
+                >
+                  {heading.textContent}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   )
 }

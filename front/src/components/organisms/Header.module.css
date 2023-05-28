@@ -1,5 +1,5 @@
 .header {
-  @apply fixed text-xl shadow-sh1 shadow-sm w-full z-20 backdrop-blur-[3px] bg-opacity-30;
+  @apply fixed text-xl w-full z-20;
 }
 
 .wrapper {

@@ -8,11 +8,11 @@
 }
 
 .card-image {
-  @apply object-cover w-full h-[200px] rounded-t-xl border-sh1 border-b opacity-80;
+  @apply object-cover w-full h-[200px] rounded-t-xl border-sh1 border-b opacity-80 overflow-hidden;
 }
 
 .card-content {
-  @apply relative bottom-0 p-6 rounded-xl;
+  @apply relative p-6 rounded-xl;
 }
 
 .card-title {
@@ -43,5 +43,9 @@
 @media (max-width: 768px) {
   .card {
     @apply w-[92vw] h-auto;
+  }
+
+  .card-image {
+    @apply absolute opacity-10 rounded-xl;
   }
 }

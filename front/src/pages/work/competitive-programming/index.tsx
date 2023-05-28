@@ -56,13 +56,13 @@ const Blog = ({ articles }: BlogProps) => {
 
         <div className={styles.list_wrapper}>
           <LibraryList
-            articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
+            articles={filteredArticles.slice(0, Math.min(8 * displayNum, filteredArticles.length))}
             from='work/competitive-programming'
           />
         </div>
         {filteredArticles.length === 0 ? (
           <div className={styles.nothing}>No such blog exists.</div>
-        ) : filteredArticles.length > 4 * displayNum ? (
+        ) : filteredArticles.length > 8 * displayNum ? (
           <div className={styles.button_wrapper}>
             <Button
               content='More'

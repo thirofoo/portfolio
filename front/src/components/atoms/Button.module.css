@@ -1,19 +1,19 @@
 .button {
-  @apply rounded-md py-3 px-12 duration-200;
+  @apply rounded-md py-3 px-12 duration-200 bg-opacity-40;
   /* box-shadow の構成 : [x-offset y-offset blur-radius spread-radius color?] */
   box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
 }
 
 .activeButton {
-  @apply rounded-md py-3 px-12 duration-200 bg-sh1 bg-opacity-40;
-  box-shadow: inset 0px 0px 3px 2px theme(colors.sh1);
+  @apply rounded-md py-3 px-12 duration-200 bg-opacity-40;
+  box-shadow: inset 0px 0px 3px 3px theme(colors.sh1);
 }
 
 @media (max-width: 768px) {
   .button {
-    @apply flex justify-center w-[150px];
+    @apply flex justify-center w-[150px] bg-opacity-100;
   }
   .activeButton {
-    @apply flex justify-center w-[150px];
+    @apply flex justify-center w-[150px] bg-opacity-100;
   }
 }

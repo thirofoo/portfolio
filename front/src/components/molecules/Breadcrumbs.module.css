@@ -1,5 +1,5 @@
 .breadcrumbs {
-  @apply text-xl leading-6 font-medium;
+  @apply absolute text-xl font-medium flex z-20;
 }
 
 .breadcrumbs li {
@@ -16,5 +16,4 @@
 
 .breadcrumbs span {
   @apply mx-2;
-  color: #4b5563;
 }

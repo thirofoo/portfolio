@@ -70,22 +70,20 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
       <div className='flex'>
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
-
-        <div>
-          <div className={styles.headings}>
-            <ul>
-              {headings.map((heading, index) => (
-                <li key={index} className='my-4 text-md'>
-                  <a
-                    href={`#${heading.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
-                    onClick={(e) => handleHeadingClick(e, heading.textContent as string)}
-                  >
-                    {heading.textContent}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+    
+        <div className={styles.headings}>
+          <ul>
+            {headings.map((heading, index) => (
+              <li key={index} className='my-4 text-md'>
+                <a
+                  href={`#${heading.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
+                  onClick={(e) => handleHeadingClick(e, heading.textContent as string)}
+                >
+                  {heading.textContent}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>

@@ -47,7 +47,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header}`}>
         <div className={styles.wrapper}>
           <Link href='/' className={styles.head_name} onClick={homeClick}>
             thirofoo

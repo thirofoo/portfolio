@@ -1,0 +1,13 @@
+.headings {
+  @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[100vw] max-w-[200px] max-h-[60vh] overflow-y-auto underline border-sh1 border-t-[1px] border-b-[1px];
+}
+
+.link {
+  @apply my-4 text-[16px];
+}
+
+@media (max-width: 768px) {
+  .headings {
+    @apply hidden;
+  }
+}
