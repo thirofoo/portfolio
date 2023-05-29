@@ -5,6 +5,7 @@ import { getOneArticle } from '@/lib/api/article'
 import { getAllLibraries } from '@/lib/api/library'
 import { markdownToHtml } from '@/lib/markdown'
 import { Headings } from '@/components/molecules/Headings'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import styles from '@/pages/work/competitive-programming/[slug].module.css'
 
@@ -53,6 +54,13 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
   return (
     <>
       <div className={styles.head_info}>
+        <Image
+          className={styles.head_image}
+          src={article.thumbnail}
+          alt={article.slug}
+          width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
+          height={200}
+        />
         <h1 className={styles.title}>{article.title}</h1>
         <div className={styles.detail}>
           Created: {article.CreatedAt.substring(0, 10)} <br />
@@ -62,7 +70,7 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
       <div className='flex'>
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
-    
+
         <div className={styles.headings}>
           <ul>
             {headings.map((heading, index) => (

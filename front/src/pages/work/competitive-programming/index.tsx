@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { Article } from '@/Interfaces/Article'
 import { LibraryList } from '@/components/molecules/LibraryList'
 import { getAllLibraries } from '@/lib/api/library'
-import styles from '@/pages/blog/blog.module.css'
+import styles from '@/pages/work/competitive-programming/library.module.css'
 import { SearchCard } from '@/components/molecules/SearchCard'
 
 type BlogProps = {
@@ -53,6 +53,8 @@ const Blog = ({ articles }: BlogProps) => {
             </span>
           </button>
         </div>
+
+        <h1 className={styles.title}>Library</h1>
 
         <div className={styles.list_wrapper}>
           <LibraryList

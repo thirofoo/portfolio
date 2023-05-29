@@ -9,7 +9,7 @@ export const getAllLibraries = async (url: string) => {
     }
     const data = await response.json()
     data.map((article: Article) => {
-      if (article.thumbnail == '') article.thumbnail = getUrl('default_vbbudj')
+      if (article.thumbnail == '') article.thumbnail = getUrl('white_nvvrt4')
       else article.thumbnail = getUrl(article.slug + '/' + article.thumbnail)
     })
     return data

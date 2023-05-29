@@ -5,7 +5,6 @@ import { Article } from '@/Interfaces/Article'
 import { BlogList } from '@/components/molecules/BlogList'
 import { getAllArticles } from '@/lib/api/article'
 import styles from '@/pages/blog/blog.module.css'
-import { SearchCard } from '@/components/molecules/SearchCard'
 
 type BlogProps = {
   articles: Article[]
@@ -35,24 +34,8 @@ const Blog = ({ articles }: BlogProps) => {
 
   return (
     <>
-      <div className={isSearchCardExpanded ? styles.down : styles.up}>
-        <div className={styles.search_wrapper}>
-          <div className={`duration-500 ${isSearchCardExpanded ? 'opacity-100' : 'opacity-0'}`}>
-            <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
-          </div>
-          <button
-            className={`${styles.toggle_button}`}
-            onClick={() => {
-              if (isSearchCardExpanded) setFilteredArticles(articles)
-              setSearchCardExpanded(!isSearchCardExpanded)
-            }}
-          >
-            Search
-            <span className={`${isSearchCardExpanded ? styles.arrow_down : styles.arrow_up}`}>
-              ↓
-            </span>
-          </button>
-        </div>
+      <div>
+        <h1 className={styles.title}>Blog</h1>
 
         <div className={styles.list_wrapper}>
           <BlogList

@@ -24,8 +24,3 @@ header,
 textarea {
   @apply bg-bg1 bg-opacity-70 dark:bg-dbg1 dark:bg-opacity-70;
 }
-
-pre,
-code {
-  @apply bg-bg1 bg-opacity-70 dark:bg-dbg1 dark:bg-opacity-70;
-}

@@ -11,11 +11,11 @@ export const ChangeThemeToggle = () => {
         aria-label='DarkModeToggle'
         type='button'
         onClick={() => {
-          setTheme(theme === 'dark' ? 'light' : 'dark')
+          setTheme(theme === 'light' ? 'dark' : 'light')
         }}
         className={styles.toggle}
       >
-        {theme === 'dark' ? <HalfMoon /> : <SunLight />}
+        {theme === 'light' ? <SunLight /> : <HalfMoon />}
       </button>
     </>
   )

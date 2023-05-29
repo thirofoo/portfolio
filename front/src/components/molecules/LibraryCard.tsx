@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Article } from '@/Interfaces/Article'
 import styles from '@/components/molecules/BlogCard.module.css'
+import Image from 'next/image'
 
 type LibraryProps = {
   article: Article
@@ -12,24 +13,28 @@ export const LibraryCard = ({ article, from }: LibraryProps) => {
     <>
       <div className={styles.card}>
         <Link href={`/${from}/${article.slug}`} className='rounded-xl block overflow-hidden'>
-          <div className={styles['card-content']}>
+          <Image
+            className={styles.image}
+            src={article.thumbnail}
+            alt={article.slug}
+            width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
+            height={100}
+          />
+          <div className={styles.content}>
             <div className='flex justify-between'>
-              <h2 className={styles['card-title']}>{article.title}</h2>
-              {/* tagを個々に追加 */}
-              <div className={styles['card-tags']}>
-                {article.Tags.map((tag) => (
-                  <span key={tag.ID} className={styles['card-tag']}>
-                    {tag.name}
-                  </span>
-                ))}
-              </div>
+              <h2 className={styles.title}>{article.title}</h2>
             </div>
 
-            <div className={'flex justify-end'}>
-              <div className={styles['card-at']}>
-                Created : {article.CreatedAt.substring(0, 10)} <br />
-                Updated : {article.UpdatedAt.substring(0, 10)}
-              </div>
+            <div className={styles.tags}>
+              {article.Tags.map((tag) => (
+                <span key={tag.ID} className={styles.tag}>
+                  {tag.name}
+                </span>
+              ))}
+            </div>
+            <div className={'flex justify-between'}>
+              <p className={styles.readmore}>Read more &rarr;</p>
+              <div className={styles.at}>{article.CreatedAt.substring(0, 10)}</div>
             </div>
           </div>
         </Link>

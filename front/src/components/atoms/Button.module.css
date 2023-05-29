@@ -1,19 +1,27 @@
 .button {
-  @apply rounded-md py-3 px-12 duration-200 bg-opacity-40;
+  @apply rounded-md py-3 px-12 duration-200 backdrop-blur-3xl min-w-[150px];
   /* box-shadow の構成 : [x-offset y-offset blur-radius spread-radius color?] */
   box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
 }
 
 .activeButton {
-  @apply rounded-md py-3 px-12 duration-200 bg-opacity-40;
+  @apply rounded-md py-3 px-12 duration-200 bg-opacity-50 min-w-[150px] bg-sh1;
   box-shadow: inset 0px 0px 3px 3px theme(colors.sh1);
+}
+
+.activeButton:hover {
+  box-shadow: inset 0px 0px 6px 3px theme(colors.sh1);
+}
+
+.button:hover {
+  box-shadow: inset 0px 0px 6px 3px theme(colors.sh1);
 }
 
 @media (max-width: 768px) {
   .button {
-    @apply flex justify-center w-[150px] bg-opacity-100;
+    @apply flex justify-center;
   }
   .activeButton {
-    @apply flex justify-center w-[150px] bg-opacity-100;
+    @apply flex justify-center;
   }
 }

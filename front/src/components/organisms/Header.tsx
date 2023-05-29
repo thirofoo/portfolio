@@ -1,14 +1,16 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/atoms/Button'
 import styles from '@/components/organisms/Header.module.css'
 import { ChangeThemeToggle } from '@/components/atoms/ChangeThemeToggle'
 
 export const Header = () => {
-  const [homeOn, setHomeOn] = useState<boolean>(true)
-  const [worksOn, setWorksOn] = useState<boolean>(false)
-  const [blogOn, setBlogOn] = useState<boolean>(false)
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [homeOn, setHomeOn] = useState(true)
+  const [worksOn, setWorksOn] = useState(false)
+  const [blogOn, setBlogOn] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const fadeOutTriggerPosition = 200
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -45,23 +47,40 @@ export const Header = () => {
     }
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <>
-      <header className={`${styles.header}`}>
+      <header className={`${styles.header} ${isMenuOpen ? 'bg-opacity-30 backdrop-blur-sm' : ''}`}>
         <div className={styles.wrapper}>
-          <Link href='/' className={styles.head_name} onClick={homeClick}>
+          <Link
+            href='/'
+            className={`${styles.head_name} ${
+              scrollPosition >= fadeOutTriggerPosition ? styles.fade_out : styles.fade_in
+            }`}
+            onClick={homeClick}
+          >
             thirofoo
           </Link>
-          <ChangeThemeToggle></ChangeThemeToggle>
-        </div>
-
-        <div className={styles.ham_menu} onClick={toggleMenu}>
-          <i className={isMenuOpen ? styles.open : ''}></i>
-          <i className={isMenuOpen ? styles.open : ''}></i>
-          <i className={isMenuOpen ? styles.open : ''}></i>
+          <div className={styles.ham_menu} onClick={toggleMenu}>
+            <i className={isMenuOpen ? styles.open : ''}></i>
+            <i className={isMenuOpen ? styles.open : ''}></i>
+            <i className={isMenuOpen ? styles.open : ''}></i>
+          </div>
         </div>
 
         <div className={`${styles.header_content} ${isMenuOpen ? styles.head_open : ''}`}>
+          <div className={`${styles.button_wrapper} `}>
+            <ChangeThemeToggle></ChangeThemeToggle>
+          </div>
           <div className={styles.button_wrapper}>
             <Link href='/'>
               <Button content='Home' state={homeOn} handleClick={homeClick} />

@@ -9,7 +9,8 @@ export const getAllArticles = async (url: string) => {
     }
     const data = await response.json()
     data.map((article: Article) => {
-      if (article.thumbnail == '') article.thumbnail = getUrl('default_vbbudj')
+      if (article.thumbnail == '')
+        article.thumbnail = getUrl(article.type == 'blog' ? 'default_vbbudj' : 'AtCoder_pyl1be')
       else article.thumbnail = getUrl(article.slug + '/' + article.thumbnail)
     })
     return data
@@ -27,7 +28,8 @@ export const getOneArticle = async (slug: string, url: string) => {
     }
 
     const data = await response.json()
-    if (data.thumbnail == '') data.thumbnail = getUrl('white_nvvrt4')
+    if (data.thumbnail == '')
+      data.thumbnail = getUrl(data.type == 'blog' ? 'white_nvvrt4' : 'AtCoder_pyl1be')
     else data.thumbnail = getUrl(data.slug + '/' + data.thumbnail)
 
     return data

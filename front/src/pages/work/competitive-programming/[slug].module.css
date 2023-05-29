@@ -52,15 +52,16 @@
 }
 
 .content code {
-  @apply px-1 rounded;
+  @apply px-1 backdrop-blur-3xl m-auto bg-dbg2 bg-opacity-95;
+  box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
 }
 
 .content pre {
-  @apply my-4 overflow-x-auto;
+  @apply my-8 overflow-x-auto;
 }
 
 .content pre code {
-  @apply block p-4 rounded;
+  @apply w-[min(100vw-320px,720px)] p-4 rounded-2xl;
 }
 
 .content ul {
@@ -101,7 +102,7 @@
 }
 
 .head_image {
-  @apply absolute object-cover rounded-xl opacity-20 z-10 h-full;
+  @apply absolute w-full h-full rounded-xl object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
 }
 
 .head_info {
@@ -117,10 +118,14 @@
   .detail {
     @apply text-sm mt-4;
   }
+
+  .content pre code {
+    @apply my-8 w-[100vw];
+  }
 }
 
 .headings {
-  @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[100vw] max-w-[200px] max-h-[60vh] overflow-y-auto underline border-sh1 border-t-[1px] border-b-[1px];
+  @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[300px] max-h-[60vh] overflow-y-auto underline border-sh1 border-t-[1px] border-b-[1px];
 }
 
 .link {

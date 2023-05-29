@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // default : light mode
     // themeProvider は local storage にthemeの情報を保存している
     // → renderingされず、style単位で切り替えが可能
-    <ThemeProvider attribute='class' defaultTheme='light'>
+    <ThemeProvider attribute='class' defaultTheme='dark'>
       <AppLayout>
         <Head>
           <title>thirofoo portfolio</title>

@@ -3,6 +3,53 @@
 }
 
 .button_wrapper {
-  @apply text-center mt-4;
+  @apply flex justify-center my-4;
 }
 
+.nothing {
+  @apply text-center text-2xl mt-4;
+}
+
+.search_wrapper {
+  @apply flex flex-col mb-6 rounded-xl p-2 pt-[100px] mt-[-100px] w-[min(90vw,988px)] m-auto;
+  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+}
+
+.toggle_button {
+  @apply w-full text-center cursor-pointer font-bold mt-2;
+}
+
+.title {
+  @apply text-3xl font-bold text-center mb-8 underline-offset-8 underline;
+}
+
+.up {
+  @apply ease-in-out duration-500;
+  transform: translateY(-100px);
+}
+
+.down {
+  @apply ease-in-out duration-500;
+  transform: translateY(0);
+}
+
+.arrow_up {
+  @apply inline-block ease-in-out duration-500;
+  transform: rotate(0deg);
+}
+
+.arrow_down {
+  @apply inline-block ease-in-out duration-500;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .up {
+    @apply ease-in-out duration-500;
+    transform: translateY(-185px);
+  }
+
+  .search_wrapper {
+    @apply w-[80vw];
+  }
+}

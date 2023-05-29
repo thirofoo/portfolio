@@ -101,7 +101,7 @@
 }
 
 .head_image {
-  @apply absolute object-cover rounded-xl opacity-20 z-10 h-full;
+  @apply absolute w-full h-full rounded-xl object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
 }
 
 .head_info {

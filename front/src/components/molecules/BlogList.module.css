@@ -1,5 +1,5 @@
 .card {
-  @apply inline-flex mx-[1rem] mb-[2rem];
+  @apply inline-flex mx-[12px] mb-[24px];
 }
 
 @media (max-width: 768px) {
