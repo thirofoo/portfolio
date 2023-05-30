@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { Article } from '@/Interfaces/Article'
 import { getAllArticles, getOneArticle } from '@/lib/api/article'
-import { markdownToHtml } from '@/lib/markdown'
-import Image from 'next/image'
+import { markdownToHtml, parseHTMLToReactJSX } from '@/lib/markdown'
 import styles from '@/pages/blog/[slug].module.css'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 type BlogProps = {
   article: Article
@@ -69,8 +69,8 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
       </div>
 
       <div className='flex'>
-        <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
-    
+        <div className={styles.content}>{parseHTMLToReactJSX(article.body)}</div>
+
         <div className={styles.headings}>
           <ul>
             {headings.map((heading, index) => (
@@ -117,7 +117,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
     }
   }
 
-  const body = await markdownToHtml(article.body, article.slug)
+  const body: string = await markdownToHtml(article.body, article.slug)
   article.body = body
 
   return {

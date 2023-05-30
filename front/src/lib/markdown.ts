@@ -1,14 +1,18 @@
+import { Image } from '@/components/atoms/Image'
+import { getUrl } from '@/lib/url'
+import { Element } from 'hast'
+import React from 'react'
+import rehypeHighlight from 'rehype-highlight'
 import rehypeMathJaxSvg from 'rehype-mathjax'
+import rehypeParse from 'rehype-parse'
+import rehypeReact from 'rehype-react'
 import rehypeStringify from 'rehype-stringify'
 import remarkMath from 'remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
-import rehypeHighlight from 'rehype-highlight'
 import { unified } from 'unified'
 import { Node } from 'unist'
 import { visit } from 'unist-util-visit'
-import { Element } from 'hast'
-import { getUrl } from '@/lib/url'
 
 function rehypeTransformImageUrls(slug: string) {
   return async (tree: Node) => {
@@ -30,7 +34,7 @@ function rehypeTransformImageUrls(slug: string) {
   }
 }
 
-export async function markdownToHtml(markdown: string, slug: string) {
+export const markdownToHtml = async (markdown: string, slug: string) => {
   const processor = unified()
     .use(remarkParse) // markdown -> mdast の変換
     .use(remarkRehype) // mdast -> hast の変換
@@ -43,4 +47,22 @@ export async function markdownToHtml(markdown: string, slug: string) {
   const result = await processor.process(markdown) // 実行
 
   return result.toString()
+}
+
+export const parseHTMLToReactJSX = (htmlContent: string) => {
+  const processorReact = unified()
+    .use(rehypeParse, { fragment: true })
+    // eslint・TypeScriptのエラーをここだけ無視
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    .use(rehypeReact, {
+      createElement: React.createElement,
+      components: {
+        img: Image,
+      },
+    })
+
+  const reactJSX = processorReact.processSync(htmlContent).result
+
+  return reactJSX
 }

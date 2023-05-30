@@ -1,7 +1,7 @@
+import styles from '@/pages/about.module.css'
+import { GitHub, Twitter } from 'iconoir-react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
-import styles from '@/pages/about.module.css'
-import { Twitter, GitHub } from 'iconoir-react'
 
 const Home: NextPage = () => {
   return (

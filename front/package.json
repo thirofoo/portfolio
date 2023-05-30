@@ -37,6 +37,7 @@
     "rehype-mathjax": "^4.0.2",
     "rehype-pretty-code": "^0.9.5",
     "rehype-prism-plus": "^1.5.1",
+    "rehype-react": "^7.2.0",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark": "^14.0.2",
