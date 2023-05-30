@@ -7,7 +7,7 @@ export const useCheckAuth = (onSuccess: () => void) => {
   // onSuccessがuseEffectのhooklistに無い為、callback関数でまとめないと、
   // useEffect → onSuccess生成 → useEffect → ...
   // と無限renderingになる。
-  const handleSuccess = useCallback(onSuccess, [])
+  const handleSuccess = useCallback(onSuccess, [onSuccess])
   useEffect(() => {
     const fetchData = async () => {
       const res = await checkAuth(router)

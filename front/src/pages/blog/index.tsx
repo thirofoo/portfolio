@@ -11,26 +11,7 @@ type BlogProps = {
 }
 
 const Blog = ({ articles }: BlogProps) => {
-  const [filteredArticles, setFilteredArticles] = useState<Article[]>(articles)
-  const [isSearchCardExpanded, setSearchCardExpanded] = useState(false)
   const [displayNum, setDisplayNum] = useState<number>(1)
-
-  const handleSearch = (title: string, tag: string) => {
-    let fil: Article[] = articles
-
-    const tags = tag.split(',')
-
-    fil = fil.filter((article: Article) => {
-      return article.title.toLowerCase().includes(title.toLowerCase())
-    })
-    fil = fil.filter((article: Article) => {
-      // 複数tagがある場合はAND検索
-      return tags.every((t: string) => {
-        return article.Tags.some((tag) => tag.name.includes(t))
-      })
-    })
-    setFilteredArticles(fil)
-  }
 
   return (
     <>
@@ -39,13 +20,13 @@ const Blog = ({ articles }: BlogProps) => {
 
         <div className={styles.list_wrapper}>
           <BlogList
-            articles={filteredArticles.slice(0, Math.min(4 * displayNum, filteredArticles.length))}
+            articles={articles.slice(0, Math.min(4 * displayNum, articles.length))}
             from='blog'
           />
         </div>
-        {filteredArticles.length === 0 ? (
+        {articles.length === 0 ? (
           <div className={styles.nothing}>No such blog exists.</div>
-        ) : filteredArticles.length > 4 * displayNum ? (
+        ) : articles.length > 4 * displayNum ? (
           <div className={styles.button_wrapper}>
             <Button
               content='More'

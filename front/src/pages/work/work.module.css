@@ -24,7 +24,7 @@
 }
 
 .image {
-  @apply object-cover h-[150px] rounded-r-xl;
+  @apply relative object-cover h-[150px] rounded-r-xl;
 }
 
 @media (max-width: 768px) {
@@ -33,6 +33,6 @@
   }
 
   .image {
-    @apply object-cover h-[200px] mt-[-200px] opacity-[0.08];
+    @apply object-cover h-[200px] w-full mt-[-200px] opacity-[0.08];
   }
 }

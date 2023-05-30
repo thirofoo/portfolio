@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import styles from '@/pages/work/work.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
+import { getUrl } from '@/lib/url'
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +15,13 @@ const Home: NextPage = () => {
             <p>自分の競技プログラミングで使用するライブラリをまとめています。</p>
             <p className={styles.readmore}>Read more &rarr;</p>
           </div>
-          <img
+          <Image
             className={styles.image}
-            src='https://res.cloudinary.com/dq8pi3jes/image/upload/v1684482420/portfolio/AtCoder_pyl1be'
+            src={getUrl('/AtCoder_pyl1be')}
+            alt='AtCoder'
+            width={200}
+            height={150}
+            priority
           />
         </div>
       </Link>
