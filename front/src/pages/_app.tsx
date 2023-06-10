@@ -1,10 +1,10 @@
+import { AdminLayout } from '@/components/templates/AdminLayout'
+import { AppLayout } from '@/components/templates/AppLayout'
 import '@/styles/globals.css'
+import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { AppLayout } from '@/components/templates/AppLayout'
-import { AdminLayout } from '@/components/templates/AdminLayout'
 import { useRouter } from 'next/router'
-import { ThemeProvider } from 'next-themes'
 import { useEffect } from 'react'
 
 // import 'highlight.js/styles/rainbow.css'

@@ -1,13 +1,16 @@
+import { Button } from '@/components/atoms/Button'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
+import styles from '@/pages/admin/admin.module.css'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { Button } from '@/components/atoms/Button'
-import styles from '@/pages/admin/admin.module.css'
-import { useCheckAuth } from '@/hooks/useCheckAuth'
+import { useRouter } from 'next/router'
 
 const AdminPage: NextPage = () => {
+  const router = useRouter()
   useCheckAuth(() => {
     return
-  })
+  }, router)
+
   return (
     <>
       <div className={styles.wrapper}>

@@ -1,5 +1,5 @@
-import { NextPage } from 'next'
 import { AdminEdit } from '@/components/organisms/AdminEdit'
+import { NextPage } from 'next'
 
 const EditArticlePage: NextPage = () => {
   return (

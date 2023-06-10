@@ -1,22 +1,23 @@
-import { useEffect, useCallback } from 'react'
 import { checkAuth } from '@/lib/auth'
-import { useRouter } from 'next/router'
+import { NextRouter } from 'next/router'
+import { useEffect } from 'react'
 
-export const useCheckAuth = (onSuccess: () => void) => {
-  const router = useRouter()
-  // onSuccessがuseEffectのhooklistに無い為、callback関数でまとめないと、
-  // useEffect → onSuccess生成 → useEffect → ...
-  // と無限renderingになる。
-  const handleSuccess = useCallback(onSuccess, [onSuccess])
+export const useCheckAuth = (onSuccess: () => void, router: NextRouter) => {
+  // 初回レンダリング時にのみ、onSuccessが定義される
+
+  // React.StrictMode を有効にしている場合、useEffectで2回レンダリングされる様になる
+  // → 初回でignoreをクリーンアップ関数でいじって2回目を無視する
+  let ignore = false
   useEffect(() => {
     const fetchData = async () => {
+      if (ignore) return
       const res = await checkAuth(router)
-      if (res.ok) {
-        handleSuccess()
-      } else {
-        router.push('/login')
-      }
+      if (res.ok) onSuccess()
+      else router.push('/login')
     }
     fetchData()
-  }, [handleSuccess, router])
+    return () => {
+      ignore = true
+    }
+  }, [])
 }

@@ -19,13 +19,11 @@ func ShowAllLibraries(c *gin.Context) {
 	c.JSON(http.StatusOK, datas)
 }
 
-
 func ShowOneArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	data := Models.GetOneArticle(id)
 	c.JSON(http.StatusOK, data)
 }
-
 
 func ShowOneArticleBySlug(c *gin.Context) {
 	slug := c.Param("slug")
@@ -53,7 +51,6 @@ func ShowArticlesByTags(c *gin.Context) {
 
 	// タグに関連する記事を取得
 	articles := Models.GetArticlesByTags(tags)
-
 	c.JSON(http.StatusOK, articles)
 }
 

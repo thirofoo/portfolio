@@ -1,13 +1,13 @@
+import { FieldInfo } from '@/Interfaces/FieldInfo'
+import { Tag } from '@/Interfaces/Tag'
+import { Button } from '@/components/atoms/Button'
+import { FormField } from '@/components/molecules/FormField'
+import styles from '@/components/organisms/AdminEdit.module.css'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
+import { getOneArticle } from '@/lib/api/article'
+import { fetchWithToken } from '@/lib/api/request'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Tag } from '@/Interfaces/Tag'
-import styles from '@/components/organisms/AdminEdit.module.css'
-import { Button } from '@/components/atoms/Button'
-import { getOneArticle } from '@/lib/api/article'
-import { useCheckAuth } from '@/hooks/useCheckAuth'
-import { fetchWithToken } from '@/lib/api/request'
-import { FormField } from '@/components/molecules/FormField'
-import { FieldInfo } from '@/Interfaces/FieldInfo'
 
 type Props = {
   genre: string
@@ -53,7 +53,7 @@ export const AdminEdit = ({ genre }: Props) => {
     setDescription(article.description)
     const newTags = article.Tags.map((tag: Tag) => tag.name)
     setTags(newTags)
-  })
+  }, router)
 
   const handleAddTag = () => {
     setTags([...tags, ''])

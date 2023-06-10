@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import { Article } from '@/Interfaces/Article'
-import { getAllLibraries } from '@/lib/api/library'
-import { LibraryList } from '@/components/molecules/LibraryList'
 import { Button } from '@/components/atoms/Button'
-import { useRouter } from 'next/router'
+import { LibraryList } from '@/components/molecules/LibraryList'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
+import { getAllLibraries } from '@/lib/api/library'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const AdminArticlesPage = () => {
   const router = useRouter()
@@ -13,7 +13,7 @@ const AdminArticlesPage = () => {
   useCheckAuth(async () => {
     const fetchedArticles = await getAllLibraries(process.env.NEXT_PUBLIC_API_URL || '')
     setArticles(fetchedArticles)
-  })
+  }, router)
 
   return (
     <>
