@@ -12,6 +12,8 @@ import (
 
 var Db *gorm.DB
 
+// init関数は各packageがimportされた時点で実行される ( packageに複数存在する場合は、importされた順に実行される )
+// → 今回は init関数で import時にDBが接続されている状態になる！
 func init() {
 	dsn := Database.DbUrl()
 	dialector := postgres.Open(dsn)

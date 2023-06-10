@@ -33,83 +33,93 @@ type UpdateArticleInput struct {
 	Tags        []string `json:"tags" gorm:"column:tags"`
 }
 
-func GetAllArticles() (datas []Article) {
-	// Article型のデータ全取得 ( JOIN句でTagsも引っ張っている感じ )
+func GetAllArticles() ([]Article, error) {
+	var datas []Article
 	result := Db.Preload("Tags").Find(&datas)
 	if result.Error != nil {
-		panic(result.Error)
+		return nil, result.Error
 	}
-	return
+	return datas, nil
 }
 
-func GetArticlesByType(articleType string) (datas []Article) {
+func GetArticlesByType(articleType string) ([]Article, error) {
+	var datas []Article
 	result := Db.Preload("Tags").Where("type = ?", articleType).Find(&datas)
 	if result.Error != nil {
-		panic(result.Error)
+		return nil, result.Error
 	}
-	return
+	return datas, nil
 }
 
-func GetOneArticle(id int) (data Article) {
+func GetOneArticle(id int) (Article, error) {
+	var data Article
 	result := Db.Preload("Tags").First(&data, id)
 	if result.Error != nil {
-		panic(result.Error)
+		return Article{}, result.Error
 	}
-	return
+	return data, nil
 }
 
-func GetOneArticleBySlug(slug string) (data Article) {
+func GetOneArticleBySlug(slug string) (Article, error) {
+	var data Article
 	result := Db.Preload("Tags").Where("slug = ?", slug).First(&data)
 	if result.Error != nil {
-		panic(result.Error)
+		return Article{}, result.Error
 	}
-	return
+	return data, nil
 }
 
-func (b *Article) CreateArticle() {
+func (b *Article) CreateArticle() error {
 	result := Db.Create(b)
 	if result.Error != nil {
-		panic(result.Error)
+		return result.Error
 	}
+	return nil
 }
 
-func (b *Article) UpdateArticle() {
+func (b *Article) UpdateArticle() error {
 	result := Db.Save(b)
 	if result.Error != nil {
-		panic(result.Error)
+		return result.Error
 	}
+	return nil
 }
 
-func (b *Article) DeleteArticle() {
+func (b *Article) DeleteArticle() error {
 	result := Db.Delete(b)
 	if result.Error != nil {
-		panic(result.Error)
+		return result.Error
 	}
+	return nil
 }
 
-// タグIDからタグを取得する関数
-func GetTagsByID(tagIDs []string) []*Tag {
+func (a *Article) PreloadTags() error {
+	result := Db.Preload("Tags").First(a)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func GetTagsByID(tagIDs []string) ([]*Tag, error) {
 	var tags []*Tag
-	// タグIDが一致するタグをデータベースから取得
-	Db.Find(&tags, "id IN ?", tagIDs)
-	return tags
+	result := Db.Find(&tags, "id IN ?", tagIDs)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return tags, nil
 }
 
-// タグに関連する記事を取得する関数
-func GetArticlesByTags(tags []*Tag) []*Article {
+func GetArticlesByTags(tags []*Tag) ([]*Article, error) {
 	var articles []*Article
-
-	// 中間テーブルのエイリアスを作成
 	articleTag := Db.Table("article_tags")
-
-	// タグに関連する記事をデータベースから取得 ( 複雑の為後々調べる )
-	Db.Preload("Tags").Joins("JOIN (?) AS article_tags ON article_tags.article_id = articles.id", articleTag.Select("article_tags.article_id").Where("article_tags.tag_id IN ?", GetTagIDs(tags))).Find(&articles)
-
-	return articles
+	result := Db.Preload("Tags").Joins("JOIN (?) AS article_tags ON article_tags.article_id = articles.id", articleTag.Select("article_tags.article_id").Where("article_tags.tag_id IN ?", GetTagIDs(tags))).Find(&articles)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return articles, nil
 }
 
-
-// タグのIDを取得する関数
 func GetTagIDs(tags []*Tag) []uint {
 	var tagIDs []uint
 	for _, tag := range tags {

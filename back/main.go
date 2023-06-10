@@ -14,51 +14,54 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func checkError(err error) {
-    if err != nil {
-        panic(err)
-    }
-}
-
 func main() {
-    dsn := Database.DbUrl()
-    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-    checkError(err)
+	dsn := Database.DbUrl()
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic(fmt.Errorf("failed to connect to database: %w", err))
+	}
 
-    err = db.AutoMigrate(&Models.Article{})
-    checkError(err)
-    err = db.AutoMigrate(&Models.User{})
-    checkError(err)
-    fmt.Println("migrated!")
+	err = db.AutoMigrate(&Models.Article{})
+	if err != nil {
+		panic(fmt.Errorf("failed to migrate Article model: %w", err))
+	}
+	err = db.AutoMigrate(&Models.User{})
+	if err != nil {
+		panic(fmt.Errorf("failed to migrate User model: %w", err))
+	}
+	fmt.Println("migrated!")
 
-    router := gin.Default()
-    
-    // CORS middleware 設定
-    config := cors.DefaultConfig()
-    config.AllowOrigins = []string{os.Getenv("FRONT_URL")}
-    config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
-    config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
-    config.AllowCredentials = true
-    router.Use(cors.New(config))
+	router := gin.Default()
 
-    r_article := router.Group("/article")
-    r_admin := router.Group("/admin")
-    
-    // public系API
-    router.POST("/login", Controller.Login)
-    r_article.GET("/get/blog", Controller.ShowAllArticles)
-    r_article.GET("/get/library", Controller.ShowAllLibraries)
-    r_article.GET("/get/:slug", Controller.ShowOneArticleBySlug)
-    r_article.GET("/get-by-tags", Controller.ShowArticlesByTags)
-    
-    // secret系API
-    r_article.POST("/create", Controller.AuthMiddleware(), Controller.CreateArticle)
-    r_article.PUT("/update/:id", Controller.AuthMiddleware(), Controller.EditArticle)
-    r_article.DELETE("/delete/:id", Controller.AuthMiddleware(), Controller.DeleteArticle)
-    
-    r_admin.Use(Controller.AuthMiddleware())
-    r_admin.POST("/create", Controller.CreateAdmin)
-    r_admin.POST("/check-auth", Controller.AuthCheckHandler)
+	// CORS middleware 設定
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{os.Getenv("FRONT_URL")}
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Authorization"}
+	config.AllowCredentials = true
+	router.Use(cors.New(config))
 
-    router.Run(":8080")
+	Article := router.Group("/article")
+	Admin := router.Group("/admin")
+
+	// public系API
+	router.POST("/login", Controller.Login)
+	Article.GET("/get/blog", Controller.ShowAllArticles)
+	Article.GET("/get/library", Controller.ShowAllLibraries)
+	Article.GET("/get/:slug", Controller.ShowOneArticleBySlug)
+	Article.GET("/get-by-tags", Controller.ShowArticlesByTags)
+
+	// secret系API
+	Article.POST("/create", Controller.AuthMiddleware(), Controller.CreateArticle)
+	Article.PUT("/update/:id", Controller.AuthMiddleware(), Controller.EditArticle)
+	Article.DELETE("/delete/:id", Controller.AuthMiddleware(), Controller.DeleteArticle)
+
+	Admin.Use(Controller.AuthMiddleware())
+	Admin.POST("/create", Controller.CreateAdmin)
+	Admin.POST("/check-auth", Controller.AuthCheckHandler)
+
+	err = router.Run(":8080")
+	if err != nil {
+		panic(fmt.Errorf("failed to start server: %w", err))
+	}
 }

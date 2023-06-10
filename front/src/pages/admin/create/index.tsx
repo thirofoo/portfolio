@@ -75,6 +75,7 @@ const EditArticlePage: NextPage<void> = () => {
         console.log('作成に成功しました')
         router.push('/admin')
       } else {
+        console.error(response)
         throw new Error('作成に失敗しました')
       }
     } catch (error) {

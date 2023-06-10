@@ -166,8 +166,6 @@ func CreateAdmin(c *gin.Context) {
     var user Models.User
     c.BindJSON(&user)
 
-    fmt.Println(user)
-
     // password hash化
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
     if err != nil {
