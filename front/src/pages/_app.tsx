@@ -7,17 +7,16 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-// import 'highlight.js/styles/rainbow.css'
-// import 'highlight.js/styles/panda-syntax-light.css'
 import 'highlight.js/styles/base16/green-screen.css'
 import 'highlight.js/styles/base16/materia.css'
-// import 'highlight.js/styles/xcode.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  
   const router = useRouter()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [router.pathname])
+
   // layoutで定義された構造に対して、内容を組み込む
   // → _document.tsxの<Main>に組み込まれる
   return (

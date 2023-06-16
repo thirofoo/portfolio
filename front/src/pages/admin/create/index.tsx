@@ -1,6 +1,7 @@
 import { FieldInfo } from '@/Interfaces/FieldInfo'
 import { Button } from '@/components/atoms/Button'
 import { FormField } from '@/components/molecules/FormField'
+import { useCheckAuth } from '@/hooks/useCheckAuth'
 import { fetchWithToken } from '@/lib/api/request'
 import styles from '@/pages/admin/create/create.module.css'
 import { NextPage } from 'next'
@@ -9,6 +10,10 @@ import { useState } from 'react'
 
 const EditArticlePage: NextPage<void> = () => {
   const router = useRouter()
+  useCheckAuth(() => {
+    return
+  }, router)
+
   const [slug, setSlug] = useState<string>('')
   const [type, setType] = useState<string>('')
   const [tags, setTags] = useState<string[]>([])
