@@ -3,7 +3,7 @@
 }
 
 .input {
-  @apply m-5 p-5 rounded shadow-sh1 shadow-sm border;
+  @apply m-5 p-5 rounded shadow-sh1 shadow-sm border bg-dbg1;
 }
 
 .label {

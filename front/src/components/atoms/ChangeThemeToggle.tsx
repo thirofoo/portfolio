@@ -1,6 +1,6 @@
-import { useTheme } from 'next-themes'
-import { SunLight, HalfMoon } from 'iconoir-react'
 import styles from '@/components/atoms/ChangeThemeToggle.module.css'
+import { HalfMoon, SunLight } from 'iconoir-react'
+import { useTheme } from 'next-themes'
 
 export const ChangeThemeToggle = () => {
   const { theme, setTheme } = useTheme()
@@ -15,7 +15,7 @@ export const ChangeThemeToggle = () => {
         }}
         className={styles.toggle}
       >
-        {theme === 'light' ? <SunLight /> : <HalfMoon />}
+        {theme === 'dark' ? <HalfMoon /> : <SunLight />}
       </button>
     </>
   )

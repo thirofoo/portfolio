@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // layoutで定義された構造に対して、内容を組み込む
   // → _document.tsxの<Main>に組み込まれる
   return (
-    // default : light mode
+    // default : dark mode
     // themeProvider は local storage にthemeの情報を保存している
     // → renderingされず、style単位で切り替えが可能
     <ThemeProvider attribute='class' defaultTheme='dark'>
