@@ -8,7 +8,7 @@
 
 .input,
 .textarea {
-  @apply block w-full py-2 px-2 text-base transition rounded-md;
+  @apply block w-full py-2 px-2 text-base transition rounded-md bg-dbg1;
 }
 
 .input:focus,

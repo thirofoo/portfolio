@@ -125,13 +125,15 @@ export const AdminEdit = ({ genre }: Props) => {
   return (
     <>
       <div className={styles['form-container']}>
-        <div className='flex m-4'>
+        <div className={styles.form_head}>
           <h1 className={styles.title}>Edit {genre}</h1>
-          <div className='px-4'>
-            <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
-          </div>
-          <div className='px-4'>
-            <Button content='Delete' handleClick={() => handleDelete()} type='button'></Button>
+          <div className={styles.head_button}>
+            <div className={styles.button}>
+              <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
+            </div>
+            <div className={styles.button}>
+              <Button content='Delete' handleClick={() => handleDelete()} type='button'></Button>
+            </div>
           </div>
         </div>
 

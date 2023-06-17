@@ -7,7 +7,7 @@
 }
 
 .tags {
-  @apply mr-4 rounded-md;
+  @apply mr-4 rounded-md mb-2 bg-dbg1;
 }
 
 .form {
@@ -21,4 +21,44 @@
 
 .label {
   @apply block mb-2 text-base font-semibold;
+}
+
+.form_head {
+  @apply flex m-4;
+}
+
+@media (max-width: 768px) {
+  .form_head {
+    @apply flex-col;
+  }
+
+  .title {
+    @apply mb-4;
+  }
+}
+
+.head_button {
+  @apply inline-flex;
+}
+
+.button {
+  @apply px-2;
+}
+
+@media (max-width: 400px) {
+  .form_head {
+    @apply m-auto;
+  }
+
+  .title {
+    @apply block text-center p-0 m-auto mb-4;
+  }
+
+  .head_button {
+    @apply flex-col items-center;
+  }
+
+  .button {
+    @apply mb-4;
+  }
 }
