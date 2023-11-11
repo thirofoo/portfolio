@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/rs/zerolog/log"
 	"github.com/thirofoo/portfolio/Models"
 )
 
@@ -162,8 +161,6 @@ func EditArticle(c *gin.Context) {
 	article.Thumbnail = input.Thumbnail
 	article.Type = input.Type
 	article.Slug = input.Slug
-
-	log.Info().Msgf("article.Thumbnail: %v", article.Thumbnail)
 	
 	Models.Db.Save(&article)
 	
