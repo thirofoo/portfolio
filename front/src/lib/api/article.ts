@@ -1,5 +1,5 @@
-import { getUrl } from '@/lib/url'
 import { Article } from '@/Interfaces/Article'
+import { getUrl } from '@/lib/url'
 
 export const getAllArticles = async (url: string) => {
   try {
@@ -11,7 +11,6 @@ export const getAllArticles = async (url: string) => {
     data.map((article: Article) => {
       if (article.thumbnail == '')
         article.thumbnail = getUrl(article.type == 'blog' ? 'default_vbbudj' : 'AtCoder_pyl1be')
-      else article.thumbnail = getUrl(article.slug + '/' + article.thumbnail)
     })
     return data
   } catch (error) {
@@ -30,7 +29,6 @@ export const getOneArticle = async (slug: string, url: string) => {
     const data = await response.json()
     if (data.thumbnail == '')
       data.thumbnail = getUrl(data.type == 'blog' ? 'white_nvvrt4' : 'AtCoder_pyl1be')
-    else data.thumbnail = getUrl(data.slug + '/' + data.thumbnail)
 
     return data
   } catch (error) {
