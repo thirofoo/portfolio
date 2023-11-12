@@ -7,7 +7,7 @@
 }
 
 .tags {
-  @apply mr-4 rounded-md mb-2 bg-dbg1;
+  @apply mr-4 rounded-md mb-2;
 }
 
 .form {
