@@ -1,6 +1,6 @@
 import { Article } from '@/Interfaces/Article'
 import { Button } from '@/components/atoms/Button'
-import { LibraryList } from '@/components/molecules/LibraryList'
+import { CardList } from '@/components/molecules/CardList'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
 import { getAllLibraries } from '@/lib/api/library'
 import { useRouter } from 'next/router'
@@ -27,7 +27,7 @@ const AdminArticlesPage = () => {
         </div>
       </div>
       <div className={'text-center'}>
-        <LibraryList articles={articles} from={'admin/libraries'} />
+        <CardList articles={articles} from={'admin/libraries'} />
       </div>
     </>
   )

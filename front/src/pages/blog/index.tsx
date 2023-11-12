@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { Button } from '@/components/atoms/Button'
-import { GetStaticProps } from 'next'
 import { Article } from '@/Interfaces/Article'
-import { BlogList } from '@/components/molecules/BlogList'
+import { Button } from '@/components/atoms/Button'
+import { CardList } from '@/components/molecules/CardList'
 import { getAllArticles } from '@/lib/api/article'
 import styles from '@/pages/blog/blog.module.css'
+import { GetStaticProps } from 'next'
+import { useState } from 'react'
 
 type BlogProps = {
   articles: Article[]
@@ -19,7 +19,7 @@ const Blog = ({ articles }: BlogProps) => {
         <h1 className={styles.title}>Blog</h1>
 
         <div className={styles.list_wrapper}>
-          <BlogList
+          <CardList
             articles={articles.slice(0, Math.min(4 * displayNum, articles.length))}
             from='blog'
           />

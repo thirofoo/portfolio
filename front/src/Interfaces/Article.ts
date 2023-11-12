@@ -19,6 +19,23 @@ export interface Article {
   body: string
 }
 
+export const createEmptyArticle = (): Article => {
+  return {
+    ID: '',
+    CreatedAt: '',
+    UpdatedAt: '',
+    DeletedAt: '',
+    title: '',
+    slug: '',
+    description: '',
+    author: '',
+    thumbnail: '',
+    Tags: [],
+    type: '',
+    body: '',
+  }
+}
+
 export interface ArticleInput {
   title: string
   slug: string
