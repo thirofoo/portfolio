@@ -11,7 +11,6 @@ import 'highlight.js/styles/base16/green-screen.css'
 import 'highlight.js/styles/base16/materia.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  
   const router = useRouter()
   useEffect(() => {
     window.scrollTo(0, 0)
