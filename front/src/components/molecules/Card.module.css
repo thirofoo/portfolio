@@ -12,7 +12,7 @@
 }
 
 .content {
-  @apply relative p-6 rounded-xl;
+  @apply flex p-6 rounded-xl h-full flex-col justify-between;
 }
 
 .title {
@@ -24,15 +24,15 @@
 }
 
 .description {
-  @apply text-base mb-4;
+  @apply text-base;
 }
 
 .tags {
-  @apply flex flex-wrap justify-end text-sm mb-4;
+  @apply flex text-sm flex-wrap max-w-[30vw] justify-end;
 }
 
 .tag {
-  @apply m-1 p-1 rounded-sm;
+  @apply m-1 p-1 rounded-sm min-w-[min(50px,10vw)] text-center;
   box-shadow: 0px 0px 1px 1px theme(colors.sh1);
 }
 

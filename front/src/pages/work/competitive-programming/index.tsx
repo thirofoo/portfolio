@@ -1,6 +1,6 @@
 import { Article } from '@/Interfaces/Article'
 import { Button } from '@/components/atoms/Button'
-import { LibraryList } from '@/components/molecules/LibraryList'
+import { CardList } from '@/components/molecules/CardList'
 import { SearchCard } from '@/components/molecules/SearchCard'
 import { getAllLibraries } from '@/lib/api/library'
 import styles from '@/pages/work/competitive-programming/library.module.css'
@@ -57,7 +57,7 @@ const Blog = ({ articles }: BlogProps) => {
         <h1 className={styles.title}>Library</h1>
 
         <div className={styles.list_wrapper}>
-          <LibraryList
+          <CardList
             articles={filteredArticles.slice(0, Math.min(8 * displayNum, filteredArticles.length))}
             from='work/competitive-programming'
           />
