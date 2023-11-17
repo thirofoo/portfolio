@@ -3,6 +3,7 @@ import { ChangeThemeToggle } from '@/components/atoms/ChangeThemeToggle'
 import styles from '@/components/organisms/Header.module.css'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { BreadCrumbs } from '../molecules/BreadCrumbs'
 
 export const Header = () => {
   const [homeOn, setHomeOn] = useState(true)
@@ -59,7 +60,11 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`${styles.header} ${isMenuOpen ? 'bg-opacity-30 backdrop-blur-sm' : ''}`}>
+      <header
+        className={`${styles.header} ${
+          isMenuOpen ? 'bg-opacity-50 backdrop-blur-sm bg-bg2 dark:bg-dbg2 dark:bg-opacity-50' : ''
+        }`}
+      >
         <div className={styles.wrapper}>
           <Link
             href='/'
@@ -77,24 +82,29 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className={`${styles.header_content} ${isMenuOpen ? styles.head_open : ''}`}>
-          <div className={`${styles.button_wrapper} `}>
+        <div className={`${styles.content} ${isMenuOpen ? styles.head_open : ''}`}>
+          <div className={styles.button_wrapper}>
             <ChangeThemeToggle></ChangeThemeToggle>
           </div>
-          <div className={styles.button_wrapper}>
-            <Link href='/'>
-              <Button content='Home' state={homeOn} handleClick={homeClick} />
-            </Link>
+          <div className={styles.button_group}>
+            <div className={styles.button_wrapper}>
+              <Link href='/'>
+                <Button content='Home' state={homeOn} handleClick={homeClick} />
+              </Link>
+            </div>
+            <div className={styles.button_wrapper}>
+              <Link href='/work'>
+                <Button content='Work' state={worksOn} handleClick={worksClick} />
+              </Link>
+            </div>
+            <div className={styles.button_wrapper}>
+              <Link href='/blog'>
+                <Button content='Blog' state={blogOn} handleClick={blogClick} />
+              </Link>
+            </div>
           </div>
           <div className={styles.button_wrapper}>
-            <Link href='/work'>
-              <Button content='Work' state={worksOn} handleClick={worksClick} />
-            </Link>
-          </div>
-          <div className={styles.button_wrapper}>
-            <Link href='/blog'>
-              <Button content='Blog' state={blogOn} handleClick={blogClick} />
-            </Link>
+            <BreadCrumbs></BreadCrumbs>
           </div>
         </div>
       </header>

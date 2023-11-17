@@ -3,11 +3,11 @@
 }
 
 .child {
-  @apply pt-[70px] pb-[64px] px-4;
+  @apply pt-[60px] pb-[64px] px-4;
 }
 
 @media (max-width: 768px) {
   .child {
-    @apply w-full h-full pt-[60px];
+    @apply w-full h-full;
   }
 }
