@@ -18,7 +18,11 @@
 }
 
 .top_wrapper {
-  @apply inline-flex justify-between;
+  @apply flex justify-center pt-8 m-auto;
+}
+
+.icon_wrapper {
+  @apply flex justify-center my-4;
 }
 
 .sub_wrapper {
@@ -26,7 +30,7 @@
 }
 
 .detail {
-  @apply w-full mt-6 duration-200 rounded-xl justify-center p-8;
+  @apply w-full mt-6 duration-200 rounded-xl justify-center p-6 px-12;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
@@ -51,7 +55,7 @@
 }
 
 .profile {
-  @apply flex flex-col items-center m-3;
+  @apply flex flex-col items-center;
 }
 
 .profile h3 {

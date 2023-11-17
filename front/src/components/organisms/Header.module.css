@@ -3,7 +3,7 @@
 }
 
 .wrapper {
-  @apply px-4 flex max-w-[1024px] m-auto justify-between mt-[20px];
+  @apply px-2 flex max-w-[1024px] m-auto justify-between mt-[10px];
 }
 
 @keyframes fadeOut {
@@ -39,19 +39,15 @@
 }
 
 .button_wrapper {
-  @apply flex justify-end m-2;
-}
-
-.button_wrapper {
   @apply flex justify-center m-2;
 }
 
-.wrapper {
-  @apply m-auto p-3;
+.button_group {
+  @apply flex justify-center;
 }
 
-.header_content {
-  @apply flex flex-col justify-center mt-[-330px] duration-300;
+.content {
+  @apply flex flex-col justify-center mt-[-240px] duration-300 py-2;
 }
 
 .head_open {
@@ -100,7 +96,13 @@
   .ham_menu {
     @apply mt-[5px] mr-[5vw];
   }
+  .content {
+    @apply mt-[-420px];
+  }
   .head_open {
-    @apply mt-[-45px];
+    @apply mt-[-40px];
+  }
+  .button_group {
+    @apply flex-col;
   }
 }

@@ -15,7 +15,7 @@ export const ChangeThemeToggle = () => {
         }}
         className={styles.toggle}
       >
-        {theme === 'dark' ? <HalfMoon /> : <SunLight />}
+        {theme === 'light' ? <SunLight /> : <HalfMoon />}
       </button>
     </>
   )

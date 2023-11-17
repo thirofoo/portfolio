@@ -1,0 +1,21 @@
+.breadcrumbs {
+  @apply text-lg font-extralight z-20 flex;
+}
+
+.breadcrumbs a {
+  @apply no-underline;
+}
+
+.breadcrumbs a.active {
+  @apply font-medium;
+}
+
+.breadcrumbs span {
+  @apply mx-2;
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    @apply block;
+  }
+}
