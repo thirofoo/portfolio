@@ -18,6 +18,10 @@
 }
 
 .top_wrapper {
+  @apply inline-flex flex-col border-y-sh1 border-y-[1px] border-opacity-70 w-[min(70vw,768px)] my-4;
+}
+
+.profile_wrapper {
   @apply flex justify-center pt-8 m-auto;
 }
 
@@ -64,6 +68,10 @@
 
 @media (max-width: 768px) {
   .top_wrapper {
+    @apply m-0;
+  }
+
+  .profile_wrapper {
     @apply flex flex-col justify-center;
   }
 

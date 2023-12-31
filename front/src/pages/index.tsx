@@ -7,8 +7,8 @@ const Home: NextPage = () => {
   return (
     <>
       <div className='text-center'>
-        <div className='inline-flex flex-col border-y-sh1 border-y-[1px] border-opacity-70 w-[min(80vw,768px)]'>
-          <div className={styles.top_wrapper}>
+        <div className={styles.top_wrapper}>
+          <div className={styles.profile_wrapper}>
             <Image
               src='/images/top.jpg'
               alt='through / thirofoo'
