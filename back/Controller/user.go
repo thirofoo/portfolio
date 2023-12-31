@@ -37,7 +37,7 @@ func setSigningKey() error {
 func Login(c *gin.Context) {
     var loginForm Models.UpdateUserInput
     if err := c.BindJSON(&loginForm); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+        c.JSON(http.StatusBadRequest, gin.H{"error": "parameter is invalid"})
         return
     }
 
@@ -48,7 +48,7 @@ func Login(c *gin.Context) {
     user := Models.User{}
     result := Models.Db.Where("username = ?", username).First(&user)
     if result.Error != nil {
-        c.JSON(http.StatusUnauthorized, gin.H{"error": "ユーザーが存在しません"})
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "user is not found"})
         return
     }
 
@@ -56,7 +56,7 @@ func Login(c *gin.Context) {
     // ※ DBにはpasswordのhashが入ってる
     err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
     if err != nil {
-        c.JSON(http.StatusUnauthorized, gin.H{"error": "パスワードが正しくありません"})
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "password is invalid"})
         return
     }
 
@@ -64,13 +64,13 @@ func Login(c *gin.Context) {
     setSigningKey()
     token, err := createToken(user.ID, user.Username)
     if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "JWTtokenの生成に失敗しました"})
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
         return
     }
 
     // response
     c.JSON(http.StatusOK, gin.H{
-        "message": "ログインに成功しました",
+        "message": "login successfully",
         "token":   token,
     })
 }
@@ -105,7 +105,14 @@ func AuthMiddleware() gin.HandlerFunc {
         // Authorizationヘッダーからtokenを取得
         authHeader := c.GetHeader("Authorization")
         if authHeader == "" {
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorizationヘッダーが存在しません"})
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header is not found"})
+            c.Abort()
+            return
+        }
+
+        // Authorizationヘッダーはあるが、Bearer tokenがない場合
+        if len(authHeader) < len("Bearer ") {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "token is not found"})
             c.Abort()
             return
         }
@@ -116,7 +123,7 @@ func AuthMiddleware() gin.HandlerFunc {
         // JWTを検証
         claims, err := validateToken(tokenString)
         if err != nil {
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "tokenが無効です"})
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "token is invalid"})
             c.Abort()
             return
         }
@@ -145,18 +152,18 @@ func validateToken(tokenString string) (jwt.MapClaims, error) {
         return signingKey, nil
     })
     if err != nil {
-        return nil, err
+        return nil, fmt.Errorf("error initializing signing key: %v", err)
     }
 
     // tokenが有効か確認
     if !token.Valid {
-        return nil, errors.New("tokenが無効です")
+        return nil, errors.New("token is invalid")
     }
 
     // tokenに含まれるclaimを返す
     claims, ok := token.Claims.(jwt.MapClaims)
     if !ok {
-        return nil, errors.New("tokenにclaimがありません")
+        return nil, errors.New("token has no claim")
     }
 
     return claims, nil
@@ -169,20 +176,20 @@ func CreateAdmin(c *gin.Context) {
     // password hash化
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
     if err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "パスワードハッシュ化に失敗しました"})
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password"})
         return
     }
 
     user.Password = string(hashedPassword)
 
     if err := Models.Db.Create(&user).Error; err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "ユーザー作成に失敗しました"})
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Failed to create user"})
         return
     }
 
-    c.JSON(http.StatusOK, gin.H{"message": "ユーザーを作成しました"})
+    c.JSON(http.StatusOK, gin.H{"message": "created user successfully"})
 }
 
 func AuthCheckHandler(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H{"message": "ログインしています"})
+    c.JSON(http.StatusOK, gin.H{"message": "You are logged in"})
 }
