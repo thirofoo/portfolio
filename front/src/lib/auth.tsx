@@ -16,6 +16,9 @@ export const checkAuth = async (router: NextRouter): Promise<AuthCheckResponse> 
     })
 
     if (!response.ok) {
+      // response を log に出力
+      const errorResponse = await response.json()
+      console.error(`error message: ${errorResponse.error}`)
       throw new Error('Authentication failed')
     }
 
