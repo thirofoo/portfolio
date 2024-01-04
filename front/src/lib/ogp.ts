@@ -1,4 +1,5 @@
 import { Ogp } from '@/Interfaces/Ogp'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import cheerio from 'cheerio-without-node-native'
 
