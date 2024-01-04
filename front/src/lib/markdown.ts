@@ -1,4 +1,6 @@
 import { Image } from '@/components/atoms/Image'
+import { LinkCard } from '@/components/molecules/LinkCard'
+import { fetchOGPInfo } from '@/lib/api/ogp'
 import { getUrl } from '@/lib/url'
 import { Element } from 'hast'
 import React from 'react'
@@ -15,7 +17,11 @@ import { Node } from 'unist'
 import { visit } from 'unist-util-visit'
 
 function rehypeTransformImageUrls(slug: string) {
+  // ここでは 置換したいコンポーネントの属性をいじって props として情報を渡す為に修正を入れている
   return async (tree: Node) => {
+    // Promise 配列を作成
+    const promises: Promise<void>[] = []
+
     visit(tree, 'element', (node: Node & Element) => {
       const { tagName, properties } = node
 
@@ -24,13 +30,32 @@ function rehypeTransformImageUrls(slug: string) {
         // properties: ![alt](src) の alt,src
         const { src, alt } = properties
         const srcString = src as string
-
         node.properties = {
           src: getUrl(slug + '/' + srcString),
           alt: alt,
         }
       }
+
+      // a タグ ⇒ LinkCard 用の props を追加
+      if (tagName === 'a' && properties) {
+        const { href } = properties
+        // 非同期処理を Promise 配列に追加
+        promises.push(
+          (async () => {
+            const ogp = await fetchOGPInfo(href as string)
+            node.properties = {
+              url: href,
+              img: ogp?.image,
+              title: ogp?.title,
+              description: ogp?.description,
+              icon: ogp?.icon,
+            }
+          })(),
+        )
+      }
     })
+    // Promise 配列を解決
+    await Promise.all(promises)
   }
 }
 
@@ -58,7 +83,10 @@ export const parseHTMLToReactJSX = (htmlContent: string) => {
     .use(rehypeReact, {
       createElement: React.createElement,
       components: {
+        // img タグを Image コンポーネントに置き換える
         img: Image,
+        // a タグを LinkCard コンポーネントに置き換える
+        a: LinkCard,
       },
     })
 

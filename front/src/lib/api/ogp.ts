@@ -16,7 +16,14 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
       site_name: $('meta[property="og:site_name"]').attr('content') || '',
       type: $('meta[property="og:type"]').attr('content') || '',
       url: $('meta[property="og:url"]').attr('content') || '',
+      icon: $('link[rel="shortcut icon"]').attr('href') || '',
     }
+    // icon が https から始まっていない場合は、URL を結合
+    if (ogpInfo.icon && !ogpInfo.icon.startsWith('https')) {
+      ogpInfo.icon = 'https:' + ogpInfo.icon
+    }
+    console.log('url', url)
+    console.log('ogpInfo', ogpInfo)
     return ogpInfo
   } catch (error) {
     console.error('Error fetching OGP information:', error)

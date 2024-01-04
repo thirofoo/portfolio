@@ -5,4 +5,5 @@ export interface Ogp {
   site_name: string
   type: string
   url: string
+  icon: string
 }
