@@ -1,6 +1,6 @@
 import { Image } from '@/components/atoms/Image'
 import styles from '@/components/molecules/LinkCard.module.css'
-import { extractSlugFromURL } from '@/lib/url'
+import { extractSlugFromURL, getUrl } from '@/lib/url'
 import Link from 'next/link'
 
 interface LinkCardProps {
@@ -12,6 +12,8 @@ interface LinkCardProps {
 }
 
 export const LinkCard = ({ url, img, title, description, icon }: LinkCardProps) => {
+  // OGP imageがない場合は "No Image" 画像を表示
+  if (img.length <= 8) img = getUrl('default_vbbudj')
   return (
     <>
       <Link
@@ -24,13 +26,13 @@ export const LinkCard = ({ url, img, title, description, icon }: LinkCardProps) 
         <div className={styles.content}>
           <div className={styles.title}>{title}</div>
           <div className={styles.description}>{description}</div>
-          <div className={styles.url}>
+          <div className={styles.url} id='link-icon'>
             <Image className={styles.icon} src={icon} alt={title} width={20} height={20} />
             <div>{extractSlugFromURL(url)}</div>
           </div>
         </div>
         <Image
-          className={styles.image}
+          className={styles.image + (img == getUrl('default_vbbudj') ? ' ' + styles.noImage : '')}
           src={img}
           alt={title}
           width={10000} // 親要素内でmaxにしたいから大きい値を入れておく

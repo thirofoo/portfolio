@@ -33,3 +33,7 @@ textarea {
 #link-card img {
   @apply rounded-l-none;
 }
+
+#link-icon img {
+  @apply rounded-none;
+}
