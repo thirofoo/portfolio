@@ -1,5 +1,6 @@
 import { Image } from '@/components/atoms/Image'
 import styles from '@/components/molecules/LinkCard.module.css'
+import { extractSlugFromURL } from '@/lib/url'
 import Link from 'next/link'
 
 interface LinkCardProps {
@@ -7,9 +8,10 @@ interface LinkCardProps {
   img: string
   title: string
   description: string
+  icon: string
 }
 
-export const LinkCard = ({ url, img, title, description }: LinkCardProps) => {
+export const LinkCard = ({ url, img, title, description, icon }: LinkCardProps) => {
   return (
     <>
       <Link
@@ -22,6 +24,10 @@ export const LinkCard = ({ url, img, title, description }: LinkCardProps) => {
         <div className={styles.content}>
           <div className={styles.title}>{title}</div>
           <div className={styles.description}>{description}</div>
+          <div className={styles.url}>
+            <Image className={styles.icon} src={icon} alt={title} width={20} height={20} />
+            <div>{extractSlugFromURL(url)}</div>
+          </div>
         </div>
         <Image
           className={styles.image}
