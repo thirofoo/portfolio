@@ -24,3 +24,12 @@ header,
 textarea {
   @apply bg-bg1 bg-opacity-70 dark:bg-dbg1 dark:bg-opacity-70;
 }
+
+/* 例外的に Blog LinkCard の CSS 設定 */
+#link-card:hover {
+  @apply bg-bg2 dark:bg-dbg2;
+}
+
+#link-card img {
+  @apply rounded-l-none;
+}

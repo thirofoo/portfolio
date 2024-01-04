@@ -47,10 +47,6 @@
   @apply my-4;
 }
 
-.content a {
-  @apply underline;
-}
-
 .content code {
   @apply px-1 backdrop-blur-3xl m-auto bg-dbg2 bg-opacity-95;
   box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
@@ -81,11 +77,15 @@
 }
 
 .content img {
-  @apply rounded-xl m-auto my-4;
+  @apply rounded-xl w-[100vw-300px];
 }
 
 .content em {
   @apply flex justify-center my-2;
+}
+
+.content svg {
+  @apply inline-flex;
 }
 
 /* ~~~~~~~~~~~~~~~ 記事以外の部分 ~~~~~~~~~~~~~~~ */
@@ -110,20 +110,6 @@
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
-@media (max-width: 768px) {
-  .content {
-    @apply mt-[-20px];
-  }
-
-  .detail {
-    @apply text-sm mt-4;
-  }
-
-  .content pre code {
-    @apply my-8 w-[100vw];
-  }
-}
-
 .headings {
   @apply sticky top-[100px] items-end ml-4 mt-[50px] px-6 py-4 w-[300px] max-h-[60vh] overflow-y-auto underline border-sh1 border-t-[1px] border-b-[1px];
 }
@@ -133,6 +119,15 @@
 }
 
 @media (max-width: 768px) {
+  .content {
+    @apply mt-[-20px];
+  }
+  .detail {
+    @apply text-sm mt-4;
+  }
+  .content pre code {
+    @apply my-8 w-[100vw];
+  }
   .headings {
     @apply hidden;
   }

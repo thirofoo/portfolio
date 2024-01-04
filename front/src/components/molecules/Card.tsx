@@ -1,6 +1,6 @@
 import { Article } from '@/Interfaces/Article'
+import { Image } from '@/components/atoms/Image'
 import styles from '@/components/molecules/Card.module.css'
-import Image from 'next/image'
 import Link from 'next/link'
 
 type Props = {

@@ -2,10 +2,6 @@
   @apply text-lg font-extralight z-20 flex;
 }
 
-.breadcrumbs a {
-  @apply no-underline;
-}
-
 .breadcrumbs a.active {
   @apply font-medium;
 }
