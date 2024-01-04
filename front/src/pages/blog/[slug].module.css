@@ -77,7 +77,7 @@
 }
 
 .content img {
-  @apply rounded-xl w-[100vw-300px];
+  @apply rounded-md w-[100vw-300px];
 }
 
 .content em {
@@ -98,15 +98,15 @@
 }
 
 .detail {
-  @apply text-end w-full rounded-xl font-bold text-xl p-[10px];
+  @apply text-end w-full rounded-md font-bold text-xl p-[10px];
 }
 
 .head_image {
-  @apply absolute w-full h-full rounded-xl object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
+  @apply absolute w-full h-full rounded-md object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
 }
 
 .head_info {
-  @apply rounded-xl object-cover w-full min-h-[300px] overflow-hidden relative;
+  @apply rounded-md object-cover w-full min-h-[300px] overflow-hidden relative;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 

@@ -1,18 +1,14 @@
 .card {
-  @apply relative shadow-sh1 w-[calc(min(450px,40vw))] min-h-[calc(min(100px,80vw))] shadow-sm duration-200 rounded-xl dark:bg-dbg3 text-left;
+  @apply relative shadow-sh1 w-[calc(min(450px,40vw))] min-h-[calc(min(100px,80vw))] shadow-sm duration-200 rounded-md dark:bg-dbg3 text-left;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
-.card:hover {
-  @apply m-0 p-0 scale-[1.02];
-}
-
 .image {
-  @apply absolute w-full h-full rounded-xl object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
+  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-20 overflow-hidden;
 }
 
 .content {
-  @apply flex p-6 rounded-xl h-full flex-col justify-between;
+  @apply flex p-6 rounded-md h-full flex-col justify-between;
 }
 
 .title {
@@ -32,7 +28,7 @@
 }
 
 .tag {
-  @apply m-1 p-1 rounded-sm min-w-[min(50px,10vw)] text-center;
+  @apply m-1 p-1 rounded-md min-w-[min(50px,10vw)] text-center;
   box-shadow: 0px 0px 1px 1px theme(colors.sh1);
 }
 

@@ -11,8 +11,8 @@ type Props = {
 export const Card = ({ article, from }: Props) => {
   return (
     <>
-      <div className={styles.card}>
-        <Link href={`/${from}/${article.slug}`} className='rounded-xl'>
+      <div className={styles.card} id='blog-card'>
+        <Link href={`/${from}/${article.slug}`}>
           <Image
             className={styles.image}
             src={article.thumbnail}

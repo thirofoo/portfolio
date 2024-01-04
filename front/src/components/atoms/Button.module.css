@@ -5,16 +5,8 @@
 }
 
 .activeButton {
-  @apply rounded-md py-3 px-12 duration-200 bg-opacity-50 min-w-[150px] bg-sh1;
-  box-shadow: inset 0px 0px 3px 3px theme(colors.sh1);
-}
-
-.activeButton:hover {
-  box-shadow: inset 0px 0px 6px 3px theme(colors.sh1);
-}
-
-.button:hover {
-  box-shadow: inset 0px 0px 6px 3px theme(colors.sh1);
+  @apply rounded-md py-3 px-12 duration-200 backdrop-blur-3xl min-w-[150px];
+  box-shadow: inset 0px 0px 6px 2px theme(colors.sh1);
 }
 
 @media (max-width: 768px) {

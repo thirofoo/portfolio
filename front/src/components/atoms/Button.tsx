@@ -20,6 +20,7 @@ export const Button = ({
   return (
     <>
       <button
+        id='button'
         type={type}
         className={state ? styles.activeButton + ' ' + add_style : styles.button + ' ' + add_style}
         onClick={handleClick}

@@ -113,7 +113,7 @@ const EditArticlePage: NextPage<void> = () => {
                   type='text'
                   value={tag}
                   onChange={(e) => handleTagChange(index, e.target.value)}
-                  className={'mr-4 rounded-xl shadow-sh1 shadow'}
+                  className={'mr-4 rounded-md shadow-sh1 shadow'}
                 />
                 <Button
                   content='✖'
