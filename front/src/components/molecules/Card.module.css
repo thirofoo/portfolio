@@ -4,7 +4,7 @@
 }
 
 .image {
-  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-20 overflow-hidden;
+  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
 }
 
 .content {

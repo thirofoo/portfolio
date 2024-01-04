@@ -102,7 +102,7 @@
 }
 
 .head_image {
-  @apply absolute w-full h-full rounded-md object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
+  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
 }
 
 .head_info {

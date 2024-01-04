@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <>
       <h1 className={styles.title}>Works</h1>
       <Link href='/work/competitive-programming'>
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} id='blog-card'>
           <div className='p-4'>
             <h2>My Competitive Programming Library</h2>
             <p>自分の競技プログラミングで使用するライブラリをまとめています。</p>

@@ -27,7 +27,7 @@ textarea {
 
 /* 例外的に button, BlogCard, Blog LinkCard の CSS 設定 */
 #button {
-  @apply bg-bg1 dark:bg-dbg1 bg-opacity-70;
+  @apply bg-bg1 dark:bg-dbg1 opacity-90;
 }
 
 #button:hover,
