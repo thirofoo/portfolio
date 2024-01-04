@@ -1,4 +1,5 @@
 import { Ogp } from '@/Interfaces/Ogp'
+// @ts-ignore
 import cheerio from 'cheerio-without-node-native'
 
 export async function fetchOGPInfo(url: string): Promise<Ogp | null> {

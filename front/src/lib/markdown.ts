@@ -1,6 +1,6 @@
 import { Image } from '@/components/atoms/Image'
 import { LinkCard } from '@/components/molecules/LinkCard'
-import { fetchOGPInfo } from '@/lib/api/ogp'
+import { fetchOGPInfo } from '@/lib/ogp'
 import { getUrl } from '@/lib/url'
 import { Element } from 'hast'
 import React from 'react'
