@@ -108,17 +108,27 @@ const EditArticlePage: NextPage<void> = () => {
               Tags:
             </label>
             {tags.map((tag, index) => (
-              <div key={index} className={'inline-block px-4'}>
+              <div key={index} className={'inline-block pr-8 pb-4'}>
                 <input
                   type='text'
                   value={tag}
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={'mr-4 rounded-xl shadow-sh1 shadow'}
                 />
-                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button' />
+                <Button
+                  content='✖'
+                  handleClick={() => handleRemoveTag(index)}
+                  type='button'
+                  add_style='min-w-0 px-3 py-2'
+                />
               </div>
             ))}
-            <Button content='+' handleClick={() => handleAddTag()} type='button' />
+            <Button
+              content='Add'
+              handleClick={() => handleAddTag()}
+              type='button'
+              add_style='min-w-0 px-3'
+            />
           </div>
 
           {formFields.map((field) => (
