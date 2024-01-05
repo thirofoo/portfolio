@@ -15,7 +15,7 @@ const Home: NextPage = () => {
               alt='through / thirofoo'
               width={160}
               height={160}
-              className={styles.icon}
+              className={styles.top_icon}
               loading='eager'
             />
             <div className={styles.top_profile}>
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
                   href='https://github.com/thirofoo'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='mr-4'
+                  className={styles.icon}
                 >
                   <GitHub />
                 </a>
@@ -35,81 +35,69 @@ const Home: NextPage = () => {
                   href='https://twitter.com/through__TH__'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='mr-4'
+                  className={styles.icon}
                 >
                   <Twitter />
                 </a>
               </p>
             </div>
           </div>
-          <div className='pb-8'>
-            競プロが好きな人。web系もほんのり触っています。
-            <br />
-            競プロしたり、麻雀したり、ホラゲ実況を見たりするのが日課です。
+          <div className={styles.description}>
+            競プロが好きな人。web系もほんのり触っています。 <br />
+            最近のマイブーム : 競プロ ホラゲ実況鑑賞 麻雀 etc... (2024.01.06)
           </div>
         </div>
         <div className={styles.sub_wrapper}>
-          <div className={styles.detail}>
-            <div className={styles.profile}>
-              <h3>Competitive Programming</h3>
-              <div>
-                2021/11/27 ~ 競技プログラミング Start
-                <br />
-                AtCoder というコンテストサイトでは
-                <br />
-                Algorithm 分野は 青色 (上位4.3%)
-                <br />
-                Heuristic 分野は 黄色 (上位4.2%)
-                <br />
-                <br />
-              </div>
-              <LinkCard
-                title='through - AtCoder'
-                url='https://atcoder.jp/users/through'
-                img='https://img.atcoder.jp/assets/atcoder.png'
-                description='AtCoder is a programming contest site for anyone from beginners to experts. We hold weekly programming contests online.'
-                icon='https://img.atcoder.jp/assets/favicon.png'
-              />
+          <div className={styles.profile}>
+            <h3>Competitive Programming</h3>
+            <div>
+              2021/11/27 ~ 競技プログラミング Start <br />
+              AtCoder というコンテストサイトでは <br />
+              Algorithm 分野は 青色 (上位4.3%) <br />
+              Heuristic 分野は 黄色 (上位4.2%) <br />
+              <br />
             </div>
+            <LinkCard
+              title='through - AtCoder'
+              url='https://atcoder.jp/users/through'
+              img='/images/atcoder.webp'
+              description='AtCoder is a programming contest site for anyone from beginners to experts. We hold weekly programming contests online.'
+              icon='https://img.atcoder.jp/assets/favicon.png'
+            />
           </div>
           <div className={styles.add_margin}></div>
-          <div className={styles.detail}>
-            <div className={styles.profile}>
-              <h3>Web</h3>
-              <div>
-                2021/04/01 ~ Web開発 Start
-                <br />
-                大学入学後に Tetris を作ったのがプログラミングとの出会い
-                <br />
-                このサイトを作ったり Future Inc. で開発バイトをしたりしている
-                <br />
-                <br />
-              </div>
-              <LinkCard
-                title='フューチャー株式会社'
-                url='https://www.future.co.jp/'
-                img='https://www.future.co.jp/assets/images/ogp.png'
-                description='フューチャー株式会社の会社概要、経営理念、CSR、投資家情報などに関する情報を掲載している、企業公式サイトです。'
-              />
+          <div className={styles.profile}>
+            <h3>Web</h3>
+            <div>
+              2021/04/01 ~ Web開発 Start <br />
+              大学入学後に Tetris を作ったのがプログラミングとの出会い <br />
+              このサイトを作ったり Future Inc. で開発バイトをしたりしている <br />
+              <br />
             </div>
+            <LinkCard
+              title='フューチャー株式会社'
+              url='https://www.future.co.jp/'
+              img='/images/future.webp'
+              description='フューチャー株式会社の会社概要、経営理念、CSR、投資家情報などに関する情報を掲載している、企業公式サイトです。'
+              icon='/images/future.ico'
+            />
           </div>
         </div>
         <div className={styles.sub_wrapper}>
-          <div className={styles.detail}>
-            <div className={styles.profile}>
-              <h3>Others</h3>
-              <div className='w-full'>
-                <div>・応用情報技術者 (2022年度秋季)</div>
-                <div>・埼玉大学プログラミングサークル Maximum 2023年度副会長</div>
-                <br />
-              </div>
-              <LinkCard
-                url='https://www.maximum.vc/'
-                img='/images/maximum.png'
-                title='Maximum'
-                description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます'
-              />
+          <div className={styles.profile}>
+            <h3>Others</h3>
+            <div className='w-full'>
+              <div>・応用情報技術者 (2022年度秋季)</div>
+              <div>・埼玉大学プログラミングサークル Maximum 2023年度副会長</div>
+              <br />
             </div>
+            <LinkCard
+              url='https://www.maximum.vc/'
+              img='/images/maximum.png'
+              title='Maximum'
+              description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます'
+              icon='/images/melin.png'
+            />
           </div>
         </div>
       </div>

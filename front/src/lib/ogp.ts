@@ -19,13 +19,23 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
       site_name: $('meta[property="og:site_name"]').attr('content') || '',
       type: $('meta[property="og:type"]').attr('content') || '',
       url: $('meta[property="og:url"]').attr('content') || '',
-      icon: $('link[rel="shortcut icon"]').attr('href') || '',
+      icon:
+        $('link[rel="icon"]').attr('href') ||
+        $('link[rel="shortcut icon"]').attr('href') ||
+        $('link[rel="apple-touch-icon"]').attr('href') ||
+        '',
     }
-    // icon が https から始まっていない場合は、URL を結合
-    if (ogpInfo.icon && !ogpInfo.icon.startsWith('https')) {
+    // icon には様々な patern があるので、それぞれのパターンに対応
+    const origin = new URL(url).origin
+    if (ogpInfo.icon.startsWith('//')) {
+      // url が origin から始まっている場合は、URL を結合
       ogpInfo.icon = 'https:' + ogpInfo.icon
+    } else if (ogpInfo.icon && !ogpInfo.icon.startsWith('http')) {
+      // url が http から始まっていない場合は、origin と結合
+      ogpInfo.icon = origin + ogpInfo.icon
     }
     // console.log('url', url)
+    // console.log('icon', ogpInfo.icon)
     // console.log('ogpInfo', ogpInfo)
     return ogpInfo
   } catch (error) {

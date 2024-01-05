@@ -30,7 +30,7 @@
 }
 
 .icon {
-  @apply inline mr-4;
+  @apply inline mr-2;
 }
 
 .slug {
