@@ -105,7 +105,7 @@ const Home: NextPage = () => {
               </div>
               <LinkCard
                 url='https://www.maximum.vc/'
-                img='https://www.maximum.vc/wp-content/uploads/2023/04/MAXIMUM_HEADER_LIGHT-scaled.webp'
+                img='/images/maximum.png'
                 title='Maximum'
                 description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます'
               />
