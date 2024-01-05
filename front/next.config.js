@@ -19,6 +19,7 @@ module.exports = {
       'codeforces.org',
       'www.maximum.vc',
       'www.future.co.jp',
+      'optuna.org',
     ],
   },
 }
