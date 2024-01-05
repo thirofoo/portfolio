@@ -1,6 +1,10 @@
-.icon {
+.top_icon {
   @apply inline rounded-full max-h-[160px] max-w-[160px] w-[40vw] h-[40vw] m-auto;
   animation: ping 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.icon {
+  @apply mr-4;
 }
 
 @keyframes ping {
@@ -21,6 +25,10 @@
   @apply inline-flex flex-col border-y-sh1 border-y-[1px] border-opacity-70 w-[min(70vw,768px)] mb-4;
 }
 
+.description {
+  @apply pb-8;
+}
+
 .profile_wrapper {
   @apply flex justify-center pt-8 pb-4 m-auto;
 }
@@ -31,11 +39,6 @@
 
 .sub_wrapper {
   @apply flex justify-center;
-}
-
-.detail {
-  @apply w-full mt-6 duration-200 rounded-md justify-center p-2;
-  /* box-shadow: 0px 0px 6px 1px theme(colors.sh1); */
 }
 
 .add_margin {
@@ -59,7 +62,7 @@
 }
 
 .profile {
-  @apply flex flex-col justify-between items-center h-full;
+  @apply flex flex-col justify-between items-center w-full p-2 mt-6 duration-200;
 }
 
 .profile h3 {
