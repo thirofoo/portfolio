@@ -37,13 +37,13 @@ export const LinkCard = ({
   twitter_normal,
   twitter_dark,
 }: LinkCardProps) => {
+  const { theme } = useTheme()
   if (
     typeof twitter_normal === 'string' &&
     typeof twitter_dark === 'string' &&
     twitter_normal.length >= 10
   ) {
     // Twitter Card は別途設定
-    const { theme } = useTheme()
     const start_theme: string = theme === 'dark' ? 'dark' : 'light'
     return (
       <>
