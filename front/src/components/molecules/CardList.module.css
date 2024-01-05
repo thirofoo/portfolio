@@ -1,5 +1,5 @@
 .card {
-  @apply inline-flex mx-[12px] mb-[24px];
+  @apply inline-flex mx-[12px] mb-[24px] max-w-[48%];
 }
 
 .container {
@@ -12,7 +12,7 @@
 
 @media (max-width: 768px) {
   .card {
-    @apply m-0 pb-4 mb-2;
+    @apply m-0 pb-4 mb-2　max-w-[95%];
   }
   .article_wrapper {
     @apply inline;

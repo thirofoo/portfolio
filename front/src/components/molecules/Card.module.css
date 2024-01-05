@@ -1,5 +1,5 @@
 .card {
-  @apply relative shadow-sh1 w-[calc(min(450px,40vw))] min-h-[calc(min(100px,80vw))] shadow-sm duration-200 rounded-md dark:bg-dbg3 text-left;
+  @apply relative shadow-sh1 w-[40vw] min-h-[calc(min(100px,80vw))] shadow-sm duration-200 rounded-md dark:bg-dbg3 text-left;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
@@ -38,6 +38,6 @@
 
 @media (max-width: 768px) {
   .card {
-    @apply w-[92vw] h-auto;
+    @apply w-[85vw] h-auto;
   }
 }
