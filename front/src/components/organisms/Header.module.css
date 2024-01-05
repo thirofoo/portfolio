@@ -1,5 +1,5 @@
 .header {
-  @apply fixed text-xl w-full z-20 duration-500 border-b-2 border-sh1 mt-[-2px];
+  @apply fixed text-xl w-full z-20 duration-500 border-b-[1px] border-sh1 mt-[-2px];
 }
 
 .wrapper {

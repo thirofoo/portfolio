@@ -16,6 +16,9 @@ module.exports = {
       'static.zenn.studio',
       'chokudai.hatenablog.com',
       'ogimage.blog.st-hatena.com',
+      'codeforces.org',
+      'www.maximum.vc',
+      'www.future.co.jp',
     ],
   },
 }

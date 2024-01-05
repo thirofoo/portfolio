@@ -45,10 +45,18 @@ function rehypeTransformImageUrls(slug: string) {
             const ogp = await fetchOGPInfo(href as string)
             node.properties = {
               url: href,
-              img: ogp?.image,
               title: ogp?.title,
               description: ogp?.description,
-              icon: ogp?.icon,
+            }
+            // もし image がある場合は、image を追加、なければ No Image を追加
+            if (ogp?.image && ogp.image.startsWith('http')) {
+              node.properties.img = ogp.image
+            } else {
+              node.properties.img = getUrl('default_vbbudj')
+            }
+            // もし icon がある場合は、icon を追加
+            if (ogp?.icon && ogp.icon.startsWith('http')) {
+              node.properties.icon = ogp.icon
             }
           })(),
         )

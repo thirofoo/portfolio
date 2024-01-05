@@ -11,7 +11,12 @@ const AdminArticlesPage = () => {
   const [articles, setArticles] = useState<Article[]>([])
 
   useCheckAuth(async () => {
-    const fetchedArticles = await getAllArticles(process.env.NEXT_PUBLIC_API_URL || '')
+    const fetchedArticles: Article[] = await getAllArticles(process.env.NEXT_PUBLIC_API_URL || '')
+    fetchedArticles.sort((a: Article, b: Article) => {
+      if (a.CreatedAt > b.CreatedAt) return -1
+      if (a.CreatedAt < b.CreatedAt) return 1
+      return 0
+    })
     setArticles(fetchedArticles)
   }, router)
 

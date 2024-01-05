@@ -1,3 +1,4 @@
+import LinkCard from '@/components/molecules/LinkCard'
 import styles from '@/pages/about.module.css'
 import { GitHub, Twitter } from 'iconoir-react'
 import type { NextPage } from 'next'
@@ -19,9 +20,8 @@ const Home: NextPage = () => {
             />
             <div className={styles.top_profile}>
               <h2>thirofoo / through</h2>
-              <p>
-                2002.7.24 <br></br> from Tochigi
-              </p>
+              <p>2002.7.24</p>
+              <h3>Saitama University ICS B3</h3>
               <p className={styles.icon_wrapper}>
                 <a
                   href='https://github.com/thirofoo'
@@ -43,8 +43,9 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className='pb-8'>
-            Saitama University ICS B3<br></br>
-            競プロが好きな人。web系もほんのりやってます。
+            競プロが好きな人。web系もほんのり触っています。
+            <br />
+            競プロしたり、麻雀したり、ホラゲ実況を見たりするのが日課です。
           </div>
         </div>
         <div className={styles.sub_wrapper}>
@@ -52,20 +53,23 @@ const Home: NextPage = () => {
             <div className={styles.profile}>
               <h3>Competitive Programming</h3>
               <div>
-                2021/12 ~ 競技プログラミング Start<br></br>
-                現在(2023/11/17) AtCoder では<br></br>
-                algorithm分野は 水色 (上位5.7%)<br></br>
-                heuristic分野は 青色 (上位5.1%)<br></br>
-                <br></br>
-                <a href='https://atcoder.jp/users/through' className='underline'>
-                  AtCoder: through
-                </a>
-                <br></br>
-                <a href='https://codeforces.com/profile/through' className='underline'>
-                  Codeforces: through
-                </a>{' '}
-                <br></br>
+                2021/11/27 ~ 競技プログラミング Start
+                <br />
+                AtCoder というコンテストサイトでは
+                <br />
+                Algorithm 分野は 青色 (上位4.3%)
+                <br />
+                Heuristic 分野は 黄色 (上位4.2%)
+                <br />
+                <br />
               </div>
+              <LinkCard
+                title='through - AtCoder'
+                url='https://atcoder.jp/users/through'
+                img='https://img.atcoder.jp/assets/atcoder.png'
+                description='AtCoder is a programming contest site for anyone from beginners to experts. We hold weekly programming contests online.'
+                icon='https://img.atcoder.jp/assets/favicon.png'
+              />
             </div>
           </div>
           <div className={styles.add_margin}></div>
@@ -73,12 +77,20 @@ const Home: NextPage = () => {
             <div className={styles.profile}>
               <h3>Web</h3>
               <div>
-                2021/04/01 ~ Web開発 Start<br></br>
-                大学入学後に tetris を作ったのが事の始まり<br></br>
-                このサイトを作ったり、開発バイトをしたりしている。<br></br>
-                <br></br>
-                using language：<br></br>TypeScript, Golang <br></br>
+                2021/04/01 ~ Web開発 Start
+                <br />
+                大学入学後に Tetris を作ったのがプログラミングとの出会い
+                <br />
+                このサイトを作ったり Future Inc. で開発バイトをしたりしている
+                <br />
+                <br />
               </div>
+              <LinkCard
+                title='フューチャー株式会社'
+                url='https://www.future.co.jp/'
+                img='https://www.future.co.jp/assets/images/ogp.png'
+                description='フューチャー株式会社の会社概要、経営理念、CSR、投資家情報などに関する情報を掲載している、企業公式サイトです。'
+              />
             </div>
           </div>
         </div>
@@ -86,13 +98,20 @@ const Home: NextPage = () => {
           <div className={styles.detail}>
             <div className={styles.profile}>
               <h3>Others</h3>
-              <div>
+              <div className='w-full'>
                 <div>・応用情報技術者 (2022年度秋季)</div>
                 <div>・埼玉大学プログラミングサークル Maximum 2023年度副会長</div>
+                <br />
               </div>
+              <LinkCard
+                url='https://www.maximum.vc/'
+                img='https://www.maximum.vc/wp-content/uploads/2023/04/MAXIMUM_HEADER_LIGHT-scaled.webp'
+                title='Maximum'
+                description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます'
+              />
             </div>
           </div>
-        </div>{' '}
+        </div>
       </div>
     </>
   )

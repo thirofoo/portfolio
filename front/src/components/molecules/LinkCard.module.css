@@ -1,14 +1,14 @@
 .card {
-  @apply inline-flex w-full justify-between rounded-md duration-200;
+  @apply flex justify-between w-full rounded-md duration-200;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
 .image {
-  @apply h-[150px] w-auto max-w-[30vw] object-cover rounded-t-none opacity-75;
+  @apply h-[150px] w-auto max-w-[max(150px,20vw)] object-cover rounded-md;
 }
 
 .content {
-  @apply flex w-full flex-col justify-center text-center px-4;
+  @apply flex flex-col justify-center w-full text-center px-4;
 }
 
 .title {
