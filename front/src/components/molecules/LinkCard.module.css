@@ -4,7 +4,7 @@
 }
 
 .image {
-  @apply h-[150px] w-auto max-w-[max(150px,20vw)] object-cover rounded-md;
+  @apply h-[150px] w-auto max-w-[max(150px,20vw)] object-cover rounded-md opacity-80;
 }
 
 .content {
