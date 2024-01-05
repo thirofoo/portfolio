@@ -20,7 +20,7 @@
 }
 
 .image {
-  @apply relative object-cover h-[150px] rounded-r-xl opacity-70;
+  @apply relative object-cover h-[150px] rounded-r-md opacity-70;
 }
 
 @media (max-width: 768px) {

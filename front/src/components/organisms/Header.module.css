@@ -90,6 +90,9 @@
 
 /* Hamburger Menu */
 @media (max-width: 768px) {
+  .wrapper {
+    @apply mt-[20px];
+  }
   .head_name {
     @apply text-xl font-bold pl-[5vw] py-0;
   }
