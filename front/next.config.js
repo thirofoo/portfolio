@@ -10,6 +10,15 @@ module.exports = {
     API_URL: process.env.API_URL,
   },
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: [
+      'res.cloudinary.com',
+      'img.atcoder.jp',
+      'static.zenn.studio',
+      'chokudai.hatenablog.com',
+      'ogimage.blog.st-hatena.com',
+      'codeforces.org',
+      'www.maximum.vc',
+      'www.future.co.jp',
+    ],
   },
 }

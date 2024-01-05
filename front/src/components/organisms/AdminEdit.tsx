@@ -150,10 +150,20 @@ export const AdminEdit = ({ genre }: Props) => {
                   onChange={(e) => handleTagChange(index, e.target.value)}
                   className={styles.tags}
                 />
-                <Button content='-' handleClick={() => handleRemoveTag(index)} type='button' />
+                <Button
+                  content='✖'
+                  handleClick={() => handleRemoveTag(index)}
+                  type='button'
+                  add_style='min-w-0 px-3 py-2'
+                />
               </div>
             ))}
-            <Button content='+' handleClick={() => handleAddTag()} type='button' />
+            <Button
+              content='Add'
+              handleClick={() => handleAddTag()}
+              type='button'
+              add_style='min-w-0 px-3'
+            />
           </div>
 
           {/* fieldのproperty名とFormFieldのprops名が完全に一致してる */}

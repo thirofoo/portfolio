@@ -1,3 +1,5 @@
+import { getUrl } from "@/lib/url"
+
 export interface Article {
   ID: string
   CreatedAt: string
@@ -29,7 +31,7 @@ export const createEmptyArticle = (): Article => {
     slug: '',
     description: '',
     author: '',
-    thumbnail: '',
+    thumbnail: getUrl('white_nvvrt4'),
     Tags: [],
     type: '',
     body: '',

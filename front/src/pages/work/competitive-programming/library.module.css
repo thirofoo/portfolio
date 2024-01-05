@@ -11,7 +11,7 @@
 }
 
 .search_wrapper {
-  @apply flex flex-col mb-6 rounded-xl p-2 pt-[100px] mt-[-100px] w-full m-auto;
+  @apply flex flex-col mb-6 rounded-md p-2 pt-[100px] mt-[-100px] w-full m-auto;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 

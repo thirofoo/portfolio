@@ -11,7 +11,7 @@ type BlogProps = {
 }
 
 const Blog = ({ articles }: BlogProps) => {
-  const [displayNum, setDisplayNum] = useState<number>(1)
+  const [displayNum, setDisplayNum] = useState<number>(2)
 
   return (
     <>

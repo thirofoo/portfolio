@@ -1,10 +1,6 @@
 .wrapper {
-  @apply w-full flex justify-between duration-200 rounded-xl  text-left overflow-hidden;
+  @apply w-full flex justify-between duration-200 rounded-md  text-left overflow-hidden;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
-}
-
-.wrapper:hover {
-  transform: scale(1.01);
 }
 
 .wrapper h2 {
@@ -24,7 +20,7 @@
 }
 
 .image {
-  @apply relative object-cover h-[150px] rounded-r-xl;
+  @apply relative object-cover h-[150px] rounded-r-xl opacity-70;
 }
 
 @media (max-width: 768px) {

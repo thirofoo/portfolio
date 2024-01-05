@@ -9,10 +9,10 @@ export const loginUser = async (username: string, password: string) => {
       },
       body: JSON.stringify({ username, password }),
     })
+    const data = await response.json()
 
     if (response.ok) {
       // login成功時
-      const data = await response.json()
       const { token } = data
 
       // tokenをCookieに保存する (vercel側からを送る場合の属性指定)
@@ -29,9 +29,11 @@ export const loginUser = async (username: string, password: string) => {
 
       // adminサイトにリダイレクト
       Router.push('/admin')
+      console.log('Login success')
     } else {
       // login失敗時
-      console.log('failed!!')
+      console.log('Login failed')
+      console.log('error message: %s', data.error)
     }
   } catch (error) {
     console.error(error)

@@ -23,6 +23,10 @@
   @apply block mb-2 text-base font-semibold;
 }
 
+.delete_tag_button {
+  @apply flex;
+}
+
 .form_head {
   @apply flex m-4;
 }

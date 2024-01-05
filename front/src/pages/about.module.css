@@ -13,12 +13,16 @@
 }
 
 .wrapper {
-  @apply flex duration-200 rounded-xl justify-center p-10;
+  @apply flex duration-200 rounded-md justify-center p-10;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
 }
 
 .top_wrapper {
-  @apply flex justify-center pt-8 m-auto;
+  @apply inline-flex flex-col border-y-sh1 border-y-[1px] border-opacity-70 w-[min(70vw,768px)] mb-4;
+}
+
+.profile_wrapper {
+  @apply flex justify-center pt-8 pb-4 m-auto;
 }
 
 .icon_wrapper {
@@ -30,8 +34,8 @@
 }
 
 .detail {
-  @apply w-full mt-6 duration-200 rounded-xl justify-center p-6 px-12;
-  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+  @apply w-full mt-6 duration-200 rounded-md justify-center p-2;
+  /* box-shadow: 0px 0px 6px 1px theme(colors.sh1); */
 }
 
 .add_margin {
@@ -55,7 +59,7 @@
 }
 
 .profile {
-  @apply flex flex-col items-center;
+  @apply flex flex-col justify-between items-center h-full;
 }
 
 .profile h3 {
@@ -64,6 +68,10 @@
 
 @media (max-width: 768px) {
   .top_wrapper {
+    @apply m-0;
+  }
+
+  .profile_wrapper {
     @apply flex flex-col justify-center;
   }
 

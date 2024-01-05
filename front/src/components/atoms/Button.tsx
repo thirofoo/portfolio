@@ -4,7 +4,8 @@ type Props = {
   content: string
   state?: boolean
   handleClick?: () => void
-  type?: 'button' | 'submit' | 'reset' // 新たに追加
+  type?: 'button' | 'submit' | 'reset'
+  add_style?: string
 }
 
 export const Button = ({
@@ -14,12 +15,14 @@ export const Button = ({
     return
   },
   type = undefined,
+  add_style = '',
 }: Props) => {
   return (
     <>
       <button
+        id='button'
         type={type}
-        className={state ? styles.activeButton : styles.button}
+        className={state ? styles.activeButton + ' ' + add_style : styles.button + ' ' + add_style}
         onClick={handleClick}
       >
         {content}

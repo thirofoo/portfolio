@@ -47,10 +47,6 @@
   @apply my-4;
 }
 
-.content a {
-  @apply underline;
-}
-
 .content code {
   @apply px-1 backdrop-blur-3xl m-auto bg-dbg2 bg-opacity-95;
   box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
@@ -61,7 +57,7 @@
 }
 
 .content pre code {
-  @apply w-[min(100vw-320px,720px)] p-4 rounded-2xl;
+  @apply w-[min(100vw-320px,720px)] p-4 rounded-md;
 }
 
 .content ul {
@@ -76,16 +72,24 @@
   @apply my-2;
 }
 
+.content iframe {
+  @apply rounded-xl;
+}
+
 .content blockquote {
-  @apply border-l-4 border-sh1 pl-4 italic my-4;
+  @apply border-l-4 border-sh1 pl-4 italic my-4 p-2;
 }
 
 .content img {
-  @apply rounded-xl m-auto my-4;
+  @apply rounded-md w-[100vw-300px];
 }
 
 .content em {
   @apply flex justify-center my-2;
+}
+
+.content svg {
+  @apply inline-flex;
 }
 
 /* ~~~~~~~~~~~~~~~ 記事以外の部分 ~~~~~~~~~~~~~~~ */
@@ -98,30 +102,16 @@
 }
 
 .detail {
-  @apply text-end w-full rounded-xl font-bold text-xl p-[10px];
+  @apply text-end w-full rounded-md font-bold text-xl p-[10px];
 }
 
 .head_image {
-  @apply absolute w-full h-full rounded-xl object-cover rounded-t-xl border-sh1 border-b opacity-10 overflow-hidden;
+  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
 }
 
 .head_info {
-  @apply rounded-xl object-cover w-full min-h-[300px] overflow-hidden relative;
+  @apply rounded-md object-cover w-full min-h-[300px] overflow-hidden relative;
   box-shadow: 0px 0px 6px 1px theme(colors.sh1);
-}
-
-@media (max-width: 768px) {
-  .content {
-    @apply mt-[-20px];
-  }
-
-  .detail {
-    @apply text-sm mt-4;
-  }
-
-  .content pre code {
-    @apply my-8 w-[100vw];
-  }
 }
 
 .headings {
@@ -133,6 +123,15 @@
 }
 
 @media (max-width: 768px) {
+  .content {
+    @apply mt-[-20px];
+  }
+  .detail {
+    @apply text-sm mt-4;
+  }
+  .content pre code {
+    @apply my-8 w-[100vw];
+  }
   .headings {
     @apply hidden;
   }

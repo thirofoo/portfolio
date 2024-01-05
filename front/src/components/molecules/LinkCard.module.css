@@ -1,0 +1,54 @@
+.card {
+  @apply flex justify-between w-full rounded-md duration-200;
+  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+}
+
+.image {
+  @apply h-[150px] w-auto max-w-[max(150px,20vw)] object-cover rounded-md opacity-80;
+}
+
+.content {
+  @apply flex flex-col justify-center w-full text-center px-4;
+}
+
+.title {
+  @apply text-base overflow-hidden overflow-ellipsis whitespace-normal my-2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.description {
+  @apply text-sm opacity-75 overflow-hidden overflow-ellipsis whitespace-normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.url {
+  @apply flex justify-center text-sm text-center mt-2;
+}
+
+.icon {
+  @apply inline mr-4;
+}
+
+.slug {
+  @apply text-sm overflow-hidden overflow-ellipsis whitespace-normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.tweet {
+  @apply flex justify-center;
+}
+
+@media (max-width: 768px) {
+  .image {
+    @apply h-[120px];
+  }
+  .title {
+    -webkit-line-clamp: 1;
+  }
+}
