@@ -1,5 +1,5 @@
 import { Image } from '@/components/atoms/Image'
-import { LinkCard } from '@/components/molecules/LinkCard'
+import LinkCard from '@/components/molecules/LinkCard'
 import { fetchOGPInfo } from '@/lib/ogp'
 import { getUrl } from '@/lib/url'
 import { Element } from 'hast'
@@ -40,26 +40,48 @@ function rehypeTransformImageUrls(slug: string) {
       if (tagName === 'a' && properties) {
         const { href } = properties
         // 非同期処理を Promise 配列に追加
-        promises.push(
-          (async () => {
-            const ogp = await fetchOGPInfo(href as string)
-            node.properties = {
-              url: href,
-              title: ogp?.title,
-              description: ogp?.description,
-            }
-            // もし image がある場合は、image を追加、なければ No Image を追加
-            if (ogp?.image && ogp.image.startsWith('http')) {
-              node.properties.img = ogp.image
-            } else {
-              node.properties.img = getUrl('default_vbbudj')
-            }
-            // もし icon がある場合は、icon を追加
-            if (ogp?.icon && ogp.icon.startsWith('http')) {
-              node.properties.icon = ogp.icon
-            }
-          })(),
-        )
+        if (
+          typeof href === 'string' &&
+          (href.startsWith('https://twitter.com') || href.startsWith('https://x.com'))
+        ) {
+          // Twitter APIのoEmbedエンドポイント
+          const apiUrl = `https://publish.twitter.com/oembed?url=${encodeURIComponent(href)}`
+
+          // Twitter APIを呼び出してoEmbed情報を取得
+          promises.push(
+            (async () => {
+              const res_normal = await fetch(apiUrl)
+              const res_dark = await fetch(apiUrl + '&theme=dark')
+              const data_normal = await res_normal.json()
+              const data_dark = await res_dark.json()
+              node.properties = {
+                twitter_normal: data_normal.html,
+                twitter_dark: data_dark.html,
+              }
+            })(),
+          )
+        } else {
+          promises.push(
+            (async () => {
+              const ogp = await fetchOGPInfo(href as string)
+              node.properties = {
+                url: href,
+                title: ogp?.title,
+                description: ogp?.description,
+              }
+              // もし image がある場合は、image を追加、なければ No Image を追加
+              if (ogp?.image && ogp.image.startsWith('http')) {
+                node.properties.img = ogp.image
+              } else {
+                node.properties.img = getUrl('default_vbbudj')
+              }
+              // もし icon がある場合は、icon を追加
+              if (ogp?.icon && ogp.icon.startsWith('http')) {
+                node.properties.icon = ogp.icon
+              }
+            })(),
+          )
+        }
       }
     })
     // Promise 配列を解決

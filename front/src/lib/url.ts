@@ -10,7 +10,7 @@ export const getUrl = (public_id: string): string => {
 export const extractSlugFromURL = (url: string): string => {
   // URLから https://~~//... の ~~ だけを抽出する
   // ※ 文字列が URL でないなら空白を返す
-  if (!url.match(/^https?:\/\//)) return ''
+  if (typeof url !== 'string' || !url.match(/^https?:\/\//)) return ''
   const urlObj = new URL(url)
   return urlObj.origin.substring(urlObj.origin.lastIndexOf('//') + 2)
 }

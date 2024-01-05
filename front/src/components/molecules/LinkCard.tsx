@@ -1,7 +1,9 @@
 import { Image } from '@/components/atoms/Image'
 import styles from '@/components/molecules/LinkCard.module.css'
 import { extractSlugFromURL, getUrl } from '@/lib/url'
+import { useTheme } from 'next-themes'
 import Link from 'next/link'
+import { Helmet } from 'react-helmet'
 
 interface LinkCardProps {
   url: string
@@ -9,9 +11,52 @@ interface LinkCardProps {
   title: string
   description: string
   icon?: string
+  // Twitter Card 用
+  twitter_normal?: string
+  twitter_dark?: string
 }
 
-export const LinkCard = ({ url, img, title, description, icon }: LinkCardProps) => {
+function twitterCard(light: string, dark: string, theme: string | undefined) {
+  return (
+    <>
+      {theme === 'dark' ? (
+        <div dangerouslySetInnerHTML={{ __html: dark }} />
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: light }} />
+      )}
+    </>
+  )
+}
+
+export const LinkCard = ({
+  url,
+  img,
+  title,
+  description,
+  icon,
+  twitter_normal,
+  twitter_dark,
+}: LinkCardProps) => {
+  if (
+    typeof twitter_normal === 'string' &&
+    typeof twitter_dark === 'string' &&
+    twitter_normal.length >= 10
+  ) {
+    // Twitter Card は別途設定
+    const { theme } = useTheme()
+    const start_theme: string = theme === 'dark' ? 'dark' : 'light'
+    return (
+      <>
+        <div className={styles.tweet}>
+          {twitterCard(twitter_normal, twitter_dark, start_theme)}
+          <Helmet>
+            <script async src='https://platform.twitter.com/widgets.js' />
+          </Helmet>
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
       <Link

@@ -40,6 +40,10 @@
   -webkit-box-orient: vertical;
 }
 
+.tweet {
+  @apply flex justify-center;
+}
+
 @media (max-width: 768px) {
   .image {
     @apply h-[120px];

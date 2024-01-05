@@ -8,6 +8,7 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
     // URL 先の HTML を取得
     const htmlResponse = await fetch(url)
     const htmlText = await htmlResponse.text()
+    // console.log('htmlText', htmlText)
 
     // HTML から OGP の情報を抽出
     const $ = cheerio.load(htmlText)
@@ -24,8 +25,8 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
     if (ogpInfo.icon && !ogpInfo.icon.startsWith('https')) {
       ogpInfo.icon = 'https:' + ogpInfo.icon
     }
-    console.log('url', url)
-    console.log('ogpInfo', ogpInfo)
+    // console.log('url', url)
+    // console.log('ogpInfo', ogpInfo)
     return ogpInfo
   } catch (error) {
     console.error('Error fetching OGP information:', error)
