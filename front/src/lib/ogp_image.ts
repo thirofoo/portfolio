@@ -1,0 +1,27 @@
+import cloudinary from '@/plugins/cloudinary'
+
+export const generateArticleOgp = (ogpText: string) => {
+  const textColor = '#FFFFFF'
+  const encodeText = encodeURI(ogpText)
+  const fontFamily = 'Arial'
+  const fontSize = 40
+  const fontWeight = 'bold'
+  const fontStyle = 'italic'
+  const letterSpacing = 4
+
+  // 第一引数は画像名、第二引数はオプション
+  return cloudinary.url('portfolio/website-creation-note/bgs6ds3otzqvmyluvbno.jpg', {
+    // URLのバージョンの部分
+    version: '1704526272',
+    transformation: [
+      // テキストの設定
+      {
+        crop: 'fit',
+        width: '600',
+        color: `${textColor}`,
+        overlay: `text:${fontFamily}_${fontSize}_${fontWeight}_${fontStyle}_${letterSpacing}:${encodeText}`,
+        flags: 'layer_apply',
+      },
+    ],
+  })
+}

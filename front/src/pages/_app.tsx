@@ -1,5 +1,6 @@
 import { AdminLayout } from '@/components/templates/AdminLayout'
 import { AppLayout } from '@/components/templates/AppLayout'
+import { generateArticleOgp } from '@/lib/ogp_image'
 import '@/styles/globals.css'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
@@ -16,6 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     window.scrollTo(0, 0)
   }, [router.pathname])
 
+  // Slug を取得して、OGP画像を生成
+  const { slug } = router.query
+  const ogpImage = generateArticleOgp(slug ? slug.toString() : 'default')
+
   // layoutで定義された構造に対して、内容を組み込む
   // → _document.tsxの<Main>に組み込まれる
   return (
@@ -26,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AppLayout>
         <Head>
           <title>thirofoo portfolio</title>
+          <meta key='og:image' property='og:image' content={ogpImage} />
         </Head>
         {router.pathname.startsWith('/admin') ? (
           <AdminLayout>
