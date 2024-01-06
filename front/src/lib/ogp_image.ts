@@ -4,7 +4,7 @@ export const generateArticleOgp = (ogpText: string) => {
   const textColor = '#FFFFFF'
   const encodeText = encodeURI(ogpText)
   const fontFamily = 'Arial'
-  const fontSize = 40
+  const fontSize = 100
   const fontWeight = 'bold'
   const fontStyle = 'italic'
   const letterSpacing = 4
@@ -15,9 +15,8 @@ export const generateArticleOgp = (ogpText: string) => {
     version: '1704526272',
     transformation: [
       // テキストの設定
+      { crop: 'fit', width: '1200' },
       {
-        crop: 'fit',
-        width: '600',
         color: `${textColor}`,
         overlay: `text:${fontFamily}_${fontSize}_${fontWeight}_${fontStyle}_${letterSpacing}:${encodeText}`,
         flags: 'layer_apply',
