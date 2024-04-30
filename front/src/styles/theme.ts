@@ -6,10 +6,12 @@ module.exports = {
   bg4: 'black',
 
   // bg-color (dark)
-  dbg1: '#182436',
-  dbg2: '#283446',
-  dbg3: '#081426',
-  dbg4: '#22A39F',
+  // dbg1: '#182436',
+  // dbg2: '#283446',
+  // dbg3: '#081426',
+  dbg1: '#151515',
+  dbg2: '#252525',
+  dbg3: '#090909',
 
   // text-color
   txt1: 'black',
