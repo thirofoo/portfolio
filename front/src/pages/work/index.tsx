@@ -17,7 +17,7 @@ const Home: NextPage = () => {
           </div>
           <Image
             className={styles.image}
-            src={getUrl('/AtCoder_pyl1be')}
+            src={getUrl('atcoder-logo')}
             alt='AtCoder'
             width={200}
             height={150}

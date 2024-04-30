@@ -1,7 +1,7 @@
 import { Article } from '@/Interfaces/Article'
 import { getOneArticle } from '@/lib/api/article'
 import { getAllLibraries } from '@/lib/api/library'
-import { markdownToHtml } from '@/lib/markdown'
+import { markdownToHtml, parseHTMLToReactJSX } from '@/lib/markdown'
 import styles from '@/pages/work/competitive-programming/[slug].module.css'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
@@ -68,7 +68,7 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
       </div>
 
       <div className='flex'>
-        <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.body }}></div>
+        <div className={styles.content}>{parseHTMLToReactJSX(article.body)}</div>
 
         <div className={styles.headings}>
           <ul>
