@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <div className={styles.top_profile}>
               <h2>thirofoo / through</h2>
               <p>2002.7.24</p>
-              <h3>Saitama University ICS B3</h3>
+              <h3>Saitama University ICS B4</h3>
               <p className={styles.icon_wrapper}>
                 <a
                   href='https://github.com/thirofoo'
@@ -43,8 +43,8 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className={styles.description}>
-            競プロが好きな人。web系もほんのり触っています。 <br />
-            最近のマイブーム : 競プロ ホラゲ実況鑑賞 麻雀 etc... (2024.01.06)
+            趣味でプログラミングをしている大学生。 <br />
+            特に競技プログラミングが好きで、web 関連も少し触っています。 <br />
           </div>
         </div>
         <div className={styles.sub_wrapper}>
@@ -83,6 +83,7 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
+
         <div className={styles.sub_wrapper}>
           <div className={styles.profile}>
             <h3>Others</h3>

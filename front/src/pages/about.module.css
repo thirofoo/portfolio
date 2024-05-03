@@ -30,7 +30,7 @@
 }
 
 .profile_wrapper {
-  @apply flex justify-center pt-8 pb-4 m-auto;
+  @apply flex justify-center py-8 m-auto;
 }
 
 .icon_wrapper {
