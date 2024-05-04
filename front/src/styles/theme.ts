@@ -16,7 +16,6 @@ module.exports = {
   // text-color
   txt1: 'black',
   txt2: '#cad1df',
-  txt3: '#b2b9c6',
 
   // shadow-color
   sh1: '#9da5b2', // 薄
@@ -25,12 +24,7 @@ module.exports = {
 
   sun: '#FFD700',
   moon: '#696969',
-
-  social: {
-    twitter: '#1da1f2',
-    github: '#ffffff',
-    facebook: '#3b5998',
-  },
+  
   error: '#e27878',
   success: '#8bae79',
 }

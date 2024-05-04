@@ -29,6 +29,10 @@ blockquote {
   @apply bg-bg2 dark:bg-dbg2;
 }
 
+path {
+  @apply stroke-txt1 dark:stroke-txt2;
+}
+
 /* 例外的に button, BlogCard, Blog LinkCard の CSS 設定 */
 #button {
   @apply bg-bg1 dark:bg-dbg1 opacity-90;

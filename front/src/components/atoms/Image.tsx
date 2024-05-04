@@ -15,7 +15,7 @@ export const Image = ({ className, src, alt, width = 10000, height = 10000 }: Pr
 
   // Add /api/proxy?url= to src only in development environment
   if ((isDevelopment || !src.startsWith('https://res.cloudinary.com')) && src.startsWith('http')) {
-    src = `/api/proxy?url=${encodeURIComponent(src)}`
+    src = `/api/proxy?url=${src}`
   }
 
   return (
