@@ -14,8 +14,11 @@ export const AppLayout = ({ children }: Props) => {
     <>
       <Header />
       <div className={styles.wrapper}>
-        <div className={styles.child}>{children}</div>
-        <ScrollToTopButton />
+        <div className={styles.child}>
+          {children}
+        </div>
+          <ScrollToTopButton />
+
         <Footer />
       </div>
     </>

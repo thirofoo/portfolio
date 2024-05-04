@@ -1,10 +1,10 @@
+import { Image } from '@/components/atoms/Image'
 import { Article } from '@/Interfaces/Article'
 import { getOneArticle } from '@/lib/api/article'
 import { getAllLibraries } from '@/lib/api/library'
 import { markdownToHtml, parseHTMLToReactJSX } from '@/lib/markdown'
 import styles from '@/pages/work/competitive-programming/[slug].module.css'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 

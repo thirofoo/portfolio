@@ -1,7 +1,7 @@
+import { Image } from '@/components/atoms/Image'
 import LinkCard from '@/components/molecules/LinkCard'
 import styles from '@/pages/about.module.css'
 import type { NextPage } from 'next'
-import Image from 'next/image'
 
 import { GitHub } from '@/components/atoms/icons/GitHub'
 import { X } from '@/components/atoms/icons/X'
@@ -13,12 +13,11 @@ const Home: NextPage = () => {
         <div className={styles.top_wrapper}>
           <div className={styles.profile_wrapper}>
             <Image
-              src='/images/top.jpg'
+              src='/images/top.webp'
               alt='through / thirofoo'
               width={160}
               height={160}
               className={styles.top_icon}
-              loading='eager'
             />
             <div className={styles.top_profile}>
               <h2>thirofoo / through</h2>
@@ -79,7 +78,7 @@ const Home: NextPage = () => {
             <LinkCard
               title='フューチャー株式会社'
               url='https://www.future.co.jp/'
-              img='/images/future.webp'
+              img='/images/future_img.webp'
               description='フューチャー株式会社の会社概要、経営理念、CSR、投資家情報などに関する情報を掲載している、企業公式サイトです。'
               icon='/images/future.ico'
             />
@@ -96,7 +95,7 @@ const Home: NextPage = () => {
             </div>
             <LinkCard
               url='https://www.maximum.vc/'
-              img='/images/maximum.png'
+              img='/images/maximum_img.webp'
               title='Maximum'
               description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます'
               icon='/images/melin.png'

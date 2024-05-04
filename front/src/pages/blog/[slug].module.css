@@ -97,6 +97,10 @@
   @apply text-4xl font-bold text-center pt-[120px] pb-[60px];
 }
 
+.title_wrapper {
+  @apply m-2;
+}
+
 .date {
   @apply text-txt1 text-sm mb-4;
 }
@@ -123,6 +127,9 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    @apply text-3xl;
+  }
   .content {
     @apply mt-[-20px];
   }

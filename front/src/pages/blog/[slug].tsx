@@ -60,10 +60,12 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
             width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
             height={200}
           />
-          <h1 className={styles.title}>{article.title}</h1>
-          <div className={styles.detail}>
-            Created: {article.CreatedAt.substring(0, 10)} <br />
-            Updated: {article.UpdatedAt.substring(0, 10)}
+          <div className={styles.title_wrapper}>
+            <h1 className={styles.title}>{article.title}</h1>
+            <div className={styles.detail}>
+              Created: {article.CreatedAt.substring(0, 10)} <br />
+              Updated: {article.UpdatedAt.substring(0, 10)}
+            </div>
           </div>
         </div>
       </div>
