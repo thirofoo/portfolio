@@ -1,3 +1,11 @@
 .toggle {
   @apply rounded-full transition duration-500 ease-in-out;
 }
+
+.active {
+  @apply block; /* 表示 */
+}
+
+.deactive {
+  @apply hidden; /* 非表示 */
+}

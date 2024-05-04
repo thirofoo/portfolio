@@ -1,8 +1,10 @@
 import LinkCard from '@/components/molecules/LinkCard'
 import styles from '@/pages/about.module.css'
-import { GitHub, Twitter } from 'iconoir-react'
 import type { NextPage } from 'next'
 import Image from 'next/image'
+
+import { GitHub } from '@/components/atoms/icons/GitHub'
+import { X } from '@/components/atoms/icons/X'
 
 const Home: NextPage = () => {
   return (
@@ -37,7 +39,7 @@ const Home: NextPage = () => {
                   rel='noopener noreferrer'
                   className={styles.icon}
                 >
-                  <Twitter />
+                  <X />
                 </a>
               </p>
             </div>
