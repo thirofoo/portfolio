@@ -64,7 +64,7 @@ const Home: NextPage = () => {
               url='https://atcoder.jp/users/through'
               img='/images/atcoder.webp'
               description='AtCoder is a programming contest site for anyone from beginners to experts. We hold weekly programming contests online.'
-              icon='https://img.atcoder.jp/assets/favicon.png'
+              icon='/images/atcoder_icon.png'
             />
           </div>
           <div className={styles.add_margin}></div>
