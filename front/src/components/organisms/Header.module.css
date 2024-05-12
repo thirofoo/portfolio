@@ -3,7 +3,7 @@
 }
 
 .wrapper {
-  @apply px-2 flex max-w-[1024px] m-auto justify-between mt-[10px];
+  @apply px-3 flex max-w-[1024px] m-auto justify-between mt-[10px];
 }
 
 @keyframes fadeOut {

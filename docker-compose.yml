@@ -44,7 +44,7 @@ services:
       - ./back:/back
     env_file: ./.env
     ports:
-      - "8080:8080"
+      - 8080:8080
     tty: true
     command: go run main.go
 

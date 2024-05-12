@@ -57,7 +57,7 @@
 }
 
 .content pre code {
-  @apply w-[min(100vw-320px,720px)] p-4 rounded-md;
+  @apply w-[min(100vw-320px,720px)] p-4 rounded;
 }
 
 .content ul {
@@ -81,7 +81,7 @@
 }
 
 .content img {
-  @apply rounded-md w-[100vw-300px];
+  @apply rounded w-[100vw-300px];
 }
 
 .content em {
@@ -106,16 +106,16 @@
 }
 
 .detail {
-  @apply text-end w-full rounded-md font-bold text-xl p-[10px];
+  @apply text-end w-full rounded font-bold text-xl p-[10px];
 }
 
 .head_image {
-  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
+  @apply absolute w-full h-full rounded object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
 }
 
 .head_info {
-  @apply rounded-md object-cover w-full min-h-[300px] overflow-hidden relative;
-  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+  @apply rounded object-cover w-full min-h-[300px] overflow-hidden relative;
+  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
 }
 
 .headings {

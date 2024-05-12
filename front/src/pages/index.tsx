@@ -44,8 +44,8 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className={styles.description}>
-            趣味でプログラミングをしている大学生。 <br />
-            特に競技プログラミングが好きで、web 関連も少し触っています。 <br />
+            趣味でプログラミングをする大学生 <br />
+            特に競技プログラミングが好きで web 関連も少し触っています <br />
           </div>
         </div>
         <div className={styles.sub_wrapper}>

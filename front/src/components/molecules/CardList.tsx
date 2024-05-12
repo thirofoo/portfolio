@@ -26,7 +26,7 @@ export const CardList = ({ articles, from }: CardListProps) => {
           </div>
         ) : (
           // dummy article を opacity-0 で表示させておく
-          <div className={styles.card + ' opacity-0 pointer-events-none'}>
+          <div className={styles.card + ' ' + styles.dummy}>
             <Card article={createEmptyArticle()} from={from} />
           </div>
         )}
@@ -34,5 +34,5 @@ export const CardList = ({ articles, from }: CardListProps) => {
     )
   }
 
-  return <div className={styles.container}>{pairedArticles}</div>
+  return <>{pairedArticles}</>
 }

@@ -18,13 +18,14 @@ module.exports = {
   txt2: '#cad1df',
 
   // shadow-color
-  sh1: '#9da5b2', // 薄
+  // sh1: '#9da5b2', // 薄
+  sh1: '#7d8592', // 薄
   sh2: 'black', // 濃
   sh3: '#859fa2', // 青目
 
   sun: '#FFD700',
   moon: '#696969',
-  
+
   error: '#e27878',
   success: '#8bae79',
 }
