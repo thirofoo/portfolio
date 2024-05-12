@@ -2,19 +2,22 @@
   @apply inline-flex mx-[12px] mb-[24px] max-w-[48%];
 }
 
-.container {
-  @apply inline;
-}
-
 .article_wrapper {
   @apply flex justify-center;
 }
 
+.dummy {
+  @apply opacity-0 pointer-events-none;
+}
+
 @media (max-width: 768px) {
   .card {
-    @apply m-0 pb-4 mb-2　max-w-[95%];
+    @apply mb-6 max-w-[100%] w-[100%] p-0 mx-0;
   }
   .article_wrapper {
-    @apply inline;
+    @apply block;
+  }
+  .dummy {
+    @apply hidden;
   }
 }
