@@ -14,7 +14,13 @@ export const Image = ({ className, src, alt, width = 10000, height = 10000 }: Pr
   const isDevelopment = process.env.NODE_ENV === 'development'
 
   // Add /api/proxy?url= to src only in development environment
-  if ((isDevelopment || !src.startsWith('https://res.cloudinary.com')) && src.startsWith('http')) {
+  if (
+    (isDevelopment ||
+      (!src.startsWith('https://res.cloudinary.com') &&
+        !src.startsWith('https://cdn.qiita.com') &&
+        !src.startsWith('https://qiita-user-contents.imgix.net'))) &&
+    src.startsWith('http')
+  ) {
     src = `/api/proxy?url=${src}`
   }
 

@@ -29,9 +29,16 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
     if (ogpInfo.icon.startsWith('//')) {
       // origin から始まるケース
       ogpInfo.icon = 'https:' + ogpInfo.icon
-    } else if (ogpInfo.icon && ogpInfo.icon.startsWith('/')) {
+    } else if (ogpInfo.icon.startsWith('/')) {
       // origin 配下から始まるケース
       ogpInfo.icon = origin + ogpInfo.icon
+    } else if (ogpInfo.icon.startsWith('.')) {
+      // 相対パスのケース
+      const path = new URL(url).pathname
+      const pathArray = path.split('/')
+      pathArray.pop()
+      const pathDir = pathArray.join('/')
+      ogpInfo.icon = origin + pathDir + '/' + ogpInfo.icon
     }
     return ogpInfo
   } catch (error) {
