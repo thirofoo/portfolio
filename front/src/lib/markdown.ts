@@ -1,5 +1,5 @@
 import { Image } from '@/components/atoms/Image'
-import LinkCard from '@/components/molecules/LinkCard'
+import { LinkCard } from '@/components/molecules/LinkCard'
 import { fetchOGPInfo } from '@/lib/ogp'
 import { getUrl } from '@/lib/url'
 import { Element } from 'hast'

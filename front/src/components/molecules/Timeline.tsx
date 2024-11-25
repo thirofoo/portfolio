@@ -10,8 +10,8 @@ export const Timeline = ({ data }: TimelineProps) => {
   return (
     <div className={styles.container}>
       {data.map((item, index) => (
-        <div>
-          <div key={index} className={styles.timelineItem}>
+        <div key={index}>
+          <div className={styles.timelineItem}>
             <div className={styles.dateIconContainer}>
               <div className={`${styles.date} ${styles.dateDesktop}`}>
                 <span>{item.from}</span>

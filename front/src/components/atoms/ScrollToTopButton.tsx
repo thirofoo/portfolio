@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 export const ScrollToTopButton = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
-  const [fadeOutTriggerPosition, setFadeOutTriggerPosition] = useState(200) // フェードアウトを開始するスクロール位置
+  const [fadeOutTriggerPosition, _] = useState(200) // フェードアウトを開始するスクロール位置
 
   useEffect(() => {
     const handleScroll = () => {
