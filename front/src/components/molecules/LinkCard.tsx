@@ -87,5 +87,3 @@ export const LinkCard = ({
     </>
   )
 }
-
-export default LinkCard

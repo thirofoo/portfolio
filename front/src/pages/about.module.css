@@ -86,3 +86,48 @@
     @apply m-0;
   }
 }
+
+
+
+.timeline {
+  margin: 20px auto;
+  padding: 0;
+  list-style: none;
+  max-width: 600px;
+  position: relative;
+}
+
+.timeline_event {
+  margin-bottom: 20px;
+}
+
+.timeline_title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline_year {
+  font-weight: bold;
+  font-size: 1.2em;
+  width: 100px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.timeline_title_text {
+  font-size: 1em;
+}
+
+.timeline_description {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.95em;
+  line-height: 1.6;
+}
