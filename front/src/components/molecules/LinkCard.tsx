@@ -69,11 +69,11 @@ export const LinkCard = ({
         <div className={styles.content}>
           <div className={styles.title}>{title}</div>
           <div className={styles.description}>{description}</div>
-          <div className={styles.url} id='link-icon'>
+          <div className={styles.urlIconContainer} id='link-icon'>
             {icon == undefined ? null : (
               <Image className={styles.icon} src={icon} alt={title} width={20} height={20} />
             )}
-            <div>{extractSlugFromURL(url)}</div>
+            <div className={styles.url}>{extractSlugFromURL(url)}</div>
           </div>
         </div>
         <Image

@@ -21,7 +21,7 @@ const timelineData: TimelineItem[] = [
         チーム executive is deprived として、2024 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で上位 10 % 入賞 + 予選通過を果たし、2024 年 12 月に開催されるアジア地区の本戦に出場することになりました。
         <div className="my-3">
           <LinkCard
-            url='https://tech.preferred.jp/ja/blog/i24-gd02-qpe-result/'
+            url='https://icpc.iisf.or.jp/2024-yokohama/domestic/icpc-2024-result/'
             img='/images/ICPC.webp'
             title='ICPC 2024 国内予選 結果 / Results | ICPC 2024 Asia Yokohama Regional'
             description=''
@@ -131,7 +131,11 @@ const Home: NextPage = () => {
             <div className={styles.top_profile}>
               <h2>thirofoo / through</h2>
               <p>2002.7.24</p>
-              <h3>Saitama University ICS B4</h3>
+              <h3>
+                <a href="https://www.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
+                  Saitama University 
+                </a> 
+                ICS B4</h3>
               <p className={styles.icon_wrapper}>
                 <a
                   href='https://github.com/thirofoo'
@@ -177,18 +181,20 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.add_margin}></div>
           <div className={styles.profile}>
-            <h3>Data Science</h3>
+            <h3>Study</h3>
             <div>
-              インターンにてデータサイエンスの面白さに気づき kaggle を開始 <br />
-              今後色々なコンペに参加予定 <br />
+              主に自動運転をメインとしている安積研究室に所属。
+              <br />
+              ジョブの実行時間を確率分布で捉える応答時間解析を研究中。
+              <br />
               <br />
             </div>
             <LinkCard
-              title='through | Novice'
-              url='https://www.kaggle.com/through'
-              img='/images/kaggle_img.webp'
+              title='埼玉大学 安積研 | 安積研究室'
+              url='http://www.ertpf.ics.saitama-u.ac.jp/'
+              img='/images/lab_image.webp'
               description=''
-              icon='/images/kaggle.ico'
+              icon='/images/melin.png'
             />
           </div>
         </div>
