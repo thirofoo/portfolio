@@ -4,7 +4,7 @@
 }
 
 .image {
-  @apply h-[120px] w-auto max-w-[min(150px,30vw)] object-cover rounded opacity-80;
+  @apply h-[110px] w-auto max-w-[min(150px,30vw)] object-cover rounded opacity-80;
 }
 
 .content {
@@ -53,9 +53,9 @@
 
 @media (max-width: 768px) {
   .image {
-    @apply h-[120px];
+    @apply h-[100px] min-w-[min(150px,20vw)] overflow-hidden;
   }
-  .title {
-    -webkit-line-clamp: 1;
+  .content {
+    @apply max-w-[60vw];
   }
 }

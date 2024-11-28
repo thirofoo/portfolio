@@ -62,7 +62,7 @@
 }
 
 .profile {
-  @apply flex flex-col justify-between items-center w-full p-2 mt-6 duration-200;
+  @apply flex flex-col justify-between items-center w-full mt-6 duration-200;
 }
 
 .profile h3 {
