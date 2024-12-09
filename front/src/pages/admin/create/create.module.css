@@ -12,7 +12,7 @@
 
 .form {
   @apply w-full max-w-3xl p-8 mx-auto my-12 rounded;
-  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .form-group {

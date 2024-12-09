@@ -12,7 +12,10 @@ export const Card = ({ article, from }: Props) => {
   return (
     <>
       <div className={styles.card} id='blog-card'>
-        <Link href={`/${from}/${article.slug}`}>
+        <Link
+          href={article.slug.includes('http') ? article.slug : `/${from}/${article.slug}`}
+          {...(article.slug.includes('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
           <Image
             className={styles.image}
             src={article.thumbnail}

@@ -12,13 +12,16 @@ type BlogProps = {
 }
 
 const BlogDetail: NextPage<BlogProps> = ({ article }) => {
-  // h2 ~ のタグ情報
-  const [headings, setHeadings] = useState<Element[]>([])
+  const [headings, setHeadings] = useState<{ element: Element; level: number }[]>([])
 
   useEffect(() => {
     const fetchHeadings = () => {
-      const headings = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'))
-      setHeadings(headings)
+      const headingElements = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'))
+      const mappedHeadings = headingElements.map((heading) => ({
+        element: heading,
+        level: parseInt(heading.tagName.replace('H', ''), 10), // H2, H3...を数値化
+      }))
+      setHeadings(mappedHeadings)
     }
 
     if (typeof window !== 'undefined') {
@@ -26,21 +29,17 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
     }
   }, [])
 
-  const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, heading: string) => {
+  const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, heading: Element) => {
     e.preventDefault()
 
     if (typeof window !== 'undefined') {
-      const targetHeading = headings.find((h) => h.textContent === heading)
-
-      if (targetHeading) {
-        const rect = targetHeading.getBoundingClientRect()
-        const scrollTop = window.scrollY || document.documentElement.scrollTop
-        const offsetTop = rect.top + scrollTop - 100
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth',
-        })
-      }
+      const rect = heading.getBoundingClientRect()
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+      const offsetTop = rect.top + scrollTop - 100
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth',
+      })
     }
   }
 
@@ -57,7 +56,7 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
             className={styles.head_image}
             src={article.thumbnail}
             alt={article.slug}
-            width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
+            width={10000}
             height={200}
           />
           <div className={styles.title_wrapper}>
@@ -75,13 +74,17 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
         <div className={styles.headings}>
           <ul>
-            {headings.map((heading, index) => (
-              <li key={index} className='my-4 text-md'>
+            {headings.map(({ element, level }, index) => (
+              <li
+                key={index}
+                className={`my-4 text-md`}
+                style={{ paddingLeft: `${(level - 2) * 20}px` }} // インデント調整
+              >
                 <a
-                  href={`#${heading.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
-                  onClick={(e) => handleHeadingClick(e, heading.textContent as string)}
+                  href={`#${element.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
+                  onClick={(e) => handleHeadingClick(e, element)}
                 >
-                  {heading.textContent}
+                  {element.textContent}
                 </a>
               </li>
             ))}

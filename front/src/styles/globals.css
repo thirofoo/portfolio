@@ -8,7 +8,7 @@ body {
 
 html,
 body {
-  @apply m-0 p-0 min-h-[100vh] text-txt1 dark:text-txt2 backdrop-filter bg-bg1 dark:bg-dbg1 transition-colors duration-300 ease-in-out bg-gradient-radial from-bg4 via-bg1 to-bg4 dark:from-dbg2 dark:via-dbg1 dark:to-dbg2 bg-fixed;
+  @apply m-0 p-0 min-h-[100vh] text-txt1 dark:text-txt2 backdrop-filter bg-bg1 dark:bg-dbg1 transition-colors duration-300 ease-in-out;
 }
 
 i {
@@ -36,10 +36,6 @@ path {
 
 #slide-button {
   @apply bg-bg1 dark:bg-dbg1 bg-opacity-50 dark:bg-opacity-50;
-}
-
-#slide-container {
-  @apply bg-sh1 bg-opacity-30 dark:bg-opacity-30;
 }
 
 #button:hover,
