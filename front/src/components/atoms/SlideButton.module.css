@@ -3,7 +3,7 @@
 }
 
 .slider {
-	@apply absolute h-[90%] rounded-md transition-transform duration-300 ease-in-out;
+	@apply absolute h-[88%] rounded-md transition-transform duration-300 ease-in-out border-[1px] border-sh1
 }
 
 .button {

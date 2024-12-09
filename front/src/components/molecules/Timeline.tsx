@@ -14,9 +14,9 @@ export const Timeline = ({ data }: TimelineProps) => {
           <div className={styles.timelineItem}>
             <div className={styles.dateIconContainer}>
               <div className={`${styles.date} ${styles.dateDesktop}`}>
-                <span>{item.from}</span>
-                <span>~</span>
                 <span>{item.to}</span>
+                <span>~</span>
+                <span>{item.from}</span>
               </div>
               <div className={styles.iconWrapper}>
                 <Image className={styles.icon} src={item.icon} alt=""/>

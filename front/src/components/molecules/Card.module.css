@@ -1,6 +1,6 @@
 .card {
   @apply relative shadow-sh1 w-[40vw] shadow-sm duration-200 rounded dark:bg-dbg3 text-left;
-  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .image {
@@ -25,7 +25,7 @@
 
 .tag {
   @apply m-1 p-1 rounded min-w-[min(50px,10vw)] text-center;
-  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
 }
 
 .readmore {
