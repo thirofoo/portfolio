@@ -1,30 +1,64 @@
+import { CardList } from '@/components/molecules/CardList'
+import { Article } from '@/Interfaces/Article'
 import { getUrl } from '@/lib/url'
 import styles from '@/pages/work/work.module.css'
 import type { NextPage } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
+
+const works: Article[] = [
+  {
+    ID: '1',
+    CreatedAt: new Date().toISOString(), // ダミーの作成日時
+    UpdatedAt: new Date().toISOString(), // ダミーの更新日時
+    DeletedAt: '', // 削除されていないため空文字
+    title: 'Competitive Programming Library',
+    slug: 'competitive-programming',
+    description: '競技プログラミングで使用するライブラリのまとめ',
+    author: 'Admin', // 作成者を仮設定
+    thumbnail: getUrl('atcoder-logo'), // サムネイル画像
+    Tags: [
+      {
+        ID: '1',
+        CreatedAt: new Date().toISOString(),
+        UpdatedAt: new Date().toISOString(),
+        DeletedAt: '',
+        name: 'Library',
+      },
+    ],
+    type: 'work',
+    body: 'This is the body content of Competitive Programming Library.',
+  },
+  {
+    ID: '2',
+    CreatedAt: new Date().toISOString(),
+    UpdatedAt: new Date().toISOString(),
+    DeletedAt: '',
+    title: 'Tetris Project',
+    slug: 'https://github.com/seihirochi/tetris-project',
+    description: '深層強化学習でテトリスの AI を作成',
+    author: 'Admin',
+    thumbnail:
+      'https://res.cloudinary.com/dq8pi3jes/image/upload/v1714576433/portfolio/tetris-rl/Extra.gif',
+    Tags: [
+      {
+        ID: '2',
+        CreatedAt: new Date().toISOString(),
+        UpdatedAt: new Date().toISOString(),
+        DeletedAt: '',
+        name: 'RL',
+      },
+    ],
+    type: 'work',
+    body: 'This is the body content of Tetris Project.',
+  },
+]
 
 const Home: NextPage = () => {
   return (
     <>
       <h1 className={styles.title}>Works</h1>
-      <Link href='/work/competitive-programming'>
-        <div className={styles.wrapper} id='blog-card'>
-          <div className='p-4'>
-            <h2>My Competitive Programming Library</h2>
-            <p>自分の競技プログラミングで使用するライブラリをまとめています。</p>
-            <p className={styles.readmore}>Read more &rarr;</p>
-          </div>
-          <Image
-            className={styles.image}
-            src={getUrl('/AtCoder_pyl1be')}
-            alt='AtCoder'
-            width={200}
-            height={150}
-            priority
-          />
-        </div>
-      </Link>
+      <div className={styles.list_wrapper}>
+        <CardList articles={works} from="work" />
+      </div>
     </>
   )
 }

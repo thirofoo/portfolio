@@ -1,10 +1,10 @@
 .card {
-  @apply flex justify-between w-full rounded-md duration-200;
-  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+  @apply flex justify-between w-full rounded duration-200;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .image {
-  @apply h-[120px] w-auto max-w-[min(300px,30vw)] object-cover rounded-md opacity-80;
+  @apply h-[110px] w-auto max-w-[min(150px,30vw)] object-cover rounded opacity-80;
 }
 
 .content {
@@ -25,8 +25,15 @@
   -webkit-box-orient: vertical;
 }
 
+.urlIconContainer {
+  @apply flex justify-center mt-2;
+}
+
 .url {
-  @apply flex justify-center text-sm text-center mt-2;
+  @apply text-sm text-center overflow-hidden overflow-ellipsis whitespace-normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .icon {
@@ -46,9 +53,9 @@
 
 @media (max-width: 768px) {
   .image {
-    @apply h-[120px];
+    @apply h-[100px] min-w-[min(150px,20vw)] overflow-hidden;
   }
-  .title {
-    -webkit-line-clamp: 1;
+  .content {
+    @apply max-w-[60vw];
   }
 }

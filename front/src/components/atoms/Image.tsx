@@ -8,8 +8,22 @@ type Props = {
   height?: number
 }
 
-// default width and height are 10000px (適当に大きい値)
+// default width and height are 10000px
 export const Image = ({ className, src, alt, width = 10000, height = 10000 }: Props) => {
+  // Check if we are in a development environment
+  const isDevelopment = process.env.NODE_ENV === 'development'
+
+  // Add /api/proxy?url= to src only in development environment
+  if (
+    (isDevelopment ||
+      (!src.startsWith('https://res.cloudinary.com') &&
+        !src.startsWith('https://cdn.qiita.com') &&
+        !src.startsWith('https://qiita-user-contents.imgix.net'))) &&
+    src.startsWith('http')
+  ) {
+    src = `/api/proxy?url=${src}`
+  }
+
   return (
     <NextImage
       className={className}

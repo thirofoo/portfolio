@@ -12,7 +12,10 @@ export const Card = ({ article, from }: Props) => {
   return (
     <>
       <div className={styles.card} id='blog-card'>
-        <Link href={`/${from}/${article.slug}`}>
+        <Link
+          href={article.slug.includes('http') ? article.slug : `/${from}/${article.slug}`}
+          {...(article.slug.includes('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
           <Image
             className={styles.image}
             src={article.thumbnail}
@@ -21,12 +24,9 @@ export const Card = ({ article, from }: Props) => {
             height={100}
           />
           <div className={styles.content}>
-            <div>
-              <div className='flex justify-between'>
-                <h2 className={styles.title}>{article.title}</h2>
-              </div>
-              <div className='flex justify-between mb-4'>
-                <p className={styles.description}>{article.description}</p>
+            <div className='flex h-full flex-col justify-between z-10'>
+              <h2 className={styles.title}>{article.title}</h2>
+              <div className='flex justify-between mb-2'>
                 <div className={styles.tags}>
                   {article.Tags.map((tag) => (
                     <span key={tag.ID} className={styles.tag}>
@@ -34,12 +34,9 @@ export const Card = ({ article, from }: Props) => {
                     </span>
                   ))}
                 </div>
+                <div className={styles.at}>{article.CreatedAt.substring(0, 10)}</div>
               </div>
-            </div>
-
-            <div className={'flex justify-between'}>
-              <p className={styles.readmore}>Read more &rarr;</p>
-              <div className={styles.at}>{article.CreatedAt.substring(0, 10)}</div>
+              <p className={article.type == 'library' ? 'hidden' : ''}>{article.description}</p>
             </div>
           </div>
         </Link>

@@ -3,7 +3,7 @@
 }
 
 .input {
-  @apply rounded-md mt-1;
+  @apply rounded mt-1;
 }
 
 @media (max-width: 768px) {

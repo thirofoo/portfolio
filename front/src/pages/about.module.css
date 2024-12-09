@@ -17,8 +17,8 @@
 }
 
 .wrapper {
-  @apply flex duration-200 rounded-md justify-center p-10;
-  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+  @apply flex duration-200 rounded justify-center p-10;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .top_wrapper {
@@ -30,7 +30,7 @@
 }
 
 .profile_wrapper {
-  @apply flex justify-center pt-8 pb-4 m-auto;
+  @apply flex justify-center py-8 m-auto;
 }
 
 .icon_wrapper {
@@ -62,7 +62,7 @@
 }
 
 .profile {
-  @apply flex flex-col justify-between items-center w-full p-2 mt-6 duration-200;
+  @apply flex flex-col justify-between items-center w-full mt-6 duration-200;
 }
 
 .profile h3 {

@@ -1,20 +1,32 @@
-.card {
-  @apply inline-flex mx-[12px] mb-[24px] max-w-[48%];
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 24px;
 }
 
-.container {
-  @apply inline;
+.row {
+  @apply flex flex-wrap justify-center;
 }
 
-.article_wrapper {
-  @apply flex justify-center;
+.cell {
+  @apply inline-flex max-w-[48%] p-2;
+}
+
+.dummy {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
-  .card {
-    @apply m-0 pb-4 mb-2　max-w-[95%];
+  .row {
+    display: flex; /* 1列表示に変更 */
+    flex-direction: column;
   }
-  .article_wrapper {
-    @apply inline;
+  .cell {
+    @apply max-w-[100%];
+  }
+
+  .dummy {
+    display: none; /* ダミーを非表示 */
   }
 }

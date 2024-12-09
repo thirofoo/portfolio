@@ -7,12 +7,12 @@
 }
 
 .tags {
-  @apply mr-4 rounded-md mb-2;
+  @apply mr-4 rounded mb-2;
 }
 
 .form {
-  @apply w-full max-w-3xl p-8 mx-auto my-12 rounded-md;
-  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  @apply w-full max-w-3xl p-8 mx-auto my-12 rounded;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .form-group {

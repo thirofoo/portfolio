@@ -12,14 +12,8 @@ module.exports = {
   images: {
     domains: [
       'res.cloudinary.com',
-      'img.atcoder.jp',
-      'static.zenn.studio',
-      'chokudai.hatenablog.com',
-      'ogimage.blog.st-hatena.com',
-      'codeforces.org',
-      'www.maximum.vc',
-      'www.future.co.jp',
-      'optuna.org',
+      'cdn.qiita.com',
+      'qiita-user-contents.imgix.net',
     ],
   },
 }

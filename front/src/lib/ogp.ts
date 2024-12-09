@@ -8,7 +8,6 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
     // URL 先の HTML を取得
     const htmlResponse = await fetch(url)
     const htmlText = await htmlResponse.text()
-    // console.log('htmlText', htmlText)
 
     // HTML から OGP の情報を抽出
     const $ = cheerio.load(htmlText)
@@ -25,18 +24,22 @@ export async function fetchOGPInfo(url: string): Promise<Ogp | null> {
         $('link[rel="apple-touch-icon"]').attr('href') ||
         '',
     }
-    // icon には様々な patern があるので、それぞれのパターンに対応
+    // icon のパターンに対応
     const origin = new URL(url).origin
     if (ogpInfo.icon.startsWith('//')) {
-      // url が origin から始まっている場合は、URL を結合
+      // origin から始まるケース
       ogpInfo.icon = 'https:' + ogpInfo.icon
-    } else if (ogpInfo.icon && !ogpInfo.icon.startsWith('http')) {
-      // url が http から始まっていない場合は、origin と結合
+    } else if (ogpInfo.icon.startsWith('/')) {
+      // origin 配下から始まるケース
       ogpInfo.icon = origin + ogpInfo.icon
+    } else if (ogpInfo.icon.startsWith('.')) {
+      // 相対パスのケース
+      const path = new URL(url).pathname
+      const pathArray = path.split('/')
+      pathArray.pop()
+      const pathDir = pathArray.join('/')
+      ogpInfo.icon = origin + pathDir + '/' + ogpInfo.icon
     }
-    // console.log('url', url)
-    // console.log('icon', ogpInfo.icon)
-    // console.log('ogpInfo', ogpInfo)
     return ogpInfo
   } catch (error) {
     console.error('Error fetching OGP information:', error)

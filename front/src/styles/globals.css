@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* scrollbarを非表示 */
-html::-webkit-scrollbar {
-  display: none;
-}
-body::-webkit-scrollbar {
-  display: none;
+body {
+  @apply overflow-y-scroll;
 }
 
 html,
@@ -29,9 +25,17 @@ blockquote {
   @apply bg-bg2 dark:bg-dbg2;
 }
 
-/* 例外的に button, BlogCard, Blog LinkCard の CSS 設定 */
+path {
+  @apply stroke-txt1 dark:stroke-txt2;
+}
+
+/* 例外的に button, BlogCard, Blog, LinkCard, SlideButton, ham-menu の CSS 設定 */
 #button {
-  @apply bg-bg1 dark:bg-dbg1 opacity-90;
+  @apply bg-bg1 dark:bg-dbg1 opacity-90 dark:opacity-90;
+}
+
+#slide-button {
+  @apply bg-bg1 dark:bg-dbg1 bg-opacity-50 dark:bg-opacity-50;
 }
 
 #button:hover,
@@ -46,4 +50,8 @@ blockquote {
 
 #link-icon img {
   @apply rounded-none;
+}
+
+#ham-menu {
+  @apply bg-bg1 dark:bg-dbg1 bg-opacity-50 dark:bg-opacity-50;
 }

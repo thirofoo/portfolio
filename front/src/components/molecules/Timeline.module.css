@@ -1,0 +1,99 @@
+.container {
+  @apply align-middle;
+}
+
+.timelineItem {
+  @apply relative grid grid-cols-[180px_1fr] gap-4;
+}
+
+.dateIconContainer {
+  @apply flex justify-between px-4;
+}
+
+.date {
+  @apply flex flex-col text-sm;
+}
+
+.dateDesktop {
+  @apply visible;
+}
+
+.dateMobile {
+  @apply hidden;
+}
+
+.iconWrapper {
+  @apply relative flex items-start justify-center z-10;
+}
+
+.icon {
+  @apply w-14 h-14 object-contain rounded-[10%] z-10;
+}
+
+.dottedLineDesktop {
+  @apply absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-full border-l-2 border-dashed;
+}
+
+.dottedLineMobile {
+	@apply hidden;
+}
+
+.content {
+  @apply flex flex-col text-left;
+}
+
+.title {
+  @apply text-lg font-semibold;
+}
+
+.descriptionDesktop {
+  @apply text-sm mt-1 pb-12;
+}
+
+.descriptionMobile {
+	@apply hidden;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+
+  .timelineItem {
+    @apply flex py-2;
+  }
+
+  .dateIconContainer {
+    @apply block p-0;
+  }
+
+  .content {
+    @apply w-full p-0;
+  }
+
+  .dateDesktop {
+    @apply hidden;
+  }
+
+  .dateMobile {
+		@apply block;
+  }
+
+	.descriptionDesktop {
+		@apply hidden;
+	}
+
+  .descriptionMobile {
+		@apply block pb-2;
+  }
+
+  .date {
+    @apply text-center;
+  }
+
+	.dottedLineDesktop {
+		@apply hidden;
+	}
+
+	.dottedLineMobile {
+		@apply block ml-6 mb-4 h-10 border-l-2 border-dashed;
+	}
+}

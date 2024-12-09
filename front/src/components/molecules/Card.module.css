@@ -1,35 +1,31 @@
 .card {
-  @apply relative shadow-sh1 w-[40vw] min-h-[calc(min(100px,80vw))] shadow-sm duration-200 rounded-md dark:bg-dbg3 text-left;
-  box-shadow: 0px 0px 6px 1px theme(colors.sh1);
+  @apply relative shadow-sh1 w-[40vw] shadow-sm duration-200 rounded dark:bg-dbg3 text-left;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .image {
-  @apply absolute w-full h-full rounded-md object-cover border-sh1 border-b opacity-[15%] overflow-hidden;
+  @apply absolute w-full h-full rounded object-cover border-sh1 border-b opacity-[15%] overflow-hidden z-10;
 }
 
 .content {
-  @apply flex p-6 rounded-md h-full flex-col justify-between;
+  @apply flex p-6 rounded h-full flex-col justify-between;
 }
 
 .title {
-  @apply font-bold text-2xl mb-2;
+  @apply font-bold text-2xl mb-4;
 }
 
 .at {
-  @apply mb-2;
-}
-
-.description {
-  @apply text-base;
+  @apply flex items-center;
 }
 
 .tags {
-  @apply flex text-sm flex-wrap max-w-[30vw] justify-end;
+  @apply flex text-sm flex-wrap;
 }
 
 .tag {
-  @apply m-1 p-1 rounded-md min-w-[min(50px,10vw)] text-center;
-  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  @apply m-1 p-1 rounded min-w-[min(50px,10vw)] text-center;
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
 }
 
 .readmore {
@@ -38,6 +34,6 @@
 
 @media (max-width: 768px) {
   .card {
-    @apply w-[85vw] h-auto;
+    @apply h-auto w-full;
   }
 }

@@ -8,31 +8,32 @@ type CardListProps = {
 }
 
 export const CardList = ({ articles, from }: CardListProps) => {
-  const pairedArticles: any[] = []
-
-  // 2記事ずつ見て card を並べていく
-  for (let i = 0; i < articles.length; i += 2) {
-    const firstArticle = articles[i]
-    const secondArticle = i + 1 < articles.length ? articles[i + 1] : null
-
-    pairedArticles.push(
-      <div key={firstArticle.ID} className={styles.article_wrapper}>
-        <div className={styles.card}>
-          <Card article={firstArticle} from={from} />
-        </div>
-        {secondArticle ? (
-          <div className={styles.card}>
-            <Card article={secondArticle} from={from} />
-          </div>
-        ) : (
-          // dummy article を opacity-0 で表示させておく
-          <div className={styles.card + ' opacity-0 pointer-events-none'}>
-            <Card article={createEmptyArticle()} from={from} />
-          </div>
-        )}
-      </div>,
-    )
-  }
-
-  return <div className={styles.container}>{pairedArticles}</div>
+  return (
+    <table className={styles.table}>
+      <tbody>
+        {articles.reduce((rows, article, index) => {
+          if (index % 2 === 0) {
+            const secondArticle = index + 1 < articles.length ? articles[index + 1] : null
+            rows.push(
+              <tr key={index} className={styles.row}>
+                <td className={styles.cell}>
+                  <Card article={article} from={from}/>
+                </td>
+                <td className={styles.cell}>
+                  {secondArticle ? (
+                    <Card article={secondArticle} from={from} />
+                  ) : (
+                    <div className={styles.dummy}>
+                      <Card article={createEmptyArticle()} from={from} />
+                    </div>
+                  )}
+                </td>
+              </tr>
+            )
+          }
+          return rows
+        }, [] as JSX.Element[])}
+      </tbody>
+    </table>
+  )
 }

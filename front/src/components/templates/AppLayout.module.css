@@ -8,6 +8,6 @@
 
 @media (max-width: 768px) {
   .child {
-    @apply w-full h-full;
+    @apply w-full h-full px-5;
   }
 }

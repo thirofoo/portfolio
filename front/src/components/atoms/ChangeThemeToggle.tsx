@@ -1,5 +1,6 @@
 import styles from '@/components/atoms/ChangeThemeToggle.module.css'
-import { HalfMoon, SunLight } from 'iconoir-react'
+import { HalfMoon } from '@/components/atoms/icons/HalfMoon'
+import { SunLight } from '@/components/atoms/icons/SunLight'
 import { useTheme } from 'next-themes'
 
 export const ChangeThemeToggle = () => {
