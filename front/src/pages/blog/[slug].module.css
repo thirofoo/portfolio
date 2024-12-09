@@ -115,7 +115,7 @@
 
 .head_info {
   @apply rounded object-cover w-full min-h-[300px] overflow-hidden relative;
-  box-shadow: 0px 0px 4px 1px theme(colors.sh1);
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .headings {
