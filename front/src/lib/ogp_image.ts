@@ -3,7 +3,7 @@ import cloudinary from '@/lib/cloudinary';
 export const generateArticleOgp = (ogpText: string) => {
   const textColor = '#FFFFFF';
   const encodeText = encodeURIComponent(ogpText);
-  const fontFamily = 'Yu Gothic';
+  const fontFamily = 'Arial';
   const imageWidth = 1200;
   const baseFontSize = 80;
   const lineSpacing = 10;

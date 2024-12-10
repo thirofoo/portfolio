@@ -22,19 +22,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   const getMetaInfo = (): MetaInfo => {
     const cleanUrl = (slug?: string) => {
+      const basePath = router.pathname.replace(/\[.*\]/, '');
+      const trimmedBasePath = basePath.endsWith('/')
+        ? basePath.slice(0, -1)
+        : basePath;
       return slug
-        ? `${SITE_BASE_URL}/blog/${slug}`
-        : `${SITE_BASE_URL}${router.pathname}`;
+        ? `${SITE_BASE_URL}${trimmedBasePath}/${slug}`
+        : `${SITE_BASE_URL}${trimmedBasePath}`;
     };
   
-    if (router.pathname.startsWith('/blog/') && pageProps.article) {
+    if (pageProps.article) {
       const { article } = pageProps;
       return {
         title: article.title + ' | ' + SITE_NAME,
         description: article.description,
         ogImage: generateArticleOgp(article.title),
         ogType: 'article',
-        ogUrl: cleanUrl(article.slug), // `article.slug`を利用
+        ogUrl: cleanUrl(article.slug),
         canonicalUrl: cleanUrl(article.slug),
         twitterSite: TWITTER_SITE,
         noIndex: false,
@@ -45,19 +49,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         description: 'This is thirofoo portfolio',
         ogImage: generateArticleOgp(SITE_NAME),
         ogType: 'website',
-        ogUrl: cleanUrl(), // `slug`なしでクリーンなURL
+        ogUrl: cleanUrl(),
         canonicalUrl: cleanUrl(),
         twitterSite: TWITTER_SITE,
         noIndex: false,
       };
     }
-  };
+  };  
 
   const metaInfo = getMetaInfo();
   const isAdmin = router.pathname.startsWith('/admin');
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
+    <ThemeProvider attribute="class" defaultTheme="dark">
       <AppLayout>
         <Meta {...metaInfo} />
         {isAdmin ? (

@@ -50,6 +50,9 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
+  
+  const basePath = router.pathname.replace(/\[.*\]/, '');
+  const trimmedBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
 
   return (
     <>
@@ -79,7 +82,7 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
           <div className='mb-4'>
             <ShareToXButton
               title={article.title}
-              url={`${SITE_BASE_URL}/blog/${article.slug}`}
+              url={`${SITE_BASE_URL}${trimmedBasePath}/${article.slug}`}
             />
           </div>
           <Headings
