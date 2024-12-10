@@ -37,11 +37,7 @@ export const Header = () => {
 
   return (
     <>
-      <header
-        className={`${styles.header} ${
-          isMenuOpen ? 'bg-opacity-50 backdrop-blur-sm bg-bg2 dark:bg-dbg2 dark:bg-opacity-50' : ''
-        }`}
-      >
+      <header className={styles.header}>
         <div className={styles.wrapper}>
           <Link
             href='/'
@@ -59,7 +55,7 @@ export const Header = () => {
           </div>
         </div>
 
-        <div className={`${styles.content} ${isMenuOpen ? styles.head_open : ''}`}>
+        <div className={`${styles.content} ${isMenuOpen ? styles.head_open : styles.head_close}`}>
           <div className={styles.button_wrapper}>
             <div className={styles.theme_toggle}>
               <ChangeThemeToggle></ChangeThemeToggle>

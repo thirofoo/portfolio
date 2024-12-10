@@ -19,11 +19,13 @@ export const AdminLayout = ({ children }: Props) => {
   }
   
   return (
-    <div>
-      <div className={styles['admin-header']}>
-        <h1 className={styles['admin-header__title']}>----- This is Admin Page !!! -----</h1>
+    <>
+      <div>
+        <div className={styles['admin-header']}>
+          <h1 className={styles['admin-header__title']}>----- This is Admin Page !!! -----</h1>
+        </div>
+        {children}
       </div>
-      {children}
-    </div>
+    </>
   )
 }

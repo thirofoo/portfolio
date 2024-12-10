@@ -37,7 +37,7 @@ const Blog = ({ articles }: BlogProps) => {
     <>
       <div className={isSearchCardExpanded ? styles.down : styles.up}>
         <div className={styles.search_wrapper}>
-          <div className={`duration-500 ${isSearchCardExpanded ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`transition-opacity ${isSearchCardExpanded ? 'opacity-100' : 'opacity-0'}`}>
             <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
           </div>
           <button

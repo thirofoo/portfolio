@@ -57,17 +57,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   const isAdmin = router.pathname.startsWith('/admin');
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <Meta {...metaInfo} />
-      {isAdmin ? (
-        <AdminLayout>
-          <Component {...pageProps} />
-        </AdminLayout>
-      ) : (
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
-      )}
+    <ThemeProvider attribute="class" defaultTheme="light">
+      <AppLayout>
+        <Meta {...metaInfo} />
+        {isAdmin ? (
+          <AdminLayout>
+            <Component {...pageProps} />
+          </AdminLayout>
+        ) : (
+            <Component {...pageProps} />
+          )}
+      </AppLayout>
     </ThemeProvider>
   );
 }

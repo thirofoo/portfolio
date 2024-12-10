@@ -16,7 +16,6 @@ i {
 }
 
 input,
-header,
 textarea {
   @apply bg-bg1 bg-opacity-70 dark:bg-dbg1 dark:bg-opacity-70;
 }
