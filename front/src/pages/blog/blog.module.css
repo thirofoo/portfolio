@@ -24,12 +24,12 @@
 }
 
 .arrow_up {
-  @apply inline-block ease-in-out duration-500;
+  @apply inline-block ease-in-out duration-500 transition-transform;
   transform: rotate(0deg);
 }
 
 .arrow_down {
-  @apply inline-block ease-in-out duration-500;
+  @apply inline-block ease-in-out duration-500 transition-transform;
   transform: rotate(180deg);
 }
 

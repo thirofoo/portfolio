@@ -1,23 +1,21 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document';
 
 const MyDocument = () => {
-  // Next.jsアプリケーションの骨格的な部分
-  // <NextScript>は、クライアント側で読み込まれるScript
-
   return (
-    <>
+    <Html lang="ja-JP">
       <Head>
-        <meta name='application-name' content='thirofoo home' />
-        <meta name='description' content='This is thirofoo website.' />
-        <link rel='icon' href='/icon.png' />
+        <meta name="application-name" content="thirofoo home" />
+        <link rel="icon" href="/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:locale" content="ja_JP" />
+        <meta property="og:site_name" content="thirofoo home" />
       </Head>
-      <Html lang='ja-JP'>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    </>
-  )
-}
-export default MyDocument
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+};
+
+export default MyDocument;

@@ -5,4 +5,3 @@ export interface TimelineItem {
   title: JSX.Element | string;
   description: JSX.Element | string;
 }
-  

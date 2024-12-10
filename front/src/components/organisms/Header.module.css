@@ -1,5 +1,5 @@
 .header {
-  @apply fixed text-xl w-full z-20 duration-500 border-b-[1px] border-sh1 mt-[-2px];
+  @apply fixed text-xl w-full z-30 border-b-[1px] border-sh1 mt-[-2px];
 }
 
 .wrapper {
@@ -35,11 +35,11 @@
 }
 
 .head_name {
-  @apply text-2xl font-bold overflow-hidden p-2 pl-6;
+  @apply text-2xl font-bold overflow-hidden p-2 pl-6 z-50;
 }
 
 .button_wrapper {
-  @apply flex justify-center m-2;
+  @apply flex justify-center m-2 m-auto bg-sh1 bg-opacity-20 backdrop-blur-md rounded-lg px-4;
 }
 
 .button_group {
@@ -47,7 +47,9 @@
 }
 
 .content {
-  @apply flex flex-col justify-center mt-[-160px] duration-300;
+  @apply flex flex-col justify-center mt-[-160px];
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
 }
 
 .theme_toggle {
@@ -55,7 +57,7 @@
 }
 
 .head_open {
-  @apply m-0 duration-300 mt-[-70px];
+  transform: translateY(100px); /* 開けたときの位置 */
 }
 
 .ham_menu {
@@ -63,7 +65,7 @@
 }
 
 .ham_menu i {
-  @apply block absolute h-[3px] w-[50%] rounded-full opacity-100 left-0 rotate-0 transition duration-300 ease-in-out;
+  @apply block absolute h-[3px] w-[50%] rounded-full opacity-100 left-0 rotate-0 duration-100;
 }
 
 .ham_menu i:nth-child(1) {
@@ -94,21 +96,32 @@
 
 /* Hamburger Menu */
 @media (max-width: 768px) {
-  .button_wrapper {
-    @apply flex flex-col justify-center items-center;
+  .header {
+    @apply border-none bg-opacity-0;
   }
+  
+  .button_wrapper {
+    @apply flex flex-col justify-center items-center w-full p-2 pt-4;
+  }
+
   .theme_toggle {
     @apply m-0 mb-4;
   }
+
   .head_name {
-    @apply text-xl font-bold pl-[5vw] py-0 flex items-center justify-center;
+    @apply text-xl font-bold pl-[5vw] py-0 flex items-center justify-center z-30;
   }
+
   .content {
-    @apply mt-[-400px];
+    @apply flex flex-col justify-center mt-0 rounded-none;
+    transform: translateY(-200px); /* 開けたときの位置 */
+    transition: transform 0.3s ease-in-out;
   }
+  
   .head_open {
-    @apply mt-[-60px];
+    transform: translateY(-75px);
   }
+
   .button_group {
     @apply flex-col;
   }

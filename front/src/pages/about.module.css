@@ -17,7 +17,7 @@
 }
 
 .wrapper {
-  @apply flex duration-200 rounded justify-center p-10;
+  @apply flex rounded justify-center p-10;
   box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .profile {
-  @apply flex flex-col justify-between items-center w-full mt-6 duration-200;
+  @apply flex flex-col justify-between items-center w-full mt-6;
 }
 
 .profile h3 {

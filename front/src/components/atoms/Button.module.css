@@ -1,10 +1,10 @@
 .button {
-  @apply rounded py-3 px-12 duration-200 backdrop-blur-3xl min-w-[150px];
+  @apply rounded py-3 px-12 backdrop-blur-3xl min-w-[150px];
   box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
 }
 
 .activeButton {
-  @apply rounded py-3 px-12 duration-200 backdrop-blur-3xl min-w-[150px];
+  @apply rounded py-3 px-12 backdrop-blur-3xl min-w-[150px];
   box-shadow: inset 0px 0px 3px 3px theme(colors.sh1);
 }
 
