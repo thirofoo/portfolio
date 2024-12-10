@@ -1,4 +1,4 @@
-import cloudinary from '@/plugins/cloudinary'
+import cloudinary from '@/lib/cloudinary'
 
 export const generateArticleOgp = (ogpText: string) => {
   const textColor = '#FFFFFF'
@@ -11,10 +11,8 @@ export const generateArticleOgp = (ogpText: string) => {
 
   // 第一引数は画像名、第二引数はオプション
   return cloudinary.url('portfolio/ogp.jpg', {
-    // URLのバージョンの部分
     version: '1733754591',
     transformation: [
-      // テキストの設定
       { crop: 'fit', width: '1200' },
       {
         color: `${textColor}`,

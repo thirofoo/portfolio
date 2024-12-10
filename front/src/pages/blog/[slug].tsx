@@ -19,7 +19,7 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
       const headingElements = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'))
       const mappedHeadings = headingElements.map((heading) => ({
         element: heading,
-        level: parseInt(heading.tagName.replace('H', ''), 10), // H2, H3...を数値化
+        level: parseInt(heading.tagName.replace('H', ''), 10),
       }))
       setHeadings(mappedHeadings)
     }
@@ -97,7 +97,6 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
 export default BlogDetail
 
-// 動的routingのpathを教える関数
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getAllArticles(process.env.API_URL as string)
   if (!articles) {
@@ -112,7 +111,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: true }
 }
 
-// build時にSSG
 export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
   const { slug } = params as { slug: string }
   const article = await getOneArticle(slug, process.env.API_URL as string)

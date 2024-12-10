@@ -7,14 +7,14 @@ import type { NextPage } from 'next'
 const works: Article[] = [
   {
     ID: '1',
-    CreatedAt: new Date().toISOString(), // ダミーの作成日時
-    UpdatedAt: new Date().toISOString(), // ダミーの更新日時
-    DeletedAt: '', // 削除されていないため空文字
+    CreatedAt: new Date().toISOString(),
+    UpdatedAt: new Date().toISOString(),
+    DeletedAt: '',
     title: 'Competitive Programming Library',
     slug: 'competitive-programming',
     description: '競技プログラミングで使用するライブラリのまとめ',
-    author: 'Admin', // 作成者を仮設定
-    thumbnail: getUrl('atcoder-logo'), // サムネイル画像
+    author: 'Admin',
+    thumbnail: getUrl('atcoder-logo'),
     Tags: [
       {
         ID: '1',

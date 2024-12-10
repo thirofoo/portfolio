@@ -1,48 +1,75 @@
-import { AdminLayout } from '@/components/templates/AdminLayout'
-import { AppLayout } from '@/components/templates/AppLayout'
-import { generateArticleOgp } from '@/lib/ogp_image'
-import '@/styles/globals.css'
-import { ThemeProvider } from 'next-themes'
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { Meta } from '@/components/atoms/Meta';
+import { AdminLayout } from '@/components/templates/AdminLayout';
+import { AppLayout } from '@/components/templates/AppLayout';
+import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
+import { MetaInfo } from '@/Interfaces/Meta';
+import { generateArticleOgp } from '@/lib/ogp_image';
+import '@/styles/globals.css';
+import { ThemeProvider } from 'next-themes';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import 'highlight.js/styles/base16/green-screen.css'
-import 'highlight.js/styles/base16/materia.css'
+import 'highlight.js/styles/base16/green-screen.css';
+import 'highlight.js/styles/base16/materia.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter()
+  const router = useRouter();
+
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [router.pathname])
+    window.scrollTo(0, 0);
+  }, [router.pathname]);
 
-  // Slug を取得して、OGP画像を生成
-  const { slug } = router.query
-  const ogpImage = generateArticleOgp(slug ? slug.toString() : 'default')
+  const getMetaInfo = (): MetaInfo => {
+    const cleanUrl = (slug?: string) => {
+      return slug
+        ? `${SITE_BASE_URL}/blog/${slug}`
+        : `${SITE_BASE_URL}${router.pathname}`;
+    };
+  
+    if (router.pathname.startsWith('/blog/') && pageProps.article) {
+      const { article } = pageProps;
+      return {
+        title: article.title,
+        description: article.description,
+        ogImage: generateArticleOgp(article.title),
+        ogType: 'article',
+        ogUrl: cleanUrl(article.slug), // `article.slug`を利用
+        canonicalUrl: cleanUrl(article.slug),
+        twitterSite: TWITTER_SITE,
+        noIndex: false,
+      };
+    } else {
+      return {
+        title: SITE_NAME,
+        description: 'This is thirofoo portfolio',
+        ogImage: generateArticleOgp(SITE_NAME),
+        ogType: 'website',
+        ogUrl: cleanUrl(), // `slug`なしでクリーンなURL
+        canonicalUrl: cleanUrl(),
+        twitterSite: TWITTER_SITE,
+        noIndex: false,
+      };
+    }
+  };
 
-  // layoutで定義された構造に対して、内容を組み込む
-  // → _document.tsxの<Main>に組み込まれる
+  const metaInfo = getMetaInfo();
+  const isAdmin = router.pathname.startsWith('/admin');
+
   return (
-    // default : dark mode
-    // themeProvider は local storage にthemeの情報を保存している
-    // → renderingされず、style単位で切り替えが可能
-    <ThemeProvider attribute='class' defaultTheme='dark'>
-      <AppLayout>
-        <Head>
-          <title>thirofoo portfolio</title>
-          <meta key='og:image' property='og:image' content={ogpImage} />
-        </Head>
-        {router.pathname.startsWith('/admin') ? (
-          <AdminLayout>
-            <Component {...pageProps} />
-          </AdminLayout>
-        ) : (
+    <ThemeProvider attribute="class" defaultTheme="dark">
+      <Meta {...metaInfo} />
+      {isAdmin ? (
+        <AdminLayout>
           <Component {...pageProps} />
-        )}
-      </AppLayout>
+        </AdminLayout>
+      ) : (
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      )}
     </ThemeProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
