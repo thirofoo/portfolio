@@ -1,5 +1,5 @@
 .toggle {
-  @apply rounded-full transition duration-500 ease-in-out;
+  @apply rounded-full;
 }
 
 .active {

@@ -1,4 +1,7 @@
 import { Image } from '@/components/atoms/Image'
+import { ShareToXButton } from '@/components/atoms/ShareToXButton'
+import { Headings } from '@/components/molecules/Headings'
+import { SITE_BASE_URL } from '@/config'
 import { Article } from '@/Interfaces/Article'
 import { getAllArticles, getOneArticle } from '@/lib/api/article'
 import { markdownToHtml, parseHTMLToReactJSX } from '@/lib/markdown'
@@ -29,19 +32,20 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
     }
   }, [])
 
-  const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, heading: Element) => {
-    e.preventDefault()
-
-    if (typeof window !== 'undefined') {
-      const rect = heading.getBoundingClientRect()
-      const scrollTop = window.scrollY || document.documentElement.scrollTop
-      const offsetTop = rect.top + scrollTop - 100
+  const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, text: string) => {
+    e.preventDefault();
+  
+    const targetHeading = document.querySelector(`[id="${text}"]`);
+    if (targetHeading) {
+      const rect = targetHeading.getBoundingClientRect();
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const offsetTop = rect.top + scrollTop - 100;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth',
-      })
+      });
     }
-  }
+  };
 
   const router = useRouter()
   if (router.isFallback) {
@@ -71,24 +75,18 @@ const BlogDetail: NextPage<BlogProps> = ({ article }) => {
 
       <div className='flex'>
         <div className={styles.content}>{parseHTMLToReactJSX(article.body)}</div>
-
+    
         <div className={styles.headings}>
-          <ul>
-            {headings.map(({ element, level }, index) => (
-              <li
-                key={index}
-                className={`my-4 text-md`}
-                style={{ paddingLeft: `${(level - 2) * 20}px` }} // インデント調整
-              >
-                <a
-                  href={`#${element.textContent?.replace(/\s+/g, '-').toLowerCase()}`}
-                  onClick={(e) => handleHeadingClick(e, element)}
-                >
-                  {element.textContent}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className='mb-4'>
+            <ShareToXButton
+              title={article.title}
+              url={`${SITE_BASE_URL}/blog/${article.slug}`}
+            />
+          </div>
+          <Headings
+            headings={headings}
+            handleHeadingClick={(e, text) => handleHeadingClick(e, text)}
+          />
         </div>
       </div>
     </>

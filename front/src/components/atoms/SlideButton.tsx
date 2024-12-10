@@ -1,6 +1,6 @@
+import styles from '@/components/atoms/SlideButton.module.css';
 import Link from 'next/link'; // Next.js の Link を使用
 import { useState } from 'react';
-import styles from './SlideButton.module.css';
 
 type SlideButtonProps = {
   options: { label: string; link: string }[]; // ボタンの選択肢と対応するリンク
