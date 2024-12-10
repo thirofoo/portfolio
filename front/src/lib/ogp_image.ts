@@ -11,8 +11,22 @@ export const generateArticleOgp = (ogpText: string) => {
   const fontStyle = 'normal';
   const letterSpacing = 4;
 
-  const textLength = ogpText.length;
-  const dynamicFontSize = Math.min((imageWidth - textLength * 4) / textLength, baseFontSize);
+  const calculateTextWidth = (text: string): number => {
+    let width = 0;
+    for (const char of text) {
+      if (char.match(/[a-z0-9\s]/)) {
+        // 半角文字・数字
+        width += 0.5;
+      } else {
+        // 全角文字やその他
+        width += 1;
+      }
+    }
+    return width;
+  };
+
+  const textWidth = calculateTextWidth(ogpText);
+  const dynamicFontSize = Math.min((imageWidth - textWidth * 4) / textWidth, baseFontSize);
 
   return cloudinary.url('portfolio/ogp.jpg', {
     version: '1733754591',
