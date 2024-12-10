@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (router.pathname.startsWith('/blog/') && pageProps.article) {
       const { article } = pageProps;
       return {
-        title: article.title,
+        title: article.title + ' | ' + SITE_NAME,
         description: article.description,
         ogImage: generateArticleOgp(article.title),
         ogType: 'article',
