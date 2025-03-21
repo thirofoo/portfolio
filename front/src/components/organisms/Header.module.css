@@ -101,7 +101,7 @@
   }
   
   .button_wrapper {
-    @apply flex flex-col justify-center items-center w-full p-2 pt-4;
+    @apply flex flex-col justify-center items-center w-full p-2 pt-4 rounded-none;
   }
 
   .theme_toggle {

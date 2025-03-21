@@ -1,5 +1,4 @@
 import { Article } from '@/Interfaces/Article'
-import { Button } from '@/components/atoms/Button'
 import { CardList } from '@/components/molecules/CardList'
 import { getAllArticles } from '@/lib/api/article'
 import styles from '@/pages/blog/blog.module.css'
@@ -20,22 +19,12 @@ const Blog = ({ articles }: BlogProps) => {
 
         <div className={styles.list_wrapper}>
           <CardList
-            articles={articles.slice(0, Math.min(4 * displayNum, articles.length))}
+            articles={articles.slice(0, articles.length)}
             from='blog'
           />
         </div>
         {articles.length === 0 ? (
           <div className={styles.nothing}>No such blog exists.</div>
-        ) : articles.length > 4 * displayNum ? (
-          <div className={styles.button_wrapper}>
-            <Button
-              content='More'
-              type='button'
-              handleClick={() => {
-                setDisplayNum(displayNum + 1)
-              }}
-            ></Button>
-          </div>
         ) : null}
       </div>
     </>

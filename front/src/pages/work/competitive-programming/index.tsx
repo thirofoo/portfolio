@@ -1,7 +1,6 @@
 import { Article } from '@/Interfaces/Article'
 import { Button } from '@/components/atoms/Button'
 import { CardList } from '@/components/molecules/CardList'
-import { SearchCard } from '@/components/molecules/SearchCard'
 import { getAllLibraries } from '@/lib/api/library'
 import styles from '@/pages/work/competitive-programming/library.module.css'
 import { GetStaticProps } from 'next'
@@ -35,8 +34,9 @@ const Blog = ({ articles }: BlogProps) => {
 
   return (
     <>
-      <div className={isSearchCardExpanded ? styles.down : styles.up}>
-        <div className={styles.search_wrapper}>
+      <div>
+      {/* <div className={isSearchCardExpanded ? styles.down : styles.up}> */}
+        {/* <div className={styles.search_wrapper}>
           <div className={`transition-opacity ${isSearchCardExpanded ? 'opacity-100' : 'opacity-0'}`}>
             <SearchCard onSearch={handleSearch} items={['Title', 'Tags']} />
           </div>
@@ -52,7 +52,7 @@ const Blog = ({ articles }: BlogProps) => {
               ↓
             </span>
           </button>
-        </div>
+        </div> */}
 
         <h1 className={styles.title}>Library</h1>
 
