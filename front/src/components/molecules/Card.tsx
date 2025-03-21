@@ -10,37 +10,40 @@ type Props = {
 
 export const Card = ({ article, from }: Props) => {
   return (
-    <>
-      <div className={styles.card} id='blog-card'>
-        <Link
-          href={article.slug.includes('http') ? article.slug : `/${from}/${article.slug}`}
-          {...(article.slug.includes('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        >
-          <Image
-            className={styles.image}
-            src={article.thumbnail}
-            alt={article.slug}
-            width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
-            height={100}
-          />
-          <div className={styles.content}>
-            <div className='flex h-full flex-col justify-between z-10'>
-              <h2 className={styles.title}>{article.title}</h2>
-              <div className='flex justify-between mb-2'>
-                <div className={styles.tags}>
-                  {article.Tags.map((tag) => (
-                    <span key={tag.ID} className={styles.tag}>
-                      {tag.name}
-                    </span>
-                  ))}
-                </div>
-                <div className={styles.at}>{article.CreatedAt.substring(0, 10)}</div>
+    <div className={styles.card} id='blog-card'>
+      <Link
+        href={article.slug.includes('http') ? article.slug : `/${from}/${article.slug}`}
+        {...(article.slug.includes('http')
+          ? { target: '_blank', rel: 'noopener noreferrer' }
+          : {})}
+      >
+        <Image
+          className={styles.image}
+          src={article.thumbnail}
+          alt={article.slug}
+          width={10000} // 親要素内でmaxにしたいから大きい値を入れておく
+          height={100}
+        />
+        <div className={styles.content}>
+          <div className='flex h-full flex-col justify-between z-10'>
+            <h2 className={styles.title}>{article.title}</h2>
+            <div className='flex justify-between mb-2'>
+              <div className={styles.tags}>
+                {article.Tags.map((tag) => (
+                  <span key={tag.ID} className={styles.tag}>
+                    {tag.name}
+                  </span>
+                ))}
               </div>
-              <p className={article.type == 'library' ? 'hidden' : ''}>{article.description}</p>
+              <div className={styles.at}>{article.CreatedAt.substring(0, 10)}</div>
             </div>
+            {/* Use styles.description to limit to one line */}
+            <p className={`${article.type === 'library' ? 'hidden' : styles.description}`}>
+              {article.description}
+            </p>
           </div>
-        </Link>
-      </div>
-    </>
+        </div>
+      </Link>
+    </div>
   )
 }

@@ -4,4 +4,5 @@ export interface TimelineItem {
   icon: string;
   title: JSX.Element | string;
   description: JSX.Element | string;
+  link?: string;
 }

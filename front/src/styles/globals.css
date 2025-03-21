@@ -25,7 +25,7 @@ blockquote {
 }
 
 path {
-  @apply stroke-txt1 dark:stroke-txt2;
+  @apply stroke-txt1 dark:stroke-txt2; 
 }
 
 /* 例外的に button, BlogCard, Blog, LinkCard, SlideButton, ham-menu の CSS 設定 */

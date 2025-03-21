@@ -10,9 +10,9 @@ const works: Article[] = [
     CreatedAt: new Date().toISOString(),
     UpdatedAt: new Date().toISOString(),
     DeletedAt: '',
-    title: 'Competitive Programming Library',
+    title: 'Algorithm Library',
     slug: 'competitive-programming',
-    description: '競技プログラミングで使用するライブラリのまとめ',
+    description: '競技プログラミング用のライブラリ一覧',
     author: 'Admin',
     thumbnail: getUrl('atcoder-logo'),
     Tags: [

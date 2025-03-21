@@ -35,7 +35,7 @@
 }
 
 .head_name {
-  @apply text-2xl font-bold overflow-hidden p-2 pl-6 z-50;
+  @apply text-2xl font-bold overflow-hidden p-2 z-50;
 }
 
 .button_wrapper {
@@ -61,7 +61,7 @@
 }
 
 .ham_menu {
-  @apply relative w-[50px] h-[50px] cursor-pointer z-10 mr-4 rounded-full;
+  @apply relative w-[50px] h-[50px] cursor-pointer z-10 rounded-full;
 }
 
 .ham_menu i {
@@ -101,7 +101,7 @@
   }
   
   .button_wrapper {
-    @apply flex flex-col justify-center items-center w-full p-2 pt-4;
+    @apply flex flex-col justify-center items-center w-full p-2 pt-4 rounded-none;
   }
 
   .theme_toggle {
@@ -109,7 +109,7 @@
   }
 
   .head_name {
-    @apply text-xl font-bold pl-[5vw] py-0 flex items-center justify-center z-30;
+    @apply text-xl font-bold py-0 flex items-center justify-center z-30;
   }
 
   .content {

@@ -4,8 +4,9 @@ import type { NextPage } from 'next'
 
 import { GitHub } from '@/components/atoms/icons/GitHub'
 import { X } from '@/components/atoms/icons/X'
+import { Zenn } from '@/components/atoms/icons/Zenn'
 
-import { LinkCard } from '@/components/molecules/LinkCard'
+
 import { Timeline } from '@/components/molecules/Timeline'
 
 import { TimelineItem } from '@/Interfaces/Timeline'
@@ -13,44 +14,48 @@ import { TimelineItem } from '@/Interfaces/Timeline'
 const timelineData: TimelineItem[] = [
   {
     from: '',
+    to: '2025年4月',
+    icon: '/images/academics.webp',
+    title: <span>埼玉大学大学院理工学研究科数理電子情報専攻情報工学プログラム 入学</span>,
+    description: (
+      <></>
+    ),
+  },
+  {
+    from: '',
+    to: '2025年3月',
+    icon: '/images/logo_ipsj.webp',
+    title: <span> 第252回ARC・第208回SLDM・第68回EMB合同研究発表会（ETNET2025）参加 </span>,
+    description: (
+      <>
+        情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表（スライド発表）とポスターセッションに参加しました。
+      </>
+    ),
+    link: 'https://www.ipsj.or.jp/kenkyukai/event/arc252sldm208emb68.html',
+  },
+  {
+    from: '',
     to: '2024年12月',
     icon: '/images/ICPC.webp',
     title: <span> The 2024 ICPC Asia Yokohama Regional Contest 出場 </span>,
     description: (
       <>
-        チーム executive is deprived として、2024 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で上位 10 % 入賞 + 予選通過を果たし、2024 年 12 月に開催されるアジア地区の本戦に出場することになりました。
-        <div className="my-3">
-          <LinkCard
-            url='https://icpc.iisf.or.jp/2024-yokohama/domestic/icpc-2024-result/'
-            img='/images/ICPC.webp'
-            title='ICPC 2024 国内予選 結果 / Results | ICPC 2024 Asia Yokohama Regional'
-            description=''
-            icon='/images/ICPC.webp'
-          />
-        </div>
+        チーム executive is deprived として、2024 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で上位 10 % 入賞 + 予選通過を果たし、2024 年 12 月に開催されるアジア地区の本戦に出場しました。
       </>
     ),
+    link: 'https://icpc.iisf.or.jp/2024-yokohama/domestic/icpc-2024-result/',
   },
   {
     from: '2024年8月',
     to: '2024年9月',
     icon: '/images/preferred.webp',
-    title: <span>株式会社 Preferred Networks</span>,
+    title: <span>株式会社 Preferred Networks 夏季インターン</span>,
     description: (
       <>
-        夏季インターンとして 1 カ月間 MP-PAWRという最新の天気に関するデータを用いて、CNN で天候を予測するタスクに携わりました。
-        <br />
-        <div className="my-3">
-          <LinkCard
-            url='https://tech.preferred.jp/ja/blog/i24-gd02-qpe-result/'
-            img='/images/pfn_tech.webp'
-            title='最新の気象レーダーを用いて降水量を推定するデータ分析コンペを開催しました - Preferred Networks Research & Development'
-            description='2024年夏季インターンシッププログラムでは「４週間グループ開発コース」を新たに設け、8月26日 (月) から9月20日 (金) までの４週間にわたってグループ開発インターンシップを実施しました。本稿では「GD02 データサイエンス」のテーマで実施した、最新気象レーダー「MP-PAWR」の観測データを用いた降水量予測の取り組みについてご紹介します'
-            icon='/images/preferred.webp'
-          />
-        </div>
+        1 カ月間 MP-PAWR という最新の天気に関するデータを用いて、CNN を用いて天候を予測するタスクに携わらせていただきました。
       </>
     ),
+    link: 'https://tech.preferred.jp/ja/blog/i24-gd02-qpe-result/',
   },
   {
     from: '',
@@ -65,23 +70,13 @@ const timelineData: TimelineItem[] = [
     from: '2023年8月',
     to: '2024年8月',
     icon: '/images/future_img.webp',
-    title: <span>フューチャーアーキテクト株式会社</span>,
+    title: <span>フューチャーアーキテクト株式会社 夏季インターン ・ アルバイト</span>,
     description: (
       <>
-        夏季インターンとして 1 ヶ月間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、実際にある100万台以上のIoTプラットフォームの開発に携わらせていただきました。
-        <br />
-        インターン終了後も継続で 1 年弱の間同じプロジェクトにて開発アルバイトをしていました。
-        <div className="my-3">
-          <LinkCard
-            url='https://future-architect.github.io/articles/20230920a/'
-            img='/images/future_tech.webp'
-            title='Summer Enginner Camp 2023 参加記 | フューチャー技術ブログ'
-            description='私は今回、「Goとサーバレスアーキテクチャで体験。100万台超えの大規模スマートセンサーloTプラットフォームに関わってみませんか？」というプロジェクトに参加させていただきました。'
-            icon='/images/future_img.webp'
-          />
-        </div>
+        1 ヶ月間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わらせていただきました。インターン終了後も継続で 1 年弱の間同じプロジェクトにて開発アルバイトをしていました。
       </>
     ),
+    link: 'https://future-architect.github.io/articles/20230920a/',
   },
   {
     from: '2023年4月',
@@ -91,24 +86,24 @@ const timelineData: TimelineItem[] = [
     description: (
       <>
         2023 年度に埼玉大学プログラミングサークル Maximum 副会長をし、競技プログラミングの講師として活動していました。
-        <br />
-        <div className="my-3">
-          <LinkCard
-            url='https://www.maximum.vc/'
-            img='/images/maximum_img.webp'
-            title='Maximum'
-            description='埼玉大学プログラミングサークル「Maximum」の公式サイトです、活動内容や知見を情報発信していきます。'
-            icon='/images/melin.png'
-          />
-        </div>
       </>
     ),
+    link: 'https://www.maximum.vc/',
   },
   {
     from: '',
     to: '2022年12月',
     icon: '/images/academics.webp',
     title: <span>応用情報技術者試験 合格</span>,
+    description: (
+      <></>
+    ),
+  },
+  {
+    from: '2021年4月',
+    to: '2025年03月',
+    icon: '/images/academics.webp',
+    title: <span>埼玉大学工学部情報工学科 入学</span>,
     description: (
       <></>
     ),
@@ -130,12 +125,20 @@ const Home: NextPage = () => {
             />
             <div className={styles.top_profile}>
               <h2>thirofoo / through</h2>
-              <p>2002.7.24</p>
+              <p>2002.7.24 from Tochigi, Japan</p>
               <h3>
                 <a href="https://www.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
-                  Saitama University 
+                  Saitama University
                 </a> 
-                ICS B4</h3>
+                <br />
+                Graduate School of Science and Engineering
+                <br />
+                <a href="http://www.ertpf.ics.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
+                  Azumi Laboratory
+                </a> 
+              </h3>
+
+              {/* ICON 系統 */}
               <p className={styles.icon_wrapper}>
                 <a
                   href='https://github.com/thirofoo'
@@ -145,6 +148,7 @@ const Home: NextPage = () => {
                 >
                   <GitHub />
                 </a>
+
                 <a
                   href='https://twitter.com/through__TH__'
                   target='_blank'
@@ -153,54 +157,45 @@ const Home: NextPage = () => {
                 >
                   <X />
                 </a>
+
+                <a
+                  href='https://zenn.dev/through'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={styles.icon}
+                >
+                  <Zenn />
+                </a>
+
               </p>
             </div>
           </div>
-          <div className={styles.description}>
-            趣味でプログラミングをする大学生 <br />
-            特に競技プログラミングが好きで web 関連も少し触っています <br />
-          </div>
         </div>
 
-        <div className={styles.sub_wrapper}>
-          <div className={styles.profile}>
-            <h3>Competitive Programming</h3>
-            <div>
-              AtCoder というコンテストサイトでは <br />
-              Algorithm 分野は 青色 (上位4.3%) <br />
-              Heuristic 分野は 黄色 (上位4.2%) <br />
+        <div className="mb-12">
+          <h3 className="mb-8 text-2xl text-center">About me</h3>
+          <div className="mx-auto text-left max-w-prose">
+            <p>
+              競技プログラミングやデータサイエンスを好んでやっており、
+              <a href="https://atcoder.jp/users/through" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
+                AtCoder
+              </a>
+              では Algorithm は青色 (上位4.3%)、Heuristic は黄色 (上位4.2%) を、
+              <a href="https://www.kaggle.com/through" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
+                Kaggle
+              </a>
+              では Competitions Expert を達成しています。
               <br />
-            </div>
-            <LinkCard
-              title='through - AtCoder'
-              url='https://atcoder.jp/users/through'
-              img='/images/atcoder.webp'
-              description='AtCoder is a programming contest site for anyone from beginners to experts. We hold weekly programming contests online.'
-              icon='/images/atcoder_icon.png'
-            />
-          </div>
-          <div className={styles.add_margin}></div>
-          <div className={styles.profile}>
-            <h3>Study</h3>
-            <div>
-              主に自動運転をメインとしている安積研究室に所属。
+              Web 開発にも触れており、Next.js を用いてこのサイトを自作しています。
               <br />
-              ジョブの実行時間を確率分布で捉える応答時間解析を研究中。
+              研究室ではリアルタイムシステムの応答時間解析に関する研究をしています。
               <br />
-              <br />
-            </div>
-            <LinkCard
-              title='埼玉大学 安積研 | 安積研究室'
-              url='http://www.ertpf.ics.saitama-u.ac.jp/'
-              img='/images/lab_image.webp'
-              description=''
-              icon='/images/melin.png'
-            />
+            </p>
           </div>
         </div>
 
         <div className={styles.timeline_wrapper}>
-          <h3 className="mt-16 mb-8 text-2xl">Timeline</h3>
+          <h3 className="mb-8 text-2xl">Timeline</h3>
           <Timeline data={timelineData} />
         </div>
       </div>

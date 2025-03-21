@@ -3,7 +3,7 @@
 }
 
 .timelineItem {
-  @apply relative grid grid-cols-[180px_1fr] gap-4;
+  @apply relative grid grid-cols-[190px_1fr] gap-4;
 }
 
 .dateIconContainer {
@@ -30,12 +30,8 @@
   @apply w-14 h-14 object-contain rounded-[10%] z-10;
 }
 
-.dottedLineDesktop {
+.dottedLine {
   @apply absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-full border-l-2 border-dashed;
-}
-
-.dottedLineMobile {
-	@apply hidden;
 }
 
 .content {
@@ -46,29 +42,12 @@
   @apply text-lg font-semibold;
 }
 
-.descriptionDesktop {
+.description {
   @apply text-sm mt-1 pb-12;
-}
-
-.descriptionMobile {
-	@apply hidden;
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
-
-  .timelineItem {
-    @apply flex py-2;
-  }
-
-  .dateIconContainer {
-    @apply block p-0;
-  }
-
-  .content {
-    @apply w-full p-0;
-  }
-
   .dateDesktop {
     @apply hidden;
   }
@@ -77,23 +56,15 @@
 		@apply block;
   }
 
-	.descriptionDesktop {
-		@apply hidden;
-	}
-
-  .descriptionMobile {
-		@apply block pb-2;
-  }
-
   .date {
-    @apply text-center;
+    @apply text-left py-2;
+  }
+  
+  .dateIconContainer {
+    @apply px-0;
   }
 
-	.dottedLineDesktop {
-		@apply hidden;
-	}
-
-	.dottedLineMobile {
-		@apply block ml-6 mb-4 h-10 border-l-2 border-dashed;
-	}
+  .timelineItem {
+    @apply grid-cols-[60px_1fr];
+  }
 }
