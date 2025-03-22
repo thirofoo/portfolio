@@ -13,8 +13,8 @@ import { TimelineItem } from '@/Interfaces/Timeline'
 
 const timelineData: TimelineItem[] = [
   {
-    from: '',
-    to: '2025年4月',
+    from: '2025年4月',
+    to: '',
     icon: '/images/academics.webp',
     title: <span>埼玉大学大学院理工学研究科数理電子情報専攻情報工学プログラム 入学</span>,
     description: (
@@ -132,10 +132,6 @@ const Home: NextPage = () => {
                 </a> 
                 <br />
                 Graduate School of Science and Engineering
-                <br />
-                <a href="http://www.ertpf.ics.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
-                  Azumi Laboratory
-                </a> 
               </h3>
 
               {/* ICON 系統 */}

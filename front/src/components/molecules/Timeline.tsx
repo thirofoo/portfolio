@@ -1,7 +1,7 @@
+import { ChainLink } from '@/components/atoms/icons/ChainLink';
 import { Image } from '@/components/atoms/Image';
 import styles from '@/components/molecules/Timeline.module.css';
 import { TimelineItem } from '@/Interfaces/Timeline';
-import { ChainLink } from '@/components/atoms/icons/ChainLink'
 
 interface TimelineProps {
   data: TimelineItem[];
@@ -16,9 +16,13 @@ export const Timeline = ({ data }: TimelineProps) => {
             <div className={styles.dateIconContainer}>
 
               <div className={`${styles.date} ${styles.dateDesktop}`}>
-                <span>{item.to}</span>
-                <span>~</span>
-                <span>{item.from}</span>
+                { item.to === '' ? null : <span>{item.to}</span>}
+                { item.from === '' ? null : 
+                  <> 
+                    <span>~</span>
+                    <span>{item.from}</span>
+                  </>
+                }
               </div>
 
               <div className={styles.iconWrapper}>
@@ -44,9 +48,13 @@ export const Timeline = ({ data }: TimelineProps) => {
               </a>
 
               <div className={`${styles.date} ${styles.dateMobile}`}>
-                <span>{item.to}</span>
-                <span>~</span>
-                <span>{item.from}</span>
+                { item.from === '' ? null : 
+                  <> 
+                    <span>{item.from}</span>
+                    <span>~</span>
+                  </>
+                }
+                { item.to === '' ? null : <span>{item.to}</span>}
               </div>
 
               <div className={styles.description}>{item.description}</div>
