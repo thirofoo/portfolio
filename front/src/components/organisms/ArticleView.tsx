@@ -1,3 +1,4 @@
+import { CopyButton } from '@/components/atoms/CopyButton'
 import { Image } from '@/components/atoms/Image'
 import { ShareToXButton } from '@/components/atoms/ShareToXButton'
 import { Headings } from '@/components/molecules/Headings'
@@ -19,13 +20,18 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
   useEffect(() => {
     const fetchHeadings = () => {
       const headingElements = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'))
+      headingElements.forEach((heading) => {
+        if (!heading.id && heading.textContent) {
+          heading.id = heading.textContent.toLowerCase().replace(/\s+/g, '-')
+        }
+      })
       const mappedHeadings = headingElements.map((heading) => ({
         element: heading,
         level: parseInt(heading.tagName.replace('H', ''), 10),
       }))
       setHeadings(mappedHeadings)
     }
-
+  
     if (typeof window !== 'undefined') {
       fetchHeadings()
     }
@@ -33,8 +39,9 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
 
   const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, text: string) => {
     e.preventDefault();
+    const normalizedText = text.toLowerCase().replace(/\s+/g, '-');
   
-    const targetHeading = document.querySelector(`[id="${text}"]`);
+    const targetHeading = document.querySelector(`[id="${normalizedText}"]`);
     if (targetHeading) {
       const rect = targetHeading.getBoundingClientRect();
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -79,9 +86,12 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
         <div className={styles.content}>{parseHTMLToReactJSX(article.body)}</div>
     
         <div className={styles.headings}>
-          <div className='mb-4'>
+          <div className='mb-4 flex justify-start space-x-2'>
             <ShareToXButton
               title={article.title}
+              url={`${SITE_BASE_URL}${trimmedBasePath}/${article.slug}`}
+            />
+            <CopyButton
               url={`${SITE_BASE_URL}${trimmedBasePath}/${article.slug}`}
             />
           </div>

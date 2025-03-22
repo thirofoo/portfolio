@@ -54,6 +54,7 @@ function rehypeTransformImageUrls(slug: string) {
               const res_dark = await fetch(apiUrl + '&theme=dark')
               const data_normal = await res_normal.json()
               const data_dark = await res_dark.json()
+              
               node.properties = {
                 twitter_normal: data_normal.html,
                 twitter_dark: data_dark.html,
