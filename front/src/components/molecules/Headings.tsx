@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from '@/components/molecules/Headings.module.css'
+import styles from '@/components/molecules/Headings.module.css';
+import React from 'react';
 
 type HeadingItem = {
   element: Element;

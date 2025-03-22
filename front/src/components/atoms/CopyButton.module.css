@@ -1,7 +1,7 @@
-.share_to_x_button {
+.copy_button {
     @apply flex border-[1px] border-sh1 rounded-[10px] p-2 justify-center transition duration-200 ease-in-out
 }
 
-.share_to_x_button:hover {
+.copy_button:hover {
     @apply bg-sh1 bg-opacity-20;
 }

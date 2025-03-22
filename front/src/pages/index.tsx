@@ -170,9 +170,9 @@ const Home: NextPage = () => {
 
         <div className="mb-12">
           <h3 className="mb-8 text-2xl text-center">About me</h3>
-          <div className="mx-auto text-left max-w-prose">
+          <div className="mx-auto text-left max-w-2xl">
             <p>
-              競技プログラミングやデータサイエンスを好んでやっており、
+              メタヒューリスティクスや数理最適化、機械学習などを駆使した効率的な問題解決に取り組むことが好きで、競技プログラミングやデータサイエンスを嗜んでいます。
               <a href="https://atcoder.jp/users/through" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
                 AtCoder
               </a>
@@ -181,10 +181,12 @@ const Home: NextPage = () => {
                 Kaggle
               </a>
               では Competitions Expert を達成しています。
-              <br />
-              Web 開発にも触れており、Next.js を用いてこのサイトを自作しています。
-              <br />
-              研究室ではリアルタイムシステムの応答時間解析に関する研究をしています。
+              <br /><br />
+
+              また Web 開発にも触れており、Next.js と Go を用いてこのサイトを自作しています。
+              <br /><br />
+
+              大学では自動運転に関する研究室に所属し、確率を用いた応答時間解析に関する研究をしています。
               <br />
             </p>
           </div>
