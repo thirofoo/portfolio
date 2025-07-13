@@ -5,6 +5,7 @@ import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         ? `${SITE_BASE_URL}${trimmedBasePath}/${slug}`
         : `${SITE_BASE_URL}${trimmedBasePath}`;
     };
-  
+
     if (pageProps.article) {
       const { article } = pageProps;
       return {
@@ -55,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         noIndex: false,
       };
     }
-  };  
+  };
 
   const metaInfo = getMetaInfo();
   const isAdmin = router.pathname.startsWith('/admin');
@@ -69,9 +70,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </AdminLayout>
         ) : (
-            <Component {...pageProps} />
-          )}
+          <Component {...pageProps} />
+        )}
       </AppLayout>
+      <Analytics />
     </ThemeProvider>
   );
 }

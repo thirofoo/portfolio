@@ -39,7 +39,7 @@
 }
 
 .button_wrapper {
-  @apply flex justify-center m-2 m-auto bg-sh1 bg-opacity-20 backdrop-blur-md rounded-lg px-4;
+  @apply flex justify-center m-auto backdrop-blur-[5px] bg-sh1 bg-opacity-30 rounded-lg;
 }
 
 .button_group {
@@ -53,7 +53,7 @@
 }
 
 .theme_toggle {
-  @apply inline-flex mx-8;
+  @apply inline-flex px-4 border-r border-sh1 border-opacity-20;
 }
 
 .head_open {
@@ -105,7 +105,7 @@
   }
 
   .theme_toggle {
-    @apply m-0 mb-4;
+    @apply m-0 mb-4 border-none;
   }
 
   .head_name {
@@ -114,7 +114,7 @@
 
   .content {
     @apply flex flex-col justify-center mt-0 rounded-none;
-    transform: translateY(-200px); /* 開けたときの位置 */
+    transform: translateY(-220px); /* 開けたときの位置 */
     transition: transform 0.3s ease-in-out;
   }
   
@@ -125,4 +125,18 @@
   .button_group {
     @apply flex-col;
   }
+}
+
+/* ========== Slide Button ========== */
+
+.container {
+	@apply relative flex w-[min(90vw,320px)] h-12 overflow-hidden rounded-md items-center mx-4;
+}
+
+.slider {
+	@apply absolute h-[88%] rounded-md transition-transform duration-300 border-[1px] border-sh1;
+}
+
+.button {
+	@apply flex-1 z-10 text-center text-lg focus:outline-none;
 }

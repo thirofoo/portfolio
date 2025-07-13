@@ -1,10 +1,10 @@
 .card {
-  @apply relative shadow-sh1 w-[40vw] shadow-sm rounded dark:bg-dbg3 text-left;
+  @apply relative w-[40vw] rounded text-left;
   box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .image {
-  @apply absolute w-full h-full rounded object-cover border-sh1 border-b opacity-[15%] overflow-hidden z-10;
+  @apply absolute w-full h-full object-cover opacity-[20%] overflow-hidden z-10;
 }
 
 .content {

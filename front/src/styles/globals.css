@@ -8,7 +8,7 @@ body {
 
 html,
 body {
-  @apply m-0 p-0 min-h-[100vh] text-txt1 dark:text-txt2 backdrop-filter bg-bg1 dark:bg-dbg1;
+  @apply m-0 p-0 min-h-[100vh] text-txt1 dark:text-txt2 backdrop-filter bg-bg1 dark:bg-dbg1 duration-100;
 }
 
 i {
@@ -40,7 +40,7 @@ path {
 #button:hover,
 #blog-card:hover,
 #link-card:hover {
-  @apply bg-bg2 dark:bg-dbg2;
+  @apply bg-bg4 dark:bg-dbg3
 }
 
 #link-card img {
@@ -49,8 +49,4 @@ path {
 
 #link-icon img {
   @apply rounded-none;
-}
-
-#ham-menu {
-  @apply bg-bg1 dark:bg-dbg1 bg-opacity-50 dark:bg-opacity-50;
 }
