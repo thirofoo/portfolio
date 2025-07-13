@@ -31,7 +31,7 @@ const timelineData: TimelineItem[] = [
         情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表（スライド発表）とポスターセッションに参加しました。
       </>
     ),
-    link: 'https://www.ipsj.or.jp/kenkyukai/event/arc252sldm208emb68.html',
+    // link: 'https://www.ipsj.or.jp/kenkyukai/event/arc252sldm208emb68.html',
   },
   {
     from: '',
@@ -76,7 +76,7 @@ const timelineData: TimelineItem[] = [
         1 ヶ月間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わらせていただきました。インターン終了後も継続で 1 年弱の間同じプロジェクトにて開発アルバイトをしていました。
       </>
     ),
-    link: 'https://future-architect.github.io/articles/20230920a/',
+    // link: 'https://future-architect.github.io/articles/20230920a/',
   },
   {
     from: '2023年4月',
@@ -129,7 +129,7 @@ const Home: NextPage = () => {
               <h3>
                 <a href="https://www.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
                   Saitama University
-                </a> 
+                </a>
                 <br />
                 Graduate School of Science and Engineering
               </h3>

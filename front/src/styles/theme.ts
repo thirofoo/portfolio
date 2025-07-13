@@ -3,8 +3,8 @@ module.exports = {
   bg1: 'white',
   bg2: '#f0f0f0',
   bg3: '#fafafa',
-  bg4: '#f2f2f2',
-  
+  bg4: '#ffffff',
+
   // bg-color (dark)
   // dbg1: '#182436',
   // dbg2: '#283446',
