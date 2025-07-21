@@ -5,6 +5,7 @@ import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
+import 'katex/dist/katex.min.css'
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';

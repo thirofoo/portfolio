@@ -5,7 +5,7 @@ import { getUrl } from '@/lib/url'
 import { Element } from 'hast'
 import React from 'react'
 import rehypeHighlight from 'rehype-highlight'
-import rehypeMathJaxSvg from 'rehype-mathjax'
+import rehypeKatex from 'rehype-katex'
 import rehypeParse from 'rehype-parse'
 import rehypeReact from 'rehype-react'
 import rehypeStringify from 'rehype-stringify'
@@ -102,7 +102,7 @@ export const markdownToHtml = async (markdown: string, slug: string) => {
     .use(remarkParse) // markdown -> mdast の変換
     .use(remarkRehype) // mdast -> hast の変換
     .use(remarkMath)
-    .use(rehypeMathJaxSvg)
+    .use(rehypeKatex)
     .use(() => rehypeTransformImageUrls(slug))
     .use(rehypeHighlight) // syntax highlight 追加
     .use(rehypeStringify) // hast -> html の変換
@@ -121,9 +121,7 @@ export const parseHTMLToReactJSX = (htmlContent: string) => {
     .use(rehypeReact, {
       createElement: React.createElement,
       components: {
-        // img タグを Image コンポーネントに置き換える
         img: Image,
-        // a タグを LinkCard コンポーネントに置き換える
         a: ConditionalLink,
       },
     })
