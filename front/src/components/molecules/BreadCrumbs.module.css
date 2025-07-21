@@ -1,13 +1,37 @@
 .breadcrumbs {
-  @apply text-lg font-extralight z-20 flex;
+  @apply text-lg font-extralight z-0 my-[16px] ml-[4px];
 }
 
-.breadcrumbs a.active {
+.link {
+  @apply relative inline-block no-underline pb-[3px];
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.active {
   @apply font-medium;
 }
 
 .breadcrumbs span {
   @apply mx-2;
+}
+
+.breadcrumbs li {
+  @apply inline-block;
 }
 
 @media (max-width: 768px) {

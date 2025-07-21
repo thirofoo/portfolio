@@ -1,5 +1,6 @@
 import { ChangeThemeToggle } from '@/components/atoms/ChangeThemeToggle';
 import styles from '@/components/organisms/Header.module.css';
+import { useMediaQuery } from '@/hooks/useMediaQuery'; // ← 1. フックをインポート
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -44,6 +45,9 @@ export const Header = () => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const fadeOutTriggerPosition = 200;
 
+  // 画面幅が768px以下の場合にtrueになる
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
   const handleLogoClick = () => {
@@ -58,6 +62,15 @@ export const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // ↓ 2. この関数を修正
+  const handleLinkClick = (index: number) => {
+    setCurrentSlideIndex(index);
+    // isMobileがtrue（スマホ表示）の時だけメニューを閉じる
+    if (isMobile) {
+      closeMenu();
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -88,7 +101,7 @@ export const Header = () => {
               { label: 'Blog', link: '/blog' },
             ]}
             selectedIndex={currentSlideIndex}
-            onIndexChange={setCurrentSlideIndex}
+            onIndexChange={handleLinkClick} // 修正済みのハンドラを渡す
           />
         </div>
       </div>

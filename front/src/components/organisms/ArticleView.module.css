@@ -23,6 +23,11 @@
   @apply text-2xl shadow-sh1 shadow-inner bg-bg2 bg-opacity-30 backdrop-blur-sm px-6 py-3 my-2 mt-12 mb-6;
 }
 
+.content h1:first-of-type,
+.content h2:first-of-type {
+  @apply mt-0;
+}
+
 .content h3 {
   @apply text-xl mt-12 border-b pb-2 pl-2;
 }
@@ -106,16 +111,16 @@
 }
 
 .head_image {
-  @apply absolute w-full h-full rounded object-cover border-sh1 border-b opacity-[20%] overflow-hidden;
+  @apply absolute w-full h-full rounded object-cover border-sh1 border-b opacity-[30%] overflow-hidden;
 }
 
 .head_info {
-  @apply rounded object-cover w-full min-h-[300px] overflow-hidden relative mt-[4px];
+  @apply rounded object-cover w-full min-h-[300px] overflow-hidden relative mt-[10px];
   box-shadow: 0px 0px 2px 1px theme(colors.sh1);
 }
 
 .headings {
-  @apply sticky top-[100px] mt-[50px] px-4 w-[300px] max-h-[60vh];
+  @apply sticky top-[100px] px-4 w-[300px] max-h-[60vh];
 }
 
 .link {
