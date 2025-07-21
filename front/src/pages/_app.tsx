@@ -3,6 +3,7 @@ import { WaveBackground } from '@/components/atoms/WaveBackground';
 import { AdminLayout } from '@/components/templates/AdminLayout';
 import { AppLayout } from '@/components/templates/AppLayout';
 import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
@@ -12,7 +13,6 @@ import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 // import 'highlight.js/styles/base16/green-screen.css';
 // import 'highlight.js/styles/base16/materia.css';
