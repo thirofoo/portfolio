@@ -2,6 +2,7 @@ import { ChangeThemeToggle } from '@/components/atoms/ChangeThemeToggle';
 import styles from '@/components/organisms/Header.module.css';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 type SlideButtonProps = {
@@ -46,6 +47,29 @@ export const Header = () => {
   const fadeOutTriggerPosition = 200;
 
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const router = useRouter();
+  const options = [
+    { label: 'Home', link: '/' },
+    { label: 'Work', link: '/work' },
+    { label: 'Blog', link: '/blog' },
+  ];
+
+  useEffect(() => {
+    const currentPath = router.pathname;
+    let activeIndex = 0; // デフォルトは Home
+
+    for (let i = options.length - 1; i >= 0; i--) {
+      if (options[i].link !== '/' && currentPath.startsWith(options[i].link)) {
+        activeIndex = i;
+        break;
+      }
+    }
+    if (currentPath === '/') {
+      activeIndex = 0;
+    }
+
+    setCurrentSlideIndex(activeIndex);
+  }, [router.pathname]);
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
@@ -92,11 +116,7 @@ export const Header = () => {
             <ChangeThemeToggle />
           </div>
           <SlideButton
-            options={[
-              { label: 'Home', link: '/' },
-              { label: 'Work', link: '/work' },
-              { label: 'Blog', link: '/blog' },
-            ]}
+            options={options}
             selectedIndex={currentSlideIndex}
             onIndexChange={handleLinkClick}
           />

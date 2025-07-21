@@ -1,54 +1,46 @@
-/* レイヤー1：静的な背景パターン */
 .background {
   position: fixed;
   inset: 0;
-  z-index: -10; /* 最背面に配置 */
+  z-index: -10;
   
-  /* ライトモード用のSVGパターンを背景画像として設定 */
   background-image: url('/patterns/light-pattern.svg');
   background-repeat: repeat;
   background-size: auto;
 }
 
-/* ダークモードの時だけ、ベース背景色と背景画像を変更 */
 :global(html.dark) .background {
   background-image: url('/patterns/dark-pattern.svg');
 }
 
-/* レイヤー2：光の波のアニメーション */
 .shine {
   position: absolute;
   inset: 0;
   pointer-events: none;
 
-  /* 動く光のグラデーション本体 */
   background: linear-gradient(
-    135deg, /* 斜め45度 */
+    135deg,
     transparent 45%,
-    rgba(0, 0, 0, 0.05) 50%, /* ライトモードの光の色 */
+    rgba(0, 0, 0, 0.05) 50%,
     transparent 55%
   );
   background-size: 400% 400%;
   animation: wave-animation 12s linear infinite;
 
-  /* 非常に重要：ライトモード用のSVGパターンでマスクをかける */
   mask-image: url('/patterns/light-pattern.svg');
   mask-repeat: repeat;
   mask-size: auto;
 }
 
-/* ダークモードの時だけ、光の色とマスク画像を変更 */
 :global(html.dark) .shine {
   background: linear-gradient(
     135deg,
     transparent 45%,
-    rgba(255, 255, 255, 0.06) 50%, /* ダークモードの光の色 */
+    rgba(255, 255, 255, 0.06) 50%,
     transparent 55%
   );
   mask-image: url('/patterns/dark-pattern.svg');
 }
 
-/* アニメーションの定義 */
 @keyframes wave-animation {
   0% {
     background-position: 100% 100%;

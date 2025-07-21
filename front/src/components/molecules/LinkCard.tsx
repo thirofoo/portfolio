@@ -3,7 +3,7 @@ import styles from '@/components/molecules/LinkCard.module.css'
 import { extractSlugFromURL, getUrl } from '@/lib/url'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'; // useRef をインポート
+import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 
 interface LinkCardProps {
