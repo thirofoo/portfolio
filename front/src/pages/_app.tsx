@@ -1,4 +1,5 @@
 import { Meta } from '@/components/atoms/Meta';
+import { WaveBackground } from '@/components/atoms/WaveBackground';
 import { AdminLayout } from '@/components/templates/AdminLayout';
 import { AppLayout } from '@/components/templates/AppLayout';
 import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
@@ -6,16 +7,20 @@ import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/react';
+import 'katex/dist/katex.min.css';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
-import 'highlight.js/styles/base16/green-screen.css';
-import 'highlight.js/styles/base16/materia.css';
+// import 'highlight.js/styles/base16/green-screen.css';
+// import 'highlight.js/styles/base16/materia.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const cubeSize = isMobile ? 52 : 78;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,6 +68,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
+      <WaveBackground cubeSize={cubeSize} />
       <AppLayout>
         <Meta {...metaInfo} />
         {isAdmin ? (

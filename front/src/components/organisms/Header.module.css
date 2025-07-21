@@ -39,7 +39,7 @@
 }
 
 .button_wrapper {
-  @apply flex justify-center m-auto backdrop-blur-[5px] bg-sh1 bg-opacity-30 rounded-lg;
+  @apply flex justify-center m-auto backdrop-blur-[10px] bg-opacity-70 rounded-lg border border-sh1 border-opacity-50;
 }
 
 .button_group {
@@ -105,7 +105,7 @@
   }
 
   .theme_toggle {
-    @apply m-0 mb-4 border-none;
+    @apply m-0 mt-1 mb-2 border-none;
   }
 
   .head_name {
@@ -130,11 +130,11 @@
 /* ========== Slide Button ========== */
 
 .container {
-	@apply relative flex w-[min(90vw,320px)] h-12 overflow-hidden rounded-md items-center mx-4;
+	@apply relative flex w-[min(90vw,320px)] h-12 overflow-hidden rounded-md items-center mx-1;
 }
 
 .slider {
-	@apply absolute h-[88%] rounded-md transition-transform duration-300 border-[1px] border-sh1;
+	@apply absolute h-[80%] rounded-md transition-transform duration-300 border-[1px] border-sh1;
 }
 
 .button {

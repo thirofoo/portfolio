@@ -1,11 +1,11 @@
 // Breadcrumbsコンポーネント
-import styles from '@/components/molecules/BreadCrumbs.module.css'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import styles from '@/components/molecules/BreadCrumbs.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export const BreadCrumbs = () => {
-  const router = useRouter()
-  const pathSegments = router.asPath.split('/').filter((segment) => segment !== '') // 空のセグメントを除外
+  const router = useRouter();
+  const pathSegments = router.asPath.split('/').filter((segment) => segment !== '');
 
   return (
     <>
@@ -15,7 +15,8 @@ export const BreadCrumbs = () => {
             <li key={index}>
               <Link
                 href={`/${pathSegments.slice(0, index + 1).join('/')}`}
-                className={index === pathSegments.length - 1 ? styles.active : ''}
+                className={`${styles.link} ${index === pathSegments.length - 1 ? styles.active : ''
+                  }`}
               >
                 {segment}
               </Link>
@@ -25,5 +26,5 @@ export const BreadCrumbs = () => {
         </ul>
       </nav>
     </>
-  )
-}
+  );
+};

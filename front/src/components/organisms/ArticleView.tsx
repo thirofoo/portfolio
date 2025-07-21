@@ -1,6 +1,7 @@
 import { CopyButton } from '@/components/atoms/CopyButton'
 import { Image } from '@/components/atoms/Image'
 import { ShareToXButton } from '@/components/atoms/ShareToXButton'
+import { BreadCrumbs } from '@/components/molecules/BreadCrumbs'
 import { Headings } from '@/components/molecules/Headings'
 import styles from '@/components/organisms/ArticleView.module.css'
 import { SITE_BASE_URL } from '@/config'
@@ -31,7 +32,7 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
       }))
       setHeadings(mappedHeadings)
     }
-  
+
     if (typeof window !== 'undefined') {
       fetchHeadings()
     }
@@ -40,7 +41,7 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
   const handleHeadingClick = (e: React.MouseEvent<HTMLAnchorElement>, text: string) => {
     e.preventDefault();
     const normalizedText = text.toLowerCase().replace(/\s+/g, '-');
-  
+
     const targetHeading = document.querySelector(`[id="${normalizedText}"]`);
     if (targetHeading) {
       const rect = targetHeading.getBoundingClientRect();
@@ -57,14 +58,14 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-  
+
   const basePath = router.pathname.replace(/\[.*\]/, '');
   const trimmedBasePath = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
 
   return (
     <>
       <div>
-        <div className={styles.head_info}>
+        <div className={styles.head_info} id='head-info'>
           <Image
             className={styles.head_image}
             src={article.thumbnail}
@@ -74,17 +75,21 @@ export const ArticleView: NextPage<Props> = ({ article }) => {
           />
           <div className={styles.title_wrapper}>
             <h1 className={styles.title}>{article.title}</h1>
-            <div className={styles.detail}>
-              Created: {article.CreatedAt.substring(0, 10)} <br />
-              Updated: {article.UpdatedAt.substring(0, 10)}
+            <div className="flex justify-between items-center">
+              <div className={styles.detail}>
+                Created: {article.CreatedAt.substring(0, 10)} <br />
+                Updated: {article.UpdatedAt.substring(0, 10)}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+      <BreadCrumbs />
+
       <div className='flex'>
         <div className={styles.content}>{parseHTMLToReactJSX(article.body)}</div>
-    
+
         <div className={styles.headings}>
           <div className='mb-4 flex justify-start space-x-2'>
             <ShareToXButton
