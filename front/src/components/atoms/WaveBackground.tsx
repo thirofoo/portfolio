@@ -1,5 +1,3 @@
-'use client'
-
 import { useTheme } from 'next-themes';
 import { useEffect, useRef } from 'react';
 
@@ -11,29 +9,11 @@ interface WaveBackgroundProps {
 
 export const WaveBackground = ({
   cubeSize = 78,
-  propagationDuration = 10000, // 光が画面を横切る時間
-  pauseDuration = 30000,       // 次の光が来るまでの待ち時間
+  propagationDuration = 10000,
+  pauseDuration = 30000,
 }: WaveBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme } = useTheme()
-
-  const baseTile = {
-    width: 52,
-    height: 60,
-    lines: [
-      { x1: 26, y1: 60, x2: 26, y2: 30 }, { x1: 0, y1: 15, x2: 26, y2: 30 },
-      { x1: 26, y1: 30, x2: 52, y2: 15 }, { x1: 26, y1: 0, x2: 26, y2: 30 },
-      { x1: 0, y1: 45, x2: 26, y2: 30 }, { x1: 26, y1: 30, x2: 52, y2: 45 },
-    ],
-  }
-
-  const scale = cubeSize / baseTile.width
-  const tileWidth = baseTile.width * scale
-  const tileHeight = baseTile.height * scale
-  const tileLines = baseTile.lines.map(line => ({
-    x1: line.x1 * scale, y1: line.y1 * scale,
-    x2: line.x2 * scale, y2: line.y2 * scale,
-  }))
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -44,10 +24,26 @@ export const WaveBackground = ({
     let animationFrameId: number
     let startTime: number | null = null
 
+    const baseTile = {
+      width: 52,
+      height: 60,
+      lines: [
+        { x1: 26, y1: 60, x2: 26, y2: 30 }, { x1: 0, y1: 15, x2: 26, y2: 30 },
+        { x1: 26, y1: 30, x2: 52, y2: 15 }, { x1: 26, y1: 0, x2: 26, y2: 30 },
+        { x1: 0, y1: 45, x2: 26, y2: 30 }, { x1: 26, y1: 30, x2: 52, y2: 45 },
+      ],
+    }
+    const scale = cubeSize / baseTile.width
+    const tileWidth = baseTile.width * scale
+    const tileHeight = baseTile.height * scale
+    const tileLines = baseTile.lines.map(line => ({
+      x1: line.x1 * scale, y1: line.y1 * scale,
+      x2: line.x2 * scale, y2: line.y2 * scale,
+    }))
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
-      startTime = null
     }
 
     const animate = (timestamp: number) => {
@@ -116,11 +112,14 @@ export const WaveBackground = ({
       animationFrameId = requestAnimationFrame(animate)
     }
 
+    // 初回実行時にキャンバスサイズを設定
     resizeCanvas()
     requestAnimationFrame(animate)
 
+    // ウィンドウリサイズ時にもキャンバスサイズを更新
     window.addEventListener('resize', resizeCanvas)
 
+    // クリーンアップ
     return () => {
       window.removeEventListener('resize', resizeCanvas)
       cancelAnimationFrame(animationFrameId)
