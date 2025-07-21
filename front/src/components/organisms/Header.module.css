@@ -101,7 +101,7 @@
   }
   
   .button_wrapper {
-    @apply flex flex-col justify-center items-center w-full p-2 pt-4 rounded-none;
+    @apply flex flex-col justify-center items-center w-full p-2 pt-4 rounded-none border-x-[0px];
   }
 
   .theme_toggle {
@@ -113,7 +113,7 @@
   }
 
   .content {
-    @apply flex flex-col justify-center mt-0 rounded-none;
+    @apply flex flex-col justify-center mt-0 rounded-none mt-0 mb-[-75px];
     transform: translateY(-220px); /* 開けたときの位置 */
     transition: transform 0.3s ease-in-out;
   }
