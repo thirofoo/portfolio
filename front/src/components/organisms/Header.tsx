@@ -77,7 +77,7 @@ export const Header = () => {
         </div>
       </div>
       <div className={`${styles.content} ${isMenuOpen ? styles.head_open : styles.head_close}`}>
-        <div className={styles.button_wrapper}>
+        <div className={styles.button_wrapper} id="slide-button">
           <div className={styles.theme_toggle}>
             <ChangeThemeToggle />
           </div>

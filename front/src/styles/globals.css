@@ -6,9 +6,25 @@ body {
   @apply overflow-y-scroll;
 }
 
-html,
+html {
+  /* スムーズなスクロール挙動など、全体に関わる設定 */
+  @apply scroll-smooth;
+}
+
 body {
-  @apply m-0 p-0 min-h-[100vh] text-txt1 dark:text-txt2 backdrop-filter bg-bg1 dark:bg-dbg1 duration-100;
+  /* bodyはマージンやパディングをリセットし、高さを確保する役割に専念 */
+  @apply m-0 p-0 min-h-[100vh] overflow-y-scroll;
+  /* パターンが読み込めなかった時のための、予備の背景色 */
+  @apply bg-bg1 dark:bg-dbg1;
+}
+
+.glass-container {
+  /* 背景を半透明にする */
+  @apply bg-bg1/80 dark:bg-dbg1/80;
+  /* 背景をぼかす */
+  @apply backdrop-blur-lg;
+  /* テキストカラーや遷移アニメーションはこちらに設定 */
+  @apply text-txt1 dark:text-txt2 duration-100;
 }
 
 i {
@@ -37,6 +53,10 @@ path {
   @apply bg-bg1 dark:bg-dbg1 bg-opacity-50 dark:bg-opacity-50;
 }
 
+#blog-card {
+  @apply bg-bg2 dark:bg-dbg1;
+}
+
 #button:hover,
 #blog-card:hover,
 #link-card:hover {
@@ -49,4 +69,8 @@ path {
 
 #link-icon img {
   @apply rounded-none;
+}
+
+#head-info {
+  @apply bg-bg2 dark:bg-dbg1;
 }

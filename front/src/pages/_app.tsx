@@ -5,12 +5,14 @@ import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
-import 'katex/dist/katex.min.css'
 import { Analytics } from '@vercel/analytics/react';
+import 'katex/dist/katex.min.css';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+
+import { PenroseBackground } from '@/components/atoms/PenroseBackground';
 
 import 'highlight.js/styles/base16/green-screen.css';
 import 'highlight.js/styles/base16/materia.css';
@@ -64,6 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
+      <PenroseBackground />
       <AppLayout>
         <Meta {...metaInfo} />
         {isAdmin ? (

@@ -13,11 +13,11 @@ export const AppLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper + " glass-pane"}>
         <div className={styles.child}>{children}</div>
         <ScrollToTopButton />
         <Footer />
-      </div>
+      </div >
     </>
   )
 }
