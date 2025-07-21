@@ -1,20 +1,21 @@
-import { Image } from '@/components/atoms/Image'
-import { ConditionalLink } from '@/components/molecules/ConditionalLink'
-import { fetchOGPInfo } from '@/lib/ogp'
-import { getUrl } from '@/lib/url'
-import { Element } from 'hast'
-import React from 'react'
-import rehypeHighlight from 'rehype-highlight'
-import rehypeKatex from 'rehype-katex'
-import rehypeParse from 'rehype-parse'
-import rehypeReact from 'rehype-react'
-import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
-import remarkParse from 'remark-parse'
-import remarkRehype from 'remark-rehype'
-import { unified } from 'unified'
-import { Node } from 'unist'
-import { visit } from 'unist-util-visit'
+import { Image } from '@/components/atoms/Image';
+import { CodeBlockWrapper } from '@/components/molecules/CodeBlockWrapper';
+import { ConditionalLink } from '@/components/molecules/ConditionalLink';
+import { fetchOGPInfo } from '@/lib/ogp';
+import { getUrl } from '@/lib/url';
+import { Element } from 'hast';
+import React from 'react';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeKatex from 'rehype-katex';
+import rehypeParse from 'rehype-parse';
+import rehypeReact from 'rehype-react';
+import rehypeStringify from 'rehype-stringify';
+import remarkMath from 'remark-math';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
+import { Node } from 'unist';
+import { visit } from 'unist-util-visit';
 
 function rehypeTransformImageUrls(slug: string) {
   return async (tree: Node) => {
@@ -123,6 +124,7 @@ export const parseHTMLToReactJSX = (htmlContent: string) => {
       components: {
         img: Image,
         a: ConditionalLink,
+        pre: CodeBlockWrapper,
       },
     })
 

@@ -1,0 +1,19 @@
+.container {
+  @apply my-4 rounded-lg border border-sh1 dark:border-sh2 w-full overflow-x-auto backdrop-blur-[2px];
+}
+
+.header {
+  @apply flex items-center justify-end rounded-t-lg px-4 py-1 justify-end;
+}
+
+.copyButton {
+  @apply flex items-center gap-1.5 rounded-md p-1.5 text-xs transition-colors;
+}
+
+.copyButtonText {
+  @apply text-xs;
+}
+
+.icon {
+  @apply h-4 w-4;
+}

@@ -1,4 +1,5 @@
 import { Meta } from '@/components/atoms/Meta';
+import { PenroseBackground } from '@/components/atoms/PenroseBackground';
 import { AdminLayout } from '@/components/templates/AdminLayout';
 import { AppLayout } from '@/components/templates/AppLayout';
 import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
@@ -12,10 +13,8 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { PenroseBackground } from '@/components/atoms/PenroseBackground';
-
-import 'highlight.js/styles/base16/green-screen.css';
-import 'highlight.js/styles/base16/materia.css';
+// import 'highlight.js/styles/base16/green-screen.css';
+// import 'highlight.js/styles/base16/materia.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

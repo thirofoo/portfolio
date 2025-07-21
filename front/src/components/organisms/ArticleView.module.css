@@ -49,17 +49,16 @@
 }
 
 .content code {
-  @apply px-1 backdrop-blur-3xl m-auto bg-opacity-95;
-  box-shadow: inset 0px 0px 3px 1px theme(colors.sh1);
+  @apply m-0;
 }
 
-.content pre {
+/* .content pre {
   @apply my-8 overflow-x-auto;
-}
+} */
 
-.content pre code {
+/* .content pre code {
   @apply w-[min(100vw-320px,720px)] p-4 rounded;
-}
+} */
 
 .content ul {
   @apply list-disc ml-8;
@@ -130,9 +129,6 @@
 @media (max-width: 768px) {
   .title {
     @apply text-3xl;
-  }
-  .content {
-    @apply mt-[-20px];
   }
   .detail {
     @apply text-sm mt-4;

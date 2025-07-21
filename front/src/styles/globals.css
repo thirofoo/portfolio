@@ -74,3 +74,148 @@ path {
 #head-info {
   @apply bg-bg2 dark:bg-dbg1;
 }
+
+/* ============ Syntax Highlighting Themes ============ */
+
+/* --- Light Mode Theme (Atom One Light) --- */
+.hljs span {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* --- Light Mode Theme (Atom One Light) --- */
+html:not(.dark) .hljs {
+  color: #383a42;
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  border-radius: 0.5rem;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+}
+html:not(.dark) .hljs-comment,
+html:not(.dark) .hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+html:not(.dark) .hljs-doctag,
+html:not(.dark) .hljs-keyword,
+html:not(.dark) .hljs-formula {
+  color: #a626a4;
+}
+html:not(.dark) .hljs-section,
+html:not(.dark) .hljs-name,
+html:not(.dark) .hljs-selector-tag,
+html:not(.dark) .hljs-deletion,
+html:not(.dark) .hljs-subst {
+  color: #e45649;
+}
+html:not(.dark) .hljs-literal {
+  color: #0184bb;
+}
+html:not(.dark) .hljs-string,
+html:not(.dark) .hljs-regexp,
+html:not(.dark) .hljs-addition,
+html:not(.dark) .hljs-attribute,
+html:not(.dark) .hljs-meta-string {
+  color: #50a14f;
+}
+html:not(.dark) .hljs-built_in,
+html:not(.dark) .hljs-class .hljs-title {
+  color: #c18401;
+}
+html:not(.dark) .hljs-attr,
+html:not(.dark) .hljs-variable,
+html:not(.dark) .hljs-template-variable,
+html:not(.dark) .hljs-type,
+html:not(.dark) .hljs-selector-class,
+html:not(.dark) .hljs-selector-attr,
+html:not(.dark) .hljs-selector-pseudo,
+html:not(.dark) .hljs-number {
+  color: #986801;
+}
+html:not(.dark) .hljs-symbol,
+html:not(.dark) .hljs-bullet,
+html:not(.dark) .hljs-link,
+html:not(.dark) .hljs-meta,
+html:not(.dark) ._root .hljs-selector-id {
+  color: #4078f2;
+}
+html:not(.dark) .hljs-title,
+html:not(.dark) .hljs-function {
+  color: #4078f2;
+}
+html:not(.dark) .hljs-emphasis {
+  font-style: italic;
+}
+html:not(.dark) .hljs-strong {
+  font-weight: bold;
+}
+
+/* --- Dark Mode Theme (Tokyo Night) --- */
+html.dark .hljs {
+  color: #9aa5ce;
+  /* background: #1a1b26; */
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  border-radius: 0.5rem;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+}
+html.dark .hljs-keyword {
+  color: #bb9af7;
+}
+html.dark .hljs-built_in {
+  color: #7dcfff;
+}
+html.dark .hljs-type {
+  color: #7dcfff;
+}
+html.dark .hljs-literal,
+html.dark .hljs-number,
+html.dark .hljs-symbol,
+html.dark .hljs-bullet {
+  color: #ff9e64;
+}
+html.dark .hljs-string {
+  color: #9ece6a;
+}
+html.dark .hljs-title,
+html.dark .hljs-section {
+  color: #7aa2f7;
+}
+html.dark .hljs-title.class_,
+html.dark .hljs-class .hljs-title {
+  color: #c0caf5;
+}
+html.dark .hljs-attribute {
+  color: #ff9e64;
+}
+html.dark .hljs-attr {
+  color: #7dcfff;
+}
+html.dark .hljs-variable {
+  color: #c0caf5;
+}
+html.dark .hljs-meta {
+  color: #ff9e64;
+}
+html.dark .hljs-comment,
+html.dark .hljs-quote,
+html.dark .hljs-deletion {
+  color: #565f89;
+  font-style: italic;
+}
+html.dark .hljs-strong {
+  font-weight: bold;
+}
+html.dark .hljs-emphasis {
+  font-style: italic;
+}
+html.dark .hljs-addition {
+  color: #9ece6a;
+}
