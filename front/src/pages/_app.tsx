@@ -19,8 +19,7 @@ import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const isMobile = useMediaQuery('(max-width: 768px)');
-  const cubeSize = isMobile ? 52 : 78;
+  const cubeSize = 52;
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -16,9 +16,9 @@ export const Timeline = ({ data }: TimelineProps) => {
             <div className={styles.dateIconContainer}>
 
               <div className={`${styles.date} ${styles.dateDesktop}`}>
-                { item.to === '' ? null : <span>{item.to}</span>}
-                { item.from === '' ? null : 
-                  <> 
+                {item.to === '' ? null : <span>{item.to}</span>}
+                {item.from === '' ? null :
+                  <>
                     <span>~</span>
                     <span>{item.from}</span>
                   </>
@@ -26,40 +26,40 @@ export const Timeline = ({ data }: TimelineProps) => {
               </div>
 
               <div className={styles.iconWrapper}>
-                <Image className={styles.icon} src={item.icon} alt=""/>
+                <Image className={styles.icon} src={item.icon} alt="" />
                 {index < data.length - 1 && <div className={styles.dottedLine}></div>}
               </div>
             </div>
-        
+
             <div className={styles.content}>
-              <a
-                href={item.link}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <h3 className={`${styles.title} ${item.link ? 'underline' : ''}`}>
+              <h3 className={`${styles.title} ${item.link ? 'underline' : ''}`}>
+                <a
+                  href={item.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
                   {item.title}{' '}
                   {item.link && (
-                  <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-                    <ChainLink />
-                  </span>
+                    <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                      <ChainLink />
+                    </span>
                   )}
-                </h3>
-              </a>
+                </a>
+              </h3>
 
               <div className={`${styles.date} ${styles.dateMobile}`}>
-                { item.from === '' ? null : 
-                  <> 
+                {item.from === '' ? null :
+                  <>
                     <span>{item.from}</span>
                     <span>~</span>
                   </>
                 }
-                { item.to === '' ? null : <span>{item.to}</span>}
+                {item.to === '' ? null : <span>{item.to}</span>}
               </div>
 
               <div className={styles.description}>{item.description}</div>
-              </div>
             </div>
+          </div>
         </div>
 
       ))}

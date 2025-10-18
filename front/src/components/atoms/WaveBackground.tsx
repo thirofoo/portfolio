@@ -56,7 +56,7 @@ export const WaveBackground = ({
 
       const baseColor = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.1)'
       const highlightColor = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.3)'
-      const waveWidth = 70
+      const waveWidth = 30
 
       const totalCycleDuration = propagationDuration + pauseDuration
       const timeInCycle = elapsedTime % totalCycleDuration
