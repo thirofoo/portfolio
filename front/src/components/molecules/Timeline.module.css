@@ -23,11 +23,12 @@
 }
 
 .iconWrapper {
-  @apply relative flex items-start justify-center z-10;
+  /* 垂直方向に真ん中 */
+  @apply relative flex items-start justify-center z-10 py-2;
 }
 
 .icon {
-  @apply w-14 h-14 object-contain rounded-[10%] z-10;
+  @apply w-12 h-12 object-contain rounded-[10%] z-10;
 }
 
 .dottedLine {

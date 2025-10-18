@@ -3,7 +3,6 @@ import { WaveBackground } from '@/components/atoms/WaveBackground';
 import { AdminLayout } from '@/components/templates/AdminLayout';
 import { AppLayout } from '@/components/templates/AppLayout';
 import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
@@ -19,8 +18,7 @@ import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const isMobile = useMediaQuery('(max-width: 768px)');
-  const cubeSize = isMobile ? 52 : 78;
+  const cubeSize = 52;
 
   useEffect(() => {
     window.scrollTo(0, 0);

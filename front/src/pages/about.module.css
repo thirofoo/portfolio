@@ -1,5 +1,5 @@
 .top_icon {
-  @apply inline rounded-full max-h-[160px] max-w-[160px] w-[40vw] h-[40vw] m-auto;
+  @apply inline rounded-full max-h-[132px] max-w-[132px] w-[40vw] h-[40vw] m-auto;
   animation: ping 4s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 

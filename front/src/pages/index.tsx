@@ -13,13 +13,34 @@ import { TimelineItem } from '@/Interfaces/Timeline'
 
 const timelineData: TimelineItem[] = [
   {
-    from: '2025年4月',
+    from: '2025年11月',
     to: '',
     icon: '/images/academics.webp',
-    title: <span>埼玉大学大学院理工学研究科数理電子情報専攻情報工学プログラム 入学</span>,
+    title: <span>Asia Pacific Conference on Robot IoT System Development and Platform (APRIS) 発表予定</span>,
     description: (
       <></>
     ),
+    link: 'http://www.sigemb.jp/APRIS/2025/wordpress/',
+  },
+  {
+    from: '2025年9月',
+    to: '2025年10月',
+    icon: '/images/recruit.webp',
+    title: <span>株式会社リクルート Data Specialists 2025 夏季インターン</span>,
+    description: (
+      <>5 週間、間機械学習エンジニアとして、リコメンド改善のタスクに取り組みました。</>
+    ),
+    link: 'https://www.recruit.co.jp/employment/students/internship/dsintern/',
+  },
+  {
+    from: '2025年7月',
+    to: '',
+    icon: '/images/algo_artis.webp',
+    title: <span>株式会社 ALGO ARTIS アルバイト</span>,
+    description: (
+      <>アルゴリズムエンジニアとして、現在もなおアルバイトをさせていただいています。</>
+    ),
+    link: 'https://www.algo-artis.com/',
   },
   {
     from: '',
@@ -52,7 +73,7 @@ const timelineData: TimelineItem[] = [
     title: <span>株式会社 Preferred Networks 夏季インターン</span>,
     description: (
       <>
-        1 カ月間 MP-PAWR という最新の天気に関するデータを用いて、CNN を用いて天候を予測するタスクに携わらせていただきました。
+        1 カ月間、MP-PAWR という最新の天気に関するデータを用いて、CNN を用いて天候を予測するタスクに携わらせていただきました。
       </>
     ),
     link: 'https://tech.preferred.jp/ja/blog/i24-gd02-qpe-result/',
@@ -119,8 +140,8 @@ const Home: NextPage = () => {
             <Image
               src='/images/top.webp'
               alt='through / thirofoo'
-              width={160}
-              height={160}
+              width={120}
+              height={120}
               className={styles.top_icon}
             />
             <div className={styles.top_profile}>
