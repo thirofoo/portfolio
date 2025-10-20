@@ -45,6 +45,130 @@
   @apply text-2xl font-bold m-5;
 }
 
+.about_section {
+  @apply mx-auto max-w-5xl px-4 text-left flex flex-col gap-10;
+}
+
+.about_intro {
+  @apply space-y-4 text-base leading-relaxed;
+}
+
+.about_intro p {
+  @apply m-0;
+}
+
+.about_stats {
+  @apply grid gap-4 sm:grid-cols-3;
+}
+
+.about_statCard {
+  @apply rounded-2xl border px-6 py-5 text-left shadow-sm;
+}
+
+.about_statValue {
+  @apply text-lg font-semibold;
+}
+
+.about_statLabel {
+  @apply text-sm font-medium uppercase tracking-wider mt-1;
+}
+
+.about_statSub {
+  @apply text-xs mt-2 block;
+}
+
+.about_highlights {
+  @apply grid gap-6 md:grid-cols-3;
+}
+
+.about_highlightCard {
+  @apply flex flex-col gap-4 rounded-2xl border p-6 text-left shadow-sm;
+}
+
+.about_highlightTitle {
+  @apply text-lg font-semibold;
+}
+
+.about_highlightDescription {
+  @apply text-sm leading-relaxed;
+}
+
+.about_highlightPoints {
+  @apply list-disc pl-5 text-left space-y-2 text-sm;
+}
+
+.about_highlightPoint {
+  @apply leading-relaxed;
+}
+
+.accent_link {
+  @apply inline-flex items-center gap-1 font-semibold underline decoration-dotted underline-offset-4;
+}
+
+.about_section {
+  @apply mx-auto max-w-5xl px-4 text-left flex flex-col gap-10;
+}
+
+.about_intro {
+  @apply space-y-4 text-base leading-relaxed;
+}
+
+.about_intro p {
+  @apply m-0;
+}
+
+.about_link {
+  @apply font-semibold underline decoration-dotted underline-offset-4 mx-1;
+}
+
+.about_stats {
+  @apply grid gap-4 sm:grid-cols-3;
+}
+
+.about_statCard {
+  @apply rounded-2xl border px-6 py-5 text-left shadow-sm;
+}
+
+.about_statValue {
+  @apply text-lg font-semibold;
+}
+
+.about_statLabel {
+  @apply text-sm font-medium uppercase tracking-wider mt-1;
+}
+
+.about_statSub {
+  @apply text-xs mt-2 block;
+}
+
+.about_highlights {
+  @apply grid gap-6 md:grid-cols-3;
+}
+
+.about_highlightCard {
+  @apply flex flex-col gap-4 rounded-2xl border p-6 text-left shadow-sm;
+}
+
+.about_highlightTitle {
+  @apply text-lg font-semibold;
+}
+
+.about_highlightDescription {
+  @apply text-sm leading-relaxed;
+}
+
+.about_highlightPoints {
+  @apply list-disc pl-5 text-left space-y-2 text-sm;
+}
+
+.about_highlightPoint {
+  @apply leading-relaxed;
+}
+
+.accent_link {
+  @apply inline-flex items-center gap-1 font-semibold underline decoration-dotted underline-offset-4;
+}
+
 @media (max-width: 768px) {
   .top_wrapper {
     @apply h-[calc(100vh-74px)];

@@ -50,8 +50,8 @@ export const Header = () => {
   const router = useRouter();
   const options = [
     { label: 'Home', link: '/' },
-    { label: 'Work', link: '/work' },
     { label: 'Blog', link: '/blog' },
+    { label: 'Works', link: '/work' },
   ];
 
   useEffect(() => {
