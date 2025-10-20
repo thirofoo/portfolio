@@ -1,0 +1,52 @@
+.stack {
+  @apply flex flex-col gap-16;
+}
+
+.group {
+  @apply text-left;
+}
+
+.groupTitle {
+  @apply mb-6 text-xl font-semibold tracking-wide flex items-center gap-2;
+}
+
+.entries {
+  @apply flex flex-col gap-10 list-none p-0 m-0;
+}
+
+.entry {
+  @apply relative flex gap-6 items-start;
+}
+
+.iconWrapper {
+  @apply flex items-center justify-center w-12 h-12 flex-shrink-0;
+}
+
+.icon {
+  @apply w-12 h-12 object-contain rounded-[10%] z-10 flex-shrink-0;
+}
+
+.content {
+  @apply flex-1 flex flex-col gap-2 text-left;
+}
+
+.period {
+  @apply text-xs font-medium tracking-wide;
+}
+
+.title {
+  @apply text-lg font-semibold;
+}
+
+.linkIcon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.description {
+  @apply text-sm leading-relaxed;
+}
+
+.groupTitleIcon {
+  @apply inline-flex;
+}

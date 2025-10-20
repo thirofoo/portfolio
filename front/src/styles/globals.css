@@ -41,7 +41,7 @@ path {
 }
 
 #blog-card {
-  @apply bg-bg2 dark:bg-dbg1;
+  @apply bg-bg2 dark:bg-dbg1 bg-opacity-30 dark:bg-opacity-30;
 }
 
 #button:hover,
