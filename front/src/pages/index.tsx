@@ -350,11 +350,11 @@ const Home: NextPage = () => {
               </a>
               では Competitions Expert を達成しています。
               <br />
-              <p className="mt-2"></p>
+              <span className="mt-2 block" />
 
               また Web 開発にも触れており、Next.js と Go を用いてこのサイトを自作しています。
               <br />
-              <p className="mt-2"></p>
+              <span className="mt-2 block" />
 
               大学では自動運転に関する研究室に所属し、確率を用いた応答時間解析に関する研究をしています。
               <br />
