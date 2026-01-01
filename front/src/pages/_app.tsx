@@ -3,7 +3,6 @@ import { WaveBackground } from '@/components/atoms/WaveBackground';
 import { AdminLayout } from '@/components/templates/AdminLayout';
 import { AppLayout } from '@/components/templates/AppLayout';
 import { SITE_BASE_URL, SITE_NAME, TWITTER_SITE } from '@/config';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { MetaInfo } from '@/Interfaces/Meta';
 import { generateArticleOgp } from '@/lib/ogp_image';
 import '@/styles/globals.css';
@@ -66,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const isAdmin = router.pathname.startsWith('/admin');
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <WaveBackground cubeSize={cubeSize} />
       <AppLayout>
         <Meta {...metaInfo} />
