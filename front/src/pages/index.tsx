@@ -15,19 +15,6 @@ import { TimelineItem } from '@/Interfaces/Timeline'
 
 const timelineData: TimelineItem[] = [
   {
-    from: '2025年9月',
-    to: '2025年10月',
-    icon: '/images/recruit.webp',
-    title: <span>株式会社リクルート Data Specialists 2025 夏季インターン</span>,
-    description: (
-      <>
-        5 週間、ML エンジニアとして、リコメンド改善のタスクに取り組みました。<br />
-        BigQuery を用いて大量のデータを処理し、特徴量エンジニアリングやモデル構築を行い、精度改善に貢献しました。
-      </>
-    ),
-    link: 'https://www.recruit.co.jp/employment/students/internship/dsintern/',
-  },
-  {
     from: '2025年7月',
     to: '',
     icon: '/images/algo_artis.webp',
@@ -39,6 +26,19 @@ const timelineData: TimelineItem[] = [
       </>
     ),
     link: 'https://www.algo-artis.com/',
+  },
+  {
+    from: '2025年9月',
+    to: '2025年10月',
+    icon: '/images/recruit.webp',
+    title: <span>株式会社リクルート Data Specialists 2025 夏季インターン</span>,
+    description: (
+      <>
+        5 週間、ML エンジニアとして、リコメンド改善のタスクに取り組みました。<br />
+        BigQuery を用いて大量のデータを処理し、特徴量エンジニアリングやモデル構築を行い、精度改善に貢献しました。
+      </>
+    ),
+    link: 'https://www.recruit.co.jp/employment/students/internship/dsintern/',
   },
   {
     from: '2025年4月',
@@ -147,7 +147,7 @@ const achievementGroups: AchievementGroup[] = [
         title: <span> The 2025 ICPC Asia Yokohama Regional Contest 出場 </span>,
         description: (
           <>
-            チーム Maximum Masters として、2025 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で 40 位 / 352 位で予選通過を果たし、2025 年 12 月に開催されるアジア地区の本戦に出場する予定です。
+            チーム Maximum Masters として、2025 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で 40 位 / 352 位で予選通過を果たし、2025 年 12 月に開催されるアジア地区の本戦に出場しました。
             <a
               href="https://icpc.jp/2025/domestic/results/#:~:text=40-,Maximum%20Masters,-%E2%98%86%20Saitama%20University"
               target="_blank"
@@ -226,12 +226,18 @@ const achievementGroups: AchievementGroup[] = [
     label: 'Publication / Conference',
     items: [
       {
-        period: '2025年11月予定',
+        period: '2025年11月',
         icon: '/images/academics.webp',
-        title: <span>Asia Pacific Conference on Robot IoT System Development and Platform (APRIS) 発表予定</span>,
+        title: <span>APRIS 2025 Best Paper Award 受賞</span>,
         description: (
           <>
-            Asia Pacific Conference on Robot IoT System Development and Platform (APRIS) で研究成果の発表を予定しています。
+            Asia Pacific Conference on Robot IoT System Development and Platform (APRIS 2025) に参加し、口頭発表に参加しました。
+            <br />
+            また学会で発表された論文のうち、最も評価の高かった論文の著者に対して贈られる
+            <div className="inline-block font-bold mx-1">
+              Best Paper Award
+            </div>
+            を受賞しました。
           </>
         ),
         link: 'http://www.sigemb.jp/APRIS/2025/wordpress/',
@@ -242,7 +248,7 @@ const achievementGroups: AchievementGroup[] = [
         title: <span> 第252回ARC・第208回SLDM・第68回EMB合同研究発表会（ETNET2025）参加 </span>,
         description: (
           <>
-            情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表（スライド発表）とポスターセッションに参加しました。
+            情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表とポスターセッションに参加しました。
           </>
         ),
         link: 'https://www.ipsj.or.jp/kenkyukai/event/arc252sldm208emb68.html',

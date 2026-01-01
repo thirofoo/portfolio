@@ -3,7 +3,7 @@ import styles from '@/components/organisms/Header.module.css';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type SlideButtonProps = {
   options: { label: string; link: string }[];
@@ -44,6 +44,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const hasFadedOutRef = useRef(false);
   const fadeOutTriggerPosition = 200;
 
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -80,11 +81,15 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.scrollY);
+      const currentScroll = window.scrollY;
+      if (currentScroll >= fadeOutTriggerPosition) {
+        hasFadedOutRef.current = true;
+      }
+      setScrollPosition(currentScroll);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [fadeOutTriggerPosition]);
 
   const handleLinkClick = (index: number) => {
     setCurrentSlideIndex(index);
@@ -93,13 +98,19 @@ export const Header = () => {
     }
   };
 
+  const shouldFadeOut = scrollPosition >= fadeOutTriggerPosition;
+  const fadeClass = shouldFadeOut
+    ? styles.fade_out
+    : hasFadedOutRef.current
+      ? styles.fade_in
+      : '';
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
         <Link
           href="/"
-          className={`${styles.head_name} ${scrollPosition >= fadeOutTriggerPosition ? styles.fade_out : styles.fade_in
-            }`}
+          className={`${styles.head_name} ${fadeClass}`}
           onClick={handleLogoClick}
         >
           thirofoo
