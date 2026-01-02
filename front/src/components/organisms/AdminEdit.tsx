@@ -2,12 +2,13 @@ import { FieldInfo } from '@/Interfaces/FieldInfo'
 import { Tag } from '@/Interfaces/Tag'
 import { Button } from '@/components/atoms/Button'
 import { FormField } from '@/components/molecules/FormField'
+import { ArticlePreview } from '@/components/organisms/ArticlePreview'
 import styles from '@/components/organisms/AdminEdit.module.css'
 import { useCheckAuth } from '@/hooks/useCheckAuth'
 import { getOneArticle } from '@/lib/api/article'
 import { fetchWithToken } from '@/lib/api/request'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
   genre: string
@@ -24,6 +25,12 @@ export const AdminEdit = ({ genre }: Props) => {
   const [content, setContent] = useState<string>('')
   const [thumbnail, setThumbnail] = useState<string>('')
   const [description, setDescription] = useState<string>('')
+  const [createdAt, setCreatedAt] = useState<string>('')
+  const [updatedAt, setUpdatedAt] = useState<string>('')
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+  const [previewHtml, setPreviewHtml] = useState('')
+  const [previewLoading, setPreviewLoading] = useState(false)
+  const [previewError, setPreviewError] = useState('')
 
   // formのField情報
   const formFields: FieldInfo[] = [
@@ -51,9 +58,52 @@ export const AdminEdit = ({ genre }: Props) => {
     setAuthor(article.author)
     setThumbnail(article.thumbnail)
     setDescription(article.description)
+    setCreatedAt(article.CreatedAt)
+    setUpdatedAt(article.UpdatedAt)
     const newTags = article.Tags.map((tag: Tag) => tag.name)
     setTags(newTags)
   }, router)
+
+  useEffect(() => {
+    if (!isPreviewOpen) {
+      return
+    }
+
+    const controller = new AbortController()
+    const previewSlug = slug.trim() || 'preview'
+    const timeoutId = window.setTimeout(async () => {
+      setPreviewLoading(true)
+      setPreviewError('')
+      try {
+        const response = await fetch('/api/preview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ markdown: content, slug: previewSlug }),
+          signal: controller.signal,
+        })
+        if (!response.ok) {
+          throw new Error('Failed to render preview')
+        }
+        const data = await response.json()
+        if (!controller.signal.aborted) {
+          setPreviewHtml(data.html ?? '')
+        }
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          setPreviewError('Preview failed to render.')
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setPreviewLoading(false)
+        }
+      }
+    }, 300)
+
+    return () => {
+      controller.abort()
+      window.clearTimeout(timeoutId)
+    }
+  }, [content, slug, isPreviewOpen])
 
   const handleAddTag = () => {
     setTags([...tags, ''])
@@ -132,47 +182,75 @@ export const AdminEdit = ({ genre }: Props) => {
               <Button content='Go back' handleClick={() => router.back()} type='button'></Button>
             </div>
             <div className={styles.button}>
+              <Button
+                content={isPreviewOpen ? 'Hide Preview' : 'Preview'}
+                handleClick={() => setIsPreviewOpen((prev) => !prev)}
+                type='button'
+              ></Button>
+            </div>
+            <div className={styles.button}>
               <Button content='Delete' handleClick={() => handleDelete()} type='button'></Button>
             </div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles['form-group']}>
-            <label htmlFor='title' className={styles.label}>
-              Tags:
-            </label>
-            {tags.map((tag, index) => (
-              <div key={index} className={'inline-block pr-8 pb-4'}>
-                <input
-                  type='text'
-                  value={tag}
-                  onChange={(e) => handleTagChange(index, e.target.value)}
-                  className={styles.tags}
-                />
-                <Button
-                  content='✖'
-                  handleClick={() => handleRemoveTag(index)}
-                  type='button'
-                  add_style='min-w-0 px-3 py-2'
-                />
-              </div>
-            ))}
-            <Button
-              content='Add'
-              handleClick={() => handleAddTag()}
-              type='button'
-              add_style='min-w-0 px-3'
-            />
+        {isPreviewOpen ? (
+          <div className={styles.form}>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-xl font-bold">Preview</h2>
+              {previewLoading ? <span className="text-sm opacity-70">Rendering...</span> : null}
+            </div>
+            {previewError ? (
+              <div className="text-sm text-red-500">{previewError}</div>
+            ) : (
+              <ArticlePreview
+                title={title}
+                bodyHtml={previewHtml}
+                thumbnail={thumbnail}
+                createdAt={createdAt}
+                updatedAt={updatedAt}
+              />
+            )}
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles['form-group']}>
+              <label htmlFor='title' className={styles.label}>
+                Tags:
+              </label>
+              {tags.map((tag, index) => (
+                <div key={index} className={'inline-block pr-8 pb-4'}>
+                  <input
+                    type='text'
+                    value={tag}
+                    onChange={(e) => handleTagChange(index, e.target.value)}
+                    className={styles.tags}
+                  />
+                  <Button
+                    content='x'
+                    handleClick={() => handleRemoveTag(index)}
+                    type='button'
+                    add_style='min-w-0 px-3 py-2'
+                  />
+                </div>
+              ))}
+              <Button
+                content='Add'
+                handleClick={() => handleAddTag()}
+                type='button'
+                add_style='min-w-0 px-3'
+              />
+            </div>
 
-          {/* fieldのproperty名とFormFieldのprops名が完全に一致してる */}
-          {/* → スプレッド演算子 ( {...field}ってやつ ) で展開可能 */}
-          {formFields.map((field) => (
-            <FormField key={field.id} {...field} />
-          ))}
-          <Button content='Submit' type='submit' />
-        </form>
+            {/* fieldã®propertyåã¨FormFieldã®propsåãŒå®Œå…¨ã«ä¸€è‡´ã—ã¦ã‚‹ */}
+            {/* â†’ ã‚¹ãƒ—ãƒ¬ãƒƒãƒ‰æ¼”ç®—å­ ( {...field}ã£ã¦ã‚„ã¤ ) ã§å±•é–‹å¯èƒ½ */}
+            {formFields.map((field) => (
+              <FormField key={field.id} {...field} />
+            ))}
+            <Button content='Submit' type='submit' />
+          </form>
+        )}
+
       </div>
     </>
   )
