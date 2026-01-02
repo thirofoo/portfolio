@@ -11,6 +11,12 @@ type SlideButtonProps = {
   onIndexChange: (index: number) => void;
 };
 
+const headerOptions = [
+  { label: 'Home', link: '/' },
+  { label: 'Blog', link: '/blog' },
+  { label: 'Works', link: '/work' },
+];
+
 const SlideButton = ({ options, selectedIndex, onIndexChange }: SlideButtonProps) => {
   const handleClick = (index: number) => {
     onIndexChange(index);
@@ -49,18 +55,13 @@ export const Header = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
   const router = useRouter();
-  const options = [
-    { label: 'Home', link: '/' },
-    { label: 'Blog', link: '/blog' },
-    { label: 'Works', link: '/work' },
-  ];
 
   useEffect(() => {
     const currentPath = router.pathname;
     let activeIndex = 0; // デフォルトは Home
 
-    for (let i = options.length - 1; i >= 0; i--) {
-      if (options[i].link !== '/' && currentPath.startsWith(options[i].link)) {
+    for (let i = headerOptions.length - 1; i >= 0; i--) {
+      if (headerOptions[i].link !== '/' && currentPath.startsWith(headerOptions[i].link)) {
         activeIndex = i;
         break;
       }
@@ -127,7 +128,7 @@ export const Header = () => {
             <ChangeThemeToggle />
           </div>
           <SlideButton
-            options={options}
+            options={headerOptions}
             selectedIndex={currentSlideIndex}
             onIndexChange={handleLinkClick}
           />

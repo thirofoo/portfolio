@@ -1,6 +1,6 @@
 import { checkAuth } from '@/lib/auth'
 import { NextRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const useCheckAuth = (onSuccess: () => void, router: NextRouter) => {
   // 初回レンダリング時にのみ、onSuccessが定義される
@@ -8,11 +8,15 @@ export const useCheckAuth = (onSuccess: () => void, router: NextRouter) => {
   // → 初回でignoreをクリーンアップ関数でいじって2回目を無視する
 
   const [isLoading, setIsLoading] = useState(true)
-  let ignore = false
+  const ignoreRef = useRef(false)
   
   useEffect(() => {
+    ignoreRef.current = false
     const fetchData = async () => {
       const res = await checkAuth(router)
+      if (ignoreRef.current) {
+        return
+      }
       if (res.ok) {
         onSuccess()
         setIsLoading(false) // 認証完了後にisLoadingをfalseに設定
@@ -20,12 +24,11 @@ export const useCheckAuth = (onSuccess: () => void, router: NextRouter) => {
         router.push('/login')
       }
     }
-    if (ignore) return
     fetchData()
     return () => {
-      ignore = true
+      ignoreRef.current = true
     }
-  }, [])
+  }, [onSuccess, router])
   
   return isLoading
 }
