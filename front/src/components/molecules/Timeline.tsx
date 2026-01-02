@@ -33,18 +33,16 @@ export const Timeline = ({ data }: TimelineProps) => {
 
             <div className={styles.content}>
               <h3 className={`${styles.title} ${item.link ? 'underline' : ''}`}>
-                <a
-                  href={item.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  {item.title}{' '}
-                  {item.link && (
+                {item.link ? (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    {item.title}{' '}
                     <span style={{ display: 'inline-block', verticalAlign: 'middle' }}>
                       <ChainLink />
                     </span>
-                  )}
-                </a>
+                  </a>
+                ) : (
+                  <span>{item.title}</span>
+                )}
               </h3>
 
               <div className={`${styles.date} ${styles.dateMobile}`}>

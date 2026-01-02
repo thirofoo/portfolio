@@ -23,11 +23,19 @@ export const ConditionalLink = ({
   ...props
 }: ConditionalLinkProps) => {
   const isLinkCard = !!(title || twitter_normal)
+  const href = props.href ?? url
 
   if (isLinkCard) {
+    if (!href) {
+      return (
+        <span className={className} style={{ textDecoration: 'underline' }}>
+          {children}
+        </span>
+      )
+    }
     return (
       <LinkCard
-        url={props.href ?? url ?? ''}
+        url={href}
         title={title ?? ''}
         description={description ?? ''}
         img={img ?? ''}
@@ -38,8 +46,16 @@ export const ConditionalLink = ({
     )
   }
 
+  if (!href) {
+    return (
+      <span className={className} style={{ textDecoration: 'underline' }}>
+        {children}
+      </span>
+    )
+  }
+
   return (
-    <a {...props} style={{ textDecoration: 'underline' }}>
+    <a {...props} href={href} style={{ textDecoration: 'underline' }}>
       {children}
     </a >
   )

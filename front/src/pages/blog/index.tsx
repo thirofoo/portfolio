@@ -3,25 +3,19 @@ import { CardList } from '@/components/molecules/CardList'
 import { getAllArticles } from '@/lib/api/article'
 import styles from '@/pages/blog/blog.module.css'
 import { GetStaticProps } from 'next'
-import { useState } from 'react'
 
 type BlogProps = {
   articles: Article[]
 }
 
 const Blog = ({ articles }: BlogProps) => {
-  const [displayNum, setDisplayNum] = useState<number>(2)
-
   return (
     <>
       <div>
         <h1 className={styles.title}>Blog</h1>
 
         <div className={styles.list_wrapper}>
-          <CardList
-            articles={articles.slice(0, articles.length)}
-            from='blog'
-          />
+          <CardList articles={articles} from='blog' />
         </div>
         {articles.length === 0 ? (
           <div className={styles.nothing}>No such blog exists.</div>

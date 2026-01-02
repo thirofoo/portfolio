@@ -289,6 +289,8 @@ const Home: NextPage = () => {
               alt='through / thirofoo'
               width={120}
               height={120}
+              priority
+              sizes="(max-width: 768px) 40vw, 120px"
               className={styles.top_icon}
             />
             <div className={styles.top_profile}>
@@ -308,6 +310,7 @@ const Home: NextPage = () => {
                   href='https://github.com/thirofoo'
                   target='_blank'
                   rel='noopener noreferrer'
+                  aria-label='GitHub'
                   className={styles.icon}
                 >
                   <GitHub />
@@ -317,6 +320,7 @@ const Home: NextPage = () => {
                   href='https://twitter.com/through__TH__'
                   target='_blank'
                   rel='noopener noreferrer'
+                  aria-label='X (Twitter)'
                   className={styles.icon}
                 >
                   <X />
@@ -326,6 +330,7 @@ const Home: NextPage = () => {
                   href='https://zenn.dev/through'
                   target='_blank'
                   rel='noopener noreferrer'
+                  aria-label='Zenn'
                   className={styles.icon}
                 >
                   <Zenn />
@@ -350,11 +355,11 @@ const Home: NextPage = () => {
               </a>
               では Competitions Expert を達成しています。
               <br />
-              <p className="mt-2"></p>
+              <span className="mt-2 block" />
 
               また Web 開発にも触れており、Next.js と Go を用いてこのサイトを自作しています。
               <br />
-              <p className="mt-2"></p>
+              <span className="mt-2 block" />
 
               大学では自動運転に関する研究室に所属し、確率を用いた応答時間解析に関する研究をしています。
               <br />
