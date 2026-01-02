@@ -6,10 +6,22 @@ type Props = {
   alt: string
   width?: number
   height?: number
+  loading?: 'lazy' | 'eager'
+  priority?: boolean
+  sizes?: string
 }
 
 // default width and height are 10000px
-export const Image = ({ className, src, alt, width = 10000, height = 10000 }: Props) => {
+export const Image = ({
+  className,
+  src,
+  alt,
+  width = 10000,
+  height = 10000,
+  loading = 'lazy',
+  priority = false,
+  sizes,
+}: Props) => {
   // Check if we are in a development environment
   const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -31,7 +43,9 @@ export const Image = ({ className, src, alt, width = 10000, height = 10000 }: Pr
       alt={alt}
       width={width}
       height={height}
-      loading='eager'
+      sizes={sizes}
+      priority={priority}
+      loading={priority ? undefined : loading}
     />
   )
 }
