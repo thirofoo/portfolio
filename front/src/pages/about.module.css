@@ -4,7 +4,28 @@
 }
 
 .icon {
-  @apply mr-4;
+  @apply relative inline-flex items-center justify-center mr-4 opacity-100 transition-all duration-200;
+}
+
+.icon:hover {
+  @apply opacity-100;
+}
+
+.iconLabel {
+  @apply pointer-events-none absolute left-1/2 -translate-x-1/2 -translate-y-1 text-[11px] tracking-wider uppercase px-2 py-1 rounded-md opacity-0 transition-all duration-200;
+  top: calc(100% + 8px);
+  white-space: nowrap;
+  background-color: rgb(240 240 240 / 0.92);
+  box-shadow: 0 0 0 1px theme(colors.sh1 / 20%);
+}
+
+:global(.dark) .iconLabel {
+  background-color: rgb(37 37 37 / 0.92);
+}
+
+.icon:hover .iconLabel,
+.icon:focus-visible .iconLabel {
+  @apply opacity-100 translate-y-0;
 }
 
 @keyframes ping {
@@ -30,7 +51,7 @@
 }
 
 .icon_wrapper {
-  @apply flex my-4;
+  @apply flex my-4 gap-1;
 }
 
 .top_profile {
@@ -38,7 +59,15 @@
 }
 
 .top_profile h2 {
-  @apply text-2xl font-bold mb-2;
+  @apply text-2xl font-bold mb-1 tracking-wide;
+}
+
+.top_profile p {
+  @apply text-xs tracking-wider uppercase opacity-50 mb-2;
+}
+
+.top_profile h3 {
+  @apply text-sm font-medium leading-relaxed opacity-100;
 }
 
 .name {
@@ -102,7 +131,13 @@
 }
 
 .accent_link {
-  @apply inline-flex items-center gap-1 font-semibold underline decoration-dotted underline-offset-4;
+  @apply inline-flex items-center gap-1 font-semibold underline decoration-1 underline-offset-4 opacity-100 transition-all duration-200;
+  text-decoration-color: theme(colors.sh1 / 45%);
+}
+
+.accent_link:hover {
+  @apply opacity-100;
+  text-decoration-color: currentColor;
 }
 
 .about_section {
@@ -118,7 +153,13 @@
 }
 
 .about_link {
-  @apply font-semibold underline decoration-dotted underline-offset-4 mx-1;
+  @apply font-semibold underline decoration-1 underline-offset-4 mx-1 opacity-100 transition-all duration-200;
+  text-decoration-color: theme(colors.sh1 / 45%);
+}
+
+.about_link:hover {
+  @apply opacity-100;
+  text-decoration-color: currentColor;
 }
 
 .about_stats {
@@ -166,7 +207,13 @@
 }
 
 .accent_link {
-  @apply inline-flex items-center gap-1 font-semibold underline decoration-dotted underline-offset-4;
+  @apply inline-flex items-center gap-1 font-semibold underline decoration-1 underline-offset-4 opacity-100 transition-all duration-200;
+  text-decoration-color: theme(colors.sh1 / 45%);
+}
+
+.accent_link:hover {
+  @apply opacity-100;
+  text-decoration-color: currentColor;
 }
 
 @media (max-width: 768px) {

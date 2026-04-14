@@ -1,5 +1,5 @@
 .stack {
-  @apply flex flex-col gap-16;
+  @apply flex flex-col gap-14;
 }
 
 .group {
@@ -7,46 +7,94 @@
 }
 
 .groupTitle {
-  @apply mb-6 text-xl font-semibold tracking-wide flex items-center gap-2;
-}
-
-.entries {
-  @apply flex flex-col gap-10 list-none p-0 m-0;
-}
-
-.entry {
-  @apply relative flex gap-6 items-start;
-}
-
-.iconWrapper {
-  @apply flex items-center justify-center w-12 h-12 flex-shrink-0;
-}
-
-.icon {
-  @apply w-12 h-12 object-contain rounded-[10%] z-10 flex-shrink-0;
-}
-
-.content {
-  @apply flex-1 flex flex-col gap-2 text-left;
-}
-
-.period {
-  @apply text-xs font-medium tracking-wide;
-}
-
-.title {
-  @apply text-lg font-semibold;
-}
-
-.linkIcon {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.description {
-  @apply text-sm leading-relaxed;
+  @apply mb-5 text-lg font-semibold tracking-widest uppercase flex items-center gap-2 pb-2 border-b border-sh1 border-opacity-30;
 }
 
 .groupTitleIcon {
-  @apply inline-flex;
+  @apply inline-flex opacity-80;
+}
+
+.entries {
+  @apply flex flex-col gap-4 list-none p-0 m-0;
+}
+
+.entry {
+  @apply relative flex gap-4 items-start p-2 rounded-lg transition-all duration-200;
+}
+
+.entry:hover {
+  background-color: rgb(220 220 220 / 0.4);
+}
+
+:global(.dark) .entry:hover {
+  background-color: rgb(57 57 57 / 0.4);
+}
+
+.iconWrapper {
+  @apply flex items-center justify-center w-12 h-12 flex-shrink-0 rounded-xl overflow-hidden;
+  box-shadow: 0 0 0 1px theme(colors.sh1 / 25%);
+}
+
+.icon {
+  @apply w-12 h-12 object-contain z-10 flex-shrink-0;
+}
+
+.content {
+  @apply flex-1 flex flex-col gap-1.5 text-left;
+}
+
+.period {
+  @apply text-[11px] font-semibold tracking-wider uppercase opacity-50;
+}
+
+.title {
+  @apply text-base font-semibold leading-snug;
+}
+
+.linkIcon {
+  @apply inline-block align-middle ml-0.5 opacity-40 transition-opacity duration-200;
+}
+
+.entry:hover .linkIcon,
+.compactEntry:hover .linkIcon {
+  @apply opacity-10;
+}
+
+.description {
+  @apply text-sm leading-relaxed opacity-80;
+}
+
+/* Compact layout for groups without icons */
+.compactEntries {
+  @apply flex flex-col gap-0 list-none p-0 m-0;
+}
+
+.compactEntry {
+  @apply relative py-3.5 pl-5 transition-all duration-200;
+  border-left: 2px solid theme(colors.sh1 / 20%);
+}
+
+.compactEntry:hover {
+  border-left-color: theme(colors.sh1 / 60%);
+  background-color: rgb(220 220 220 / 0.4);
+}
+
+:global(.dark) .compactEntry:hover {
+  background-color: rgb(57 57 57 / 0.3);
+}
+
+.compactContent {
+  @apply flex flex-wrap items-baseline gap-x-3 gap-y-1;
+}
+
+.compactPeriod {
+  @apply text-[11px] font-semibold tracking-wider uppercase shrink-0;
+}
+
+.compactTitle {
+  @apply text-sm font-semibold leading-snug;
+}
+
+.compactDescription {
+  @apply text-sm leading-relaxed mt-1.5 opacity-90;
 }

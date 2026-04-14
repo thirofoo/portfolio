@@ -54,7 +54,7 @@ export const WaveBackground = ({
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      const baseColor = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.1)'
+      const baseColor = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)'
       const highlightColor = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 0, 0, 0.3)'
       const waveWidth = 30
 

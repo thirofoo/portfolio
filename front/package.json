@@ -56,7 +56,6 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "shiki": "^0.14.2",
-    "typescript": "5.0.4",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2"
   },
@@ -76,7 +75,8 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-typescript": "^3.5.5",
     "prettier": "^2.8.7",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.1",
+    "typescript": "5.5"
   },
   "engines": {
     "node": "22.x"
