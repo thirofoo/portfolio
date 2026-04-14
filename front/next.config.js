@@ -10,6 +10,19 @@ module.exports = {
     API_URL: process.env.API_URL,
   },
   images: {
+    localPatterns: [
+      {
+        pathname: '/api/proxy',
+      },
+      {
+        pathname: '/images/**',
+      },
+    ],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'cdn.qiita.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'qiita-user-contents.imgix.net', pathname: '/**' },
+    ],
     domains: [
       'res.cloudinary.com',
       'cdn.qiita.com',
