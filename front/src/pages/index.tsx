@@ -92,7 +92,7 @@ const timelineData: TimelineItem[] = [
     title: <span>フューチャーアーキテクト株式会社 夏季インターン ・ アルバイト</span>,
     description: (
       <>
-        1 ヶ月間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わった。インターン終了後も継続で 1 年弱の間同じプロジェクトにて開発アルバイトをしていた。<br />
+        インターンとアルバイトで約 1 年間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わった。<br />
         <span className="mt-2 block text-sm">
           当時の様子は{' '}
           <a href="https://future-architect.github.io/articles/20230920a/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
@@ -120,7 +120,7 @@ const timelineData: TimelineItem[] = [
         <a href="https://saitama-maximum.connpass.com/event/325174/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
           「Maximum-Cup 2024」
         </a>
-        の運営にも携わりました。
+        の運営にも携わった。
       </>
     ),
     link: 'https://www.maximum.vc/',
@@ -151,25 +151,42 @@ const achievementGroups: AchievementGroup[] = [
         link: 'https://atcoder.jp/contests/ahc063/standings',
       },
       {
-        period: '2025年12月',
+        period: '2024年12月 / 2025年12月',
         icon: '/images/ICPC.webp',
-        title: <span> The 2025 ICPC Asia Yokohama Regional Contest 出場 </span>,
+        title: <span> ICPC Asia Yokohama Regional Contest 2年連続出場</span>,
         description: (
           <>
-            チーム Maximum Masters として、2025 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で 40 位 / 352 位で予選通過を果たし、2025 年 12 月に開催されるアジア地区の本戦に出場した。
+            <span className="font-semibold">2025</span>：チーム Maximum Masters として、国内予選 40 位 / 352 位で予選通過し、アジア地区本選に出場した。{' '}
             <a
               href="https://icpc.jp/2025/domestic/results/#:~:text=40-,Maximum%20Masters,-%E2%98%86%20Saitama%20University"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.accent_link}
             >
-              (Prelim Results)
+              (Prelim)
             </a>
             <br />
-            アジア地区本選では 47 位 / 55 位となり、悔しい結果となったが、貴重な経験となった。
+            <span className="font-semibold">2024</span>：チーム executive is deprived として、国内予選上位 10 % 入賞・予選通過し、アジア地区本選に出場した。{' '}
+            <a
+              href="https://icpc.jp/2024/domestic/results/#:~:text=executive%20is%20deprived"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.accent_link}
+            >
+              (Prelim)
+            </a>
+            {' '}
+            <a
+              href="https://storage.googleapis.com/files.icpc.jp/regional2024/standings.html#:~:text=executive%20is%20deprived"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.accent_link}
+            >
+              (Regional)
+            </a>
           </>
         ),
-        link: 'https://icpc.jp/2025/',
+        link: 'https://icpc.jp/',
       },
       {
         period: '2025年8月',
@@ -200,36 +217,6 @@ const achievementGroups: AchievementGroup[] = [
           </>
         ),
         link: 'https://www.kaggle.com/competitions/santa-2024',
-      },
-      {
-        period: '2024年12月',
-        icon: '/images/ICPC.webp',
-        title: <span> The 2024 ICPC Asia Yokohama Regional Contest 出場 </span>,
-        description: (
-          <>
-            チーム executive is deprived として、2024 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で上位 10 % 入賞 + 予選通過を果たし、2024 年 12 月に開催されるアジア地区の本戦に出場した。
-            <a
-              href="https://icpc.jp/2024/domestic/results/#:~:text=executive%20is%20deprived"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.accent_link}
-            >
-              (Prelim Results)
-            </a>
-            <br />
-            アジア地区本選では 47 位 / 55 位となり、悔しい結果となったが、貴重な経験となった。
-            {' '}
-            <a
-              href="https://storage.googleapis.com/files.icpc.jp/regional2024/standings.html#:~:text=executive%20is%20deprived"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.accent_link}
-            >
-              (Regional Results)
-            </a>
-          </>
-        ),
-        link: 'https://icpc.jp/2024/',
       },
     ],
   },
