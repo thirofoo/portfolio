@@ -1,5 +1,5 @@
 .container {
-  @apply align-middle;
+  @apply align-middle grid gap-8;
 }
 
 .timelineItem {
@@ -11,7 +11,7 @@
 }
 
 .date {
-  @apply flex flex-col text-sm;
+  @apply flex flex-col text-[11px] font-semibold tracking-wider uppercase opacity-70;
 }
 
 .dateDesktop {
@@ -23,28 +23,41 @@
 }
 
 .iconWrapper {
-  /* 垂直方向に真ん中 */
-  @apply relative flex items-start justify-center z-10 py-2;
+  @apply relative flex items-start justify-center z-10 py-2 h-full;
 }
 
 .icon {
-  @apply w-12 h-12 object-contain rounded-[10%] z-10;
+  @apply w-12 h-12 object-contain rounded-xl z-10;
+  box-shadow: 0 0 0 1px theme(colors.sh1 / 25%);
 }
 
 .dottedLine {
-  @apply absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-full border-l-2 border-dashed;
+  @apply absolute left-1/2 transform -translate-x-1/2 w-0;
+  /* top = py-2 (8px) + half icon height (24px) = icon vertical center */
+  top: 32px;
+  /* 100% = iconWrapper height (= full row height), +2rem = gap-8 between rows */
+  height: calc(100% + 2rem);
+  border-left: 2px solid theme(colors.sh1 / 20%);
 }
 
 .content {
-  @apply flex flex-col text-left;
+  @apply flex flex-col text-left py-1 justify-center;
 }
 
 .title {
-  @apply text-lg font-semibold;
+  @apply text-base font-semibold leading-snug;
+}
+
+.linkIcon {
+  @apply inline-block align-middle ml-0.5 opacity-40 transition-opacity duration-200;
+}
+
+.content:hover .linkIcon {
+  @apply opacity-80;
 }
 
 .description {
-  @apply text-sm mt-1 pb-12;
+  @apply text-sm leading-relaxed mt-1.5 opacity-75;
 }
 
 /* レスポンシブデザイン */

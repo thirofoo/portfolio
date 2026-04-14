@@ -1,4 +1,4 @@
-FROM golang:1.19.1-alpine
+FROM golang:1.25-alpine
 
 # 引数として渡された環境変数を変数にセットする
 ARG POSTGRES_USER
@@ -34,4 +34,4 @@ RUN go build -o main .
 # 明示的にメタデータを付与
 EXPOSE 8080
 
-CMD ["./main"]
+CMD ["/app/main"]

@@ -1,6 +1,6 @@
 export interface AchievementItem {
   period: string;
-  icon: string;
+  icon?: string;
   title: JSX.Element | string;
   description: JSX.Element | string;
   link?: string;

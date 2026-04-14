@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-const { resolve } = require('path')
-const colorsPath = resolve(__dirname, 'src/styles/theme.ts')
-const colors = require(colorsPath)
+const colors = require('./src/styles/theme.ts')
 
 module.exports = {
   // jit にしないと 通常の方法でスタイリングするっぽい

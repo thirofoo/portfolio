@@ -21,8 +21,7 @@ const timelineData: TimelineItem[] = [
     title: <span>株式会社 ALGO ARTIS アルゴリズムエンジニア アルバイト</span>,
     description: (
       <>
-        主にヒューリスティック最適化の技術を用いて、様々な社会基盤に関わる業界におけるスケジューリングなどの最適化問題に取り組んでいます。<br />
-        現在もなお、大学での研究と並行してアルバイトとして勤務しています。
+        主にヒューリスティック最適化の技術を用いて、様々な社会基盤に関わる業界における最適化問題に取り組んでいる。
       </>
     ),
     link: 'https://www.algo-artis.com/',
@@ -34,8 +33,8 @@ const timelineData: TimelineItem[] = [
     title: <span>株式会社リクルート Data Specialists 2025 夏季インターン</span>,
     description: (
       <>
-        5 週間、ML エンジニアとして、リコメンド改善のタスクに取り組みました。<br />
-        BigQuery を用いて大量のデータを処理し、特徴量エンジニアリングやモデル構築を行い、精度改善に貢献しました。
+        5 週間、ML エンジニアとして、リコメンド改善のタスクに取り組んだ。<br />
+        BigQuery を用いて大量のデータを処理し、特徴量エンジニアリングやモデル構築を行い、精度改善に貢献した。
       </>
     ),
     link: 'https://www.recruit.co.jp/employment/students/internship/dsintern/',
@@ -56,13 +55,13 @@ const timelineData: TimelineItem[] = [
     title: <span>株式会社 Preferred Networks 夏季インターン</span>,
     description: (
       <>
-        1 カ月間、MP-PAWR という最新の天気に関するデータを用いて、CNN を用いて天候を予測するタスクに携わらせていただきました。<br />
+        1 カ月間、MP-PAWR という最新の天気に関するデータを用いて、CNN を用いて天候を予測するタスクに携わった。<br />
         <span className="mt-2 block text-sm">
           詳しい振り返りは{' '}
           <a href="https://tech.preferred.jp/ja/blog/i24-gd02-qpe-result/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
             ブログ記事
           </a>{' '}
-          で紹介しています。
+          で紹介されている。
         </span>
       </>
     ),
@@ -75,13 +74,13 @@ const timelineData: TimelineItem[] = [
     title: <span>東京大学松尾研究室主催 Spring Seminar 2024 深層強化学習 修了</span>,
     description: (
       <>
-        深層強化学習について学び、自由課題として Tetris のゲーム AI エージェントの作成に取り組みました。<br />
+        深層強化学習について学び、自由課題として Tetris のゲーム AI エージェントの作成に取り組んだ。<br />
         <span className="mt-2 block text-sm">
           内容の詳細は{' '}
           <a href="https://thirofoo.com/blog/tetris-rl" rel="noopener noreferrer" className={styles.accent_link}>
             ブログ記事
           </a>{' '}
-          でまとめています。
+          でまとめている。
         </span>
       </>
     ),
@@ -93,13 +92,13 @@ const timelineData: TimelineItem[] = [
     title: <span>フューチャーアーキテクト株式会社 夏季インターン ・ アルバイト</span>,
     description: (
       <>
-        1 ヶ月間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わらせていただきました。インターン終了後も継続で 1 年弱の間同じプロジェクトにて開発アルバイトをしていました。<br />
+        インターンとアルバイトで約 1 年間、GoのプロジェクトでTerraformやAWSのLamda、S3等を用いて、IoTプラットフォームの開発に携わった。<br />
         <span className="mt-2 block text-sm">
           当時の様子は{' '}
           <a href="https://future-architect.github.io/articles/20230920a/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
             ブログ記事
           </a>{' '}
-          で紹介しています。
+          で紹介している。
         </span>
       </>
     ),
@@ -112,7 +111,7 @@ const timelineData: TimelineItem[] = [
     title: <span>埼玉大学プログラミングサークル Maximum 副会長</span>,
     description: (
       <>
-        2023 年度に埼玉大学プログラミングサークル Maximum 副会長をし、競技プログラミングの講師として活動していました。<br />
+        2023 年度に埼玉大学プログラミングサークル Maximum 副会長をし、競技プログラミングの講師として活動していた。<br />
         また、サークル主催のコンテスト
         <a href="https://saitama-maximum.connpass.com/event/287949/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
           「Maximum-Cup 2023」
@@ -121,7 +120,7 @@ const timelineData: TimelineItem[] = [
         <a href="https://saitama-maximum.connpass.com/event/325174/" target="_blank" rel="noopener noreferrer" className={styles.accent_link}>
           「Maximum-Cup 2024」
         </a>
-        の運営にも携わりました。
+        の運営にも携わった。
       </>
     ),
     link: 'https://www.maximum.vc/',
@@ -142,31 +141,60 @@ const achievementGroups: AchievementGroup[] = [
     label: 'Contest',
     items: [
       {
-        period: '2025年12月',
-        icon: '/images/ICPC.webp',
-        title: <span> The 2025 ICPC Asia Yokohama Regional Contest 出場 </span>,
+        period: '2026年4月',
+        icon: '/images/atcoder.webp',
+        title: <span> AtCoder Heuristic Contest 063 | 4 位 / 1277 </span>,
         description: (
           <>
-            チーム Maximum Masters として、2025 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で 40 位 / 352 位で予選通過を果たし、2025 年 12 月に開催されるアジア地区の本戦に出場しました。
+          </>
+        ),
+        link: 'https://atcoder.jp/contests/ahc063/standings',
+      },
+      {
+        period: '2024年12月 / 2025年12月',
+        icon: '/images/ICPC.webp',
+        title: <span> ICPC Asia Yokohama Regional Contest 2年連続出場</span>,
+        description: (
+          <>
+            <span className="font-semibold">2025</span>：チーム Maximum Masters として、国内予選 40 位 / 352 位で予選通過し、アジア地区本選に出場した。{' '}
             <a
               href="https://icpc.jp/2025/domestic/results/#:~:text=40-,Maximum%20Masters,-%E2%98%86%20Saitama%20University"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.accent_link}
             >
-              (Prelim Results)
+              (Prelim)
+            </a>
+            <br />
+            <span className="font-semibold">2024</span>：チーム executive is deprived として、国内予選上位 10 % 入賞・予選通過し、アジア地区本選に出場した。{' '}
+            <a
+              href="https://icpc.jp/2024/domestic/results/#:~:text=executive%20is%20deprived"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.accent_link}
+            >
+              (Prelim)
+            </a>
+            {' '}
+            <a
+              href="https://storage.googleapis.com/files.icpc.jp/regional2024/standings.html#:~:text=executive%20is%20deprived"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.accent_link}
+            >
+              (Regional)
             </a>
           </>
         ),
-        link: 'https://icpc.jp/2025/',
+        link: 'https://icpc.jp/',
       },
       {
         period: '2025年8月',
         icon: '/images/track-logo.webp',
-        title: <span> AIコンペ2025｜人間かAIか？コードの書き手を見抜け！| 2 位入賞 </span>,
+        title: <span> AIコンペ2025｜人間かAIか？コードの書き手を見抜け！ | 2 位入賞 </span>,
         description: (
           <>
-            人間とAIが書いたソースコードを識別する二値分類タスクのAIコンペティションで 2 位入賞を果たし、賞金 10 万円を獲得しました。
+            人間とAIが書いたソースコードを識別する二値分類タスクのAIコンペティションで 2 位入賞を果たし、賞金 10 万円を獲得した。
           </>
         ),
         link: 'https://job.tracks.run/lp/ai-competition-2025',
@@ -177,7 +205,7 @@ const achievementGroups: AchievementGroup[] = [
         title: <span> Santa 2024 - The Perplexity Permutation Puzzle | Silver Medal</span>,
         description: (
           <>
-            kaggle で開催された Perplexity を指標に、単語がシャッフルされた文章を並べ替える組み合わせ最適化系 NLP コンペティションで 31 位 / 1515 位で Silver Medal を獲得しました。
+            kaggle で開催された Perplexity を指標に、単語がシャッフルされた文章を並べ替える組み合わせ最適化系 NLP コンペティションで 31 位 / 1515 位で Silver Medal を獲得した。
             <a
               href="https://www.kaggle.com/certification/competitions/through/santa-2024"
               target="_blank"
@@ -190,36 +218,6 @@ const achievementGroups: AchievementGroup[] = [
         ),
         link: 'https://www.kaggle.com/competitions/santa-2024',
       },
-      {
-        period: '2024年12月',
-        icon: '/images/ICPC.webp',
-        title: <span> The 2024 ICPC Asia Yokohama Regional Contest 出場 </span>,
-        description: (
-          <>
-            チーム executive is deprived として、2024 年 7 月に開催された国際大学対抗プログラミングコンテスト (ICPC) の国内予選で上位 10 % 入賞 + 予選通過を果たし、2024 年 12 月に開催されるアジア地区の本戦に出場しました。
-            <a
-              href="https://icpc.jp/2024/domestic/results/#:~:text=executive%20is%20deprived"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.accent_link}
-            >
-              (Prelim Results)
-            </a>
-            <br />
-            アジア地区本選では 47 位 / 55 位となり、悔しい結果となりましたが、貴重な経験となりました。
-            {' '}
-            <a
-              href="https://storage.googleapis.com/files.icpc.jp/regional2024/standings.html#:~:text=executive%20is%20deprived"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.accent_link}
-            >
-              (Regional Results)
-            </a>
-          </>
-        ),
-        link: 'https://icpc.jp/2024/',
-      },
     ],
   },
   {
@@ -227,28 +225,26 @@ const achievementGroups: AchievementGroup[] = [
     items: [
       {
         period: '2025年11月',
-        icon: '/images/academics.webp',
         title: <span>APRIS 2025 Best Paper Award 受賞</span>,
         description: (
           <>
-            Asia Pacific Conference on Robot IoT System Development and Platform (APRIS 2025) に参加し、口頭発表に参加しました。
+            Asia Pacific Conference on Robot IoT System Development and Platform (APRIS 2025) に参加し、口頭発表を行った。
             <br />
             また学会で発表された論文のうち、最も評価の高かった論文の著者に対して贈られる
             <div className="inline-block font-bold mx-1">
               Best Paper Award
             </div>
-            を受賞しました。
+            を受賞した。
           </>
         ),
         link: 'http://www.sigemb.jp/APRIS/2025/wordpress/',
       },
       {
         period: '2025年3月',
-        icon: '/images/academics.webp',
         title: <span> 第252回ARC・第208回SLDM・第68回EMB合同研究発表会（ETNET2025）参加 </span>,
         description: (
           <>
-            情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表とポスターセッションに参加しました。
+            情報処理学会 (IPSJ) 主催の ETNET2025 に参加し、口頭発表とポスターセッションを行った。
           </>
         ),
         link: 'https://www.ipsj.or.jp/kenkyukai/event/arc252sldm208emb68.html',
@@ -260,7 +256,6 @@ const achievementGroups: AchievementGroup[] = [
     items: [
       {
         period: '2022年12月',
-        icon: '/images/academics.webp',
         title: <span>応用情報技術者試験 合格</span>,
         description: (
           <></>
@@ -268,7 +263,6 @@ const achievementGroups: AchievementGroup[] = [
       },
       {
         period: '2020年8月',
-        icon: '/images/academics.webp',
         title: <span>実用数学技能検定 準1級 合格</span>,
         description: (
           <></>
@@ -297,7 +291,7 @@ const Home: NextPage = () => {
               <h2>thirofoo / through</h2>
               <p>2002.7.24 from Tochigi, Japan</p>
               <h3>
-                <a href="https://www.saitama-u.ac.jp/" className="text-font-bold underline pr-2" target="_blank" rel="noopener noreferrer" >
+                <a href="https://www.saitama-u.ac.jp/" className="font-bold hover:underline underline-offset-4 decoration-1 pr-2" target="_blank" rel="noopener noreferrer" >
                   Saitama University
                 </a>
                 <br />
@@ -314,6 +308,7 @@ const Home: NextPage = () => {
                   className={styles.icon}
                 >
                   <GitHub />
+                  <span className={styles.iconLabel} aria-hidden='true'>GitHub</span>
                 </a>
 
                 <a
@@ -324,6 +319,7 @@ const Home: NextPage = () => {
                   className={styles.icon}
                 >
                   <X />
+                  <span className={styles.iconLabel} aria-hidden='true'>X</span>
                 </a>
 
                 <a
@@ -334,6 +330,7 @@ const Home: NextPage = () => {
                   className={styles.icon}
                 >
                   <Zenn />
+                  <span className={styles.iconLabel} aria-hidden='true'>Zenn</span>
                 </a>
 
               </p>
@@ -342,38 +339,39 @@ const Home: NextPage = () => {
         </div>
 
         <div className="mb-12">
-          <h3 className="mb-8 text-2xl text-center">About me</h3>
-          <div className="mx-auto text-left max-w-3xl">
-            <p>
-              メタヒューリスティクスや数理最適化、機械学習などを駆使した効率的な問題解決に取り組むことが好きで、競技プログラミングやデータサイエンスを嗜んでいます。
+          <h3 className="mb-5 text-lg font-semibold tracking-widest uppercase text-center pb-2 border-b border-sh1 border-opacity-30 max-w-xs mx-auto">About me</h3>
+          <div className="mx-auto text-left max-w-xl">
+            <p className="leading-relaxed text-sm opacity-85">
+              メタヒューリスティクスや強化学習を中心に、競技プログラミングとデータサイエンスを趣味として嗜んでいる。
+              <br />
               <a href="https://atcoder.jp/users/through" className={styles.accent_link} target="_blank" rel="noopener noreferrer">
                 AtCoder
               </a>
-              では Algorithm は青色 (上位4.3%)、Heuristic は黄色 (上位4.2%) を、
+              では Algorithm は青色、Heuristic は橙色を、
               <a href="https://www.kaggle.com/through" className={styles.accent_link} target="_blank" rel="noopener noreferrer">
                 Kaggle
               </a>
-              では Competitions Expert を達成しています。
+              では Competitions Expert を達成。
               <br />
               <span className="mt-2 block" />
 
-              また Web 開発にも触れており、Next.js と Go を用いてこのサイトを自作しています。
+              Web 開発では Next.js と Go を用いてこのサイトを自作している。
               <br />
               <span className="mt-2 block" />
 
-              大学では自動運転に関する研究室に所属し、確率を用いた応答時間解析に関する研究をしています。
+              大学では自動運転に関する研究室に所属し、確率を用いた応答時間解析に関する研究をしている。
               <br />
             </p>
           </div>
         </div>
 
         <div className={styles.timeline_wrapper}>
-          <h3 className="mb-8 text-2xl">Experience</h3>
+          <h3 className="mb-5 text-lg font-semibold tracking-widest uppercase text-center pb-2 border-b border-sh1 border-opacity-30 max-w-xs mx-auto">Experience</h3>
           <Timeline data={timelineData} />
         </div>
 
         <div className="mt-16">
-          <h3 className="mb-8 text-2xl">Achievements</h3>
+          <h3 className="mb-5 text-lg font-semibold tracking-widest uppercase text-center pb-2 border-b border-sh1 border-opacity-30 max-w-xs mx-auto">Achievements</h3>
           <Achievements groups={achievementGroups} />
         </div>
       </div>
