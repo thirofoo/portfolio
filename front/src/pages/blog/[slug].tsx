@@ -27,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = articles.map((article: Article) => ({
     params: { slug: article.slug },
   }))
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
@@ -46,6 +46,5 @@ export const getStaticProps: GetStaticProps<BlogProps> = async ({ params }) => {
     props: {
       article,
     },
-    revalidate: 1,
   }
 }
