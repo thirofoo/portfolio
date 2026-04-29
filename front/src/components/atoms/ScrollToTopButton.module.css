@@ -1,5 +1,27 @@
 .scroll_to_top_button {
-  @apply sticky bottom-4 right-4 z-50 ml-auto mt-auto mr-6;
+  @apply sticky bottom-4 right-4 z-50 ml-auto mt-auto mr-6 rounded-full cursor-pointer;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(125, 133, 146, 0.24);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+}
+
+.scroll_to_top_button svg {
+  display: block;
+}
+
+:global(html.dark) .scroll_to_top_button {
+  background-color: rgba(24, 28, 36, 0.5);
+  border-color: rgba(154, 165, 206, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
 }
 
 @keyframes fadeOut {

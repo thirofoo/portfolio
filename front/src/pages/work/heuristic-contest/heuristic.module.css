@@ -21,6 +21,10 @@
   @apply text-center text-sm opacity-70 mb-8;
 }
 
+.lastUpdated {
+  @apply ml-3 opacity-60;
+}
+
 /* Filter Section */
 .filterSection {
   @apply mb-8 p-4 rounded-lg;
@@ -182,6 +186,10 @@
   color: theme(colors.txt2);
   border-color: rgba(154, 165, 206, 0.35);
   background-color: transparent;
+}
+
+.chartToggles {
+  @apply flex flex-wrap items-center gap-3;
 }
 
 .chart {

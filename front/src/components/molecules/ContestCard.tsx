@@ -2,15 +2,16 @@ import { HeuristicContest, getThumbnailUrl, getVisualizerUrl } from '@/Interface
 import styles from '@/components/molecules/ContestCard.module.css'
 import { getRatingColor } from '@/lib/rating'
 import { getUrl } from '@/lib/url'
-import NextImage from 'next/image'
 import { useTheme } from 'next-themes'
+import NextImage from 'next/image'
 import { useCallback, useRef, useState } from 'react'
 
 type Props = {
   contest: HeuristicContest
+  onClick?: () => void
 }
 
-export const ContestCard = ({ contest }: Props) => {
+export const ContestCard = ({ contest, onClick }: Props) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isHovering, setIsHovering] = useState(false)
   const { resolvedTheme } = useTheme()
@@ -39,20 +40,17 @@ export const ContestCard = ({ contest }: Props) => {
   )
 
   return (
-    <a
-      href={contest.problemUrl}
-      target='_blank'
-      rel='noopener noreferrer'
+    <div
       className={styles.card}
       id='blog-card'
+      onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.media}>
         <NextImage
-          className={`${styles.thumbnail} ${!hasMedia ? styles.noImage : ''} ${
-            isHovering && visualizerUrl ? styles.hidden : ''
-          }`}
+          className={`${styles.thumbnail} ${!hasMedia ? styles.noImage : ''} ${isHovering && visualizerUrl ? styles.hidden : ''
+            }`}
           src={thumbnailUrl}
           alt={contest.id}
           width={640}
@@ -116,6 +114,6 @@ export const ContestCard = ({ contest }: Props) => {
           </div>
         </div>
       </div>
-    </a>
+    </div>
   )
 }

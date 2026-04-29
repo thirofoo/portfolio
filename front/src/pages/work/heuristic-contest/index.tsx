@@ -1,15 +1,17 @@
 import { HeuristicContest } from '@/Interfaces/HeuristicContest'
 import { Meta } from '@/components/atoms/Meta'
 import { ContestCard } from '@/components/molecules/ContestCard'
+import { ContestDetailModal } from '@/components/molecules/ContestDetailModal'
 import { getAllContests } from '@/lib/api/heuristic'
 import { RatingColorMode, getRatingColor } from '@/lib/rating'
 import styles from '@/pages/work/heuristic-contest/heuristic.module.css'
 import { GetStaticProps } from 'next'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 type Props = {
   contests: HeuristicContest[]
+  lastUpdated: string
 }
 
 type SortKey = 'date' | 'rank' | 'performance'
@@ -20,13 +22,14 @@ const LINE_COLOR = '#7d8592'
 const isRankedContest = (contest: HeuristicContest): contest is RankedContest =>
   contest.rank != null
 
-const HeuristicContestPage = ({ contests }: Props) => {
+const HeuristicContestPage = ({ contests, lastUpdated }: Props) => {
   const [search, setSearch] = useState('')
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
   const [sortKey, setSortKey] = useState<SortKey>('date')
   const [sortAsc, setSortAsc] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [showUnrankedContests, setShowUnrankedContests] = useState(false)
+  const [selectedContest, setSelectedContest] = useState<HeuristicContest | null>(null)
   const participatedCount = useMemo(() => contests.filter(isRankedContest).length, [contests])
 
   const allFilters = useMemo(() => {
@@ -98,13 +101,15 @@ const HeuristicContestPage = ({ contests }: Props) => {
       <Meta
         title='Heuristic Contest Archive | thirofoo'
         description='AtCoder Heuristic Contest (AHC) の参加実績一覧'
-        ogImage='https://raw.githubusercontent.com/thirofoo/heuristic-archive/main/AHC040/thumbnail.webp'
       />
 
       <div className={styles.wideContainer}>
         <div className={styles.narrowInner}>
           <h1 className={styles.pageTitle}>Heuristic Contest Archive</h1>
-          <p className={styles.subtitle}>{participatedCount} contests participated</p>
+          <p className={styles.subtitle}>
+            {participatedCount} contests participated
+            <span className={styles.lastUpdated}>Last updated: {lastUpdated}</span>
+          </p>
 
           <div className={styles.toggleRow}>
             <button
@@ -193,13 +198,24 @@ const HeuristicContestPage = ({ contests }: Props) => {
             ) : (
               <div className={styles.contestGrid}>
                 {filtered.map((contest) => (
-                  <ContestCard key={contest.id} contest={contest} />
+                  <ContestCard
+                    key={contest.id}
+                    contest={contest}
+                    onClick={() => setSelectedContest(contest)}
+                  />
                 ))}
               </div>
             )}
           </>
         )}
       </div>
+
+      {selectedContest && (
+        <ContestDetailModal
+          contest={selectedContest}
+          onClose={() => setSelectedContest(null)}
+        />
+      )}
     </>
   )
 }
@@ -210,6 +226,7 @@ function StatsView({ contests }: { contests: HeuristicContest[] }) {
   const { resolvedTheme } = useTheme()
   const ratingColorMode: RatingColorMode = resolvedTheme === 'dark' ? 'dark' : 'light'
   const [showNoSubmissionRanks, setShowNoSubmissionRanks] = useState(false)
+  const [showExtendedRank, setShowExtendedRank] = useState(true)
   const withPerf = contests.filter((c) => c.performance != null && c.performance > 0)
   const withRank = contests.filter(isRankedContest).filter((c) => c.rank >= 1)
   const bestRank = withRank.length > 0 ? Math.min(...withRank.map((c) => c.rank)) : null
@@ -218,8 +235,8 @@ function StatsView({ contests }: { contests: HeuristicContest[] }) {
   const avgPerf =
     withPerf.length > 0
       ? Math.round(
-          withPerf.reduce((sum, c) => sum + (c.performance as number), 0) / withPerf.length,
-        )
+        withPerf.reduce((sum, c) => sum + (c.performance as number), 0) / withPerf.length,
+      )
       : null
 
   const langCounts: Record<string, number> = {}
@@ -292,18 +309,29 @@ function StatsView({ contests }: { contests: HeuristicContest[] }) {
       <div className={styles.chartContainer}>
         <div className={styles.chartTitleRow}>
           <h3 className={styles.chartTitle}>Rank History</h3>
-          <label className={styles.chartToggleLabel}>
-            <input
-              type='checkbox'
-              className={styles.chartToggleInput}
-              checked={showNoSubmissionRanks}
-              onChange={(e) => setShowNoSubmissionRanks(e.target.checked)}
-            />
-            <span>Show No Submission</span>
-          </label>
+          <div className={styles.chartToggles}>
+            <label className={styles.chartToggleLabel}>
+              <input
+                type='checkbox'
+                className={styles.chartToggleInput}
+                checked={showNoSubmissionRanks}
+                onChange={(e) => setShowNoSubmissionRanks(e.target.checked)}
+              />
+              <span>Show No Submission</span>
+            </label>
+            <label className={styles.chartToggleLabel}>
+              <input
+                type='checkbox'
+                className={styles.chartToggleInput}
+                checked={showExtendedRank}
+                onChange={(e) => setShowExtendedRank(e.target.checked)}
+              />
+              <span>Show Extended Rank</span>
+            </label>
+          </div>
         </div>
         <div className={styles.chart}>
-          <RankChart contests={rankHistoryContests} ratingColorMode={ratingColorMode} />
+          <RankChart contests={rankHistoryContests} ratingColorMode={ratingColorMode} showExtendedRank={showExtendedRank} />
         </div>
       </div>
 
@@ -355,9 +383,9 @@ function useChartTooltip(defaultTooltip: TooltipData) {
     [],
   )
 
-  const handleMouseMove = useCallback(() => {}, [])
+  const handleMouseMove = useCallback(() => { }, [])
 
-  const handleMouseLeave = useCallback(() => {}, [])
+  const handleMouseLeave = useCallback(() => { }, [])
 
   return { tooltip, handleMouseEnter, handleMouseMove, handleMouseLeave }
 }
@@ -568,9 +596,11 @@ function PerformanceChart({
 function RankChart({
   contests,
   ratingColorMode,
+  showExtendedRank,
 }: {
   contests: HeuristicContest[]
   ratingColorMode: RatingColorMode
+  showExtendedRank: boolean
 }) {
   const valid = useMemo(
     () => contests.filter(isRankedContest).filter((c) => c.rank >= 1),
@@ -596,7 +626,11 @@ function RankChart({
   const chartH = H - PAD.top - PAD.bottom
 
   const ranks = valid.map((c) => c.rank)
-  const maxRank = Math.max(...ranks)
+  const extRanks = valid
+    .filter((c) => c.extendedStanding?.extendedRank != null)
+    .map((c) => c.extendedStanding!.extendedRank)
+  const allRanks = showExtendedRank && extRanks.length > 0 ? [...ranks, ...extRanks] : ranks
+  const maxRank = Math.max(...allRanks)
   const sqrtMax = Math.sqrt(maxRank)
 
   const rankToY = (rank: number) => PAD.top + (Math.sqrt(Math.max(rank, 1)) / sqrtMax) * chartH
@@ -608,6 +642,21 @@ function RankChart({
   })
 
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ')
+
+  const extPoints = showExtendedRank
+    ? valid
+      .map((c, i) => {
+        if (!c.extendedStanding?.extendedRank) return null
+        const x = PAD.left + (i / Math.max(valid.length - 1, 1)) * chartW
+        const y = rankToY(c.extendedStanding.extendedRank)
+        return { x, y, rank: c.extendedStanding.extendedRank, id: c.id, contest: c }
+      })
+      .filter(Boolean) as { x: number; y: number; rank: number; id: string; contest: HeuristicContest }[]
+    : []
+  const extLinePath =
+    extPoints.length > 1
+      ? extPoints.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ')
+      : ''
 
   const gridCandidates = [1, 10, 50, 100, 200, 500, 1000]
   const gridValues = gridCandidates.filter((v) => v <= maxRank)
@@ -643,6 +692,23 @@ function RankChart({
           )
         })}
         <path d={linePath} fill='none' stroke={LINE_COLOR} strokeWidth={2} strokeOpacity={0.5} />
+        {extLinePath && (
+          <path d={extLinePath} fill='none' stroke='#e6994a' strokeWidth={1.5} strokeOpacity={0.5} strokeDasharray='6 3' />
+        )}
+        {showExtendedRank &&
+          extPoints.map((p) => (
+            <circle
+              key={`ext-${p.id}`}
+              cx={p.x}
+              cy={p.y}
+              r={2.5}
+              fill='#e6994a'
+              fillOpacity={0.7}
+              stroke='#e6994a'
+              strokeWidth={0.5}
+              strokeOpacity={0.3}
+            />
+          ))}
         {points.map((p, i) => {
           const isActive = tooltip?.index === i
           const colW = chartW / Math.max(valid.length - 1, 1)
@@ -709,9 +775,12 @@ function RankChart({
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const contests = await getAllContests()
+  const now = new Date()
+  const lastUpdated = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
   return {
     props: {
       contests,
+      lastUpdated,
     },
   }
 }

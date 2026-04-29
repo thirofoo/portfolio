@@ -1,0 +1,233 @@
+/* Overlay */
+.overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal body */
+.modal {
+  @apply relative rounded-xl overflow-hidden;
+  width: 90vw;
+  max-width: 720px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: theme(colors.bg1);
+  color: theme(colors.txt1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: slideUp 0.25s ease;
+}
+
+:global(html.dark) .modal {
+  background-color: theme(colors.dbg1);
+  color: theme(colors.txt2);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.closeBtn {
+  @apply absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+  transition: background 0.15s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Hero media area */
+.heroMedia {
+  @apply relative w-full overflow-hidden;
+  aspect-ratio: 16 / 9;
+  background: #111;
+}
+
+.heroImage {
+  @apply w-full h-full object-contain;
+}
+
+.heroVideo {
+  @apply w-full h-full object-contain;
+}
+
+/* Content area */
+.body {
+  @apply p-6;
+}
+
+.contestId {
+  @apply text-xs font-bold opacity-60;
+}
+
+.contestTitle {
+  @apply text-lg font-bold mt-1 mb-4 leading-snug;
+}
+
+/* Stats row */
+.statsRow {
+  @apply flex flex-wrap gap-4 mb-5;
+}
+
+.statItem {
+  @apply flex flex-col items-center px-3 py-2 rounded-lg;
+  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  min-width: 80px;
+}
+
+.statItemLabel {
+  @apply text-xs opacity-60;
+}
+
+.statItemValue {
+  @apply text-base font-bold;
+}
+
+/* Info grid */
+.infoGrid {
+  @apply grid gap-x-6 gap-y-2 text-sm mb-5;
+  grid-template-columns: auto 1fr;
+}
+
+.infoLabel {
+  @apply font-medium opacity-60;
+}
+
+.infoValue {
+  @apply break-all;
+}
+
+.infoLink {
+  color: theme(colors.dbg4);
+  text-decoration: none;
+}
+
+.infoLink:hover {
+  text-decoration: underline;
+}
+
+/* Editorials */
+.editorialsSection {
+  @apply mb-2;
+}
+
+.editorialsTitle {
+  @apply text-sm font-bold mb-3;
+}
+
+.editorialList {
+  @apply flex flex-col gap-1.5;
+}
+
+.editorialItem {
+  @apply flex items-center gap-2 text-sm px-3 py-2 rounded-lg;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.12s ease;
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
+}
+
+.editorialItem:hover {
+  background-color: rgba(125, 133, 146, 0.08);
+}
+
+:global(html.dark) .editorialItem:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.editorialRank {
+  @apply text-xs font-bold opacity-50 flex-shrink-0;
+  min-width: 3em;
+  text-align: right;
+}
+
+.editorialTitle {
+  @apply flex-1 truncate;
+}
+
+.editorialArrow {
+  @apply text-xs opacity-40 flex-shrink-0;
+}
+
+/* Tags in modal */
+.tagRow {
+  @apply flex flex-wrap gap-1.5 mb-5;
+}
+
+.tag {
+  @apply text-xs px-2 py-0.5 rounded;
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
+}
+
+/* Links row */
+.linksRow {
+  @apply flex flex-wrap gap-2 mb-5;
+}
+
+.linkBtn {
+  @apply inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg cursor-pointer;
+  text-decoration: none;
+  border: none;
+  background-color: theme(colors.dbg4);
+  color: white;
+  transition: opacity 0.15s ease;
+}
+
+.linkBtn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .modal {
+    width: 95vw;
+    max-height: 90vh;
+  }
+
+  .body {
+    @apply p-4;
+  }
+
+  .contestTitle {
+    @apply text-base;
+  }
+
+  .statsRow {
+    @apply gap-2;
+  }
+
+  .statItem {
+    min-width: 70px;
+    @apply px-2 py-1.5;
+  }
+
+  .statItemValue {
+    @apply text-sm;
+  }
+
+  .infoGrid {
+    @apply text-xs;
+  }
+}
