@@ -30,14 +30,14 @@ export const Meta = ({
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      {ogImage && <meta property="og:image" content={ogImage} />}
       <meta property="og:type" content={ogType} />
       {ogUrl && <meta property="og:url" content={ogUrl} />}
 
       <meta name="twitter:card" content={twitterCardType} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
       {twitterSite && <meta name="twitter:site" content={twitterSite} />}
       {twitterSite && <meta name="twitter:creator" content={twitterSite} />}
 

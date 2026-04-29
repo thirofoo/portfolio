@@ -12,6 +12,7 @@ import { Timeline } from '@/components/molecules/Timeline'
 
 import { AchievementGroup } from '@/Interfaces/Achievement'
 import { TimelineItem } from '@/Interfaces/Timeline'
+import Link from 'next/link'
 
 const timelineData: TimelineItem[] = [
   {
@@ -224,6 +225,16 @@ const achievementGroups: AchievementGroup[] = [
     label: 'Publication / Conference',
     items: [
       {
+        period: '2026年7月',
+        title: <span>ECRTS 2026 論文採択（発表予定）</span>,
+        description: (
+          <>
+            Euromicro Conference on Real-Time Systems (ECRTS 2026) にて、修士で取り組んできた研究に関する論文が採択された。
+          </>
+        ),
+        link: 'https://www.ecrts.org/', // ※必要に応じて該当年のURLに書き換えてください
+      },
+      {
         period: '2025年11月',
         title: <span>APRIS 2025 Best Paper Award 受賞</span>,
         description: (
@@ -353,8 +364,13 @@ const Home: NextPage = () => {
               </a>
               では Competitions Expert を達成。
               <br />
-              <span className="mt-2 block" />
 
+              <Link href="/work/heuristic-contest" className={styles.archive_banner}>
+                <span className={styles.archive_banner_text}>Heuristic Contest Archive</span>
+                <span className={styles.archive_banner_arrow}>→</span>
+              </Link>
+
+              <br />
               Web 開発では Next.js と Go を用いてこのサイトを自作している。
               <br />
               <span className="mt-2 block" />

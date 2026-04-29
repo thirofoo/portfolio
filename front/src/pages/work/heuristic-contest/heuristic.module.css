@@ -1,0 +1,381 @@
+/* Full-bleed: break out of AppLayout's max-w-[1024px] */
+.wideContainer {
+  width: 90vw;
+  max-width: 1440px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+
+.narrowInner {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  @apply text-3xl font-bold text-center mt-4 mb-2;
+}
+
+.subtitle {
+  @apply text-center text-sm opacity-70 mb-8;
+}
+
+.lastUpdated {
+  @apply ml-3 opacity-60;
+}
+
+/* Filter Section */
+.filterSection {
+  @apply mb-8 p-4 rounded-lg;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
+}
+
+.searchRow {
+  @apply flex flex-wrap gap-3 items-center;
+}
+
+.searchInput {
+  @apply flex-1 min-w-[200px] px-3 py-2 rounded-lg text-sm;
+  border: none;
+  outline: none;
+  background-color: theme(colors.bg2);
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+}
+:global(html.dark) .searchInput {
+  background-color: theme(colors.dbg2);
+  color: theme(colors.txt2);
+}
+
+.filterGroup {
+  @apply flex flex-wrap gap-2;
+}
+
+.filterChip {
+  @apply text-xs px-3 py-1.5 rounded-full cursor-pointer select-none;
+  border: none;
+  background-color: transparent;
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
+  transition: all 0.15s ease;
+  opacity: 0.5;
+}
+:global(html.dark) .filterChip {
+  color: theme(colors.txt2);
+}
+.filterChip:hover {
+  opacity: 0.8;
+}
+
+.filterChipActive {
+  @apply text-xs px-3 py-1.5 rounded-full cursor-pointer select-none font-bold;
+  border: none;
+  background-color: theme(colors.dbg4);
+  color: white;
+  box-shadow: 0px 0px 0px 1px theme(colors.dbg4);
+  transition: all 0.15s ease;
+  opacity: 0.7;
+}
+
+.sortGroup {
+  @apply flex flex-wrap items-center gap-2;
+}
+
+.listToggleLabel {
+  @apply inline-flex items-center gap-2 text-xs cursor-pointer select-none opacity-80 mr-1;
+}
+
+.listToggleLabel:hover {
+  @apply opacity-100;
+}
+
+.sortSelect {
+  @apply px-3 py-2 rounded-lg text-sm cursor-pointer;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: theme(colors.bg2);
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237d8592' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+  transition: box-shadow 0.15s ease;
+}
+:global(html.dark) .sortSelect {
+  background-color: theme(colors.dbg2);
+  color: theme(colors.txt2);
+}
+.sortSelect:focus {
+  box-shadow: 0px 0px 0px 2px theme(colors.sh1);
+  outline: none;
+}
+
+.sortDirBtn {
+  @apply w-8 h-8 flex items-center justify-center rounded-lg text-sm cursor-pointer;
+  border: none;
+  background-color: theme(colors.bg2);
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  transition: all 0.15s ease;
+}
+:global(html.dark) .sortDirBtn {
+  background-color: theme(colors.dbg2);
+  color: theme(colors.txt2);
+}
+
+/* Stats Section */
+.statsSection {
+  @apply mb-8;
+}
+
+.statsSummary {
+  @apply grid gap-3 mb-6;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.summaryCard {
+  @apply p-4 rounded-lg text-center;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
+}
+
+.summaryLabel {
+  @apply text-xs opacity-60 block mb-1;
+}
+
+.summaryValue {
+  @apply text-2xl font-bold;
+}
+
+.chartContainer {
+  @apply p-4 rounded-lg mb-4;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
+  overflow: hidden;
+}
+
+.chartTitle {
+  @apply text-sm font-bold mb-3;
+}
+
+.chartTitleRow {
+  @apply flex flex-wrap items-center justify-between gap-2 mb-3;
+}
+
+.chartTitleRow .chartTitle {
+  @apply mb-0;
+}
+
+.chartToggleLabel {
+  @apply inline-flex items-center gap-2 text-xs cursor-pointer select-none opacity-80;
+}
+
+.chartToggleLabel:hover {
+  @apply opacity-100;
+}
+
+.chartToggleInput {
+  @apply h-4 w-4 cursor-pointer rounded;
+  color: theme(colors.dbg4);
+  border-color: rgba(125, 133, 146, 0.45);
+  background-color: transparent;
+}
+
+:global(html.dark) .chartToggleInput {
+  color: theme(colors.txt2);
+  border-color: rgba(154, 165, 206, 0.35);
+  background-color: transparent;
+}
+
+.chartToggles {
+  @apply flex flex-wrap items-center gap-3;
+}
+
+.chart {
+  @apply w-full overflow-x-auto;
+}
+
+/* Chart hover details */
+.chartHoverDetails {
+  @apply text-xs rounded-lg px-3 py-2 mb-2;
+  min-height: 54px;
+  position: sticky;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(125, 133, 146, 0.12);
+  color: theme(colors.txt1);
+  box-shadow: none;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+:global(html.dark) .chartHoverDetails {
+  background-color: rgba(24, 28, 36, 0.2);
+  border-color: rgba(154, 165, 206, 0.1);
+  color: theme(colors.txt2);
+}
+
+.hoverContestHead {
+  @apply flex items-baseline gap-2;
+  min-width: 0;
+}
+
+.hoverContestId {
+  @apply font-bold flex-shrink-0;
+}
+
+.hoverContestTitle {
+  @apply truncate;
+}
+
+.hoverContestMeta {
+  @apply flex flex-wrap gap-x-3 gap-y-1 mt-1 opacity-80;
+}
+
+.langBars {
+  @apply flex flex-col gap-2;
+}
+
+.langRow {
+  @apply flex items-center gap-2 text-sm;
+}
+
+.langLabel {
+  @apply text-right text-xs flex-shrink-0;
+  width: 5em;
+}
+
+.langBar {
+  @apply h-5 rounded-sm;
+  transition: width 0.5s ease;
+}
+
+.langCount {
+  @apply text-xs opacity-70 flex-shrink-0;
+}
+
+/* Toggle */
+.toggleRow {
+  @apply flex gap-2 mb-4 justify-center;
+}
+
+.toggleBtn {
+  @apply px-4 py-1.5 text-sm rounded-lg cursor-pointer;
+  border: none;
+  background-color: transparent;
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 1px 1px theme(colors.sh1);
+  transition: all 0.15s ease;
+  opacity: 0.6;
+}
+:global(html.dark) .toggleBtn {
+  color: theme(colors.txt2);
+}
+.toggleBtn:hover {
+  opacity: 0.9;
+}
+
+.toggleBtnActive {
+  @apply px-4 py-1.5 text-sm rounded-lg cursor-pointer font-bold;
+  border: none;
+  background-color: rgba(85, 85, 85, 0.35);
+  color: theme(colors.txt1);
+  box-shadow: 0px 0px 0px 1px theme(colors.sh1);
+}
+:global(html.dark) .toggleBtnActive {
+  background-color: rgba(85, 85, 85, 0.35);
+  color: theme(colors.txt2);
+}
+
+/* Contest Grid - 5 columns, responsive */
+.contestGrid {
+  @apply grid gap-4;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.resultCount {
+  @apply text-sm opacity-70 mb-4;
+}
+
+.nothing {
+  @apply text-center py-12 opacity-50;
+}
+
+@media (max-width: 1200px) {
+  .contestGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .contestGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wideContainer {
+    width: 100vw;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .searchRow {
+    @apply flex-col;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  .contestGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsSummary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .summaryCard {
+    @apply p-3;
+  }
+
+  .summaryValue {
+    @apply text-xl;
+  }
+
+  .chartContainer {
+    @apply p-2;
+  }
+
+  .chart {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chartHoverDetails {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hoverContestHead {
+    @apply flex-wrap;
+  }
+
+  .hoverContestTitle {
+    @apply whitespace-normal;
+  }
+
+  .langLabel {
+    width: 4em;
+    @apply text-xs;
+  }
+}
+
+@media (max-width: 480px) {
+  .contestGrid {
+    grid-template-columns: 1fr;
+  }
+}

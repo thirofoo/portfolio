@@ -116,7 +116,7 @@ export const Header = () => {
         >
           thirofoo
         </Link>
-        <div className={styles.ham_menu} onClick={toggleMenu} id="ham-menu">
+        <div className={`${styles.ham_menu} ${isMenuOpen ? styles.ham_menu_open : ''}`} onClick={toggleMenu} id="ham-menu">
           <i className={isMenuOpen ? styles.open : ''}></i>
           <i className={isMenuOpen ? styles.open : ''}></i>
           <i className={isMenuOpen ? styles.open : ''}></i>
