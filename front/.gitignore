@@ -10,7 +10,11 @@
 
 # next.js
 /.next/
+/.next-tmp/
 /out/
+
+# cache
+/.cache/
 
 # production
 /build
