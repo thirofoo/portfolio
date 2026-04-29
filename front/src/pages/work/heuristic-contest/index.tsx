@@ -7,7 +7,7 @@ import { RatingColorMode, getRatingColor } from '@/lib/rating'
 import styles from '@/pages/work/heuristic-contest/heuristic.module.css'
 import { GetStaticProps } from 'next'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type Props = {
   contests: HeuristicContest[]
@@ -37,6 +37,8 @@ const HeuristicContestPage = ({ contests, lastUpdated }: Props) => {
     contests.forEach((c) => {
       c.tags.forEach((t) => filterSet.add(t))
       if (c.language) filterSet.add(c.language)
+      const year = c.date.slice(0, 4)
+      if (year) filterSet.add(year)
     })
     return Array.from(filterSet).sort()
   }, [contests])
@@ -60,7 +62,8 @@ const HeuristicContestPage = ({ contests, lastUpdated }: Props) => {
 
     if (selectedFilters.length > 0) {
       result = result.filter((c) => {
-        const attrs = [...c.tags, c.language].filter(Boolean) as string[]
+        const year = c.date.slice(0, 4)
+        const attrs = [...c.tags, c.language, year].filter(Boolean) as string[]
         return selectedFilters.some((f) => attrs.includes(f))
       })
     }
@@ -298,12 +301,12 @@ function StatsView({ contests }: { contests: HeuristicContest[] }) {
 
       <div className={styles.chartContainer}>
         <h3 className={styles.chartTitle}>Performance History</h3>
-        <div className={styles.chart}>
+        <ScrollRightChart>
           <PerformanceChart
             contests={sortedByDate.filter((c) => c.performance != null && c.performance > 0)}
             ratingColorMode={ratingColorMode}
           />
-        </div>
+        </ScrollRightChart>
       </div>
 
       <div className={styles.chartContainer}>
@@ -330,30 +333,9 @@ function StatsView({ contests }: { contests: HeuristicContest[] }) {
             </label>
           </div>
         </div>
-        <div className={styles.chart}>
+        <ScrollRightChart>
           <RankChart contests={rankHistoryContests} ratingColorMode={ratingColorMode} showExtendedRank={showExtendedRank} />
-        </div>
-      </div>
-
-      <div className={styles.chartContainer}>
-        <h3 className={styles.chartTitle}>Language Distribution</h3>
-        <div className={styles.langBars}>
-          {langEntries.map(([lang, count]) => (
-            <div key={lang} className={styles.langRow}>
-              <span className={styles.langLabel}>{lang}</span>
-              <div
-                className={styles.langBar}
-                style={{
-                  width: `${(count / maxLangCount) * 100}%`,
-                  minWidth: '20px',
-                  backgroundColor: langColors[lang] || '#6b7280',
-                  opacity: 0.55,
-                }}
-              />
-              <span className={styles.langCount}>{count}</span>
-            </div>
-          ))}
-        </div>
+        </ScrollRightChart>
       </div>
     </div>
   )
@@ -422,6 +404,25 @@ function ChartTooltipBox({
   )
 }
 
+/* ========== Scroll-right chart wrapper ========== */
+
+function ScrollRightChart({ children }: { children: React.ReactNode }) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = scrollRef.current
+    if (el) {
+      requestAnimationFrame(() => {
+        el.scrollLeft = el.scrollWidth
+      })
+    }
+  }, [])
+  return (
+    <div className={styles.chart} ref={scrollRef}>
+      {children}
+    </div>
+  )
+}
+
 /* ========== SVG Charts ========== */
 
 function PerformanceChart({
@@ -479,9 +480,9 @@ function PerformanceChart({
   const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ')
 
   return (
-    <div style={{ position: 'relative' }}>
+    <>
       <ChartTooltipBox tooltip={tooltip} ratingColorMode={ratingColorMode} />
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto' }}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', minWidth: 500 }}>
         {ratingBands.map((band, i) => {
           const prevThreshold = i === 0 ? 0 : ratingBands[i - 1].threshold
           const bandBottom = Math.max(prevThreshold, minP)
@@ -589,7 +590,7 @@ function PerformanceChart({
             )
           })}
       </svg>
-    </div>
+    </>
   )
 }
 
@@ -662,9 +663,9 @@ function RankChart({
   const gridValues = gridCandidates.filter((v) => v <= maxRank)
 
   return (
-    <div style={{ position: 'relative' }}>
+    <>
       <ChartTooltipBox tooltip={tooltip} ratingColorMode={ratingColorMode} />
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto' }}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', minWidth: 500 }}>
         {gridValues.map((val) => {
           const y = rankToY(val)
           if (y < PAD.top || y > PAD.top + chartH) return null
@@ -693,7 +694,7 @@ function RankChart({
         })}
         <path d={linePath} fill='none' stroke={LINE_COLOR} strokeWidth={2} strokeOpacity={0.5} />
         {extLinePath && (
-          <path d={extLinePath} fill='none' stroke='#e6994a' strokeWidth={1.5} strokeOpacity={0.5} strokeDasharray='6 3' />
+          <path d={extLinePath} fill='none' stroke={LINE_COLOR} strokeWidth={1.5} strokeOpacity={0.35} strokeDasharray='6 3' />
         )}
         {showExtendedRank &&
           extPoints.map((p) => (
@@ -702,9 +703,9 @@ function RankChart({
               cx={p.x}
               cy={p.y}
               r={2.5}
-              fill='#e6994a'
-              fillOpacity={0.7}
-              stroke='#e6994a'
+              fill={LINE_COLOR}
+              fillOpacity={0.5}
+              stroke={LINE_COLOR}
               strokeWidth={0.5}
               strokeOpacity={0.3}
             />
@@ -769,7 +770,7 @@ function RankChart({
             )
           })}
       </svg>
-    </div>
+    </>
   )
 }
 

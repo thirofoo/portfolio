@@ -10,6 +10,29 @@ const works: Article[] = [
     CreatedAt: new Date().toISOString(),
     UpdatedAt: new Date().toISOString(),
     DeletedAt: '',
+    title: 'Tetris Project',
+    slug: 'https://github.com/seihirochi/tetris-project',
+    description: '深層強化学習でテトリスの AI を作成',
+    author: 'Admin',
+    thumbnail:
+      'https://res.cloudinary.com/dq8pi3jes/image/upload/v1714576433/portfolio/tetris-rl/Extra.gif',
+    Tags: [
+      {
+        ID: '2',
+        CreatedAt: new Date().toISOString(),
+        UpdatedAt: new Date().toISOString(),
+        DeletedAt: '',
+        name: 'RL',
+      },
+    ],
+    type: 'work',
+    body: 'This is the body content of Tetris Project.',
+  },
+  {
+    ID: '2',
+    CreatedAt: new Date().toISOString(),
+    UpdatedAt: new Date().toISOString(),
+    DeletedAt: '',
     title: 'Heuristic Contest Archive',
     slug: 'heuristic-contest',
     description: 'AtCoder Heuristic Contest (AHC) の参加実績・ビジュアライザ・統計情報',
@@ -28,7 +51,7 @@ const works: Article[] = [
     body: '',
   },
   {
-    ID: '2',
+    ID: '3',
     CreatedAt: new Date().toISOString(),
     UpdatedAt: new Date().toISOString(),
     DeletedAt: '',
@@ -48,29 +71,6 @@ const works: Article[] = [
     ],
     type: 'work',
     body: 'This is the body content of Competitive Programming Library.',
-  },
-  {
-    ID: '3',
-    CreatedAt: new Date().toISOString(),
-    UpdatedAt: new Date().toISOString(),
-    DeletedAt: '',
-    title: 'Tetris Project',
-    slug: 'https://github.com/seihirochi/tetris-project',
-    description: '深層強化学習でテトリスの AI を作成',
-    author: 'Admin',
-    thumbnail:
-      'https://res.cloudinary.com/dq8pi3jes/image/upload/v1714576433/portfolio/tetris-rl/Extra.gif',
-    Tags: [
-      {
-        ID: '2',
-        CreatedAt: new Date().toISOString(),
-        UpdatedAt: new Date().toISOString(),
-        DeletedAt: '',
-        name: 'RL',
-      },
-    ],
-    type: 'work',
-    body: 'This is the body content of Tetris Project.',
   },
 ]
 

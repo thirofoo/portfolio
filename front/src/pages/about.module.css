@@ -140,6 +140,34 @@
   text-decoration-color: currentColor;
 }
 
+.archive_banner {
+  @apply flex items-center justify-between mt-5 px-4 py-3 rounded-lg text-sm font-medium cursor-pointer;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0px 0px 2px 1px theme(colors.sh1);
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+  opacity: 0.75;
+}
+
+.archive_banner:hover {
+  opacity: 1;
+  box-shadow: 0px 0px 4px 2px theme(colors.sh1);
+}
+
+.archive_banner_text {
+  @apply tracking-wide;
+}
+
+.archive_banner_arrow {
+  @apply text-base opacity-60;
+  transition: transform 0.2s ease;
+}
+
+.archive_banner:hover .archive_banner_arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
 .about_section {
   @apply mx-auto max-w-5xl px-4 text-left flex flex-col gap-10;
 }
