@@ -142,6 +142,17 @@ const achievementGroups: AchievementGroup[] = [
     label: 'Contest',
     items: [
       {
+        period: '2026年8月',
+        icon: '/images/atcoder.webp',
+        title: <span> RECRUIT 日本橋ハーフマラソン 2026夏（AHC 069）| 総合 3 位 / 1136・学生 2 位 </span>,
+        description: (
+          <>
+            リクルート社主催の長期ヒューリスティックコンテストで、総合 3 位 / 1136・学生 2 位の成績を収め、賞金 7 万円を獲得した。
+          </>
+        ),
+        link: 'https://atcoder.jp/contests/ahc069/standings',
+      },
+      {
         period: '2026年4月',
         icon: '/images/atcoder.webp',
         title: <span> AtCoder Heuristic Contest 063 | 4 位 / 1277 </span>,
@@ -226,10 +237,10 @@ const achievementGroups: AchievementGroup[] = [
     items: [
       {
         period: '2026年7月',
-        title: <span>ECRTS 2026 論文採択（発表予定）</span>,
+        title: <span>ECRTS 2026 論文採択・口頭発表</span>,
         description: (
           <>
-            Euromicro Conference on Real-Time Systems (ECRTS 2026) にて、修士で取り組んできた研究に関する論文が採択された。
+            Euromicro Conference on Real-Time Systems (ECRTS 2026) にて、修士で取り組んできた研究に関する論文が採択され、口頭発表を行った。
           </>
         ),
         link: 'https://www.ecrts.org/', // ※必要に応じて該当年のURLに書き換えてください
