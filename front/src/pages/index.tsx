@@ -12,7 +12,6 @@ import { Timeline } from '@/components/molecules/Timeline'
 
 import { AchievementGroup } from '@/Interfaces/Achievement'
 import { TimelineItem } from '@/Interfaces/Timeline'
-import Link from 'next/link'
 
 const timelineData: TimelineItem[] = [
   {
@@ -236,6 +235,20 @@ const achievementGroups: AchievementGroup[] = [
     label: 'Publication / Conference',
     items: [
       {
+        period: '2026年度',
+        title: <span>情報処理学会 山下記念研究賞 受賞</span>,
+        description: (
+          <>
+            情報処理学会 (IPSJ) の研究会・シンポジウムにおける前年度の発表論文のうち、特に優秀なものを各研究会主査の推薦に基づき研究会ごとに 1〜2 編以内で選定し、その発表者に贈られる
+            <div className="inline-block font-bold mx-1">
+              山下記念研究賞
+            </div>
+            を受賞した。
+          </>
+        ),
+        link: 'https://www.ipsj.or.jp/award/yamashita2026.html',
+      },
+      {
         period: '2026年7月',
         title: <span>ECRTS 2026 論文採択・口頭発表</span>,
         description: (
@@ -375,13 +388,8 @@ const Home: NextPage = () => {
               </a>
               では Competitions Expert を達成。
               <br />
+              <span className="mt-2 block" />
 
-              <Link href="/work/heuristic-contest" className={styles.archive_banner}>
-                <span className={styles.archive_banner_text}>Heuristic Contest Archive</span>
-                <span className={styles.archive_banner_arrow}>→</span>
-              </Link>
-
-              <br />
               Web 開発では Next.js と Go を用いてこのサイトを自作している。
               <br />
               <span className="mt-2 block" />
